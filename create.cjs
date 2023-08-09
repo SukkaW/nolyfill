@@ -26,7 +26,8 @@ const packagesList = /** @type {const} */ ([
   ['string.prototype.trimend', 'String.prototype.trimEnd', false],
   ['string.prototype.trimstart', 'String.prototype.trimStart', false],
   ['string.prototype.matchall', 'String.prototype.matchAll', false],
-  ['regexp.prototype.flags', 'RegExp.prototype.flags', false]
+  ['regexp.prototype.flags', 'RegExp.prototype.flags', false],
+  ['globalthis', 'globalThis', true]
 ]);
 
 (async () => {

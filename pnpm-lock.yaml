@@ -23,6 +23,7 @@ overrides:
   string.prototype.trimstart: workspace:@nolyfill/string.prototype.trimstart@*
   string.prototype.matchall: workspace:@nolyfill/string.prototype.matchall@*
   regexp.prototype.flags: workspace:@nolyfill/regexp.prototype.flags@*
+  globalthis: workspace:@nolyfill/globalthis@*
 
 importers:
 
@@ -91,6 +92,8 @@ importers:
       '@nolyfill/shared':
         specifier: workspace:*
         version: link:../shared
+
+  packages/globalthis: {}
 
   packages/has:
     dependencies:
