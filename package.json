@@ -1,12 +1,11 @@
 {
   "private": true,
   "scripts": {
-    "build": "turbo run build",
-    "dev": "turbo run dev",
     "lint": "turbo run lint",
-    "format": "prettier --write \"**/*.{ts,tsx,md}\""
+    "release": "bumpp -r && pnpm -r publish"
   },
   "devDependencies": {
+    "bumpp": "^9.1.1",
     "eslint": "^8.46.0",
     "eslint-config-sukka": "^3.0.2",
     "eslint-plugin-import": "npm:eslint-plugin-i@2.28.0-2",
@@ -14,5 +13,6 @@
     "turbo": "latest"
   },
   "packageManager": "pnpm@8.6.10",
-  "name": "nopolyfill"
+  "name": "nopolyfill",
+  "version": "0.0.1"
 }
