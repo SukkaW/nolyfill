@@ -1,0 +1,12 @@
+{
+  "name": "@nolyfill/array-includes",
+  "version": "0.0.0",
+  "main": "./index.js",
+  "license": "MIT",
+  "scripts": {
+    "lint": "eslint ."
+  },
+  "dependencies": {
+    "@nolyfill/shared": "workspace:*"
+  }
+}
