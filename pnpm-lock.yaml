@@ -33,6 +33,12 @@ importers:
         specifier: workspace:*
         version: link:../shared
 
+  packages/array.prototype.flatmap:
+    dependencies:
+      '@nolyfill/shared':
+        specifier: workspace:*
+        version: link:../shared
+
   packages/shared: {}
 
 packages:
