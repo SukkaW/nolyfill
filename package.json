@@ -17,5 +17,14 @@
   },
   "packageManager": "pnpm@8.6.10",
   "name": "nolyfill",
-  "version": "1.0.0"
+  "version": "1.0.0",
+  "pnpm": {
+    "overrides": {
+      "array-includes": "@nolyfill/array-includes",
+      "array.prototype.flatmap": "@nolyfill/array.prototype.flatmap",
+      "has": "@nolyfill/has",
+      "object.entries": "@nolyfill/object.entries",
+      "object.fromentries": "@nolyfill/object.fromentries"
+    }
+  }
 }
