@@ -6,6 +6,7 @@ settings:
 
 overrides:
   array-includes: workspace:@nolyfill/array-includes@latest
+  array.prototype.flat: workspace:@nolyfill/array.prototype.flat@latest
   array.prototype.flatmap: workspace:@nolyfill/array.prototype.flatmap@latest
   has: workspace:@nolyfill/has@latest
   object.entries: workspace:@nolyfill/object.entries@latest
@@ -46,6 +47,12 @@ importers:
         version: 5.1.6
 
   packages/array-includes:
+    dependencies:
+      '@nolyfill/shared':
+        specifier: workspace:*
+        version: link:../shared
+
+  packages/array.prototype.findlastindex:
     dependencies:
       '@nolyfill/shared':
         specifier: workspace:*
