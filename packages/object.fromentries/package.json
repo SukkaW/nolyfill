@@ -1,5 +1,5 @@
 {
-  "name": "@nolyfill/array.prototype.flatmap",
+  "name": "@nolyfill/object.fromentries",
   "version": "0.0.0",
   "main": "./index.js",
   "license": "MIT",
@@ -9,9 +9,7 @@
   "scripts": {
     "lint": "eslint ."
   },
-  "dependencies": {
-    "@nolyfill/shared": "workspace:*"
-  },
+  "dependencies": {},
   "engines": {
     "node": ">=12.4.0"
   }
