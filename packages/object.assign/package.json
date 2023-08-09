@@ -9,5 +9,8 @@
   "scripts": {
     "lint": "eslint ."
   },
-  "dependencies": {}
+  "dependencies": {},
+  "engines": {
+    "node": ">=12.4.0"
+  }
 }

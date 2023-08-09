@@ -1,3 +1,4 @@
+'use strict';
 const { bind, call } = Function.prototype;
 const uncurryThis = bind.bind(call);
 

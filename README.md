@@ -28,12 +28,16 @@ Add the following lines to your `package.json`'s `overrides`:
     "object.assign": "npm:@nolyfill/object.assign@latest",
     "object.entries": "npm:@nolyfill/object.entries@latest",
     "object.fromentries": "npm:@nolyfill/object.fromentries@latest",
-    "object.values": "npm:@nolyfill/object.values@latest"
+    "object.hasown": "npm:@nolyfill/object.hasown@latest",
+    "object.values": "npm:@nolyfill/object.values@latest",
+    "string.prototype.trim": "npm:@nolyfill/string.prototype.trim@latest",
+    "string.prototype.trimend": "npm:@nolyfill/string.prototype.trimend@latest",
+    "string.prototype.trimstart": "npm:@nolyfill/string.prototype.trimstart@latest"
   }
 }
 ```
 
-Then run `npm update`.
+Then run `npm update` (To update `package-lock.json` with overrides).
 
 ----
 

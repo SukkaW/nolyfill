@@ -1,2 +1,7 @@
+'use strict';
 const { uncurryThis } = require('@nolyfill/shared');
-module.exports = uncurryThis(Array.prototype.flatMap);
+const impl = Array.prototype.flatMap;
+module.exports = uncurryThis(impl);
+module.exports.implementation = impl;
+module.exports.getPolyfill = () => impl;
+module.exports.shim = () => impl;

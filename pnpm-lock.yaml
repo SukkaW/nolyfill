@@ -5,14 +5,22 @@ settings:
   excludeLinksFromLockfile: false
 
 overrides:
-  array-includes: workspace:@nolyfill/array-includes@latest
-  array.prototype.flat: workspace:@nolyfill/array.prototype.flat@latest
-  array.prototype.flatmap: workspace:@nolyfill/array.prototype.flatmap@latest
-  has: workspace:@nolyfill/has@latest
-  object.entries: workspace:@nolyfill/object.entries@latest
-  object.fromentries: workspace:@nolyfill/object.fromentries@latest
-  object.values: workspace:@nolyfill/object.values@latest
-  function.prototype.name: workspace:@nolyfill/function.prototype.name@latest
+  array-includes: workspace:@nolyfill/array-includes@*
+  array.prototype.findlastindex: workspace:@nolyfill/array.prototype.findlastindex@*
+  array.prototype.flat: workspace:@nolyfill/array.prototype.flat@*
+  array.prototype.flatmap: workspace:@nolyfill/array.prototype.flatmap@*
+  arraybuffer.prorotype.slice: workspace:@nolyfill/arraybuffer.prorotype.slice@*
+  function.prototype.name: workspace:@nolyfill/function.prototype.name@*
+  has: workspace:@nolyfill/has@*
+  object-keys: workspace:@nolyfill/object-keys@*
+  object.assign: workspace:@nolyfill/object.assign@*
+  object.entries: workspace:@nolyfill/object.entries@*
+  object.fromentries: workspace:@nolyfill/object.fromentries@*
+  object.hasown: workspace:@nolyfill/object.hasown@*
+  object.values: workspace:@nolyfill/object.values@*
+  string.prototype.trim: workspace:@nolyfill/string.prototype.trim@*
+  string.prototype.trimend: workspace:@nolyfill/string.prototype.trimend@*
+  string.prototype.trimstart: workspace:@nolyfill/string.prototype.trimstart@*
 
 importers:
 
@@ -107,6 +115,18 @@ importers:
   packages/shared: {}
 
   packages/string.prototype.trim:
+    dependencies:
+      '@nolyfill/shared':
+        specifier: workspace:*
+        version: link:../shared
+
+  packages/string.prototype.trimend:
+    dependencies:
+      '@nolyfill/shared':
+        specifier: workspace:*
+        version: link:../shared
+
+  packages/string.prototype.trimstart:
     dependencies:
       '@nolyfill/shared':
         specifier: workspace:*

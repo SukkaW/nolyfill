@@ -1,2 +1,7 @@
+'use strict';
 const { uncurryThis } = require('@nolyfill/shared');
-module.exports = uncurryThis(String.prototype.trimEnd);
+const impl = String.prototype.trimEnd;
+module.exports = uncurryThis(impl);
+module.exports.implementation = impl;
+module.exports.getPolyfill = () => impl;
+module.exports.shim = () => impl;
