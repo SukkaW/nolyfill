@@ -1,6 +1,7 @@
 // @ts-check
 const fsPromises = require('fs/promises');
 const path = require('path');
+const ezspawn = require('@jsdevtools/ez-spawn');
 
 (async () => {
   const packageName = process.argv.slice(2)[0];
@@ -15,7 +16,7 @@ const path = require('path');
   await Promise.all([
     fsPromises.writeFile(
       path.join(packagePath, 'index.js'),
-      'const { uncurryThis } = require(\'@nolyfill/shared\');\n\nmodule.exports = \n',
+      'const { uncurryThis } = require(\'@nolyfill/shared\');\n\nmodule.exports = uncurryThis();\n',
       { encoding: 'utf-8' }
     ),
     fsPromises.writeFile(
@@ -38,4 +39,6 @@ const path = require('path');
       { encoding: 'utf-8' }
     )
   ]);
+
+  await ezspawn.async('pnpm', ['i']);
 })();
