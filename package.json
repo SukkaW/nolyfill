@@ -3,7 +3,7 @@
   "files": [],
   "scripts": {
     "lint": "turbo run lint",
-    "release": "bumpp -r && pnpm -r publish"
+    "release": "bumpp -r && pnpm --access=public -r publish"
   },
   "devDependencies": {
     "eslint": "^8.46.0",
