@@ -3,7 +3,8 @@
   "files": [],
   "scripts": {
     "lint": "turbo run lint",
-    "release": "bumpp -r && pnpm --access=public -r publish"
+    "release": "bumpp -r && pnpm --access=public -r publish",
+    "build": "node create.cjs"
   },
   "devDependencies": {
     "@jsdevtools/ez-spawn": "^3.0.4",
@@ -36,7 +37,8 @@
       "object.values": "workspace:@nolyfill/object.values@*",
       "string.prototype.trim": "workspace:@nolyfill/string.prototype.trim@*",
       "string.prototype.trimend": "workspace:@nolyfill/string.prototype.trimend@*",
-      "string.prototype.trimstart": "workspace:@nolyfill/string.prototype.trimstart@*"
+      "string.prototype.trimstart": "workspace:@nolyfill/string.prototype.trimstart@*",
+      "string.prototype.matchall": "workspace:@nolyfill/string.prototype.matchall@*"
     }
   }
 }

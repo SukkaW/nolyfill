@@ -21,6 +21,7 @@ overrides:
   string.prototype.trim: workspace:@nolyfill/string.prototype.trim@*
   string.prototype.trimend: workspace:@nolyfill/string.prototype.trimend@*
   string.prototype.trimstart: workspace:@nolyfill/string.prototype.trimstart@*
+  string.prototype.matchall: workspace:@nolyfill/string.prototype.matchall@*
 
 importers:
 
@@ -113,6 +114,12 @@ importers:
   packages/object.values: {}
 
   packages/shared: {}
+
+  packages/string.prototype.matchall:
+    dependencies:
+      '@nolyfill/shared':
+        specifier: workspace:*
+        version: link:../shared
 
   packages/string.prototype.trim:
     dependencies:

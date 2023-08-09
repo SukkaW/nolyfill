@@ -24,7 +24,8 @@ const packagesList = /** @type {const} */ ([
   ['object.values', 'Object.values', true],
   ['string.prototype.trim', 'String.prototype.trim', false],
   ['string.prototype.trimend', 'String.prototype.trimEnd', false],
-  ['string.prototype.trimstart', 'String.prototype.trimStart', false]
+  ['string.prototype.trimstart', 'String.prototype.trimStart', false],
+  ['string.prototype.matchall', 'String.prototype.matchAll', false]
 ]);
 
 (async () => {
