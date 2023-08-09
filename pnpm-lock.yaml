@@ -5,11 +5,11 @@ settings:
   excludeLinksFromLockfile: false
 
 overrides:
-  array-includes: '@nolyfill/array-includes'
-  array.prototype.flatmap: '@nolyfill/array.prototype.flatmap'
-  has: '@nolyfill/has'
-  object.entries: '@nolyfill/object.entries'
-  object.fromentries: '@nolyfill/object.fromentries'
+  array-includes: workspace:@nolyfill/array-includes@latest
+  array.prototype.flatmap: workspace:@nolyfill/array.prototype.flatmap@latest
+  has: workspace:@nolyfill/has@latest
+  object.entries: workspace:@nolyfill/object.entries@latest
+  object.fromentries: workspace:@nolyfill/object.fromentries@latest
 
 importers:
 
@@ -56,6 +56,12 @@ importers:
         version: link:../shared
 
   packages/array.prototype.flatmap:
+    dependencies:
+      '@nolyfill/shared':
+        specifier: workspace:*
+        version: link:../shared
+
+  packages/function.prototype.name:
     dependencies:
       '@nolyfill/shared':
         specifier: workspace:*
@@ -816,7 +822,7 @@ packages:
   /is-core-module@2.13.0:
     resolution: {integrity: sha512-Z7dk6Qo8pOCp3l4tsX2C5ZVas4V+UxwQodwZhLopL91TX8UyyHEXafPcyoeeWuLrwzHcr3igO78wNLwHJHsMCQ==}
     dependencies:
-      has: link:@nolyfill/has
+      has: link:packages/has
     dev: true
 
   /is-extglob@2.1.1:

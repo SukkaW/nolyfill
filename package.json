@@ -21,11 +21,11 @@
   "version": "1.0.0",
   "pnpm": {
     "overrides": {
-      "array-includes": "@nolyfill/array-includes",
-      "array.prototype.flatmap": "@nolyfill/array.prototype.flatmap",
-      "has": "@nolyfill/has",
-      "object.entries": "@nolyfill/object.entries",
-      "object.fromentries": "@nolyfill/object.fromentries"
+      "array-includes": "workspace:@nolyfill/array-includes@latest",
+      "array.prototype.flatmap": "workspace:@nolyfill/array.prototype.flatmap@latest",
+      "has": "workspace:@nolyfill/has@latest",
+      "object.entries": "workspace:@nolyfill/object.entries@latest",
+      "object.fromentries": "workspace:@nolyfill/object.fromentries@latest"
     }
   }
 }
