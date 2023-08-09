@@ -6,12 +6,14 @@
     "release": "bumpp -r && pnpm --access=public -r publish"
   },
   "devDependencies": {
+    "@types/node": "^20.4.9",
     "bumpp": "^9.1.1",
     "eslint": "^8.46.0",
     "eslint-config-sukka": "^3.0.2",
     "eslint-plugin-import": "npm:eslint-plugin-i@2.28.0-2",
     "eslint-plugin-n": "^16.0.1",
-    "turbo": "latest"
+    "turbo": "latest",
+    "typescript": "^5.1.6"
   },
   "packageManager": "pnpm@8.6.10",
   "name": "nolyfill",
