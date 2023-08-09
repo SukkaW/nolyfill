@@ -70,6 +70,12 @@ importers:
         specifier: workspace:*
         version: link:../shared
 
+  packages/arraybuffer.prorotype.slice:
+    dependencies:
+      '@nolyfill/shared':
+        specifier: workspace:*
+        version: link:../shared
+
   packages/function.prototype.name:
     dependencies:
       '@nolyfill/shared':
@@ -81,6 +87,14 @@ importers:
       '@nolyfill/shared':
         specifier: workspace:*
         version: link:../shared
+
+  packages/object-keys:
+    dependencies:
+      '@nolyfill/shared':
+        specifier: workspace:*
+        version: link:../shared
+
+  packages/object.assign: {}
 
   packages/object.entries: {}
 
