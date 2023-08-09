@@ -88,17 +88,19 @@ importers:
         specifier: workspace:*
         version: link:../shared
 
-  packages/object-keys:
-    dependencies:
-      '@nolyfill/shared':
-        specifier: workspace:*
-        version: link:../shared
+  packages/object-keys: {}
 
   packages/object.assign: {}
 
   packages/object.entries: {}
 
   packages/object.fromentries: {}
+
+  packages/object.hasown:
+    dependencies:
+      '@nolyfill/shared':
+        specifier: workspace:*
+        version: link:../shared
 
   packages/object.values: {}
 
