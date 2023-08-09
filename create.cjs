@@ -16,7 +16,7 @@ const ezspawn = require('@jsdevtools/ez-spawn');
   await Promise.all([
     fsPromises.writeFile(
       path.join(packagePath, 'index.js'),
-      'const { uncurryThis } = require(\'@nolyfill/shared\');\n\nmodule.exports = uncurryThis();\n',
+      'const { uncurryThis } = require(\'@nolyfill/shared\');\nmodule.exports = uncurryThis();\n',
       { encoding: 'utf-8' }
     ),
     fsPromises.writeFile(
