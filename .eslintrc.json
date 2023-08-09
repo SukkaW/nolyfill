@@ -1,0 +1,4 @@
+{
+  "root": true,
+  "extends": "sukka/node"
+}
