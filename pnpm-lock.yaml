@@ -22,6 +22,7 @@ overrides:
   string.prototype.trimend: workspace:@nolyfill/string.prototype.trimend@*
   string.prototype.trimstart: workspace:@nolyfill/string.prototype.trimstart@*
   string.prototype.matchall: workspace:@nolyfill/string.prototype.matchall@*
+  regexp.prototype.flags: workspace:@nolyfill/regexp.prototype.flags@*
 
 importers:
 
@@ -112,6 +113,12 @@ importers:
         version: link:../shared
 
   packages/object.values: {}
+
+  packages/regexp.prototype.flags:
+    dependencies:
+      '@nolyfill/shared':
+        specifier: workspace:*
+        version: link:../shared
 
   packages/shared: {}
 

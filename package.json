@@ -38,7 +38,8 @@
       "string.prototype.trim": "workspace:@nolyfill/string.prototype.trim@*",
       "string.prototype.trimend": "workspace:@nolyfill/string.prototype.trimend@*",
       "string.prototype.trimstart": "workspace:@nolyfill/string.prototype.trimstart@*",
-      "string.prototype.matchall": "workspace:@nolyfill/string.prototype.matchall@*"
+      "string.prototype.matchall": "workspace:@nolyfill/string.prototype.matchall@*",
+      "regexp.prototype.flags": "workspace:@nolyfill/regexp.prototype.flags@*"
     }
   }
 }
