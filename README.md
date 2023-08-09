@@ -17,11 +17,21 @@ Add the following lines to your `package.json`'s `overrides`:
 ```json
 {
   "overrides": {
-    "array-includes": "@nolyfill/array-includes",
-    "array.prototype.flatmap": "@nolyfill/array.prototype.flatmap",
-    "has": "@nolyfill/has",
-    "object.entries": "@nolyfill/object.entries",
-    "object.fromentries": "@nolyfill/object.fromentries"
+    "array-includes": {
+      "@nolyfill/array-includes": "latest"
+    },
+    "array.prototype.flatmap": {
+      "@nolyfill/array.prototype.flatmap": "latest"
+    },
+    "has": {
+      "@nolyfill/has": "latest"
+    },
+    "object.entries": {
+      "@nolyfill/object.entries": "latest"
+    },
+    "object.fromentries": {
+      "@nolyfill/object.fromentries": "latest"
+    }
   }
 }
 ```
