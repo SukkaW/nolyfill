@@ -106,6 +106,12 @@ importers:
 
   packages/shared: {}
 
+  packages/string.prototype.trim:
+    dependencies:
+      '@nolyfill/shared':
+        specifier: workspace:*
+        version: link:../shared
+
 packages:
 
   /@aashutoshrathi/word-wrap@1.2.6:
