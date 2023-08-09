@@ -1,0 +1,13 @@
+{
+  "name": "@nolyfill/object.values",
+  "version": "0.0.0",
+  "main": "./index.js",
+  "license": "MIT",
+  "files": [
+    "*.js"
+  ],
+  "scripts": {
+    "lint": "eslint ."
+  },
+  "dependencies": {}
+}

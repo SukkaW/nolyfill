@@ -10,6 +10,8 @@ overrides:
   has: workspace:@nolyfill/has@latest
   object.entries: workspace:@nolyfill/object.entries@latest
   object.fromentries: workspace:@nolyfill/object.fromentries@latest
+  object.values: workspace:@nolyfill/object.values@latest
+  function.prototype.name: workspace:@nolyfill/function.prototype.name@latest
 
 importers:
 
@@ -76,6 +78,8 @@ importers:
   packages/object.entries: {}
 
   packages/object.fromentries: {}
+
+  packages/object.values: {}
 
   packages/shared: {}
 
