@@ -21,7 +21,7 @@ Add the following lines to your `package.json`'s `overrides`:
     "array.prototype.findlastindex": "npm:@nolyfill/array.prototype.findlastindex@latest",
     "array.prototype.flat": "npm:@nolyfill/array.prototype.flat@latest",
     "array.prototype.flatmap": "npm:@nolyfill/array.prototype.flatmap@latest",
-    "arraybuffer.prorotype.slice": "npm:@nolyfill/arraybuffer.prorotype.slice@latest",
+    "arraybuffer.prototype.slice": "npm:@nolyfill/arraybuffer.prototype.slice@latest",
     "function.prototype.name": "npm:@nolyfill/function.prototype.name@latest",
     "has": "npm:@nolyfill/has@latest",
     "object-keys": "npm:@nolyfill/object-keys@latest",

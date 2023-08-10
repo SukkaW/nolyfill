@@ -13,7 +13,7 @@ const packagesList = /** @type {const} */ ([
   ['array.prototype.findlastindex', 'Array.prototype.findLastIndex', false],
   ['array.prototype.flat', 'Array.prototype.flat', false],
   ['array.prototype.flatmap', 'Array.prototype.flatMap', false],
-  ['arraybuffer.prorotype.slice', 'ArrayBuffer.prototype.slice', false],
+  ['arraybuffer.prototype.slice', 'ArrayBuffer.prototype.slice', false],
   ['function.prototype.name', 'Function.prototype.name', false],
   ['has', 'Object.prototype.hasOwnProperty', false],
   ['object-keys', 'Object.keys', true],
@@ -40,10 +40,13 @@ const packagesList = /** @type {const} */ ([
   const newPackageJson = {
     ...currentPackageJson,
     pnpm: {
-      overrides: packagesList.reduce((acc, [packageName]) => {
-        acc[packageName] = `workspace:@nolyfill/${packageName}@*`;
-        return acc;
-      }, /** @type {Record<string, string>} */({}))
+      overrides: {
+        ...currentPackageJson.pnpm.overrides,
+        ...packagesList.reduce((acc, [packageName]) => {
+          acc[packageName] = `workspace:@nolyfill/${packageName}@*`;
+          return acc;
+        }, /** @type {Record<string, string>} */({}))
+      }
     }
   };
 

@@ -1,5 +1,5 @@
 {
-  "name": "@nolyfill/arraybuffer.prorotype.slice",
+  "name": "@nolyfill/arraybuffer.prototype.slice",
   "version": "1.0.4",
   "main": "./index.js",
   "license": "MIT",

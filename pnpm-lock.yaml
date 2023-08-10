@@ -9,9 +9,10 @@ overrides:
   array.prototype.findlastindex: workspace:@nolyfill/array.prototype.findlastindex@*
   array.prototype.flat: workspace:@nolyfill/array.prototype.flat@*
   array.prototype.flatmap: workspace:@nolyfill/array.prototype.flatmap@*
-  arraybuffer.prorotype.slice: workspace:@nolyfill/arraybuffer.prorotype.slice@*
+  arraybuffer.prototype.slice: workspace:@nolyfill/arraybuffer.prototype.slice@*
   function.prototype.name: workspace:@nolyfill/function.prototype.name@*
   has: workspace:@nolyfill/has@*
+  has-property-descriptors: workspace:@nolyfill/has-property-descriptors@*
   object-keys: workspace:@nolyfill/object-keys@*
   object.assign: workspace:@nolyfill/object.assign@*
   object.entries: workspace:@nolyfill/object.entries@*
@@ -82,7 +83,7 @@ importers:
         specifier: workspace:*
         version: link:../shared
 
-  packages/arraybuffer.prorotype.slice:
+  packages/arraybuffer.prototype.slice:
     dependencies:
       '@nolyfill/shared':
         specifier: workspace:*
@@ -103,6 +104,8 @@ importers:
       '@nolyfill/shared':
         specifier: workspace:*
         version: link:../shared
+
+  packages/has-property-descriptors: {}
 
   packages/object-keys: {}
 

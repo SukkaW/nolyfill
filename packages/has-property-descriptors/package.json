@@ -1,0 +1,16 @@
+{
+  "name": "has-property-descriptors",
+  "version": "0.0.0",
+  "main": "./index.js",
+  "license": "MIT",
+  "files": [
+    "*.js"
+  ],
+  "scripts": {
+    "lint": "eslint ."
+  },
+  "dependencies": {},
+  "engines": {
+    "node": ">=12.4.0"
+  }
+}
