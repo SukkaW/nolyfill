@@ -194,6 +194,12 @@ importers:
         specifier: workspace:*
         version: link:../shared
 
+  packages/typed-array-length:
+    dependencies:
+      '@nolyfill/shared':
+        specifier: workspace:*
+        version: link:../shared
+
 packages:
 
   /@aashutoshrathi/word-wrap@1.2.6:
