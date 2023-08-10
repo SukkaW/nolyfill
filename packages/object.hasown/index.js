@@ -1,7 +1,6 @@
 'use strict';
-const { uncurryThis } = require('@nolyfill/shared');
-const impl = Object.prototype.hasOwnProperty;
-module.exports = uncurryThis(impl);
+const impl = Object.hasOwn || require('@nolyfill/shared').uncurryThis(Object.prototype.hasOwnProperty);
+module.exports = impl;
 module.exports.implementation = impl;
 module.exports.getPolyfill = () => impl;
 module.exports.shim = () => impl;

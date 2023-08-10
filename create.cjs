@@ -20,7 +20,7 @@ const packagesList = /** @type {const} */ ([
   ['object.assign', 'Object.assign', true],
   ['object.entries', 'Object.entries', true],
   ['object.fromentries', 'Object.fromEntries', true],
-  ['object.hasown', 'Object.prototype.hasOwnProperty', false],
+  ['object.hasown', 'Object.hasOwn || require(\'@nolyfill/shared\').uncurryThis(Object.prototype.hasOwnProperty)', true, true],
   ['object.values', 'Object.values', true],
   ['string.prototype.trim', 'String.prototype.trim', false],
   ['string.prototype.trimend', 'String.prototype.trimEnd', false],
@@ -32,7 +32,7 @@ const packagesList = /** @type {const} */ ([
 
 (async () => {
   await Promise.all(
-    packagesList.map(pkg => createPackage(pkg[0], pkg[1], pkg[2]))
+    packagesList.map(pkg => createPackage(pkg[0], pkg[1], pkg[2], pkg[3]))
   );
 
   const newPackageJson = {
@@ -81,7 +81,7 @@ async function compareAndWriteFile(filePath, fileContent) {
  * @param {boolean} isStatic
  * @param {string} [minimumNodeVersion]
  */
-async function createPackage(packageName, packageImplementation, isStatic, minimumNodeVersion = '>=12.4.0') {
+async function createPackage(packageName, packageImplementation, isStatic, forceUncurryThis = false, minimumNodeVersion = '>=12.4.0') {
   const packagePath = path.join(__dirname, 'packages', packageName);
 
   await fsPromises.mkdir(
@@ -124,7 +124,7 @@ async function createPackage(packageName, packageImplementation, isStatic, minim
         scripts: {
           lint: 'eslint .'
         },
-        dependencies: isStatic
+        dependencies: isStatic && !forceUncurryThis
           ? {}
           : {
             '@nolyfill/shared': 'workspace:*'
