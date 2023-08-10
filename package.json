@@ -36,11 +36,13 @@
       "object.fromentries": "workspace:@nolyfill/object.fromentries@*",
       "object.hasown": "workspace:@nolyfill/object.hasown@*",
       "object.values": "workspace:@nolyfill/object.values@*",
+      "is-array-buffer": "workspace:@nolyfill/is-array-buffer@*",
       "string.prototype.trim": "workspace:@nolyfill/string.prototype.trim@*",
       "string.prototype.trimend": "workspace:@nolyfill/string.prototype.trimend@*",
       "string.prototype.trimstart": "workspace:@nolyfill/string.prototype.trimstart@*",
       "string.prototype.matchall": "workspace:@nolyfill/string.prototype.matchall@*",
       "regexp.prototype.flags": "workspace:@nolyfill/regexp.prototype.flags@*",
+      "typed-array-length": "workspace:@nolyfill/typed-array-length@*",
       "globalthis": "workspace:@nolyfill/globalthis@*",
       "function-bind": "workspace:@nolyfill/function-bind@*"
     }

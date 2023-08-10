@@ -24,6 +24,7 @@ overrides:
   string.prototype.trimstart: workspace:@nolyfill/string.prototype.trimstart@*
   string.prototype.matchall: workspace:@nolyfill/string.prototype.matchall@*
   regexp.prototype.flags: workspace:@nolyfill/regexp.prototype.flags@*
+  typed-array-length: workspace:@nolyfill/typed-array-length@*
   globalthis: workspace:@nolyfill/globalthis@*
   function-bind: workspace:@nolyfill/function-bind@*
 
@@ -106,6 +107,14 @@ importers:
         version: link:../shared
 
   packages/has-property-descriptors: {}
+
+  packages/has-tostringtag: {}
+
+  packages/is-array-buffer:
+    dependencies:
+      '@nolyfill/shared':
+        specifier: workspace:*
+        version: link:../shared
 
   packages/object-keys: {}
 
