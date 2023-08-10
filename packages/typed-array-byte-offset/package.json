@@ -1,5 +1,5 @@
 {
-  "name": "@nolyfill/typed-array-byte-length",
+  "name": "@nolyfill/typed-array-byte-offset",
   "version": "1.0.5",
   "main": "./index.js",
   "license": "MIT",
