@@ -21,6 +21,7 @@ overrides:
   object.hasown: workspace:@nolyfill/object.hasown@*
   object.values: workspace:@nolyfill/object.values@*
   is-array-buffer: workspace:@nolyfill/is-array-buffer@*
+  is-shared-array-buffer: workspace:@nolyfill/is-shared-array-buffer@*
   string.prototype.trim: workspace:@nolyfill/string.prototype.trim@*
   string.prototype.trimend: workspace:@nolyfill/string.prototype.trimend@*
   string.prototype.trimstart: workspace:@nolyfill/string.prototype.trimstart@*
@@ -121,6 +122,12 @@ importers:
   packages/has-property-descriptors: {}
 
   packages/is-array-buffer:
+    dependencies:
+      '@nolyfill/shared':
+        specifier: workspace:*
+        version: link:../shared
+
+  packages/is-shared-array-buffer:
     dependencies:
       '@nolyfill/shared':
         specifier: workspace:*
