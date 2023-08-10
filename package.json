@@ -46,6 +46,7 @@
       "string.prototype.trimstart": "workspace:@nolyfill/string.prototype.trimstart@*",
       "string.prototype.matchall": "workspace:@nolyfill/string.prototype.matchall@*",
       "regexp.prototype.flags": "workspace:@nolyfill/regexp.prototype.flags@*",
+      "typed-array-byte-length": "workspace:@nolyfill/typed-array-byte-length@*",
       "typed-array-length": "workspace:@nolyfill/typed-array-length@*",
       "typed-array-buffer": "workspace:@nolyfill/typed-array-buffer@*",
       "globalthis": "workspace:@nolyfill/globalthis@*",
