@@ -19,7 +19,7 @@
   },
   "packageManager": "pnpm@8.6.10",
   "name": "nolyfill",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "pnpm": {
     "overrides": {
       "array-includes": "workspace:@nolyfill/array-includes@*",
