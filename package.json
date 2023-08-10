@@ -44,6 +44,7 @@
       "string.prototype.matchall": "workspace:@nolyfill/string.prototype.matchall@*",
       "regexp.prototype.flags": "workspace:@nolyfill/regexp.prototype.flags@*",
       "typed-array-length": "workspace:@nolyfill/typed-array-length@*",
+      "typed-array-buffer": "workspace:@nolyfill/typed-array-buffer@*",
       "globalthis": "workspace:@nolyfill/globalthis@*",
       "function-bind": "workspace:@nolyfill/function-bind@*"
     }
