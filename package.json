@@ -40,7 +40,8 @@
       "string.prototype.trimstart": "workspace:@nolyfill/string.prototype.trimstart@*",
       "string.prototype.matchall": "workspace:@nolyfill/string.prototype.matchall@*",
       "regexp.prototype.flags": "workspace:@nolyfill/regexp.prototype.flags@*",
-      "globalthis": "workspace:@nolyfill/globalthis@*"
+      "globalthis": "workspace:@nolyfill/globalthis@*",
+      "function-bind": "workspace:@nolyfill/function-bind@*"
     }
   }
 }

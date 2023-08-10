@@ -24,6 +24,7 @@ overrides:
   string.prototype.matchall: workspace:@nolyfill/string.prototype.matchall@*
   regexp.prototype.flags: workspace:@nolyfill/regexp.prototype.flags@*
   globalthis: workspace:@nolyfill/globalthis@*
+  function-bind: workspace:@nolyfill/function-bind@*
 
 importers:
 
@@ -86,6 +87,8 @@ importers:
       '@nolyfill/shared':
         specifier: workspace:*
         version: link:../shared
+
+  packages/function-bind: {}
 
   packages/function.prototype.name:
     dependencies:

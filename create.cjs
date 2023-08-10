@@ -28,6 +28,8 @@ const packagesList = /** @type {const} */ ([
   ['string.prototype.matchall', 'String.prototype.matchAll', false],
   ['regexp.prototype.flags', 'RegExp.prototype.flags', false],
   ['globalthis', 'globalThis', true]
+  // function-bind's main entry poin is not uncurried, and doesn't follow es-shim API
+  // ['function-bind', 'Function.prototype.bind', true]
 ]);
 
 (async () => {
