@@ -30,6 +30,7 @@ overrides:
   string.prototype.matchall: workspace:@nolyfill/string.prototype.matchall@*
   regexp.prototype.flags: workspace:@nolyfill/regexp.prototype.flags@*
   typed-array-byte-length: workspace:@nolyfill/typed-array-byte-length@*
+  typed-array-byte-offset: workspace:@nolyfill/typed-array-byte-offset@*
   typed-array-length: workspace:@nolyfill/typed-array-length@*
   typed-array-buffer: workspace:@nolyfill/typed-array-buffer@*
   globalthis: workspace:@nolyfill/globalthis@*
@@ -199,6 +200,12 @@ importers:
         version: link:../shared
 
   packages/typed-array-byte-length:
+    dependencies:
+      '@nolyfill/shared':
+        specifier: workspace:*
+        version: link:../shared
+
+  packages/typed-array-byte-offset:
     dependencies:
       '@nolyfill/shared':
         specifier: workspace:*
