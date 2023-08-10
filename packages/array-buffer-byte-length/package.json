@@ -1,5 +1,5 @@
 {
-  "name": "@nolyfill/has-property-descriptors",
+  "name": "@nolyfill/array-buffer-byte-length",
   "version": "0.0.0",
   "main": "./index.js",
   "license": "MIT",
@@ -9,7 +9,10 @@
   "scripts": {
     "lint": "eslint ."
   },
-  "dependencies": {},
+  "dependencies": {
+    "@nolyfill/is-array-buffer": "workspace:*",
+    "@nolyfill/shared": "workspace:*"
+  },
   "engines": {
     "node": ">=12.4.0"
   }
