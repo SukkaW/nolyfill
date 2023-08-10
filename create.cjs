@@ -68,10 +68,10 @@ async function compareAndWriteFile(filePath, fileContent) {
   if (await fileExists(filePath)) {
     const existingContent = await fsPromises.readFile(filePath, { encoding: 'utf8' });
     if (existingContent !== fileContent) {
-      await fsPromises.writeFile(filePath, fileContent, { encoding: 'utf-8' });
+      return fsPromises.writeFile(filePath, fileContent, { encoding: 'utf-8' });
     }
   } else {
-    await fsPromises.writeFile(filePath, fileContent, { encoding: 'utf-8' });
+    return fsPromises.writeFile(filePath, fileContent, { encoding: 'utf-8' });
   }
 }
 

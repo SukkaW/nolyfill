@@ -4,7 +4,7 @@ Speed up your package installation process, reduce your disk usage, and extend t
 
 ## Why
 
-While you embracing the latest features and security fixes by installing the latest Node.js LTS in your workspaces, `eslint-plugin-import`, `eslint-plugin-jsx-a11y`, and many other packages maintained by ljharb are still trying to support the **long-dead** Node.js 4 by adding **tons** of polyfills. Those polyfills are inflating your `node_modules` size, wasting your disk space and making your `npm i` / `yarn` / `pnpm i` slow.
+While you embracing the latest features and security fixes by installing the latest Node.js LTS in your npms, `eslint-plugin-import`, `eslint-plugin-jsx-a11y`, and many other packages maintained by ljharb are still trying to support the **long-dead** Node.js 4 by adding **tons** of polyfills. Those polyfills are inflating your `node_modules` size, wasting your disk space and making your `npm i` / `yarn` / `pnpm i` slow.
 
 Whether to support Node.js 4 is up to ljharb, but most of you should not be forced to install polyfills for a Node.js version that has been dead since [2018-04-30](https://github.com/nodejs/release).
 
@@ -32,12 +32,15 @@ Add the following lines to your `package.json`'s `overrides`:
     "object.values": "npm:@nolyfill/object.values@latest",
     "string.prototype.trim": "npm:@nolyfill/string.prototype.trim@latest",
     "string.prototype.trimend": "npm:@nolyfill/string.prototype.trimend@latest",
-    "string.prototype.trimstart": "npm:@nolyfill/string.prototype.trimstart@latest"
+    "string.prototype.trimstart": "npm:@nolyfill/string.prototype.trimstart@latest",
+    "string.prototype.matchall": "npm:@nolyfill/string.prototype.matchall@latest",
+    "regexp.prototype.flags": "npm:@nolyfill/regexp.prototype.flags@latest",
+    "globalthis": "npm:@nolyfill/globalthis@latest"
   }
 }
 ```
 
-Then run `npm update` (To update `package-lock.json` with overrides).
+It is necessary to execute the `npm update` (which will rebuild the `package-lock.json` file) after adding `overrides`, due to [an unresolved confirmed bug of npm](https://github.com/npm/cli/issues/5850).
 
 ----
 
