@@ -12,6 +12,7 @@ overrides:
   array-buffer-byte-length: workspace:@nolyfill/array-buffer-byte-length@*
   arraybuffer.prototype.slice: workspace:@nolyfill/arraybuffer.prototype.slice@*
   function.prototype.name: workspace:@nolyfill/function.prototype.name@*
+  get-symbol-description: workspace:@nolyfill/get-symbol-description@*
   has: workspace:@nolyfill/has@*
   has-property-descriptors: workspace:@nolyfill/has-property-descriptors@*
   object-keys: workspace:@nolyfill/object-keys@*
@@ -106,6 +107,12 @@ importers:
   packages/function-bind: {}
 
   packages/function.prototype.name:
+    dependencies:
+      '@nolyfill/shared':
+        specifier: workspace:*
+        version: link:../shared
+
+  packages/get-symbol-description:
     dependencies:
       '@nolyfill/shared':
         specifier: workspace:*
