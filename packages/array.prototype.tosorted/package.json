@@ -13,6 +13,6 @@
     "@nolyfill/shared": "workspace:*"
   },
   "engines": {
-    "node": ">=20.0.0"
+    "node": ">=12.4.0"
   }
 }
