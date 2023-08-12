@@ -1,0 +1,16 @@
+{
+  "name": "@nolyfill/object.groupby",
+  "version": "1.0.8",
+  "main": "./index.js",
+  "license": "MIT",
+  "files": [
+    "*.js"
+  ],
+  "scripts": {
+    "lint": "eslint ."
+  },
+  "dependencies": {},
+  "engines": {
+    "node": ">=12.4.0"
+  }
+}

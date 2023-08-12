@@ -25,6 +25,7 @@ overrides:
   object.assign: workspace:@nolyfill/object.assign@*
   object.entries: workspace:@nolyfill/object.entries@*
   object.fromentries: workspace:@nolyfill/object.fromentries@*
+  object.groupby: workspace:@nolyfill/object.groupby@*
   object.hasown: workspace:@nolyfill/object.hasown@*
   object.values: workspace:@nolyfill/object.values@*
   regexp.prototype.flags: workspace:@nolyfill/regexp.prototype.flags@*
@@ -159,6 +160,8 @@ importers:
   packages/object.entries: {}
 
   packages/object.fromentries: {}
+
+  packages/object.groupby: {}
 
   packages/object.hasown:
     dependencies:
