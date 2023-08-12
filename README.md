@@ -19,6 +19,7 @@ Add the following lines to your `package.json`'s `overrides`:
   "overrides": {
     "array-buffer-byte-length": "npm:@nolyfill/array-buffer-byte-length@latest",
     "array-includes": "npm:@nolyfill/array-includes@latest",
+    "array.prototype.find": "npm:@nolyfill/array.prototype.find@latest",
     "array.prototype.findlastindex": "npm:@nolyfill/array.prototype.findlastindex@latest",
     "array.prototype.flat": "npm:@nolyfill/array.prototype.flat@latest",
     "array.prototype.flatmap": "npm:@nolyfill/array.prototype.flatmap@latest",
@@ -37,6 +38,7 @@ Add the following lines to your `package.json`'s `overrides`:
     "object.assign": "npm:@nolyfill/object.assign@latest",
     "object.entries": "npm:@nolyfill/object.entries@latest",
     "object.fromentries": "npm:@nolyfill/object.fromentries@latest",
+    "object.groupby": "npm:@nolyfill/object.groupby@latest",
     "object.hasown": "npm:@nolyfill/object.hasown@latest",
     "object.values": "npm:@nolyfill/object.values@latest",
     "regexp.prototype.flags": "npm:@nolyfill/regexp.prototype.flags@latest",
