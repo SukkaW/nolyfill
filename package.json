@@ -24,6 +24,7 @@
     "overrides": {
       "array-buffer-byte-length": "workspace:@nolyfill/array-buffer-byte-length@*",
       "array-includes": "workspace:@nolyfill/array-includes@*",
+      "array.from": "workspace:@nolyfill/array.from@*",
       "array.prototype.find": "workspace:@nolyfill/array.prototype.find@*",
       "array.prototype.findlastindex": "workspace:@nolyfill/array.prototype.findlastindex@*",
       "array.prototype.flat": "workspace:@nolyfill/array.prototype.flat@*",
@@ -61,6 +62,7 @@
   "overrides": {
     "array-buffer-byte-length": "npm:@nolyfill/array-buffer-byte-length@latest",
     "array-includes": "npm:@nolyfill/array-includes@latest",
+    "array.from": "npm:@nolyfill/array.from@latest",
     "array.prototype.find": "npm:@nolyfill/array.prototype.find@latest",
     "array.prototype.findlastindex": "npm:@nolyfill/array.prototype.findlastindex@latest",
     "array.prototype.flat": "npm:@nolyfill/array.prototype.flat@latest",
