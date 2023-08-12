@@ -1,10 +1,10 @@
 # no(po)lyfill
 
-Speed up your package installation process, reduce your disk usage, and extend the lifespan of your precious SSD by reducing your `node_modules` size.
+Speed up your package installation process, reduce your disk usage, extend the lifespan of your precious SSD by reducing your `node_modules` size.
 
 ## Why
 
-While you embracing the latest features and security fixes by installing the latest Node.js LTS in your npms, `eslint-plugin-import`, `eslint-plugin-jsx-a11y`, and many other packages maintained by ljharb are still trying to support the **long-dead** Node.js 4 by adding **tons** of polyfills. Those polyfills are inflating your `node_modules` size, wasting your disk space and making your `npm i` / `yarn` / `pnpm i` slow.
+While you embracing the latest features and security fixes by installing the latest Node.js LTS in your npms, `eslint-plugin-import`, `eslint-plugin-jsx-a11y`, and many other packages maintained by ljharb are still trying to support the **long-dead** Node.js 4 by adding **tons** of polyfills. Those polyfills are inflating your `node_modules` size, wasting your disk space and making your `npm i` / `yarn` / `pnpm i` slow. And what's worse, ljharb insists on using the polyfilled version even when the native version is available, which makes your code run even slower.
 
 Whether to support Node.js 4 is up to ljharb, but most of you should not be forced to install polyfills for a Node.js version that has been dead since [2018-04-30](https://github.com/nodejs/release).
 

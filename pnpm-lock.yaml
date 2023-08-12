@@ -20,6 +20,7 @@ overrides:
   gopd: workspace:@nolyfill/gopd@*
   has: workspace:@nolyfill/has@*
   has-property-descriptors: workspace:@nolyfill/has-property-descriptors@*
+  has-proto: workspace:@nolyfill/has-proto@*
   is-array-buffer: workspace:@nolyfill/is-array-buffer@*
   is-shared-array-buffer: workspace:@nolyfill/is-shared-array-buffer@*
   object-keys: workspace:@nolyfill/object-keys@*
@@ -147,6 +148,8 @@ importers:
         version: link:../shared
 
   packages/has-property-descriptors: {}
+
+  packages/has-proto: {}
 
   packages/is-array-buffer:
     dependencies:
