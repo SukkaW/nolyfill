@@ -35,6 +35,8 @@ overrides:
   string.prototype.matchall: workspace:@nolyfill/string.prototype.matchall@*
   string.prototype.trim: workspace:@nolyfill/string.prototype.trim@*
   string.prototype.trimend: workspace:@nolyfill/string.prototype.trimend@*
+  string.prototype.trimleft: workspace:@nolyfill/string.prototype.trimleft@*
+  string.prototype.trimright: workspace:@nolyfill/string.prototype.trimright@*
   string.prototype.trimstart: workspace:@nolyfill/string.prototype.trimstart@*
   typed-array-buffer: workspace:@nolyfill/typed-array-buffer@*
   typed-array-byte-length: workspace:@nolyfill/typed-array-byte-length@*
@@ -205,6 +207,18 @@ importers:
         version: link:../shared
 
   packages/string.prototype.trimend:
+    dependencies:
+      '@nolyfill/shared':
+        specifier: workspace:*
+        version: link:../shared
+
+  packages/string.prototype.trimleft:
+    dependencies:
+      '@nolyfill/shared':
+        specifier: workspace:*
+        version: link:../shared
+
+  packages/string.prototype.trimright:
     dependencies:
       '@nolyfill/shared':
         specifier: workspace:*
