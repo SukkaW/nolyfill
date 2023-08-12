@@ -7,6 +7,7 @@ settings:
 overrides:
   array-buffer-byte-length: workspace:@nolyfill/array-buffer-byte-length@*
   array-includes: workspace:@nolyfill/array-includes@*
+  array.prototype.find: workspace:@nolyfill/array.prototype.find@*
   array.prototype.findlastindex: workspace:@nolyfill/array.prototype.findlastindex@*
   array.prototype.flat: workspace:@nolyfill/array.prototype.flat@*
   array.prototype.flatmap: workspace:@nolyfill/array.prototype.flatmap@*
@@ -80,6 +81,12 @@ importers:
         version: link:../shared
 
   packages/array-includes:
+    dependencies:
+      '@nolyfill/shared':
+        specifier: workspace:*
+        version: link:../shared
+
+  packages/array.prototype.find:
     dependencies:
       '@nolyfill/shared':
         specifier: workspace:*

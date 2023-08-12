@@ -1,0 +1,18 @@
+{
+  "name": "@nolyfill/array.prototype.find",
+  "version": "1.0.8",
+  "main": "./index.js",
+  "license": "MIT",
+  "files": [
+    "*.js"
+  ],
+  "scripts": {
+    "lint": "eslint ."
+  },
+  "dependencies": {
+    "@nolyfill/shared": "workspace:*"
+  },
+  "engines": {
+    "node": ">=12.4.0"
+  }
+}
