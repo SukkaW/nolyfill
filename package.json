@@ -19,7 +19,7 @@
   },
   "packageManager": "pnpm@8.6.10",
   "name": "nolyfill",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "pnpm": {
     "overrides": {
       "array-buffer-byte-length": "workspace:@nolyfill/array-buffer-byte-length@*",

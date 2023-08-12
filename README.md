@@ -4,9 +4,14 @@ Speed up your package installation process, reduce your disk usage, extend the l
 
 ## Why
 
-While you embracing the latest features and security fixes by installing the latest Node.js LTS in your npms, `eslint-plugin-import`, `eslint-plugin-jsx-a11y`, and many other packages maintained by ljharb are still trying to support the **long-dead** Node.js 4 by adding **tons** of polyfills. Those polyfills are inflating your `node_modules` size, wasting your disk space and making your `npm i` / `yarn` / `pnpm i` slow. And what's worse, ljharb insists on using the polyfilled version even when the native version is available, which makes your code run even slower.
+While you embracing the latest features and security fixes by installing the latest Node.js LTS in your npms, `eslint-plugin-import`, `eslint-plugin-jsx-a11y`, and many other packages maintained by ljharb are still trying to support the **long-dead** Node.js 4 by adding **tons** of polyfills. Those polyfills are inflating your `node_modules` size, wasting your disk space and making your `npm i` / `yarn` / `pnpm i` slow. And what's worse, ljharb uses the polyfill implementation even when the native version is available in the environment, which makes the code run slower.
 
 Whether to support Node.js 4 is up to ljharb, but most of you should not be forced to install polyfills for a Node.js version that has been dead since [2018-04-30](https://github.com/nodejs/release).
+
+## When not to use
+
+- Your Node.js version is below `12.4.0`.
+- You are targetting a environment that doesn't have full ES2019 support (which you really should use [core-js](https://github.com/zloirock/core-js) or [core-js-pure](https://github.com/zloirock/core-js) instead. It is significantly faster).
 
 ## How to use
 
