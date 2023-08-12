@@ -3,5 +3,8 @@
   "extends": "sukka/node",
   "parserOptions": {
     "sourceType": "script"
+  },
+  "rules": {
+    "@fluffyfox/array/prefer-from": "off"
   }
 }

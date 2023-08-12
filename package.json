@@ -27,6 +27,7 @@
       "array.prototype.findlastindex": "workspace:@nolyfill/array.prototype.findlastindex@*",
       "array.prototype.flat": "workspace:@nolyfill/array.prototype.flat@*",
       "array.prototype.flatmap": "workspace:@nolyfill/array.prototype.flatmap@*",
+      "array.prototype.tosorted": "workspace:@nolyfill/array.prototype.tosorted@*",
       "arraybuffer.prototype.slice": "workspace:@nolyfill/arraybuffer.prototype.slice@*",
       "function-bind": "workspace:@nolyfill/function-bind@*",
       "function.prototype.name": "workspace:@nolyfill/function.prototype.name@*",

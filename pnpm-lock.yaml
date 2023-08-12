@@ -6,35 +6,36 @@ settings:
 
 overrides:
   array-buffer-byte-length: workspace:@nolyfill/array-buffer-byte-length@*
-  function-bind: workspace:@nolyfill/function-bind@*
-  get-symbol-description: workspace:@nolyfill/get-symbol-description@*
-  gopd: workspace:@nolyfill/gopd@*
-  has-property-descriptors: workspace:@nolyfill/has-property-descriptors@*
-  is-array-buffer: workspace:@nolyfill/is-array-buffer@*
-  is-shared-array-buffer: workspace:@nolyfill/is-shared-array-buffer@*
-  typed-array-buffer: workspace:@nolyfill/typed-array-buffer@*
-  typed-array-byte-length: workspace:@nolyfill/typed-array-byte-length@*
-  typed-array-byte-offset: workspace:@nolyfill/typed-array-byte-offset@*
-  typed-array-length: workspace:@nolyfill/typed-array-length@*
   array-includes: workspace:@nolyfill/array-includes@*
   array.prototype.findlastindex: workspace:@nolyfill/array.prototype.findlastindex@*
   array.prototype.flat: workspace:@nolyfill/array.prototype.flat@*
   array.prototype.flatmap: workspace:@nolyfill/array.prototype.flatmap@*
+  array.prototype.tosorted: workspace:@nolyfill/array.prototype.tosorted@*
   arraybuffer.prototype.slice: workspace:@nolyfill/arraybuffer.prototype.slice@*
+  function-bind: workspace:@nolyfill/function-bind@*
   function.prototype.name: workspace:@nolyfill/function.prototype.name@*
+  get-symbol-description: workspace:@nolyfill/get-symbol-description@*
+  globalthis: workspace:@nolyfill/globalthis@*
+  gopd: workspace:@nolyfill/gopd@*
   has: workspace:@nolyfill/has@*
+  has-property-descriptors: workspace:@nolyfill/has-property-descriptors@*
+  is-array-buffer: workspace:@nolyfill/is-array-buffer@*
+  is-shared-array-buffer: workspace:@nolyfill/is-shared-array-buffer@*
   object-keys: workspace:@nolyfill/object-keys@*
   object.assign: workspace:@nolyfill/object.assign@*
   object.entries: workspace:@nolyfill/object.entries@*
   object.fromentries: workspace:@nolyfill/object.fromentries@*
   object.hasown: workspace:@nolyfill/object.hasown@*
   object.values: workspace:@nolyfill/object.values@*
+  regexp.prototype.flags: workspace:@nolyfill/regexp.prototype.flags@*
+  string.prototype.matchall: workspace:@nolyfill/string.prototype.matchall@*
   string.prototype.trim: workspace:@nolyfill/string.prototype.trim@*
   string.prototype.trimend: workspace:@nolyfill/string.prototype.trimend@*
   string.prototype.trimstart: workspace:@nolyfill/string.prototype.trimstart@*
-  string.prototype.matchall: workspace:@nolyfill/string.prototype.matchall@*
-  regexp.prototype.flags: workspace:@nolyfill/regexp.prototype.flags@*
-  globalthis: workspace:@nolyfill/globalthis@*
+  typed-array-buffer: workspace:@nolyfill/typed-array-buffer@*
+  typed-array-byte-length: workspace:@nolyfill/typed-array-byte-length@*
+  typed-array-byte-offset: workspace:@nolyfill/typed-array-byte-offset@*
+  typed-array-length: workspace:@nolyfill/typed-array-length@*
 
 importers:
 
@@ -96,6 +97,12 @@ importers:
         version: link:../shared
 
   packages/array.prototype.flatmap:
+    dependencies:
+      '@nolyfill/shared':
+        specifier: workspace:*
+        version: link:../shared
+
+  packages/array.prototype.tosorted:
     dependencies:
       '@nolyfill/shared':
         specifier: workspace:*
