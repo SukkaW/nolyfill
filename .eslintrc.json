@@ -1,9 +1,29 @@
 {
   "root": true,
-  "extends": "sukka/node",
-  "parserOptions": {
-    "sourceType": "script"
-  },
+  "overrides": [
+    {
+      "files": [
+        "**/*.js"
+      ],
+      "extends": "sukka/node",
+      "parserOptions": {
+        "sourceType": "script"
+      }
+    },
+    {
+      "files": [
+        "packages/**/*.ts",
+        "packages/**/*.tsx"
+      ],
+      "extends": "sukka/typescript",
+      "parserOptions": {
+        "ecmaVersion": "latest",
+        "project": "./tsconfig.json",
+        "warnOnUnsupportedTypeScriptVersion": false,
+        "allowAutomaticSingleRunInference": true
+      }
+    }
+  ],
   "rules": {
     "@fluffyfox/array/prefer-from": "off"
   }

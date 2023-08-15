@@ -6,9 +6,7 @@
   "files": [
     "*.js"
   ],
-  "scripts": {
-    "lint": "eslint ."
-  },
+  "scripts": {},
   "dependencies": {
     "@nolyfill/shared": "workspace:*"
   },

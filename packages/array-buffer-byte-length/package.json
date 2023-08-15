@@ -6,9 +6,7 @@
   "files": [
     "*.js"
   ],
-  "scripts": {
-    "lint": "eslint ."
-  },
+  "scripts": {},
   "dependencies": {
     "@nolyfill/is-array-buffer": "workspace:*",
     "@nolyfill/shared": "workspace:*"

@@ -2,13 +2,15 @@
   "private": true,
   "files": [],
   "scripts": {
-    "lint": "turbo run lint",
+    "lint": "eslint .",
     "release": "bumpp -r && pnpm --access=public -r publish",
     "build": "node create.cjs"
   },
   "devDependencies": {
     "@jsdevtools/ez-spawn": "^3.0.4",
     "@types/node": "^20.4.9",
+    "@typescript-eslint/eslint-plugin": "^6.4.0",
+    "@typescript-eslint/parser": "^6.4.0",
     "bumpp": "^9.1.1",
     "eslint": "^8.46.0",
     "eslint-config-sukka": "^3.0.2",

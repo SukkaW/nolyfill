@@ -252,9 +252,7 @@ async function createEsShimLikePackage(packageName, packageImplementation, isSta
         main: './index.js',
         license: 'MIT',
         files: ['*.js'],
-        scripts: {
-          lint: 'eslint .'
-        },
+        scripts: {},
         dependencies: isStatic && !forceUncurryThis
           ? {}
           : {
@@ -297,9 +295,7 @@ async function createSingleFilePackage(packageName, implementation, uncurryThis 
         main: './index.js',
         license: 'MIT',
         files: ['*.js'],
-        scripts: {
-          lint: 'eslint .'
-        },
+        scripts: {},
         dependencies: !uncurryThis
           ? {}
           : {
