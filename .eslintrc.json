@@ -1,5 +1,8 @@
 {
   "root": true,
+  "ignorePatterns": [
+    "dist"
+  ],
   "overrides": [
     {
       "files": [
@@ -7,7 +10,11 @@
       ],
       "extends": "sukka/node",
       "parserOptions": {
-        "sourceType": "script"
+        "sourceType": "script",
+        "ecmaVersion": 2023
+      },
+      "rules": {
+        "@fluffyfox/array/prefer-from": "off"
       }
     },
     {
@@ -23,8 +30,5 @@
         "allowAutomaticSingleRunInference": true
       }
     }
-  ],
-  "rules": {
-    "@fluffyfox/array/prefer-from": "off"
-  }
+  ]
 }

@@ -12,6 +12,7 @@ overrides:
   array.prototype.findlastindex: workspace:@nolyfill/array.prototype.findlastindex@*
   array.prototype.flat: workspace:@nolyfill/array.prototype.flat@*
   array.prototype.flatmap: workspace:@nolyfill/array.prototype.flatmap@*
+  array.prototype.reduce: workspace:@nolyfill/array.prototype.reduce@*
   array.prototype.tosorted: workspace:@nolyfill/array.prototype.tosorted@*
   arraybuffer.prototype.slice: workspace:@nolyfill/arraybuffer.prototype.slice@*
   function-bind: workspace:@nolyfill/function-bind@*
@@ -28,11 +29,14 @@ overrides:
   object.assign: workspace:@nolyfill/object.assign@*
   object.entries: workspace:@nolyfill/object.entries@*
   object.fromentries: workspace:@nolyfill/object.fromentries@*
+  object.getownpropertydescriptors: workspace:@nolyfill/object.getownpropertydescriptors@*
   object.groupby: workspace:@nolyfill/object.groupby@*
   object.hasown: workspace:@nolyfill/object.hasown@*
   object.values: workspace:@nolyfill/object.values@*
   regexp.prototype.flags: workspace:@nolyfill/regexp.prototype.flags@*
   string.prototype.matchall: workspace:@nolyfill/string.prototype.matchall@*
+  string.prototype.padend: workspace:@nolyfill/string.prototype.padend@*
+  string.prototype.padstart: workspace:@nolyfill/string.prototype.padstart@*
   string.prototype.trim: workspace:@nolyfill/string.prototype.trim@*
   string.prototype.trimend: workspace:@nolyfill/string.prototype.trimend@*
   string.prototype.trimleft: workspace:@nolyfill/string.prototype.trimleft@*
@@ -128,6 +132,12 @@ importers:
         specifier: workspace:*
         version: link:../shared
 
+  packages/array.prototype.reduce:
+    dependencies:
+      '@nolyfill/shared':
+        specifier: workspace:*
+        version: link:../shared
+
   packages/array.prototype.tosorted:
     dependencies:
       '@nolyfill/shared':
@@ -210,6 +220,8 @@ importers:
 
   packages/object.fromentries: {}
 
+  packages/object.getownpropertydescriptors: {}
+
   packages/object.groupby: {}
 
   packages/object.hasown:
@@ -229,6 +241,18 @@ importers:
   packages/shared: {}
 
   packages/string.prototype.matchall:
+    dependencies:
+      '@nolyfill/shared':
+        specifier: workspace:*
+        version: link:../shared
+
+  packages/string.prototype.padend:
+    dependencies:
+      '@nolyfill/shared':
+        specifier: workspace:*
+        version: link:../shared
+
+  packages/string.prototype.padstart:
     dependencies:
       '@nolyfill/shared':
         specifier: workspace:*

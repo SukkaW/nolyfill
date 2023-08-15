@@ -12,4 +12,3 @@ module.exports = (obj) => {
     return false;
   }
 };
-
