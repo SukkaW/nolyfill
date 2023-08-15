@@ -1,11 +1,11 @@
 {
   "compilerOptions": {
     "target": "es2017",
-    "module": "commonjs",
     "lib": [
       "esnext"
     ],
     "verbatimModuleSyntax": true,
+    "isolatedModules": true,
     "moduleResolution": "node",
     "esModuleInterop": true,
     "resolveJsonModule": true,
