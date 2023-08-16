@@ -40,6 +40,7 @@
       "array.prototype.reduce": "workspace:@nolyfill/array.prototype.reduce@*",
       "array.prototype.tosorted": "workspace:@nolyfill/array.prototype.tosorted@*",
       "arraybuffer.prototype.slice": "workspace:@nolyfill/arraybuffer.prototype.slice@*",
+      "available-typed-arrays": "workspace:@nolyfill/available-typed-arrays@*",
       "function-bind": "workspace:@nolyfill/function-bind@*",
       "function.prototype.name": "workspace:@nolyfill/function.prototype.name@*",
       "get-symbol-description": "workspace:@nolyfill/get-symbol-description@*",
@@ -51,6 +52,7 @@
       "has-proto": "workspace:@nolyfill/has-proto@*",
       "is-array-buffer": "workspace:@nolyfill/is-array-buffer@*",
       "is-shared-array-buffer": "workspace:@nolyfill/is-shared-array-buffer@*",
+      "iterator.prototype": "workspace:@nolyfill/iterator.prototype@*",
       "object-keys": "workspace:@nolyfill/object-keys@*",
       "object.assign": "workspace:@nolyfill/object.assign@*",
       "object.entries": "workspace:@nolyfill/object.entries@*",
@@ -59,6 +61,7 @@
       "object.groupby": "workspace:@nolyfill/object.groupby@*",
       "object.hasown": "workspace:@nolyfill/object.hasown@*",
       "object.values": "workspace:@nolyfill/object.values@*",
+      "reflect.getprototypeof": "workspace:@nolyfill/reflect.getprototypeof@*",
       "regexp.prototype.flags": "workspace:@nolyfill/regexp.prototype.flags@*",
       "string.prototype.matchall": "workspace:@nolyfill/string.prototype.matchall@*",
       "string.prototype.padend": "workspace:@nolyfill/string.prototype.padend@*",
@@ -71,7 +74,8 @@
       "typed-array-buffer": "workspace:@nolyfill/typed-array-buffer@*",
       "typed-array-byte-length": "workspace:@nolyfill/typed-array-byte-length@*",
       "typed-array-byte-offset": "workspace:@nolyfill/typed-array-byte-offset@*",
-      "typed-array-length": "workspace:@nolyfill/typed-array-length@*"
+      "typed-array-length": "workspace:@nolyfill/typed-array-length@*",
+      "which-typed-array": "workspace:@nolyfill/which-typed-array@*"
     }
   },
   "overrides": {
@@ -85,6 +89,7 @@
     "array.prototype.reduce": "npm:@nolyfill/array.prototype.reduce@latest",
     "array.prototype.tosorted": "npm:@nolyfill/array.prototype.tosorted@latest",
     "arraybuffer.prototype.slice": "npm:@nolyfill/arraybuffer.prototype.slice@latest",
+    "available-typed-arrays": "npm:@nolyfill/available-typed-arrays@latest",
     "function-bind": "npm:@nolyfill/function-bind@latest",
     "function.prototype.name": "npm:@nolyfill/function.prototype.name@latest",
     "get-symbol-description": "npm:@nolyfill/get-symbol-description@latest",
@@ -96,6 +101,7 @@
     "has-proto": "npm:@nolyfill/has-proto@latest",
     "is-array-buffer": "npm:@nolyfill/is-array-buffer@latest",
     "is-shared-array-buffer": "npm:@nolyfill/is-shared-array-buffer@latest",
+    "iterator.prototype": "npm:@nolyfill/iterator.prototype@latest",
     "object-keys": "npm:@nolyfill/object-keys@latest",
     "object.assign": "npm:@nolyfill/object.assign@latest",
     "object.entries": "npm:@nolyfill/object.entries@latest",
@@ -104,6 +110,7 @@
     "object.groupby": "npm:@nolyfill/object.groupby@latest",
     "object.hasown": "npm:@nolyfill/object.hasown@latest",
     "object.values": "npm:@nolyfill/object.values@latest",
+    "reflect.getprototypeof": "npm:@nolyfill/reflect.getprototypeof@latest",
     "regexp.prototype.flags": "npm:@nolyfill/regexp.prototype.flags@latest",
     "string.prototype.matchall": "npm:@nolyfill/string.prototype.matchall@latest",
     "string.prototype.padend": "npm:@nolyfill/string.prototype.padend@latest",
@@ -116,6 +123,7 @@
     "typed-array-buffer": "npm:@nolyfill/typed-array-buffer@latest",
     "typed-array-byte-length": "npm:@nolyfill/typed-array-byte-length@latest",
     "typed-array-byte-offset": "npm:@nolyfill/typed-array-byte-offset@latest",
-    "typed-array-length": "npm:@nolyfill/typed-array-length@latest"
+    "typed-array-length": "npm:@nolyfill/typed-array-length@latest",
+    "which-typed-array": "npm:@nolyfill/which-typed-array@latest"
   }
 }

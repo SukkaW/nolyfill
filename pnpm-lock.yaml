@@ -15,6 +15,7 @@ overrides:
   array.prototype.reduce: workspace:@nolyfill/array.prototype.reduce@*
   array.prototype.tosorted: workspace:@nolyfill/array.prototype.tosorted@*
   arraybuffer.prototype.slice: workspace:@nolyfill/arraybuffer.prototype.slice@*
+  available-typed-arrays: workspace:@nolyfill/available-typed-arrays@*
   function-bind: workspace:@nolyfill/function-bind@*
   function.prototype.name: workspace:@nolyfill/function.prototype.name@*
   get-symbol-description: workspace:@nolyfill/get-symbol-description@*
@@ -26,6 +27,7 @@ overrides:
   has-proto: workspace:@nolyfill/has-proto@*
   is-array-buffer: workspace:@nolyfill/is-array-buffer@*
   is-shared-array-buffer: workspace:@nolyfill/is-shared-array-buffer@*
+  iterator.prototype: workspace:@nolyfill/iterator.prototype@*
   object-keys: workspace:@nolyfill/object-keys@*
   object.assign: workspace:@nolyfill/object.assign@*
   object.entries: workspace:@nolyfill/object.entries@*
@@ -34,6 +36,7 @@ overrides:
   object.groupby: workspace:@nolyfill/object.groupby@*
   object.hasown: workspace:@nolyfill/object.hasown@*
   object.values: workspace:@nolyfill/object.values@*
+  reflect.getprototypeof: workspace:@nolyfill/reflect.getprototypeof@*
   regexp.prototype.flags: workspace:@nolyfill/regexp.prototype.flags@*
   string.prototype.matchall: workspace:@nolyfill/string.prototype.matchall@*
   string.prototype.padend: workspace:@nolyfill/string.prototype.padend@*
@@ -47,6 +50,7 @@ overrides:
   typed-array-byte-length: workspace:@nolyfill/typed-array-byte-length@*
   typed-array-byte-offset: workspace:@nolyfill/typed-array-byte-offset@*
   typed-array-length: workspace:@nolyfill/typed-array-length@*
+  which-typed-array: workspace:@nolyfill/which-typed-array@*
 
 importers:
 
@@ -151,6 +155,8 @@ importers:
         specifier: workspace:*
         version: link:../shared
 
+  packages/available-typed-arrays: {}
+
   packages/cli:
     dependencies:
       commander:
@@ -215,6 +221,8 @@ importers:
         specifier: workspace:*
         version: link:../shared
 
+  packages/iterator.prototype: {}
+
   packages/object-keys: {}
 
   packages/object.assign: {}
@@ -234,6 +242,8 @@ importers:
         version: link:../shared
 
   packages/object.values: {}
+
+  packages/reflect.getprototypeof: {}
 
   packages/regexp.prototype.flags:
     dependencies:
@@ -310,6 +320,12 @@ importers:
         version: link:../shared
 
   packages/typed-array-length:
+    dependencies:
+      '@nolyfill/shared':
+        specifier: workspace:*
+        version: link:../shared
+
+  packages/which-typed-array:
     dependencies:
       '@nolyfill/shared':
         specifier: workspace:*

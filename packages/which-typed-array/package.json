@@ -1,0 +1,16 @@
+{
+  "name": "@nolyfill/which-typed-array",
+  "version": "1.0.11",
+  "main": "./index.js",
+  "license": "MIT",
+  "files": [
+    "*.js"
+  ],
+  "scripts": {},
+  "dependencies": {
+    "@nolyfill/shared": "workspace:*"
+  },
+  "engines": {
+    "node": ">=12.4.0"
+  }
+}
