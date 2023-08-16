@@ -241,7 +241,7 @@ module.exports = (value) => {
 ]);
 
 const manualPackagesList = /** @type {const} */ ([
-  'function-bind' // function-bind's main entry poin is not uncurried, and doesn't follow es-shim API
+  'function-bind' // function-bind's main entry point is not uncurried, and doesn't follow es-shim API
 ]);
 
 (async () => {
