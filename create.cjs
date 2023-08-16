@@ -137,7 +137,8 @@ module.exports = (value) => {
   } catch (e) {
     return false;
   }
-};`, true]
+};`, true],
+  ['harmony-reflect', 'module.exports = Reflect;']
 ]);
 
 const manualPackagesList = /** @type {const} */ ([

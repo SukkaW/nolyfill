@@ -6,7 +6,9 @@
   "overrides": [
     {
       "files": [
-        "**/*.js"
+        "**/*.js",
+        "**/*.cjs",
+        "**/*.mjs"
       ],
       "extends": "sukka/node",
       "parserOptions": {

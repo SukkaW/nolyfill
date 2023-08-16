@@ -20,6 +20,7 @@ overrides:
   get-symbol-description: workspace:@nolyfill/get-symbol-description@*
   globalthis: workspace:@nolyfill/globalthis@*
   gopd: workspace:@nolyfill/gopd@*
+  harmony-reflect: workspace:@nolyfill/harmony-reflect@*
   has: workspace:@nolyfill/has@*
   has-property-descriptors: workspace:@nolyfill/has-property-descriptors@*
   has-proto: workspace:@nolyfill/has-proto@*
@@ -189,6 +190,8 @@ importers:
   packages/globalthis: {}
 
   packages/gopd: {}
+
+  packages/harmony-reflect: {}
 
   packages/has:
     dependencies:
