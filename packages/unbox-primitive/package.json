@@ -1,0 +1,14 @@
+{
+  "name": "@nolyfill/unbox-primitive",
+  "version": "1.0.11",
+  "main": "./index.js",
+  "license": "MIT",
+  "files": [
+    "*.js"
+  ],
+  "scripts": {},
+  "dependencies": {},
+  "engines": {
+    "node": ">=12.4.0"
+  }
+}

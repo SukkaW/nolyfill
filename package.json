@@ -51,6 +51,7 @@
       "has-property-descriptors": "workspace:@nolyfill/has-property-descriptors@*",
       "has-proto": "workspace:@nolyfill/has-proto@*",
       "is-array-buffer": "workspace:@nolyfill/is-array-buffer@*",
+      "is-regex": "workspace:@nolyfill/is-regex@*",
       "is-shared-array-buffer": "workspace:@nolyfill/is-shared-array-buffer@*",
       "iterator.prototype": "workspace:@nolyfill/iterator.prototype@*",
       "object-keys": "workspace:@nolyfill/object-keys@*",
@@ -75,6 +76,8 @@
       "typed-array-byte-length": "workspace:@nolyfill/typed-array-byte-length@*",
       "typed-array-byte-offset": "workspace:@nolyfill/typed-array-byte-offset@*",
       "typed-array-length": "workspace:@nolyfill/typed-array-length@*",
+      "unbox-primitive": "workspace:@nolyfill/unbox-primitive@*",
+      "which-boxed-primitive": "workspace:@nolyfill/which-boxed-primitive@*",
       "which-typed-array": "workspace:@nolyfill/which-typed-array@*"
     }
   },
@@ -100,6 +103,7 @@
     "has-property-descriptors": "npm:@nolyfill/has-property-descriptors@latest",
     "has-proto": "npm:@nolyfill/has-proto@latest",
     "is-array-buffer": "npm:@nolyfill/is-array-buffer@latest",
+    "is-regex": "npm:@nolyfill/is-regex@latest",
     "is-shared-array-buffer": "npm:@nolyfill/is-shared-array-buffer@latest",
     "iterator.prototype": "npm:@nolyfill/iterator.prototype@latest",
     "object-keys": "npm:@nolyfill/object-keys@latest",
@@ -124,6 +128,8 @@
     "typed-array-byte-length": "npm:@nolyfill/typed-array-byte-length@latest",
     "typed-array-byte-offset": "npm:@nolyfill/typed-array-byte-offset@latest",
     "typed-array-length": "npm:@nolyfill/typed-array-length@latest",
+    "unbox-primitive": "npm:@nolyfill/unbox-primitive@latest",
+    "which-boxed-primitive": "npm:@nolyfill/which-boxed-primitive@latest",
     "which-typed-array": "npm:@nolyfill/which-typed-array@latest"
   }
 }
