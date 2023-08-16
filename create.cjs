@@ -186,7 +186,54 @@ const tryTypedArrays = (value) => {
 module.exports = (value) => {
   if (!value || typeof value !== 'object') { return false; }
   return tryTypedArrays(value);
-};`, { '@nolyfill/shared': 'workspace:*' }]
+};`, { '@nolyfill/shared': 'workspace:*' }],
+  ['which-boxed-primitive', `module.exports = (value) => {
+  if (value == null || (typeof value !== 'object' && typeof value !== 'function')) return null;
+  if (typeof value === 'string') return 'String';
+  if (typeof value === 'number') return 'Number';
+  if (typeof value === 'boolean') return 'Boolean';
+  if (typeof value === 'symbol') return 'Symbol';
+  if (typeof value === 'bigint') return 'BigInt';
+  if (typeof value === 'object') {
+    if (Object.prototype.toString.call(value) === '[object String]') return 'String';
+    if (Object.prototype.toString.call(value) === '[object Number]') return 'Number';
+    if (Object.prototype.toString.call(value) === '[object Boolean]') return 'Number';
+    if (
+      Object.prototype.toString.call(value) === '[object Symbol]'
+      && typeof value.valueOf() === 'symbol'
+      && Symbol.prototype.toString.call(value).startsWith('Symbol(')
+    ) return 'Symbol';
+    try {
+      BigInt.prototype.valueOf.call(value);
+      return 'BigInt';
+    } catch (_) {}
+  }
+};`],
+  ['unbox-primitive', `module.exports = function unboxPrimitive(value) {
+  if (value == null || (typeof value !== 'object' && typeof value !== 'function')) {
+    throw new TypeError(value === null ? 'value is an unboxed primitive' : 'value is a non-boxed-primitive object');
+  }
+  if (typeof value === 'string' || Object.prototype.toString.call(value) === '[object String]') {
+    return String.prototype.toString.call(value);
+  }
+  if (typeof value === 'number' || Object.prototype.toString.call(value) === '[object Number]') {
+    return Number.prototype.valueOf.call(value);
+  }
+  if (typeof value === 'boolean' || Object.prototype.toString.call(value) === '[object Boolean]') {
+    return Boolean.prototype.valueOf.call(value);
+  }
+  if (typeof value === 'symbol' || (
+    Object.prototype.toString.call(value) === '[object Symbol]'
+    && typeof value.valueOf() === 'symbol'
+    && Symbol.prototype.toString.call(value).startsWith('Symbol(')
+  )) {
+    return Symbol.prototype.valueOf.call(value);
+  }
+  try {
+    return BigInt.prototype.valueOf.call(value);
+  } catch (_) {}
+  throw new RangeError('unknown boxed primitive');
+};`]
 ]);
 
 const manualPackagesList = /** @type {const} */ ([
