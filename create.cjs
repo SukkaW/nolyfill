@@ -233,6 +233,10 @@ module.exports = (value) => {
     return BigInt.prototype.valueOf.call(value);
   } catch (_) {}
   throw new RangeError('unknown boxed primitive');
+};`],
+  ['is-regex', `module.exports = (value) => {
+  if (!value || (typeof value !== 'object' && typeof value !== 'function')) return false;
+  return Object.prototype.toString.call(value) === '[object RegExp]';
 };`]
 ]);
 
