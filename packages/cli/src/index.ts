@@ -1,7 +1,12 @@
+/* eslint-disable no-console -- We're a CLI, we need to log to the console */
 import { Command, Option } from 'commander';
 import handleError from './handle-error';
 
 import type { PackageJson } from 'type-fest';
+import { detectPackageManager, type PackageManager } from './package-manager';
+import { searchPackages } from './lockfile';
+import path from 'node:path';
+import { renderTree } from './renderTree';
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires -- version
 const packageJson: PackageJson = require('../package.json');
@@ -11,6 +16,11 @@ const program = new Command();
 export interface CliOptions {
   /** see full error messages, mostly for debugging */
   debug?: boolean
+}
+
+interface PmCommandOptions {
+  /** specify which package manager to use */
+  pm: PackageManager | 'auto'
 }
 
 const handleSigTerm = () => process.exit(0);
@@ -34,9 +44,16 @@ process.on('SIGTERM', handleSigTerm);
           .default('auto', 'detect package manager automatically')
       )
       .description('replace redundant polyfills inside your project\'s node_modules with nolyfill')
-      .action((source: string | undefined, option: unknown) => {
-        console.log(source, option);
-        throw new Error('not implemented');
+      .action(async (source: string | undefined, option: PmCommandOptions) => {
+        const projectPath = path.resolve(source ?? process.cwd());
+        const packageManager = option.pm === 'auto' ? await detectPackageManager(projectPath) : option.pm;
+
+        const targetPackages = ['es-abstract'];
+        const result = await searchPackages(packageManager, projectPath, targetPackages);
+        if (result) {
+          const output = renderTree(result, targetPackages);
+          console.log(output);
+        }
       });
 
     await program.parseAsync(process.argv);

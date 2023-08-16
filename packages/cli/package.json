@@ -22,6 +22,7 @@
     "rollup-plugin-swc3": "^0.9.1"
   },
   "dependencies": {
+    "@pnpm/list": "^9.0.10",
     "commander": "^11.0.0",
     "picocolors": "^1.0.0"
   }
