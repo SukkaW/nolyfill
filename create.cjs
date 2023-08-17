@@ -237,6 +237,16 @@ module.exports = (value) => {
   ['is-regex', `module.exports = (value) => {
   if (!value || (typeof value !== 'object' && typeof value !== 'function')) return false;
   return Object.prototype.toString.call(value) === '[object RegExp]';
+};`],
+  ['safe-regex-test', `module.exports = (r) => {
+  if (
+    !r
+		|| (typeof r !== 'object' && typeof r !== 'function')
+		|| Object.prototype.toString.call(r) !== '[object RegExp]'
+  ) {
+    throw new TypeError('\`regex\` must be a RegExp');
+  }
+  return (s) => RegExp.prototype.exec.call(r, s) !== null;
 };`]
 ]);
 

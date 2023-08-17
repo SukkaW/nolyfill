@@ -39,6 +39,7 @@ overrides:
   object.values: workspace:@nolyfill/object.values@*
   reflect.getprototypeof: workspace:@nolyfill/reflect.getprototypeof@*
   regexp.prototype.flags: workspace:@nolyfill/regexp.prototype.flags@*
+  safe-regex-test: workspace:@nolyfill/safe-regex-test@*
   string.prototype.matchall: workspace:@nolyfill/string.prototype.matchall@*
   string.prototype.padend: workspace:@nolyfill/string.prototype.padend@*
   string.prototype.padstart: workspace:@nolyfill/string.prototype.padstart@*
@@ -255,6 +256,8 @@ importers:
       '@nolyfill/shared':
         specifier: workspace:*
         version: link:../shared
+
+  packages/safe-regex-test: {}
 
   packages/shared: {}
 
