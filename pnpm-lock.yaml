@@ -39,6 +39,7 @@ overrides:
   object.values: workspace:@nolyfill/object.values@*
   reflect.getprototypeof: workspace:@nolyfill/reflect.getprototypeof@*
   regexp.prototype.flags: workspace:@nolyfill/regexp.prototype.flags@*
+  safe-array-concat: workspace:@nolyfill/safe-array-concat@*
   safe-regex-test: workspace:@nolyfill/safe-regex-test@*
   string.prototype.matchall: workspace:@nolyfill/string.prototype.matchall@*
   string.prototype.padend: workspace:@nolyfill/string.prototype.padend@*
@@ -256,6 +257,8 @@ importers:
       '@nolyfill/shared':
         specifier: workspace:*
         version: link:../shared
+
+  packages/safe-array-concat: {}
 
   packages/safe-regex-test: {}
 
