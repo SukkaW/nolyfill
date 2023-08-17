@@ -271,7 +271,8 @@ module.exports = asyncIterProto;`]
 
 const manualPackagesList = /** @type {const} */ ([
   'function-bind', // function-bind's main entry poin is not uncurried, and doesn't follow es-shim API
-  'has-tostringtag' // two entries (index.js, shams.js)
+  'has-tostringtag', // two entries (index.js, shams.js)
+  'has-symbols' // two entries (index.js, shams.js)
 ]);
 
 (async () => {

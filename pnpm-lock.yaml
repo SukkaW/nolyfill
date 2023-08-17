@@ -217,6 +217,10 @@ importers:
 
   packages/has-proto: {}
 
+  packages/has-symbols: {}
+
+  packages/has-tostringtag: {}
+
   packages/is-array-buffer:
     dependencies:
       '@nolyfill/shared':
