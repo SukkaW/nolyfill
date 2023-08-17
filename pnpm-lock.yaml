@@ -26,9 +26,12 @@ overrides:
   has: workspace:@nolyfill/has@*
   has-property-descriptors: workspace:@nolyfill/has-property-descriptors@*
   has-proto: workspace:@nolyfill/has-proto@*
+  has-symbols: workspace:@nolyfill/has-symbols@*
+  has-tostringtag: workspace:@nolyfill/has-tostringtag@*
   is-array-buffer: workspace:@nolyfill/is-array-buffer@*
   is-regex: workspace:@nolyfill/is-regex@*
   is-shared-array-buffer: workspace:@nolyfill/is-shared-array-buffer@*
+  is-weakref: workspace:@nolyfill/is-weakref@*
   iterator.prototype: workspace:@nolyfill/iterator.prototype@*
   object-keys: workspace:@nolyfill/object-keys@*
   object.assign: workspace:@nolyfill/object.assign@*
@@ -234,6 +237,8 @@ importers:
       '@nolyfill/shared':
         specifier: workspace:*
         version: link:../shared
+
+  packages/is-weakref: {}
 
   packages/iterator.prototype: {}
 

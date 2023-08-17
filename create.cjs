@@ -266,7 +266,18 @@ var asyncIterProto = typeof AsyncIterator === 'function' ? AsyncIterator.prototy
 if (!(Symbol.iterator in asyncIterProto)) {
   asyncIterProto[Symbol.iterator] = function () { return this; };
 }
-module.exports = asyncIterProto;`]
+module.exports = asyncIterProto;`],
+  ['is-weakref', `/* globals WeakRef: false */
+module.exports = (value) => {
+  if (typeof WeakRef === 'undefined') return false;
+  if (!value || typeof value !== 'object') return false;
+  try {
+    WeakRef.prototype.deref.call(value);
+    return true;
+  } catch (e) {
+    return false;
+  }
+};`]
 ]);
 
 const manualPackagesList = /** @type {const} */ ([
