@@ -3,6 +3,7 @@ import { searchPackagesFromPNPM } from './pnpm';
 import { searchPackagesFromNPM } from './npm';
 import { searchPackagesFromYarn } from './yarn';
 import { searchPackagesFromBun } from './bun';
+
 export interface PackageLockDeps {
   [depName: string]: PackageLockDep
 }

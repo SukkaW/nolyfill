@@ -126,7 +126,7 @@ function searchTree(root: PackageNode, packageNames: string[]): PackageNode | nu
       version: root.version
     };
 
-    if (root.dependencies && root.dependencies.length > 0) {
+    if (!matched && root.dependencies && root.dependencies.length > 0) {
       resultNode.dependencies = root.dependencies;
     }
 
