@@ -15,6 +15,7 @@ overrides:
   array.prototype.reduce: workspace:@nolyfill/array.prototype.reduce@*
   array.prototype.tosorted: workspace:@nolyfill/array.prototype.tosorted@*
   arraybuffer.prototype.slice: workspace:@nolyfill/arraybuffer.prototype.slice@*
+  asynciterator.prototype: workspace:@nolyfill/asynciterator.prototype@*
   available-typed-arrays: workspace:@nolyfill/available-typed-arrays@*
   function-bind: workspace:@nolyfill/function-bind@*
   function.prototype.name: workspace:@nolyfill/function.prototype.name@*
@@ -159,6 +160,8 @@ importers:
       '@nolyfill/shared':
         specifier: workspace:*
         version: link:../shared
+
+  packages/asynciterator.prototype: {}
 
   packages/available-typed-arrays: {}
 
