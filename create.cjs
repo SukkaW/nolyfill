@@ -241,8 +241,8 @@ module.exports = (value) => {
   ['safe-regex-test', `module.exports = (r) => {
   if (
     !r
-		|| (typeof r !== 'object' && typeof r !== 'function')
-		|| Object.prototype.toString.call(r) !== '[object RegExp]'
+    || (typeof r !== 'object' && typeof r !== 'function')
+    || Object.prototype.toString.call(r) !== '[object RegExp]'
   ) {
     throw new TypeError('\`regex\` must be a RegExp');
   }
@@ -274,6 +274,16 @@ module.exports = (value) => {
   try {
     WeakRef.prototype.deref.call(value);
     return true;
+  } catch (e) {
+    return false;
+  }
+};`],
+  ['is-symbol', `module.exports = (value) => {
+  if (typeof value === 'symbol') return true;
+  if (Object.prototype.toString.call(value) !== '[object Symbol]') return false;
+  try {
+    if (typeof value.valueOf() !== 'symbol') return false;
+    return Symbol.prototype.toString.call(value).startsWith('Symbol(');
   } catch (e) {
     return false;
   }
