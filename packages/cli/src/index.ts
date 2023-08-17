@@ -1,4 +1,5 @@
 /* eslint-disable no-console -- We're a CLI, we need to log to the console */
+import fs from 'node:fs/promises';
 import path from 'node:path';
 import { Command, Option } from 'commander';
 import handleError from './handle-error';
@@ -49,12 +50,27 @@ process.on('SIGTERM', handleSigTerm);
         const projectPath = path.resolve(source ?? process.cwd());
         const packageManager = option.pm === 'auto' ? await detectPackageManager(projectPath) : option.pm;
 
-        const targetPackages = [...allPackages, 'es-abstract'];
-        const searchResult = await searchPackages(packageManager, projectPath, targetPackages);
+        const searchResult = await searchPackages(packageManager, projectPath, allPackages);
         // console.log(renderTree(searchResult));
 
         const leafNodes = getDedupeLeafNodes(searchResult);
+        console.log('The following packages will be overridden:');
         console.log(renderTree(leafNodes));
+
+        const overrides = Object.fromEntries(leafNodes.map((node) => [
+          node.name,
+          `npm:@nolyfill/${node.name}@latest`
+        ]));
+        const packageJsonPath = path.join(projectPath, 'package.json');
+        const packageJson = await fs.readFile(packageJsonPath, 'utf-8');
+        const parsedPackageJson = JSON.parse(packageJson);
+        parsedPackageJson.overrides = {
+          ...parsedPackageJson.overrides,
+          ...overrides
+        };
+        // TODO: respect existing format?
+        // TODO: confirm with user
+        await fs.writeFile(packageJsonPath, JSON.stringify(parsedPackageJson, null, 2));
       });
 
     await program.parseAsync(process.argv);
