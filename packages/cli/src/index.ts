@@ -9,7 +9,7 @@ const packageJson: PackageJson = require('../package.json');
 const program = new Command();
 
 export interface CliOptions {
-  /** see full error messages, mostly for debuggin */
+  /** see full error messages, mostly for debugging */
   debug?: boolean
 }
 
