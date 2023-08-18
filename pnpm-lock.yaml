@@ -17,6 +17,7 @@ overrides:
   arraybuffer.prototype.slice: workspace:@nolyfill/arraybuffer.prototype.slice@*
   asynciterator.prototype: workspace:@nolyfill/asynciterator.prototype@*
   available-typed-arrays: workspace:@nolyfill/available-typed-arrays@*
+  es-set-tostringtag: workspace:@nolyfill/es-set-tostringtag@*
   function-bind: workspace:@nolyfill/function-bind@*
   function.prototype.name: workspace:@nolyfill/function.prototype.name@*
   get-symbol-description: workspace:@nolyfill/get-symbol-description@*
@@ -192,6 +193,8 @@ importers:
       rollup-plugin-swc3:
         specifier: ^0.9.1
         version: 0.9.1(@swc/core@1.3.76)(rollup@3.28.0)
+
+  packages/es-set-tostringtag: {}
 
   packages/function-bind: {}
 

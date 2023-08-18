@@ -16,7 +16,8 @@
         "ecmaVersion": 2023
       },
       "rules": {
-        "@fluffyfox/array/prefer-from": "off"
+        "@fluffyfox/array/prefer-from": "off",
+        "prefer-object-has-own": "off"
       }
     },
     {
