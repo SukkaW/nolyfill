@@ -31,6 +31,7 @@ overrides:
   is-array-buffer: workspace:@nolyfill/is-array-buffer@*
   is-regex: workspace:@nolyfill/is-regex@*
   is-shared-array-buffer: workspace:@nolyfill/is-shared-array-buffer@*
+  is-string: workspace:@nolyfill/is-string@*
   is-symbol: workspace:@nolyfill/is-symbol@*
   is-weakref: workspace:@nolyfill/is-weakref@*
   iterator.prototype: workspace:@nolyfill/iterator.prototype@*
@@ -238,6 +239,8 @@ importers:
       '@nolyfill/shared':
         specifier: workspace:*
         version: link:../shared
+
+  packages/is-string: {}
 
   packages/is-symbol: {}
 
