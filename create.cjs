@@ -295,6 +295,15 @@ module.exports = (value) => {
     String.prototype.valueOf.call(value);
     return true;
   } catch (e) { return false; }
+};`],
+  ['is-date-object', `module.exports = (value) => {
+  if (typeof value !== 'object' || value === null) return false;
+  try {
+    Date.prototype.getDay.call(value);
+    return true;
+  } catch (e) {
+    return false;
+  }
 };`]
 ]);
 

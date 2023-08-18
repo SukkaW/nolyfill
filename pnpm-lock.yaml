@@ -29,6 +29,7 @@ overrides:
   has-symbols: workspace:@nolyfill/has-symbols@*
   has-tostringtag: workspace:@nolyfill/has-tostringtag@*
   is-array-buffer: workspace:@nolyfill/is-array-buffer@*
+  is-date-object: workspace:@nolyfill/is-date-object@*
   is-regex: workspace:@nolyfill/is-regex@*
   is-shared-array-buffer: workspace:@nolyfill/is-shared-array-buffer@*
   is-string: workspace:@nolyfill/is-string@*
@@ -231,6 +232,8 @@ importers:
       '@nolyfill/shared':
         specifier: workspace:*
         version: link:../shared
+
+  packages/is-date-object: {}
 
   packages/is-regex: {}
 
