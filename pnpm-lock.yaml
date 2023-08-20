@@ -17,6 +17,7 @@ overrides:
   arraybuffer.prototype.slice: workspace:@nolyfill/arraybuffer.prototype.slice@*
   asynciterator.prototype: workspace:@nolyfill/asynciterator.prototype@*
   available-typed-arrays: workspace:@nolyfill/available-typed-arrays@*
+  define-properties: workspace:@nolyfill/define-properties@*
   es-iterator-helpers: workspace:@nolyfill/es-iterator-helpers@*
   es-set-tostringtag: workspace:@nolyfill/es-set-tostringtag@*
   function-bind: workspace:@nolyfill/function-bind@*
@@ -201,6 +202,12 @@ importers:
       rollup-plugin-swc3:
         specifier: ^0.9.1
         version: 0.9.1(@swc/core@1.3.76)(rollup@3.28.0)
+
+  packages/define-properties:
+    dependencies:
+      '@nolyfill/shared':
+        specifier: workspace:*
+        version: link:../shared
 
   packages/es-iterator-helpers:
     dependencies:
@@ -1304,14 +1311,6 @@ packages:
     engines: {node: '>=0.10.0'}
     dev: true
 
-  /define-properties@1.2.0:
-    resolution: {integrity: sha512-xvqAVKGfT1+UAvPwKTVw/njhdQ8ZhXK4lI0bCIuCMrp2up9nPnaDftrLtmpTazqd1o+UY4zgzU+avtMbDP+ldA==}
-    engines: {node: '>= 0.4'}
-    dependencies:
-      has-property-descriptors: link:packages/has-property-descriptors
-      object-keys: link:packages/object-keys
-    dev: true
-
   /defu@6.1.2:
     resolution: {integrity: sha512-+uO4+qr7msjNNWKYPHqN/3+Dx3NFkmIzayk2L1MyZQlvgZb/J1A0fo410dpKrN2SnqFjt8n4JL8fDJE0wIgjFQ==}
     dev: true
@@ -1404,7 +1403,7 @@ packages:
     dependencies:
       asynciterator.prototype: link:packages/asynciterator.prototype
       call-bind: 1.0.2
-      define-properties: 1.2.0
+      define-properties: link:packages/define-properties
       es-abstract: 1.22.1
       es-set-tostringtag: link:packages/es-set-tostringtag
       function-bind: link:packages/function-bind

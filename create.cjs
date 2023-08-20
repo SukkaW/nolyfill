@@ -315,7 +315,8 @@ module.exports = (value) => {
       writable: false
     });
   }
-};`]
+};`],
+  ['define-properties', 'module.exports = require(\'@nolyfill/shared\').defineProperties', { '@nolyfill/shared': 'workspace:*' }]
 ]);
 
 const manualPackagesList = /** @type {const} */ ([
