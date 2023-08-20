@@ -85,6 +85,9 @@
   "scripts": {
     "build": "rollup -c rollup.config.ts --configPlugin swc3"
   },
+  "dependencies": {
+    "@nolyfill/shared": "workspace:*"
+  },
   "engines": {
     "node": ">=12.4.0"
   },

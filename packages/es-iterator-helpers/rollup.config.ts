@@ -5,6 +5,7 @@ import fs from 'fs';
 import path from 'path';
 
 import { defineConfig } from 'rollup';
+import type { IsExternal } from 'rollup';
 import { nodeResolve } from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
 import { minify } from 'rollup-plugin-swc3';
@@ -15,9 +16,16 @@ export default defineConfig(async () => {
   if (!esIteratorHelpersPkgJsonPath) {
     throw new Error('Could not find ljharb-es-iterator-helpers/package.json');
   }
+  const selfPkgJsonPath = path.resolve('./package.json');
 
   const esIteratorHelpersDir = path.dirname(esIteratorHelpersPkgJsonPath);
-  const esIteratorHelpersPkgJson: PackageJson = JSON.parse(fs.readFileSync(esIteratorHelpersPkgJsonPath, 'utf-8'));
+
+  const [esIteratorHelpersPkgJson, selfPksJson] = (
+    await Promise.all([
+      fs.promises.readFile(esIteratorHelpersPkgJsonPath, 'utf-8'),
+      fs.promises.readFile(selfPkgJsonPath, 'utf-8')
+    ])
+  ).map((pkgJson) => JSON.parse(pkgJson) as PackageJson);
 
   const input = Object.values(esIteratorHelpersPkgJson.exports || {})
     .reduce<Record<string, string>>((acc, curExport) => {
@@ -35,6 +43,11 @@ export default defineConfig(async () => {
 
     return acc;
   }, {});
+
+  const dependencies = Object.keys(selfPksJson.dependencies || {});
+  const external: IsExternal = (id) => {
+    return dependencies.some(dep => id === dep || id.startsWith(`${dep}/`));
+  };
 
   return defineConfig({
     input,
@@ -58,6 +71,7 @@ export default defineConfig(async () => {
       minify({
         module: true
       })
-    ]
+    ],
+    external
   });
 });

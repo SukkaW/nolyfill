@@ -148,7 +148,7 @@ module.exports = (ab) => {
   return bL(ab);
 };`, { '@nolyfill/is-array-buffer': 'workspace:*', '@nolyfill/shared': 'workspace:*' }],
   ['iterator.prototype', 'module.exports = Object.getPrototypeOf(Object.getPrototypeOf([][Symbol.iterator]()));'],
-  ['available-typed-arrays', `[
+  ['available-typed-arrays', `module.exports = [
   'BigInt64Array', 'BigUint64Array',
   'Float32Array', 'Float64Array',
   'Int16Array', 'Int32Array', 'Int8Array',
