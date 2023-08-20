@@ -1,6 +1,6 @@
-import fs from 'node:fs';
 import path from 'node:path';
 import type { PackageNode } from './types';
+import { readJSON } from '../packages';
 
 interface NpmDep {
   version: string,
@@ -37,8 +37,8 @@ interface NpmLockfile {
 export async function searchPackagesFromNPM(dirPath: string, packages: string[]): Promise<PackageNode[]> {
   const shrinkwrapPath = path.join(dirPath, 'npm-shrinkwrap.json');
   const packageLockPath = path.join(dirPath, 'package-lock.json');
-  const lockfile = readJsonFile<NpmLockfile>(shrinkwrapPath)
-    ?? readJsonFile<NpmLockfile>(packageLockPath);
+  const lockfile = await readJSON<NpmLockfile>(shrinkwrapPath)
+                ?? await readJSON<NpmLockfile>(packageLockPath);
   if (!lockfile) {
     throw new Error(`No npm lockfile found in ${dirPath}`);
   }
@@ -134,12 +134,4 @@ function searchTree(root: PackageNode, packageNames: string[]): PackageNode | nu
   }
 
   return null;
-}
-
-function readJsonFile<T>(filePath: string): T | null {
-  try {
-    return JSON.parse(fs.readFileSync(filePath, 'utf8')) as T;
-  } catch (error) {
-    return null;
-  }
 }

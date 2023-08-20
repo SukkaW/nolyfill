@@ -1,5 +1,4 @@
 /* eslint-disable no-console -- We're a CLI, we need to log to the console */
-import fs from 'node:fs/promises';
 import path from 'node:path';
 import { Command, Option } from 'commander';
 import handleError from './handle-error';
@@ -9,9 +8,17 @@ import { renderTree } from './renderTree';
 import { allPackages } from './all-packages';
 import type { PackageJson } from 'type-fest';
 import { getDedupeLeafNodes } from './get-dedupe-leaf-node';
+import { readJSON, writeJSON } from './packages';
+import type { PackageJson } from 'type-fest';
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires -- version
 const packageJson: PackageJson = require('../package.json');
+
+declare module 'type-fest' {
+  interface PackageJson {
+    overrides?: Record<string, string>
+  }
+}
 
 const program = new Command();
 
@@ -62,15 +69,15 @@ process.on('SIGTERM', handleSigTerm);
           `npm:@nolyfill/${node.name}@latest`
         ]));
         const packageJsonPath = path.join(projectPath, 'package.json');
-        const packageJson = await fs.readFile(packageJsonPath, 'utf-8');
-        const parsedPackageJson = JSON.parse(packageJson);
-        parsedPackageJson.overrides = {
-          ...parsedPackageJson.overrides,
+        const packageJson = await readJSON<PackageJson>(packageJsonPath);
+        if (!packageJson) return;
+
+        packageJson.overrides = {
+          ...packageJson.overrides,
           ...overrides
         };
-        // TODO: respect existing format?
         // TODO: confirm with user
-        await fs.writeFile(packageJsonPath, JSON.stringify(parsedPackageJson, null, 2));
+        await writeJSON(packageJsonPath, packageJson);
       });
 
     await program.parseAsync(process.argv);
