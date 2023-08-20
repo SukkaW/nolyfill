@@ -2,7 +2,6 @@ import type { PackageManager } from '../package-manager';
 import { searchPackagesFromPNPM } from './pnpm';
 import { searchPackagesFromNPM } from './npm';
 import { searchPackagesFromYarn } from './yarn';
-import { searchPackagesFromBun } from './bun';
 
 export interface PackageLockDeps {
   [depName: string]: PackageLockDep
@@ -25,8 +24,6 @@ export function searchPackages(packageManager: PackageManager, dir: string, pack
       return searchPackagesFromPNPM(dir, packages);
     case 'yarn':
       return searchPackagesFromYarn(dir, packages);
-    case 'bun':
-      return searchPackagesFromBun(dir, packages);
     default:
       throw new Error(`Unknown package manager: ${packageManager as string}`);
   }

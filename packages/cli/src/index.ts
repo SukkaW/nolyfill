@@ -14,7 +14,11 @@ import type { PackageNode } from './lockfile/types';
 declare module 'type-fest' {
   interface PackageJson {
     version: string,
-    overrides?: Record<string, string>
+    overrides?: Record<string, string>,
+    resolutions?: Record<string, string>,
+    pnpm?: {
+      overrides?: Record<string, string>
+    }
   }
 }
 
@@ -29,7 +33,7 @@ interface PmCommandOptions {
 }
 
 const pmCommandOption = new Option('--pm', 'specify which package manager to use')
-  .choices(['auto', 'npm', 'pnpm', 'yarn', 'bun'])
+  .choices(['auto', 'npm', 'pnpm', 'yarn'])
   .default('auto', 'detect package manager automatically');
 
 const handleSigTerm = () => process.exit(0);
@@ -65,7 +69,7 @@ const findPackagesCoveredByNolyfill = async (packageManager: PackageManager, pro
   return packagesToBeOverride;
 };
 
-const applyOverrides = async (projectPath: string, packages: PackageNode[]) => {
+const applyOverrides = async (packageManager: PackageManager, projectPath: string, packages: PackageNode[]) => {
   const overrides = Object.fromEntries(packages.map((node) => [
     node.name,
     `npm:@nolyfill/${node.name}@latest`
@@ -74,10 +78,26 @@ const applyOverrides = async (projectPath: string, packages: PackageNode[]) => {
   const packageJson = await readJSON<PackageJson>(packageJsonPath);
   if (!packageJson) return;
 
-  packageJson.overrides = {
-    ...packageJson.overrides,
-    ...overrides
-  };
+  // https://pnpm.io/package_json#pnpmoverrides
+  if (packageManager === 'pnpm') {
+    if (!packageJson.pnpm) packageJson.pnpm = {};
+    packageJson.pnpm.overrides = {
+      ...packageJson.pnpm.overrides,
+      ...overrides
+    };
+  // https://yarnpkg.com/configuration/manifest/#resolutions
+  } else if (packageManager === 'yarn') {
+    if (!packageJson.resolutions) packageJson.resolutions = {};
+    packageJson.resolutions = {
+      ...packageJson.resolutions,
+      ...overrides
+    };
+  } else {
+    packageJson.overrides = {
+      ...packageJson.overrides,
+      ...overrides
+    };
+  }
 
   await writeJSON(packageJsonPath, packageJson);
 };
@@ -115,7 +135,7 @@ const program = new Command();
 
         const packages = await findPackagesCoveredByNolyfill(packageManager, projectPath);
 
-        await applyOverrides(projectPath, packages);
+        await applyOverrides(packageManager, projectPath, packages);
 
         console.log(`${picocolors.magenta('Optimization complete!')}\n`);
 
@@ -130,9 +150,6 @@ const program = new Command();
             break;
           case 'yarn':
             console.log(`${picocolors.dim('>')} Run "${picocolors.bold(picocolors.green('yarn install'))}" to install the optimized packages.\n`);
-            break;
-          case 'bun':
-            console.log(`${picocolors.dim('>')} Run "${picocolors.bold(picocolors.green('bun install'))}" to install the optimized packages.\n`);
             break;
           default:
             break;
