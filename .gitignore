@@ -39,4 +39,4 @@ yarn-error.log*
 .vercel
 
 # es-iterator-helpers
-packages/es-iterator-helpers/src
+packages/es-iterator-helpers/**/*.js
