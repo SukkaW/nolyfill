@@ -1,6 +1,6 @@
 {
   "name": "@nolyfill/safe-regex-test",
-  "version": "1.0.12",
+  "version": "1.0.13",
   "main": "./index.js",
   "license": "MIT",
   "files": [
