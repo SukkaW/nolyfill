@@ -1,8 +1,8 @@
 import fs from 'node:fs';
-import { parseSyml } from '@yarnpkg/parsers';
-// import type { parse as parseYarnLock } from '@yarnpkg/lockfile';
-
 import path from 'node:path';
+import { parseSyml } from '@yarnpkg/parsers';
+import type { FirstLevelDependency /* parse as parseYarnLock * */ } from '@yarnpkg/lockfile';
+
 import type { PackageNode } from './types';
 
 // type YarnPackageLock = ReturnType<typeof parseYarnLock>;
@@ -21,7 +21,7 @@ function searchInLockfile(lockFileContents: string, packages: string[]) {
 
     const packageNodes: PackageNode[] = [];
     Object.keys(yarnYml).forEach((descriptor) => {
-      const pkg = yarnYml[descriptor];
+      const pkg = yarnYml[descriptor] as FirstLevelDependency;
       const packageName = getPackageNameFromDescriptor(descriptor);
 
       if (packages.includes(packageName)) {
