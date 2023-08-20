@@ -9,6 +9,7 @@
   },
   "devDependencies": {
     "@jsdevtools/ez-spawn": "^3.0.4",
+    "@nolyfill/internal": "workspace:*",
     "@types/node": "^20.4.9",
     "@typescript-eslint/eslint-plugin": "^6.4.0",
     "@typescript-eslint/parser": "^6.4.0",
