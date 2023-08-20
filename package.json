@@ -3,12 +3,14 @@
   "files": [],
   "scripts": {
     "lint": "eslint .",
-    "release": "bumpp -r && pnpm --access=public -r publish",
     "build": "turbo run build",
-    "codegen": "node create.cjs"
+    "codegen": "node create.cjs",
+    "prerelease": "turbo run build",
+    "release": "bumpp -r && pnpm --access=public -r publish"
   },
   "devDependencies": {
     "@jsdevtools/ez-spawn": "^3.0.4",
+    "@nolyfill/internal": "workspace:*",
     "@types/node": "^20.4.9",
     "@typescript-eslint/eslint-plugin": "^6.4.0",
     "@typescript-eslint/parser": "^6.4.0",
@@ -42,6 +44,7 @@
       "arraybuffer.prototype.slice": "workspace:@nolyfill/arraybuffer.prototype.slice@*",
       "asynciterator.prototype": "workspace:@nolyfill/asynciterator.prototype@*",
       "available-typed-arrays": "workspace:@nolyfill/available-typed-arrays@*",
+      "es-iterator-helpers": "workspace:@nolyfill/es-iterator-helpers@*",
       "es-set-tostringtag": "workspace:@nolyfill/es-set-tostringtag@*",
       "function-bind": "workspace:@nolyfill/function-bind@*",
       "function.prototype.name": "workspace:@nolyfill/function.prototype.name@*",
@@ -104,6 +107,7 @@
     "arraybuffer.prototype.slice": "npm:@nolyfill/arraybuffer.prototype.slice@latest",
     "asynciterator.prototype": "npm:@nolyfill/asynciterator.prototype@latest",
     "available-typed-arrays": "npm:@nolyfill/available-typed-arrays@latest",
+    "es-iterator-helpers": "npm:@nolyfill/es-iterator-helpers@latest",
     "es-set-tostringtag": "npm:@nolyfill/es-set-tostringtag@latest",
     "function-bind": "npm:@nolyfill/function-bind@latest",
     "function.prototype.name": "npm:@nolyfill/function.prototype.name@latest",

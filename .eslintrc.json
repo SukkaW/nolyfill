@@ -1,7 +1,8 @@
 {
   "root": true,
   "ignorePatterns": [
-    "dist"
+    "dist",
+    "packages/es-iterator-helpers/**/*.js"
   ],
   "overrides": [
     {

@@ -1,0 +1,13 @@
+{
+  "name": "@nolyfill/internal",
+  "version": "1.0.11",
+  "private": true,
+  "main": "./index.js",
+  "types": "./index.d.ts",
+  "license": "MIT",
+  "scripts": {},
+  "dependencies": {},
+  "engines": {
+    "node": ">=12.4.0"
+  }
+}
