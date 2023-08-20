@@ -1,4 +1,5 @@
 'use strict';
+const { makeEsShim } = require('@nolyfill/shared');
 const impl = Object.groupBy || function (items, callbackfn) {
   const o = Object.create(null);
   let k = 0;
@@ -12,7 +13,6 @@ const impl = Object.groupBy || function (items, callbackfn) {
   }
   return o;
 };
-module.exports = impl;
-module.exports.implementation = impl;
-module.exports.getPolyfill = () => impl;
-module.exports.shim = () => impl;
+const bound = impl;
+makeEsShim(bound, impl);
+module.exports = bound;

@@ -395,10 +395,19 @@ async function createEsShimLikePackage(packageName, packageImplementation, isSta
     ),
     compareAndWriteFile(
       path.join(packagePath, 'index.js'),
-      (isStatic
-        ? `'use strict';\nconst impl = ${packageImplementation};\nmodule.exports = impl;\n`
-        : `'use strict';\nconst { uncurryThis } = require('@nolyfill/shared');\nconst impl = ${packageImplementation};\nmodule.exports = uncurryThis(impl);\n`)
-        .concat('module.exports.implementation = impl;\nmodule.exports.getPolyfill = () => impl;\nmodule.exports.shim = () => impl;\n')
+      [
+        '\'use strict\';',
+        isStatic
+          ? 'const { makeEsShim } = require(\'@nolyfill/shared\');'
+          : 'const { uncurryThis, makeEsShim } = require(\'@nolyfill/shared\');',
+        `const impl = ${packageImplementation};`,
+        isStatic
+          ? 'const bound = impl;'
+          : 'const bound = uncurryThis(impl);',
+        'makeEsShim(bound, impl);',
+        'module.exports = bound;',
+        ''
+      ].join('\n')
     ),
     compareAndWriteFile(
       path.join(packagePath, 'package.json'),
@@ -410,7 +419,7 @@ async function createEsShimLikePackage(packageName, packageImplementation, isSta
         files: ['*.js'],
         scripts: {},
         dependencies: {
-          '@nolyfill/shared': isStatic ? undefined : 'workspace:*',
+          '@nolyfill/shared': 'workspace:*',
           ...extraDependencies
         },
         engines: {

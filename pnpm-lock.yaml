@@ -128,7 +128,11 @@ importers:
         specifier: workspace:*
         version: link:../shared
 
-  packages/array.from: {}
+  packages/array.from:
+    dependencies:
+      '@nolyfill/shared':
+        specifier: workspace:*
+        version: link:../shared
 
   packages/array.prototype.find:
     dependencies:
@@ -242,7 +246,11 @@ importers:
         specifier: workspace:*
         version: link:../shared
 
-  packages/globalthis: {}
+  packages/globalthis:
+    dependencies:
+      '@nolyfill/shared':
+        specifier: workspace:*
+        version: link:../shared
 
   packages/gopd: {}
 
@@ -288,17 +296,41 @@ importers:
 
   packages/iterator.prototype: {}
 
-  packages/object-keys: {}
+  packages/object-keys:
+    dependencies:
+      '@nolyfill/shared':
+        specifier: workspace:*
+        version: link:../shared
 
-  packages/object.assign: {}
+  packages/object.assign:
+    dependencies:
+      '@nolyfill/shared':
+        specifier: workspace:*
+        version: link:../shared
 
-  packages/object.entries: {}
+  packages/object.entries:
+    dependencies:
+      '@nolyfill/shared':
+        specifier: workspace:*
+        version: link:../shared
 
-  packages/object.fromentries: {}
+  packages/object.fromentries:
+    dependencies:
+      '@nolyfill/shared':
+        specifier: workspace:*
+        version: link:../shared
 
-  packages/object.getownpropertydescriptors: {}
+  packages/object.getownpropertydescriptors:
+    dependencies:
+      '@nolyfill/shared':
+        specifier: workspace:*
+        version: link:../shared
 
-  packages/object.groupby: {}
+  packages/object.groupby:
+    dependencies:
+      '@nolyfill/shared':
+        specifier: workspace:*
+        version: link:../shared
 
   packages/object.hasown:
     dependencies:
@@ -306,9 +338,17 @@ importers:
         specifier: workspace:*
         version: link:../shared
 
-  packages/object.values: {}
+  packages/object.values:
+    dependencies:
+      '@nolyfill/shared':
+        specifier: workspace:*
+        version: link:../shared
 
-  packages/reflect.getprototypeof: {}
+  packages/reflect.getprototypeof:
+    dependencies:
+      '@nolyfill/shared':
+        specifier: workspace:*
+        version: link:../shared
 
   packages/regexp.prototype.flags:
     dependencies:
