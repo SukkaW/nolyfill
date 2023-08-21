@@ -1,7 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 
-export type PackageManager = 'npm' | 'pnpm' | 'yarn';
+export type PackageManager = 'npm' | 'pnpm' | 'yarn' | 'bun';
 
 export async function detectPackageManager(projectPath: string): Promise<PackageManager> {
   const packageJsonPath = path.join(projectPath, 'package.json');
@@ -24,6 +24,10 @@ export async function detectPackageManager(projectPath: string): Promise<Package
   || fs.existsSync(path.join(dirname, 'npm-shrinkwrap.json'))
   ) {
     return 'npm';
+  }
+
+  if (fs.existsSync(path.join(dirname, 'bun.lockb'))) {
+    return 'bun';
   }
 
   throw new Error('No lockfile found.');

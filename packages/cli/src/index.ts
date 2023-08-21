@@ -101,6 +101,31 @@ const applyOverrides = async (packageManager: PackageManager, projectPath: strin
   await writeJSON(packageJsonPath, packageJson);
 };
 
+const printBunUnsupported = () => {
+  console.log(`${picocolors.bgRed(picocolors.black(' Error '))} nolyfill does not support ${picocolors.bold('Bun')} at the moment.\n`);
+  console.log(`Currently, ${picocolors.bold('Bun')} doesn't support package.json overrides (Details: ${picocolors.underline('https://github.com/oven-sh/bun/issues/1134')}). This feature is essential for nolyfill. We'll add support for ${picocolors.bold('Bun')} once the issue is addressed.\n`);
+};
+
+const printPostInstallInstructions = (packageManager: PackageManager) => {
+  console.log(`${picocolors.magenta('Optimization complete!')}\n`);
+
+  switch (packageManager) {
+    case 'npm':
+      console.log(`${picocolors.dim('>')} Run "${picocolors.bold(picocolors.green('npm update'))}" to install the optimized packages.\n`);
+      console.log(`${picocolors.bold(picocolors.bgYellow(picocolors.black(' WARNING ')))} Using ${picocolors.red('npm update')} will rebuild the entire package-lock.json file, potentially causing unwanted upgrades and side effects. Please review package versions and test your application thoroughly after updating.\n`);
+      console.log(`Due to a known bug in NPM (see ${picocolors.underline('https://github.com/npm/cli/issues/5850')}), you need to execute ${picocolors.green('npm update')} instead of the standard "npm install". This ensures NPM to respect the overrides added by nolyfill. We appreciate your understanding and are closely monitoring this issue for any resolutions.\n`);
+      break;
+    case 'pnpm':
+      console.log(`${picocolors.dim('>')} Run "${picocolors.bold(picocolors.green('pnpm install'))}" to install the optimized packages.\n`);
+      break;
+    case 'yarn':
+      console.log(`${picocolors.dim('>')} Run "${picocolors.bold(picocolors.green('yarn install'))}" to install the optimized packages.\n`);
+      break;
+    default:
+      break;
+  }
+};
+
 const program = new Command();
 (async () => {
   try {
@@ -118,6 +143,11 @@ const program = new Command();
         const projectPath = path.resolve(source ?? process.cwd());
         const packageManager = option.pm === 'auto' ? await detectPackageManager(projectPath) : option.pm;
 
+        if (packageManager === 'bun') {
+          printBunUnsupported();
+          return;
+        }
+
         await findPackagesCoveredByNolyfill(packageManager, projectPath);
 
         console.log(`Run "${picocolors.bold(picocolors.green('nolyfill install'))}" to replace them with a super lightweight ✨ version.\n`);
@@ -132,27 +162,16 @@ const program = new Command();
         const projectPath = path.resolve(source ?? process.cwd());
         const packageManager = option.pm === 'auto' ? await detectPackageManager(projectPath) : option.pm;
 
+        if (packageManager === 'bun') {
+          printBunUnsupported();
+          return;
+        }
+
         const packages = await findPackagesCoveredByNolyfill(packageManager, projectPath);
 
         await applyOverrides(packageManager, projectPath, packages);
 
-        console.log(`${picocolors.magenta('Optimization complete!')}\n`);
-
-        switch (packageManager) {
-          case 'npm':
-            console.log(`${picocolors.dim('>')} Run "${picocolors.bold(picocolors.green('npm update'))}" to install the optimized packages.\n`);
-            console.log(`${picocolors.bold(picocolors.bgYellow(picocolors.black(' WARNING ')))} Using ${picocolors.red('npm update')} will rebuild the entire package-lock.json file, potentially causing unwanted upgrades and side effects. Please review package versions and test your application thoroughly after updating.\n`);
-            console.log(`Due to a known bug in NPM (see ${picocolors.underline('https://github.com/npm/cli/issues/5850')}), you need to execute ${picocolors.green('npm update')} instead of the standard "npm install". This ensures NPM to respect the overrides added by nolyfill. We appreciate your understanding and are closely monitoring this issue for any resolutions.\n`);
-            break;
-          case 'pnpm':
-            console.log(`${picocolors.dim('>')} Run "${picocolors.bold(picocolors.green('pnpm install'))}" to install the optimized packages.\n`);
-            break;
-          case 'yarn':
-            console.log(`${picocolors.dim('>')} Run "${picocolors.bold(picocolors.green('yarn install'))}" to install the optimized packages.\n`);
-            break;
-          default:
-            break;
-        }
+        printPostInstallInstructions(packageManager);
       });
 
     await program.parseAsync(process.argv);
