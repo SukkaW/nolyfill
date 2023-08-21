@@ -1,11 +1,18 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { parseSyml } from '@yarnpkg/parsers';
-import type { FirstLevelDependency /* parse as parseYarnLock * */ } from '@yarnpkg/lockfile';
 
 import type { PackageNode } from './types';
 
-// type YarnPackageLock = ReturnType<typeof parseYarnLock>;
+interface Dependency {
+  [packageName: string]: string
+}
+
+interface FirstLevelDependency {
+  version: string,
+  resolved?: string | undefined,
+  dependencies?: Dependency | undefined
+}
 
 export async function searchPackagesFromYarn(dirPath: string, packages: string[]): Promise<PackageNode[]> {
   const yarnLockPath = path.join(dirPath, 'yarn.lock');
@@ -14,54 +21,46 @@ export async function searchPackagesFromYarn(dirPath: string, packages: string[]
 }
 
 function searchInLockfile(lockFileContents: string, packages: string[]) {
-  const isV2 = lockFileContents.includes('__metadata:');
-  if (isV2) {
-    const yarnYml = parseSyml(lockFileContents);
-    delete yarnYml.__metadata;
+  const yarnYml = parseSyml(lockFileContents);
+  delete yarnYml.__metadata;
 
-    const packageNodes: PackageNode[] = [];
-    Object.keys(yarnYml).forEach((descriptor) => {
-      const pkg = yarnYml[descriptor] as FirstLevelDependency;
-      const packageName = getPackageNameFromDescriptor(descriptor);
+  const packageNodes: PackageNode[] = [];
+  Object.keys(yarnYml).forEach((descriptor) => {
+    const pkg = yarnYml[descriptor] as FirstLevelDependency;
+    const packageName = getPackageNameFromDescriptor(descriptor);
 
-      if (packages.includes(packageName)) {
-        const packageNode = {
-          name: packageName,
-          version: pkg.version,
-          dependencies: []
-        };
-        packageNodes.push(packageNode);
-      } else if (pkg.dependencies) {
-        const packageNode: PackageNode = {
-          name: packageName,
-          version: pkg.version,
-          dependencies: []
-        };
+    if (packages.includes(packageName)) {
+      const packageNode = {
+        name: packageName,
+        version: pkg.version,
+        dependencies: []
+      };
+      packageNodes.push(packageNode);
+    } else if (pkg.dependencies) {
+      const packageNode: PackageNode = {
+        name: packageName,
+        version: pkg.version,
+        dependencies: []
+      };
 
-        Object.keys(pkg.dependencies).forEach((depName) => {
-          if (packages.includes(depName)) {
-            const depNode: PackageNode = {
-              name: depName,
-              version: pkg.dependencies![depName],
-              dependencies: []
-            };
-            packageNode.dependencies!.push(depNode);
-          }
-        });
-
-        if (packageNode.dependencies!.length > 0) {
-          packageNodes.push(packageNode);
+      Object.keys(pkg.dependencies).forEach((depName) => {
+        if (packages.includes(depName)) {
+          const depNode: PackageNode = {
+            name: depName,
+            version: pkg.dependencies![depName],
+            dependencies: []
+          };
+          packageNode.dependencies!.push(depNode);
         }
+      });
+
+      if (packageNode.dependencies!.length > 0) {
+        packageNodes.push(packageNode);
       }
-    });
+    }
+  });
 
-    return packageNodes;
-  }
-
-  // TODO
-
-  // const lockfile = parseYarnLock(lockFileContents);
-  throw new Error('Not implemented');
+  return packageNodes;
 }
 
 function getPackageNameFromDescriptor(descriptor: string): string {
