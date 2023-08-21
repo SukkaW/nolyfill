@@ -60,7 +60,6 @@ const findPackagesCoveredByNolyfill = async (packageManager: PackageManager, pro
 
   searchResult.forEach(node => traverse(node));
 
-  packagesToBeOverride.splice(0, 18);
   packagesToBeOverride.sort((a, b) => a.name.localeCompare(b.name));
 
   console.log(picocolors.yellow(`Found ${picocolors.green(picocolors.bold(packagesToBeOverride.length))} redundant packages:`));
