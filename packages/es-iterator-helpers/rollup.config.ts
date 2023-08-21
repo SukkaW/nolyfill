@@ -8,6 +8,7 @@ import { defineConfig } from 'rollup';
 import type { IsExternal } from 'rollup';
 import { nodeResolve } from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
+import replace from '@rollup/plugin-replace';
 import { minify } from 'rollup-plugin-swc3';
 
 export default defineConfig(async () => {
@@ -27,22 +28,23 @@ export default defineConfig(async () => {
     ])
   ).map((pkgJson) => JSON.parse(pkgJson) as PackageJson);
 
-  const input = Object.values(esIteratorHelpersPkgJson.exports || {})
-    .reduce<Record<string, string>>((acc, curExport) => {
-    if (typeof curExport !== 'string') {
-      throw new TypeError(`Unsupported export type: ${typeof curExport}`);
-    }
+  const input = Object.values(esIteratorHelpersPkgJson.exports || {}).reduce<Record<string, string>>(
+    (acc, curExport) => {
+      if (typeof curExport !== 'string') {
+        throw new TypeError(`Unsupported export type: ${typeof curExport}`);
+      }
 
-    if (curExport.endsWith('.js')) {
-      const realPath = path.resolve(esIteratorHelpersDir, curExport);
-      const relativePath = path.relative(esIteratorHelpersDir, realPath);
-      const relativePathWithoutExtname = relativePath.slice(0, -path.extname(relativePath).length);
+      if (curExport.endsWith('.js')) {
+        const realPath = path.resolve(esIteratorHelpersDir, curExport);
+        const relativePath = path.relative(esIteratorHelpersDir, realPath);
+        const relativePathWithoutExtname = relativePath.slice(0, -path.extname(relativePath).length);
 
-      acc[relativePathWithoutExtname] = realPath;
-    }
+        acc[relativePathWithoutExtname] = realPath;
+      }
 
-    return acc;
-  }, {});
+      return acc;
+    }, {}
+  );
 
   const dependencies = Object.keys(selfPksJson.dependencies || {});
   const external: IsExternal = (id) => {
@@ -57,19 +59,53 @@ export default defineConfig(async () => {
       sourcemap: false,
       esModule: false,
       hoistTransitiveImports: false,
-      chunkFileNames: '[name].js',
+      chunkFileNames: 'dist/[name].js',
       compact: false,
       generatedCode: 'es2015',
       interop: 'auto',
       manualChunks() {
-        return 'dist/vendor';
+        return 'index';
       }
     },
     plugins: [
-      commonjs(),
       nodeResolve(),
+      commonjs(),
       minify({
-        module: true
+        module: true,
+        compress: {
+          passes: 2,
+          unsafe: true
+        },
+        mangle: {}
+      }),
+      replace({
+        'typeof BigInt64Array': JSON.stringify(typeof BigInt64Array),
+        'typeof BigUint64Array': JSON.stringify(typeof BigUint64Array),
+        'typeof Float32Array': JSON.stringify(typeof Float32Array),
+        'typeof Float64Array': JSON.stringify(typeof Float64Array),
+        'typeof Int16Array': JSON.stringify(typeof Int16Array),
+        'typeof Int32Array': JSON.stringify(typeof Int32Array),
+        'typeof Int8Array': JSON.stringify(typeof Int8Array),
+        'typeof Uint16Array': JSON.stringify(typeof Uint16Array),
+        'typeof Uint32Array': JSON.stringify(typeof Uint32Array),
+        'typeof Uint8Array': JSON.stringify(typeof Uint8Array),
+        'typeof Uint8ClampedArray': JSON.stringify(typeof Uint8ClampedArray),
+        'typeof Map': JSON.stringify(typeof Map),
+        'typeof Set': JSON.stringify(typeof Set),
+        'typeof WeakMap': JSON.stringify(typeof WeakMap),
+        'typeof WeakSet': JSON.stringify(typeof WeakSet),
+        'typeof Promise': JSON.stringify(typeof Promise),
+        'typeof ArrayBuffer': JSON.stringify(typeof ArrayBuffer),
+        'typeof BigInt': JSON.stringify(typeof BigInt),
+        'typeof Symbol': JSON.stringify(typeof Symbol),
+        'typeof Symbol.toStringTag': JSON.stringify(typeof Symbol.toStringTag),
+        'typeof Reflect': JSON.stringify(typeof Reflect),
+        'typeof JSON': JSON.stringify(typeof JSON),
+        'typeof Proxy': JSON.stringify(typeof Proxy),
+        'typeof Symbol.iterator': JSON.stringify(typeof Symbol.iterator),
+        'typeof Atomics': JSON.stringify(typeof Atomics),
+        'typeof Object.defineProperty': JSON.stringify(typeof Object.defineProperty),
+        preventAssignment: true
       })
     ],
     external
