@@ -16,7 +16,7 @@ export async function detectPackageManager(projectPath: string): Promise<Package
   }
 
   try {
-    return Promise.any([
+    return await Promise.any([
       checkFile(path.join(projectPath, 'yarn.lock')).then<'yarn'>(() => 'yarn'),
       checkFile(path.join(projectPath, 'pnpm-lock.yaml')).then<'pnpm'>(() => 'pnpm'),
       checkFile(path.join(projectPath, 'package-lock.json')).then<'npm'>(() => 'npm'),
