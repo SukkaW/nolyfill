@@ -21,7 +21,7 @@ interface PmCommandOptions {
   pm: PackageManager | 'auto'
 }
 
-const pmCommandOption = new Option('--pm', 'specify which package manager to use')
+const pmCommandOption = new Option('--pm [package manager]', 'specify which package manager to use')
   .choices(['auto', 'npm', 'pnpm', 'yarn'])
   .default('auto', 'detect package manager automatically');
 
