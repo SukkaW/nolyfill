@@ -67,7 +67,7 @@ const program = new Command('nolyfill');
       .option('-d, --debug', 'see full error messages, mostly for debugging');
 
     program
-      .command('check')
+      .command('check', { isDefault: true })
       .description('check if the project contains redundant polyfills that can be optimized by nolyfill')
       .argument('[path]', 'project path to check')
       .addOption(pmCommandOption)
