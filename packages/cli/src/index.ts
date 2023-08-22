@@ -59,12 +59,7 @@ const findPackagesCoveredByNolyfill = async (packageManager: PackageManager, pro
 
   searchResult.forEach(node => traverse(node));
 
-  packagesToBeOverride.sort((a, b) => a.name.localeCompare(b.name));
-
-  console.log(picocolors.yellow(`Found ${picocolors.green(picocolors.bold(packagesToBeOverride.length))} redundant packages:`));
-  console.log(renderTree(packagesToBeOverride));
-
-  return packagesToBeOverride;
+  return packagesToBeOverride.sort((a, b) => a.name.localeCompare(b.name));
 };
 
 const applyOverrides = async (packageManager: PackageManager, projectPath: string, packages: PackageNode[]) => {
@@ -83,7 +78,7 @@ const applyOverrides = async (packageManager: PackageManager, projectPath: strin
       ...packageJson.pnpm.overrides,
       ...overrides
     };
-  // https://yarnpkg.com/configuration/manifest/#resolutions
+    // https://yarnpkg.com/configuration/manifest/#resolutions
   } else if (packageManager === 'yarn') {
     if (!packageJson.resolutions) packageJson.resolutions = {};
     packageJson.resolutions = {
@@ -125,11 +120,10 @@ const printPostInstallInstructions = (packageManager: PackageManager) => {
   }
 };
 
-const program = new Command();
+const program = new Command('nolyfill');
 (async () => {
   try {
     program
-      .name('nolyfill [source]')
       .version(packageJson.version, '-v, --version', 'output the current version')
       .option('-d, --debug', 'see full error messages, mostly for debugging');
 
@@ -143,13 +137,19 @@ const program = new Command();
         const packageManager = option.pm === 'auto' ? await detectPackageManager(projectPath) : option.pm;
 
         if (packageManager === 'bun') {
-          printBunUnsupported();
-          return;
+          return printBunUnsupported();
         }
 
-        await findPackagesCoveredByNolyfill(packageManager, projectPath);
+        const packagesToBeOverride = await findPackagesCoveredByNolyfill(packageManager, projectPath);
 
-        console.log(`Run "${picocolors.bold(picocolors.green('nolyfill install'))}" to replace them with a super lightweight ✨ version.\n`);
+        if (packagesToBeOverride.length === 0) {
+          console.log(`${picocolors.green('Congratulations! Your project does not contain any redundant polyfills that can be optimized by nolyfill 🚀')}\n`);
+        } else {
+          console.log(picocolors.yellow(`Found ${picocolors.green(picocolors.bold(packagesToBeOverride.length))} redundant packages:`));
+          console.log(renderTree(packagesToBeOverride));
+
+          console.log(`Run "${picocolors.bold(picocolors.green('nolyfill install'))}" to replace them with a super lightweight ✨ version.\n`);
+        }
       });
 
     program
@@ -162,15 +162,21 @@ const program = new Command();
         const packageManager = option.pm === 'auto' ? await detectPackageManager(projectPath) : option.pm;
 
         if (packageManager === 'bun') {
-          printBunUnsupported();
-          return;
+          return printBunUnsupported();
         }
 
-        const packages = await findPackagesCoveredByNolyfill(packageManager, projectPath);
+        const packagesToBeOverride = await findPackagesCoveredByNolyfill(packageManager, projectPath);
 
-        await applyOverrides(packageManager, projectPath, packages);
+        if (packagesToBeOverride.length === 0) {
+          console.log(`${picocolors.green('Congratulations! Your project does not contain any redundant polyfills that can be optimized by nolyfill 🚀')}\n`);
+        } else {
+          console.log(picocolors.yellow(`Found ${picocolors.green(picocolors.bold(packagesToBeOverride.length))} redundant packages:`));
+          console.log(renderTree(packagesToBeOverride));
 
-        printPostInstallInstructions(packageManager);
+          await applyOverrides(packageManager, projectPath, packagesToBeOverride);
+
+          printPostInstallInstructions(packageManager);
+        }
       });
 
     await program.parseAsync(process.argv);
