@@ -11,16 +11,14 @@ import { readJSON, writeJSON } from './packages';
 import type { PackageJson } from 'type-fest';
 import type { PackageNode } from './lockfile/types';
 
-declare module 'type-fest' {
-  interface PackageJson {
-    version: string,
-    overrides?: Record<string, string>,
-    resolutions?: Record<string, string>,
-    pnpm?: {
-      overrides?: Record<string, string>
-    }
+type PKG = PackageJson & {
+  version: string,
+  overrides?: Record<string, string>,
+  resolutions?: Record<string, string>,
+  pnpm?: {
+    overrides?: Record<string, string>
   }
-}
+};
 
 interface CliOptions {
   /** see full error messages, mostly for debugging */
@@ -41,7 +39,7 @@ process.on('SIGINT', handleSigTerm);
 process.on('SIGTERM', handleSigTerm);
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires -- version
-const packageJson: PackageJson = require('../package.json');
+const packageJson: PKG = require('../package.json');
 
 const findPackagesCoveredByNolyfill = async (packageManager: PackageManager, projectPath: string) => {
   const searchResult = await searchPackages(packageManager, projectPath, allPackages);
@@ -74,7 +72,7 @@ const applyOverrides = async (packageManager: PackageManager, projectPath: strin
     `npm:@nolyfill/${node.name}@latest`
   ]));
   const packageJsonPath = path.join(projectPath, 'package.json');
-  const packageJson = await readJSON<PackageJson>(packageJsonPath);
+  const packageJson = await readJSON<PKG>(packageJsonPath);
   if (!packageJson) return;
 
   // https://pnpm.io/package_json#pnpmoverrides
