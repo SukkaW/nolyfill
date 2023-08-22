@@ -40,19 +40,19 @@ const checkUnsupportedBun = (packageManager: PackageManager) => {
 };
 
 const printPostInstallInstructions = (packageManager: PackageManager) => {
-  console.log(`${picocolors.magenta('Optimization complete!')}\n`);
+  console.log(`${picocolors.magenta('Almost complete! One last step:')}\n`);
 
   switch (packageManager) {
     case 'npm':
-      console.log(`${picocolors.dim('>')} Run "${picocolors.bold(picocolors.green('npm update'))}" to install the optimized packages.\n`);
+      console.log(`${picocolors.dim('>')} Run "${picocolors.bold(picocolors.green('npm update'))}" to finish the optimization.\n`);
       console.log(`${picocolors.bold(picocolors.bgYellow(picocolors.black(' WARNING ')))} Using ${picocolors.red('npm update')} will rebuild the entire package-lock.json file, potentially causing unwanted upgrades and side effects. Please review package versions and test your application thoroughly after updating.\n`);
       console.log(`Due to a known bug in NPM (see ${picocolors.underline('https://github.com/npm/cli/issues/5850')}), you need to execute ${picocolors.green('npm update')} instead of the standard "npm install". This ensures NPM to respect the overrides added by nolyfill. We appreciate your understanding and are closely monitoring this issue for any resolutions.\n`);
       break;
     case 'pnpm':
-      console.log(`${picocolors.dim('>')} Run "${picocolors.bold(picocolors.green('pnpm install'))}" to install the optimized packages.\n`);
+      console.log(`${picocolors.dim('>')} Run "${picocolors.bold(picocolors.green('pnpm install'))}" to finish the optimization.\n`);
       break;
     case 'yarn':
-      console.log(`${picocolors.dim('>')} Run "${picocolors.bold(picocolors.green('yarn install'))}" to install the optimized packages.\n`);
+      console.log(`${picocolors.dim('>')} Run "${picocolors.bold(picocolors.green('yarn install'))}" to finish the optimization.\n`);
       break;
     default:
       break;
