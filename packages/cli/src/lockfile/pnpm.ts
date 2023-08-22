@@ -1,7 +1,7 @@
 import { searchForPackages } from '@pnpm/list';
 import type { PackageNode } from './types';
 import path from 'node:path';
-import fs from 'node:fs';
+import { fileExists } from '@nolyfill/internal';
 import fsp from 'node:fs/promises';
 import { parseSyml } from '@yarnpkg/parsers';
 import fastGlob from 'fast-glob';
@@ -10,7 +10,7 @@ export async function searchPackagesFromPNPM(dirPath: string, packages: string[]
   const dirPaths = [dirPath];
 
   const pnpmWorkspacePath = path.join(dirPath, 'pnpm-workspace.yaml');
-  if (fs.existsSync(pnpmWorkspacePath)) {
+  if (await fileExists(pnpmWorkspacePath)) {
     const pnpmWorkspaceContent = await fsp.readFile(pnpmWorkspacePath, 'utf-8');
     const pnpmWorkspaceYaml = parseSyml(pnpmWorkspaceContent) as { packages?: string[] };
     if (pnpmWorkspaceYaml.packages) {

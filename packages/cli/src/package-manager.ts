@@ -1,32 +1,31 @@
-import fs from 'node:fs';
 import path from 'node:path';
+
+import { fileExists } from '@nolyfill/internal';
 
 export type PackageManager = 'npm' | 'pnpm' | 'yarn' | 'bun';
 
 export async function detectPackageManager(projectPath: string): Promise<PackageManager> {
   const packageJsonPath = path.join(projectPath, 'package.json');
-  if (!fs.existsSync(packageJsonPath)) {
+  if (!await fileExists(packageJsonPath)) {
     throw new Error(`Failed to locate package.json at ${projectPath}`);
   }
 
-  const dirname = path.dirname(packageJsonPath);
-
-  if (fs.existsSync(path.join(dirname, 'yarn.lock'))) {
+  if (await fileExists(path.join(projectPath, 'yarn.lock'))) {
     return 'yarn';
   }
 
-  if (fs.existsSync(path.join(dirname, 'pnpm-lock.yaml'))) {
+  if (await fileExists(path.join(projectPath, 'pnpm-lock.yaml'))) {
     return 'pnpm';
   }
 
   if (
-    fs.existsSync(path.join(dirname, 'package-lock.json'))
-  || fs.existsSync(path.join(dirname, 'npm-shrinkwrap.json'))
+    await fileExists(path.join(projectPath, 'package-lock.json'))
+    || await fileExists(path.join(projectPath, 'npm-shrinkwrap.json'))
   ) {
     return 'npm';
   }
 
-  if (fs.existsSync(path.join(dirname, 'bun.lockb'))) {
+  if (await fileExists(path.join(projectPath, 'bun.lockb'))) {
     return 'bun';
   }
 
