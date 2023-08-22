@@ -1,6 +1,6 @@
 /* eslint-disable no-nested-ternary -- readability */
 import picocolors from 'picocolors';
-import type { PackageNode } from './lockfile/types';
+import type { PackageNode } from './types';
 
 export function renderTree(packageNodes: PackageNode[]): string {
   let result = '';

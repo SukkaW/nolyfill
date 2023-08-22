@@ -2,7 +2,7 @@ import fsp from 'node:fs/promises';
 import path from 'node:path';
 import { parseSyml } from '@yarnpkg/parsers';
 
-import type { PackageNode } from './types';
+import type { PackageNode } from '../types';
 
 interface Dependency {
   [packageName: string]: string

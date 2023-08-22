@@ -1,25 +1,27 @@
 import path from 'node:path';
-import fs from 'node:fs';
+import fs, { type PathLike } from 'node:fs';
 import fsp from 'node:fs/promises';
 
 import { fileExists } from '@nolyfill/internal';
 
 export type PackageManager = 'npm' | 'pnpm' | 'yarn' | 'bun';
 
+const checkFile = (path: PathLike) => fsp.access(path, fs.constants.F_OK);
+
 export async function detectPackageManager(projectPath: string): Promise<PackageManager> {
   const packageJsonPath = path.join(projectPath, 'package.json');
 
   if (!await fileExists(packageJsonPath)) {
-    throw new Error(`Failed to locate package.json at ${projectPath}`);
+    throw new Error(`Failed to locate package.json at ${projectPath}. Are you sure the path is correct?`);
   }
 
   try {
     return Promise.any([
-      fsp.access(path.join(projectPath, 'yarn.lock'), fs.constants.F_OK).then<'yarn'>(() => 'yarn'),
-      fsp.access(path.join(projectPath, 'pnpm-lock.yaml'), fs.constants.F_OK).then<'pnpm'>(() => 'pnpm'),
-      fsp.access(path.join(projectPath, 'package-lock.json'), fs.constants.F_OK).then<'npm'>(() => 'npm'),
-      fsp.access(path.join(projectPath, 'npm-shrinkwrap.json'), fs.constants.F_OK).then<'npm'>(() => 'npm'),
-      fsp.access(path.join(projectPath, 'bun.lockb'), fs.constants.F_OK).then<'bun'>(() => 'bun')
+      checkFile(path.join(projectPath, 'yarn.lock')).then<'yarn'>(() => 'yarn'),
+      checkFile(path.join(projectPath, 'pnpm-lock.yaml')).then<'pnpm'>(() => 'pnpm'),
+      checkFile(path.join(projectPath, 'package-lock.json')).then<'npm'>(() => 'npm'),
+      checkFile(path.join(projectPath, 'npm-shrinkwrap.json')).then<'npm'>(() => 'npm'),
+      checkFile(path.join(projectPath, 'bun.lockb')).then<'bun'>(() => 'bun')
     ]);
   } catch {
     throw new Error('Can not determine the preferred package manager.');

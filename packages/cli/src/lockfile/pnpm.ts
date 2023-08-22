@@ -1,5 +1,5 @@
 import { searchForPackages } from '@pnpm/list';
-import type { PackageNode } from './types';
+import type { PackageNode } from '../types';
 import path from 'node:path';
 import { fileExists } from '@nolyfill/internal';
 import fsp from 'node:fs/promises';

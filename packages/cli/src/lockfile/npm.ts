@@ -1,4 +1,4 @@
-import type { PackageNode } from './types';
+import type { PackageNode } from '../types';
 import type { Node } from '@npmcli/arborist';
 import Arborist from '@npmcli/arborist';
 
