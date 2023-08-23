@@ -1,5 +1,5 @@
 /* eslint-disable no-console -- We're a CLI, we need to log to the console */
-import path from 'node:path';
+import path from 'path';
 import picocolors from 'picocolors';
 import { Command, Option } from 'commander';
 import handleError from './handle-error';

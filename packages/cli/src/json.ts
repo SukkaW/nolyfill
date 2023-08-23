@@ -1,6 +1,6 @@
-import fsp from 'node:fs/promises';
+import fsp from 'fs/promises';
 import detectIndent from 'detect-indent';
-import path from 'node:path';
+import path from 'path';
 
 import type { PKG, PackageNode } from './types';
 import type { PackageManager } from './package-manager';

@@ -1,8 +1,8 @@
 import { searchForPackages } from '@pnpm/list';
 import type { PackageNode } from '../types';
-import path from 'node:path';
+import path from 'path';
 import { fileExists } from '@nolyfill/internal';
-import fsp from 'node:fs/promises';
+import fsp from 'fs/promises';
 import { parseSyml } from '@yarnpkg/parsers';
 import fastGlob from 'fast-glob';
 

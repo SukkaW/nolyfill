@@ -1,6 +1,6 @@
-import path from 'node:path';
-import fs, { type PathLike } from 'node:fs';
-import fsp from 'node:fs/promises';
+import path from 'path';
+import fs, { type PathLike } from 'fs';
+import fsp from 'fs/promises';
 
 import { fileExists } from '@nolyfill/internal';
 

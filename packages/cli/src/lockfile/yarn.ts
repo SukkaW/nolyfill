@@ -1,5 +1,5 @@
-import fsp from 'node:fs/promises';
-import path from 'node:path';
+import fsp from 'fs/promises';
+import path from 'path';
 import { parseSyml } from '@yarnpkg/parsers';
 
 import type { PackageNode } from '../types';
