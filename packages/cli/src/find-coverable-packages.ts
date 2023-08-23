@@ -10,13 +10,17 @@ export const findPackagesCoveredByNolyfill = async (packageManager: PackageManag
   // console.log(renderTree(searchResult));
 
   const packagesToBeOverride: PackageNode[] = [];
+  const seen = new Set<string>();
 
   const traverse = (node: PackageNode) => {
-    if (allPackages.includes(node.name) && !packagesToBeOverride.some(leaf => leaf.name === node.name)) {
-      delete node.dependencies;
-      packagesToBeOverride.push(node);
-    } else if (node.dependencies) {
-      node.dependencies.forEach(child => traverse(child));
+    if (seen.has(node.name)) return;
+
+    if (allPackages.includes(node.name)) {
+      seen.add(node.name);
+      const {dependencies: _, ...rest} = node;
+      packagesToBeOverride.push(rest);
+    } else if (node.dependencies?.length) {
+      return node.dependencies.forEach(traverse);
     }
   };
 
