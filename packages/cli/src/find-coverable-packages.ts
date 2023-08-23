@@ -9,6 +9,7 @@ export const findPackagesCoveredByNolyfill = async (packageManager: PackageManag
   const searchResult = await searchPackages(packageManager, projectPath, allPackages);
   // console.log(renderTree(searchResult));
 
+  const namesOfPackagesToBeOverride = new Set<string>();
   const packagesToBeOverride = new Set<PackageNode>();
   const seen = new WeakSet<PackageNode>();
 
@@ -19,7 +20,11 @@ export const findPackagesCoveredByNolyfill = async (packageManager: PackageManag
 
     if (allPackages.includes(node.name)) {
       const {dependencies: _, ...rest} = node;
-      packagesToBeOverride.add(rest);
+
+      if (!namesOfPackagesToBeOverride.has(node.name)) {
+        namesOfPackagesToBeOverride.add(node.name);
+        packagesToBeOverride.add(rest);
+      }
     } else if (node.dependencies?.length) {
       return node.dependencies.forEach(traverse);
     }

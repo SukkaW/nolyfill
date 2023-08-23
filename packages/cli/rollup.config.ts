@@ -45,6 +45,7 @@ export default async () => {
           if (id.includes('/pacote/')) {
             return 'module.exports = {}';
           }
+          return undefined;
         },
         transform: {
           order: 'pre',
