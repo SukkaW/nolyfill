@@ -15,8 +15,9 @@ export const findPackagesCoveredByNolyfill = async (packageManager: PackageManag
   const traverse = (node: PackageNode) => {
     if (seen.has(node.name)) return;
 
+    seen.add(node.name);
+
     if (allPackages.includes(node.name)) {
-      seen.add(node.name);
       const {dependencies: _, ...rest} = node;
       packagesToBeOverride.add(rest);
     } else if (node.dependencies?.length) {
