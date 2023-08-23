@@ -69,7 +69,7 @@ overrides:
 
 patchedDependencies:
   '@types/npmcli__arborist@5.6.1':
-    hash: msirw7imh66it675zxk2pc2v5u
+    hash: c4z5g3pkls5ya3fanwayaursya
     path: patches/@types__npmcli__arborist@5.6.1.patch
 
 importers:
@@ -217,7 +217,7 @@ importers:
         version: 1.3.76
       '@types/npmcli__arborist':
         specifier: ^5.6.1
-        version: 5.6.1(patch_hash=msirw7imh66it675zxk2pc2v5u)
+        version: 5.6.1(patch_hash=c4z5g3pkls5ya3fanwayaursya)
       '@types/treeverse':
         specifier: ^3.0.1
         version: 3.0.1
@@ -1534,7 +1534,7 @@ packages:
       '@types/ssri': 7.1.1
     dev: true
 
-  /@types/npmcli__arborist@5.6.1(patch_hash=msirw7imh66it675zxk2pc2v5u):
+  /@types/npmcli__arborist@5.6.1(patch_hash=c4z5g3pkls5ya3fanwayaursya):
     resolution: {integrity: sha512-P1yTbo37AGiSupaqIvMfucZs4ok9Qntm4pBodz6bpGmpvKX649pDMJx+woJ4sUDVa+qh03Ihy2gXUlDWPhR+yQ==}
     dependencies:
       '@npm/types': 1.0.2

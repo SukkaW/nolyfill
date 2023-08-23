@@ -1,8 +1,19 @@
 diff --git a/index.d.ts b/index.d.ts
-index 4c664f51b79e2ac9ee670aac880334648a12e19c..78b54315bf989d5e021b0842b1c69339ee108684 100755
+index 4c664f51b79e2ac9ee670aac880334648a12e19c..de46aa4c488bb1923adc4d94af39823ed337432a 100755
 --- a/index.d.ts
 +++ b/index.d.ts
-@@ -206,9 +206,9 @@ declare namespace Arborist {
+@@ -120,6 +120,10 @@ declare namespace Arborist {
+         protected constructor(options: never);
+         /** The name of this node's folder in `node_modules`. */
+         name: string;
++
++        // Added arborist v6
++        get version(): string;
++
+         /**
+          * Physical parent node in the tree.  The package in whose `node_modules`
+          * folder this package lives.  Null if node is top of tree.
+@@ -206,9 +210,9 @@ declare namespace Arborist {
           * Edges in the dependency graph indicating nodes that this node depends
           * on, which resolve its dependencies.
           */
