@@ -94,6 +94,9 @@
       "unbox-primitive": "workspace:@nolyfill/unbox-primitive@*",
       "which-boxed-primitive": "workspace:@nolyfill/which-boxed-primitive@*",
       "which-typed-array": "workspace:@nolyfill/which-typed-array@*"
+    },
+    "patchedDependencies": {
+      "@types/npmcli__arborist@5.6.1": "patches/@types__npmcli__arborist@5.6.1.patch"
     }
   },
   "overrides": {
