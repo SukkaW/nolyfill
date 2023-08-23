@@ -18,6 +18,15 @@
         "!.next/cache/**"
       ]
     },
-    "lint": {}
+    "lint": {},
+    "build:analyze": {
+      "dependsOn": [
+        "^build",
+        "//#codegen"
+      ],
+      "env": [
+        "ANALYZE"
+      ]
+    }
   }
 }

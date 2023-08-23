@@ -3,6 +3,7 @@ import { swc } from 'rollup-plugin-swc3';
 import { nodeResolve } from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
 import json from '@rollup/plugin-json';
+import { visualizer } from 'rollup-plugin-visualizer';
 
 import fs from 'fs';
 import { builtinModules } from 'module';
@@ -19,6 +20,8 @@ export default async () => {
     ).dependencies || {}
   ).concat(builtinModules);
   const external = (id: string) => dependencies.some((dep) => dep === id || id.startsWith(`${dep}/`));
+
+  console.log({ ANALYZE: process.env.ANALYZE });
 
   return defineConfig({
     input: 'src/index.ts',
@@ -37,7 +40,12 @@ export default async () => {
       }),
       json(),
       {
-        name: 'remove-shebang',
+        name: 'build-nolyfill-cli',
+        load(id) {
+          if (id.includes('/pacote/')) {
+            return 'module.exports = {}';
+          }
+        },
         transform: {
           order: 'pre',
           handler(code) {
@@ -91,6 +99,10 @@ export default async () => {
             module: true
           }
         }
+      }),
+      process.env.ANALYZE === 'true' && visualizer({
+        filename: 'dist/stats.html'
+        // template: 'network'
       })
     ],
     external

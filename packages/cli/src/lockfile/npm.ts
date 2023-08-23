@@ -1,9 +1,11 @@
 import type { PackageNode } from '../types';
 import type { Node } from '@npmcli/arborist';
-import Arborist from '@npmcli/arborist';
+import type Arborist from '@npmcli/arborist';
+// @ts-expect-error -- patched package
+import PatchedArborist from '../npm/arborist.cjs';
 
 export async function searchPackagesFromNPM(dirPath: string, packages: string[]): Promise<PackageNode[]> {
-  const arb = new Arborist({
+  const arb: Arborist = new PatchedArborist({
     path: dirPath,
     workspacesEnabled: true
   });
