@@ -9,7 +9,7 @@ export const findPackagesCoveredByNolyfill = async (packageManager: PackageManag
   const searchResult = await searchPackages(packageManager, projectPath, allPackages);
   // console.log(renderTree(searchResult));
 
-  const packagesToBeOverride: PackageNode[] = [];
+  const packagesToBeOverride = new Set<PackageNode>();
   const seen = new Set<string>();
 
   const traverse = (node: PackageNode) => {
@@ -18,7 +18,7 @@ export const findPackagesCoveredByNolyfill = async (packageManager: PackageManag
     if (allPackages.includes(node.name)) {
       seen.add(node.name);
       const {dependencies: _, ...rest} = node;
-      packagesToBeOverride.push(rest);
+      packagesToBeOverride.add(rest);
     } else if (node.dependencies?.length) {
       return node.dependencies.forEach(traverse);
     }
@@ -26,5 +26,5 @@ export const findPackagesCoveredByNolyfill = async (packageManager: PackageManag
 
   searchResult.forEach(node => traverse(node));
 
-  return packagesToBeOverride.sort((a, b) => a.name.localeCompare(b.name));
+  return Array.from(packagesToBeOverride).sort((a, b) => a.name.localeCompare(b.name));
 };
