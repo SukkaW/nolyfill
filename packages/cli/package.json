@@ -1,5 +1,5 @@
 {
-  "name": "@nolyfill/cli",
+  "name": "nolyfill",
   "version": "1.0.14",
   "main": "./index.js",
   "license": "MIT",

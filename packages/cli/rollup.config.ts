@@ -97,16 +97,16 @@ export default async () => {
         }
       },
       swc({
-        // minify: true,
+        minify: true,
         jsc: {
-          externalHelpers: true
-          // minify: {
-          //   compress: {
-          //     passes: 2
-          //   },
-          //   mangle: true,
-          //   module: true
-          // }
+          externalHelpers: true,
+          minify: {
+            compress: {
+              passes: 2
+            },
+            mangle: true,
+            module: true
+          }
         }
       }),
       process.env.ANALYZE === 'true' && visualizer({
