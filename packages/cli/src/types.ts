@@ -3,9 +3,7 @@ import type { PackageJson } from 'type-fest';
 export interface PackageNode {
   name: string,
   version: string,
-  dependencies?: PackageNode[],
-
-  _seen?: boolean
+  dependencies?: PackageNode[]
 }
 
 export type PKG = PackageJson & {

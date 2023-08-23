@@ -30,7 +30,7 @@ handleSigTerm();
 // eslint-disable-next-line @typescript-eslint/no-var-requires -- version
 const { version } = require('../package.json') as PKG;
 
-const checkUnsupportedBun = (packageManager: PackageManager) => {
+const checkUnsupportedPM = (packageManager: PackageManager) => {
   if (packageManager === 'bun') {
     console.log(`${picocolors.bgRed(picocolors.black(' Error '))} nolyfill does not support ${picocolors.bold('Bun')} at the moment.\n`);
     console.log(`Currently, ${picocolors.bold('Bun')} doesn't support package.json overrides (Details: ${picocolors.underline('https://github.com/oven-sh/bun/issues/1134')}). This feature is essential for nolyfill. We'll add support for ${picocolors.bold('Bun')} once the issue is addressed.\n`);
@@ -75,7 +75,7 @@ const program = new Command('nolyfill');
         const projectPath = path.resolve(source ?? process.cwd());
         const packageManager = option.pm === 'auto' ? await detectPackageManager(projectPath) : option.pm;
 
-        if (checkUnsupportedBun(packageManager)) {
+        if (checkUnsupportedPM(packageManager)) {
           return;
         }
 
@@ -100,7 +100,7 @@ const program = new Command('nolyfill');
         const projectPath = path.resolve(source ?? process.cwd());
         const packageManager = option.pm === 'auto' ? await detectPackageManager(projectPath) : option.pm;
 
-        if (checkUnsupportedBun(packageManager)) {
+        if (checkUnsupportedPM(packageManager)) {
           return;
         }
 
