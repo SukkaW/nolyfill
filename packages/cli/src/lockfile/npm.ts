@@ -17,11 +17,11 @@ export async function searchPackagesFromNPM(dirPath: string, _packages: string[]
 }
 
 function convertToPackageNode(npmNode: Node | Link): PackageNode {
-  const cache = new Map<string, PackageNode>();
+  const referenceMap = new WeakMap<Node | Link, PackageNode>();
 
   function buildNodeFromDep(npmNode: Node | Link): PackageNode {
-    if (cache.has(npmNode.name)) {
-      return cache.get(npmNode.name)!;
+    if (referenceMap.has(npmNode)) {
+      return referenceMap.get(npmNode)!;
     }
 
     const node: PackageNode = {
@@ -30,7 +30,7 @@ function convertToPackageNode(npmNode: Node | Link): PackageNode {
       dependencies: []
     };
 
-    cache.set(npmNode.name, node);
+    referenceMap.set(npmNode, node);
 
     for (const edge of npmNode.edgesOut.values()) {
       if (edge.to != null) {
