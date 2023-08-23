@@ -19,9 +19,7 @@ export default async () => {
       ) as PackageJson
     ).dependencies || {}
   ).concat(builtinModules);
-  const external = (id: string) => dependencies.some((dep) => dep === id || id.startsWith(`${dep}/`));
-
-  console.log({ ANALYZE: process.env.ANALYZE });
+  const external = (id: string) => dependencies.some((dep) => dep === id || (id.startsWith(`${dep}/`) && id !== `${dep}/`));
 
   return defineConfig({
     input: 'src/index.ts',
@@ -29,21 +27,28 @@ export default async () => {
       file: 'dist/index.js',
       format: 'cjs',
       sourcemap: false,
-      esModule: false
+      esModule: false,
+      // graceful-fs requires patching fs exports, so we must allow fs exports to be modified
+      externalLiveBindings: false,
+      freeze: false
     },
     plugins: [
       nodeResolve({
-        exportConditions: ['default', 'module', 'import']
+        // Use node like module resolution
+        exportConditions: ['node']
       }),
       commonjs({
-        esmExternals: true
+        esmExternals: true,
+        requireReturnsDefault(id) {
+          return builtinModules.includes(id);
+        }
       }),
       json(),
       {
         name: 'build-nolyfill-cli',
         load(id) {
-          if (id.includes('/pacote/')) {
-            return 'module.exports = {}';
+          if (id.includes('/arborist/lib/query-selector-all.js')) {
+            return 'module.exports = () => {}';
           }
           return undefined;
         },
@@ -90,15 +95,16 @@ export default async () => {
         }
       },
       swc({
-        minify: true,
+        // minify: true,
         jsc: {
-          minify: {
-            compress: {
-              passes: 2
-            },
-            mangle: true,
-            module: true
-          }
+          externalHelpers: true
+          // minify: {
+          //   compress: {
+          //     passes: 2
+          //   },
+          //   mangle: true,
+          //   module: true
+          // }
         }
       }),
       process.env.ANALYZE === 'true' && visualizer({
