@@ -24,8 +24,6 @@
     {
       "files": [
         "packages/**/*.ts",
-        "packages/**/*.cts",
-        "packages/**/*.mts",
         "packages/**/*.tsx"
       ],
       "extends": "sukka/typescript",

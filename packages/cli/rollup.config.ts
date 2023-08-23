@@ -47,6 +47,8 @@ export default async () => {
       {
         name: 'build-nolyfill-cli',
         load(id) {
+          // Here we remove the query-selector-all.js from arborist,  as it introduces shit
+          // load of dependencies that we totally don't use
           if (id.includes('/arborist/lib/query-selector-all.js')) {
             return 'module.exports = () => {}';
           }
