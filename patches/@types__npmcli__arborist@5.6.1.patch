@@ -1,17 +1,18 @@
 diff --git a/index.d.ts b/index.d.ts
-index 4c664f51b79e2ac9ee670aac880334648a12e19c..02ae73d1c51b46ace81249e9284b0cc55d574220 100755
+index 4c664f51b79e2ac9ee670aac880334648a12e19c..e6686e03463f8dd8f4fb2a1a24f55b28e3b02ca4 100755
 --- a/index.d.ts
 +++ b/index.d.ts
-@@ -134,6 +134,8 @@ declare namespace Arborist {
-          */
-         meta?: Shrinkwrap;
- 
+@@ -120,6 +120,9 @@ declare namespace Arborist {
+         protected constructor(options: never);
+         /** The name of this node's folder in `node_modules`. */
+         name: string;
++
 +        get version(): string;
 +
-         /** Map of packages located in the node's `node_modules` folder. */
-         children: Map<string, Node | Link>;
- 
-@@ -206,9 +208,9 @@ declare namespace Arborist {
+         /**
+          * Physical parent node in the tree.  The package in whose `node_modules`
+          * folder this package lives.  Null if node is top of tree.
+@@ -206,9 +209,9 @@ declare namespace Arborist {
           * Edges in the dependency graph indicating nodes that this node depends
           * on, which resolve its dependencies.
           */
@@ -23,7 +24,7 @@ index 4c664f51b79e2ac9ee670aac880334648a12e19c..02ae73d1c51b46ace81249e9284b0cc5
  
          /** True if this package is not required by any other for any reason.  False for top of tree. */
          extraneous: boolean;
-@@ -265,7 +267,7 @@ declare namespace Arborist {
+@@ -265,7 +268,7 @@ declare namespace Arborist {
           */
          spec: string;
          /** Automatically set to the node in the tree that matches the `name` field. */
