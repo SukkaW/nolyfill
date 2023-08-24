@@ -6,6 +6,7 @@
   "bin": "bin/nolyfill.js",
   "files": [
     "dist/**",
+    "!dist/stats.html",
     "bin"
   ],
   "homepage": "https://github.com/SukkaW/nolyfill",
