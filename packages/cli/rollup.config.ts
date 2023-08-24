@@ -120,7 +120,6 @@ export default async () => {
         // template: 'network'
       })
     ],
-    external,
-    perf: true
+    external
   });
 };
