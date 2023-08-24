@@ -6,7 +6,12 @@
     ".eslintrc.json"
   ],
   "pipeline": {
-    "//#codegen": {},
+     "topological": {
+       "dependsOn": ["^topological"]
+     },
+    "//#codegen": {
+      "inputs": ["create.cjs"]
+    },
     "build": {
       "dependsOn": [
         "^build",
@@ -16,6 +21,17 @@
         ".next/**",
         "dist/**",
         "!.next/cache/**"
+      ]
+    },
+    "@nolyfill/es-iterator-helpers#build": {
+      "dependsOn": [
+        "^build",
+        "//#codegen"
+      ]
+    },
+    "nolyfill#build": {
+      "dependsOn": [
+        "@nolyfill/es-iterator-helpers#build"
       ]
     },
     "lint": {},

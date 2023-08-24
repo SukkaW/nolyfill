@@ -50,5 +50,5 @@ export const overridesPackageJson = async (packageManager: PackageManager, proje
     };
   }
 
-  await writeJSON(packageJsonPath, packageJson);
+  return writeJSON(packageJsonPath, packageJson);
 };
