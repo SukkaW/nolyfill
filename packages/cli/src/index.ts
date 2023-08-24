@@ -1,24 +1,15 @@
 /* eslint-disable no-console -- We're a CLI, we need to log to the console */
-import path from 'node:path';
+import path from 'path';
 import picocolors from 'picocolors';
 import { Command, Option } from 'commander';
 import handleError from './handle-error';
 import { detectPackageManager, type PackageManager } from './package-manager';
-import { searchPackages } from './lockfile';
 import { renderTree } from './renderTree';
-import { allPackages } from './all-packages';
-import { readJSON, writeJSON } from './packages';
-import type { PackageJson } from 'type-fest';
-import type { PackageNode } from './lockfile/types';
 
-type PKG = PackageJson & {
-  version: string,
-  overrides?: Record<string, string>,
-  resolutions?: Record<string, string>,
-  pnpm?: {
-    overrides?: Record<string, string>
-  }
-};
+import { overridesPackageJson } from './json';
+import type { PKG } from './types';
+import { handleSigTerm } from './handle-sigterm';
+import { findPackagesCoveredByNolyfill } from './find-coverable-packages';
 
 interface CliOptions {
   /** see full error messages, mostly for debugging */
@@ -30,111 +21,53 @@ interface PmCommandOptions {
   pm: PackageManager | 'auto'
 }
 
-const pmCommandOption = new Option('--pm', 'specify which package manager to use')
+const pmCommandOption = new Option('--pm [package manager]', 'specify which package manager to use')
   .choices(['auto', 'npm', 'pnpm', 'yarn'])
   .default('auto', 'detect package manager automatically');
 
-const handleSigTerm = () => process.exit(0);
-process.on('SIGINT', handleSigTerm);
-process.on('SIGTERM', handleSigTerm);
+handleSigTerm();
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires -- version
-const packageJson: PKG = require('../package.json');
+const { version } = require('../package.json') as PKG;
 
-const findPackagesCoveredByNolyfill = async (packageManager: PackageManager, projectPath: string) => {
-  const searchResult = await searchPackages(packageManager, projectPath, allPackages);
-  // console.log(renderTree(searchResult));
-
-  const packagesToBeOverride: PackageNode[] = [];
-  const marks = new Set<string>();
-
-  const traverse = (node: PackageNode) => {
-    if (node.dependencies?.length) return node.dependencies.forEach(traverse);
-    if (allPackages.includes(node.name) && !marks.has(node.name)) {
-      marks.add(node.name);
-      const {dependencies: _, ...rest} = node;
-      packagesToBeOverride.push(rest);
-    }
-  };
-
-  searchResult.forEach(node => traverse(node));
-
-  packagesToBeOverride.sort((a, b) => a.name.localeCompare(b.name));
-
-  console.log(picocolors.yellow(`Found ${picocolors.green(picocolors.bold(packagesToBeOverride.length))} redundant packages:`));
-  console.log(renderTree(packagesToBeOverride));
-
-  return packagesToBeOverride;
-};
-
-const applyOverrides = async (packageManager: PackageManager, projectPath: string, packages: PackageNode[]) => {
-  const overrides = Object.fromEntries(packages.map((node) => [
-    node.name,
-    `npm:@nolyfill/${node.name}@latest`
-  ]));
-  const packageJsonPath = path.join(projectPath, 'package.json');
-  const packageJson = await readJSON<PKG>(packageJsonPath);
-  if (!packageJson) return;
-
-  // https://pnpm.io/package_json#pnpmoverrides
-  if (packageManager === 'pnpm') {
-    if (!packageJson.pnpm) packageJson.pnpm = {};
-    packageJson.pnpm.overrides = {
-      ...packageJson.pnpm.overrides,
-      ...overrides
-    };
-  // https://yarnpkg.com/configuration/manifest/#resolutions
-  } else if (packageManager === 'yarn') {
-    if (!packageJson.resolutions) packageJson.resolutions = {};
-    packageJson.resolutions = {
-      ...packageJson.resolutions,
-      ...overrides
-    };
-  } else {
-    packageJson.overrides = {
-      ...packageJson.overrides,
-      ...overrides
-    };
+const checkUnsupportedPM = (packageManager: PackageManager) => {
+  if (packageManager === 'bun') {
+    console.log(`${picocolors.bgRed(picocolors.black(' Error '))} nolyfill does not support ${picocolors.bold('Bun')} at the moment.\n`);
+    console.log(`Currently, ${picocolors.bold('Bun')} doesn't support package.json overrides (Details: ${picocolors.underline('https://github.com/oven-sh/bun/issues/1134')}). This feature is essential for nolyfill. We'll add support for ${picocolors.bold('Bun')} once the issue is addressed.\n`);
+    return true;
   }
-
-  await writeJSON(packageJsonPath, packageJson);
-};
-
-const printBunUnsupported = () => {
-  console.log(`${picocolors.bgRed(picocolors.black(' Error '))} nolyfill does not support ${picocolors.bold('Bun')} at the moment.\n`);
-  console.log(`Currently, ${picocolors.bold('Bun')} doesn't support package.json overrides (Details: ${picocolors.underline('https://github.com/oven-sh/bun/issues/1134')}). This feature is essential for nolyfill. We'll add support for ${picocolors.bold('Bun')} once the issue is addressed.\n`);
+  return false;
 };
 
 const printPostInstallInstructions = (packageManager: PackageManager) => {
-  console.log(`${picocolors.magenta('Optimization complete!')}\n`);
+  console.log(`${picocolors.magenta('Almost complete! One last step:')}\n`);
 
   switch (packageManager) {
     case 'npm':
-      console.log(`${picocolors.dim('>')} Run "${picocolors.bold(picocolors.green('npm update'))}" to install the optimized packages.\n`);
+      console.log(`${picocolors.dim('>')} Run "${picocolors.bold(picocolors.green('npm update'))}" to finish the optimization.\n`);
       console.log(`${picocolors.bold(picocolors.bgYellow(picocolors.black(' WARNING ')))} Using ${picocolors.red('npm update')} will rebuild the entire package-lock.json file, potentially causing unwanted upgrades and side effects. Please review package versions and test your application thoroughly after updating.\n`);
       console.log(`Due to a known bug in NPM (see ${picocolors.underline('https://github.com/npm/cli/issues/5850')}), you need to execute ${picocolors.green('npm update')} instead of the standard "npm install". This ensures NPM to respect the overrides added by nolyfill. We appreciate your understanding and are closely monitoring this issue for any resolutions.\n`);
       break;
     case 'pnpm':
-      console.log(`${picocolors.dim('>')} Run "${picocolors.bold(picocolors.green('pnpm install'))}" to install the optimized packages.\n`);
+      console.log(`${picocolors.dim('>')} Run "${picocolors.bold(picocolors.green('pnpm install'))}" to finish the optimization.\n`);
       break;
     case 'yarn':
-      console.log(`${picocolors.dim('>')} Run "${picocolors.bold(picocolors.green('yarn install'))}" to install the optimized packages.\n`);
+      console.log(`${picocolors.dim('>')} Run "${picocolors.bold(picocolors.green('yarn install'))}" to finish the optimization.\n`);
       break;
     default:
       break;
   }
 };
 
-const program = new Command();
+const program = new Command('nolyfill');
 (async () => {
   try {
     program
-      .name('nolyfill [source]')
-      .version(packageJson.version, '-v, --version', 'output the current version')
+      .version(version, '-v, --version', 'output the current version')
       .option('-d, --debug', 'see full error messages, mostly for debugging');
 
     program
-      .command('check')
+      .command('check', { isDefault: true })
       .description('check if the project contains redundant polyfills that can be optimized by nolyfill')
       .argument('[path]', 'project path to check')
       .addOption(pmCommandOption)
@@ -142,14 +75,20 @@ const program = new Command();
         const projectPath = path.resolve(source ?? process.cwd());
         const packageManager = option.pm === 'auto' ? await detectPackageManager(projectPath) : option.pm;
 
-        if (packageManager === 'bun') {
-          printBunUnsupported();
+        if (checkUnsupportedPM(packageManager)) {
           return;
         }
 
-        await findPackagesCoveredByNolyfill(packageManager, projectPath);
+        const packagesToBeOverride = await findPackagesCoveredByNolyfill(packageManager, projectPath);
 
-        console.log(`Run "${picocolors.bold(picocolors.green('nolyfill install'))}" to replace them with a super lightweight ✨ version.\n`);
+        if (packagesToBeOverride.length === 0) {
+          console.log(`${picocolors.green('Congratulations! Your project does not contain any redundant polyfills that can be optimized by nolyfill 🚀')}\n`);
+        } else {
+          console.log(picocolors.yellow(`Found ${picocolors.green(picocolors.bold(packagesToBeOverride.length))} redundant packages:`));
+          console.log(renderTree(packagesToBeOverride));
+
+          console.log(`Run "${picocolors.bold(picocolors.green('nolyfill install'))}" to replace them with a super lightweight ✨ version.\n`);
+        }
       });
 
     program
@@ -161,16 +100,22 @@ const program = new Command();
         const projectPath = path.resolve(source ?? process.cwd());
         const packageManager = option.pm === 'auto' ? await detectPackageManager(projectPath) : option.pm;
 
-        if (packageManager === 'bun') {
-          printBunUnsupported();
+        if (checkUnsupportedPM(packageManager)) {
           return;
         }
 
-        const packages = await findPackagesCoveredByNolyfill(packageManager, projectPath);
+        const packagesToBeOverride = await findPackagesCoveredByNolyfill(packageManager, projectPath);
 
-        await applyOverrides(packageManager, projectPath, packages);
+        if (packagesToBeOverride.length === 0) {
+          console.log(`${picocolors.green('Congratulations! Your project does not contain any redundant polyfills that can be optimized by nolyfill 🚀')}\n`);
+        } else {
+          console.log(picocolors.yellow(`Found ${picocolors.green(picocolors.bold(packagesToBeOverride.length))} redundant packages:`));
+          console.log(renderTree(packagesToBeOverride));
 
-        printPostInstallInstructions(packageManager);
+          await overridesPackageJson(packageManager, projectPath, packagesToBeOverride);
+
+          printPostInstallInstructions(packageManager);
+        }
       });
 
     await program.parseAsync(process.argv);

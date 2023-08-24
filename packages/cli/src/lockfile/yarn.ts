@@ -1,8 +1,8 @@
-import fs from 'node:fs';
-import path from 'node:path';
+import fsp from 'fs/promises';
+import path from 'path';
 import { parseSyml } from '@yarnpkg/parsers';
 
-import type { PackageNode } from './types';
+import type { PackageNode } from '../types';
 
 interface Dependency {
   [packageName: string]: string
@@ -16,8 +16,7 @@ interface FirstLevelDependency {
 
 export async function searchPackagesFromYarn(dirPath: string, packages: string[]): Promise<PackageNode[]> {
   const yarnLockPath = path.join(dirPath, 'yarn.lock');
-  const yarnLockContent = fs.readFileSync(yarnLockPath, 'utf-8');
-  return searchInLockfile(yarnLockContent, packages);
+  return searchInLockfile(await fsp.readFile(yarnLockPath, 'utf-8'), packages);
 }
 
 function searchInLockfile(lockFileContents: string, packages: string[]) {

@@ -4,7 +4,7 @@ export default function handleError(error: Error, debug: boolean) {
   if (!debug) {
     console.error(picocolors.red(error.message.replace('Error: ', '')));
   } else {
-    console.error(error.stack);
+    console.trace(error);
   }
 
   process.exit(1);

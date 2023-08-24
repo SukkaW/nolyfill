@@ -1,5 +1,5 @@
 {
-  "name": "@nolyfill/cli",
+  "name": "nolyfill",
   "version": "1.0.14",
   "main": "./index.js",
   "license": "MIT",
@@ -8,6 +8,8 @@
     "dist/**",
     "bin"
   ],
+  "homepage": "https://github.com/SukkaW/nolyfill",
+  "repository": "https://github.com/SukkaW/nolyfill",
   "scripts": {
     "canary": "node -r @swc-node/register src/index.ts",
     "build": "rollup -c rollup.config.ts --configPlugin swc3"
@@ -16,20 +18,27 @@
     "node": ">=12.4.0"
   },
   "devDependencies": {
-    "@swc-node/register": "^1.6.6",
-    "@swc/core": "^1.3.76",
-    "@types/npmcli__arborist": "^5.6.1",
-    "@types/yarnpkg__lockfile": "^1.1.6",
-    "rollup": "^3.28.0",
-    "rollup-plugin-swc3": "^0.9.1"
-  },
-  "dependencies": {
+    "@napi-rs/magic-string": "^0.3.4",
+    "@nolyfill/internal": "workspace:*",
     "@npmcli/arborist": "^6.3.0",
     "@pnpm/list": "^9.0.10",
+    "@rollup/plugin-commonjs": "^25.0.4",
+    "@rollup/plugin-json": "^6.0.0",
+    "@rollup/plugin-node-resolve": "^15.2.0",
+    "@swc-node/register": "^1.6.6",
+    "@swc/core": "^1.3.78",
+    "@swc/helpers": "^0.5.1",
+    "@types/npmcli__arborist": "^5.6.1",
+    "@types/treeverse": "^3.0.1",
+    "@types/yarnpkg__lockfile": "^1.1.6",
     "@yarnpkg/parsers": "3.0.0-rc.49",
     "commander": "^11.0.0",
     "detect-indent": "^6.1.0",
     "fast-glob": "^3.3.1",
-    "picocolors": "^1.0.0"
+    "picocolors": "^1.0.0",
+    "rollup": "^3.28.0",
+    "rollup-plugin-swc3": "^0.9.1",
+    "rollup-plugin-visualizer": "^5.9.2",
+    "treeverse": "^3.0.0"
   }
 }

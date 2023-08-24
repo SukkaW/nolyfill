@@ -4,6 +4,7 @@
   "scripts": {
     "lint": "eslint .",
     "build": "turbo run build",
+    "build:analyze": "ANALYZE=true turbo run build",
     "codegen": "node create.cjs",
     "prerelease": "turbo run build",
     "release": "bumpp -r && pnpm --access=public -r publish"
@@ -11,15 +12,15 @@
   "devDependencies": {
     "@jsdevtools/ez-spawn": "^3.0.4",
     "@nolyfill/internal": "workspace:*",
-    "@types/node": "^20.4.9",
-    "@typescript-eslint/eslint-plugin": "^6.4.0",
-    "@typescript-eslint/parser": "^6.4.0",
-    "bumpp": "^9.1.1",
-    "eslint": "^8.46.0",
-    "eslint-config-sukka": "^3.0.2",
+    "@types/node": "^20.5.3",
+    "@typescript-eslint/eslint-plugin": "^6.4.1",
+    "@typescript-eslint/parser": "^6.4.1",
+    "bumpp": "^9.2.0",
+    "eslint": "^8.47.0",
+    "eslint-config-sukka": "^3.0.4",
     "eslint-import-resolver-typescript": "^3.6.0",
     "eslint-plugin-import": "npm:eslint-plugin-i@2.28.0-2",
-    "eslint-plugin-n": "^16.0.1",
+    "eslint-plugin-n": "^16.0.2",
     "turbo": "latest",
     "type-fest": "^4.2.0",
     "typescript": "^5.1.6"
@@ -93,6 +94,9 @@
       "unbox-primitive": "workspace:@nolyfill/unbox-primitive@*",
       "which-boxed-primitive": "workspace:@nolyfill/which-boxed-primitive@*",
       "which-typed-array": "workspace:@nolyfill/which-typed-array@*"
+    },
+    "patchedDependencies": {
+      "@types/npmcli__arborist@5.6.1": "patches/@types__npmcli__arborist@5.6.1.patch"
     }
   },
   "overrides": {
