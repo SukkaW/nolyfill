@@ -11,6 +11,8 @@ import { MagicString } from '@napi-rs/magic-string';
 
 import type { PackageJson } from 'type-fest';
 
+const builtinModulesSet = new Set(builtinModules);
+
 export default async () => {
   const dependencies = Object.keys(
     (
@@ -40,7 +42,7 @@ export default async () => {
       commonjs({
         esmExternals: true,
         requireReturnsDefault(id) {
-          return builtinModules.includes(id);
+          return builtinModulesSet.has(id);
         }
       }),
       json(),
@@ -86,24 +88,28 @@ export default async () => {
               if (firstNewLineIndex) {
                 magicString ||= new MagicString(code);
                 magicString.remove(0, firstNewLineIndex + 1);
+
+                return {
+                  code: magicString.toString(),
+                  map: magicString.generateMap({ hires: true }).toMap()
+                };
               }
             }
-
-            return {
-              code: magicString ? magicString.toString() : code,
-              map: magicString ? magicString.generateMap({ hires: true }).toMap() : null
-            };
           }
         }
       },
       swc({
-        minify: true,
+        // minify: true,
         jsc: {
           externalHelpers: true,
           minify: {
-            compress: {
-              passes: 2
-            },
+            // https://github.com/swc-project/swc/issues/7847
+            compress: false,
+            // compress: {
+            //   passes: 2,
+            //   sequences: false,
+            //   hoist_props: false
+            // },
             mangle: true,
             module: true
           }
@@ -114,6 +120,7 @@ export default async () => {
         // template: 'network'
       })
     ],
-    external
+    external,
+    perf: true
   });
 };
