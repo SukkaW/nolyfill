@@ -4,7 +4,7 @@ import fsp from 'fs/promises';
 
 import { fileExists } from '@nolyfill/internal';
 
-import _any from 'core-js-pure/features/promise/any';
+import PromiseAny from '@nolyfill/promise.any';
 
 export type PackageManager = 'npm' | 'pnpm' | 'yarn' | 'bun';
 
@@ -18,14 +18,15 @@ export async function detectPackageManager(projectPath: string): Promise<Package
   }
 
   try {
-    return await _any([
+    return await PromiseAny([
       checkFile(path.join(projectPath, 'yarn.lock')).then<'yarn'>(() => 'yarn'),
       checkFile(path.join(projectPath, 'pnpm-lock.yaml')).then<'pnpm'>(() => 'pnpm'),
       checkFile(path.join(projectPath, 'package-lock.json')).then<'npm'>(() => 'npm'),
       checkFile(path.join(projectPath, 'npm-shrinkwrap.json')).then<'npm'>(() => 'npm'),
       checkFile(path.join(projectPath, 'bun.lockb')).then<'bun'>(() => 'bun')
     ]);
-  } catch {
+  } catch (e) {
+    console.log(e);
     throw new Error('Can not determine the preferred package manager.');
   }
 }

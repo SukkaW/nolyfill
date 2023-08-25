@@ -1,10 +1,14 @@
 'use strict';
 module.exports = Promise.any || function any(iterable) {
   const AggregateError = require('@nolyfill/es-aggregate-error/polyfill')();
+  const $reject = Promise.reject.bind(this);
+  const $resolve = Promise.resolve.bind(this);
+  const $all = Promise.all.bind(this);
+
   try {
-    return Promise.all(
+    return $all(
       Array.from(iterable)
-        .map((item) => Promise.resolve(item).then(x => Promise.reject(x), x => x))
+        .map((item) => $resolve(item).then(x => $reject(x), x => x))
     ).then(
       (errors) => {
         throw new AggregateError(errors, 'Every promise rejected');
@@ -12,6 +16,6 @@ module.exports = Promise.any || function any(iterable) {
       x => x
     );
   } catch (e) {
-    return Promise.reject(e);
+    return $reject(e);
   }
-};
+};;

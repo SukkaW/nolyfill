@@ -21,6 +21,7 @@
   "devDependencies": {
     "@napi-rs/magic-string": "^0.3.4",
     "@nolyfill/internal": "workspace:*",
+    "@nolyfill/promise.any": "workspace:*",
     "@npmcli/arborist": "^6.3.0",
     "@pnpm/list": "^9.0.10",
     "@rollup/plugin-commonjs": "^25.0.4",
@@ -40,7 +41,6 @@
     "rollup": "^3.28.0",
     "rollup-plugin-swc3": "^0.9.1",
     "rollup-plugin-visualizer": "^5.9.2",
-    "treeverse": "^3.0.0",
-    "core-js-pure": "^3.32.1"
+    "treeverse": "^3.0.0"
   }
 }
