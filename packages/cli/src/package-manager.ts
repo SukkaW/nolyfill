@@ -15,15 +15,18 @@ export async function detectPackageManager(projectPath: string): Promise<Package
     throw new Error(`Failed to locate package.json at ${projectPath}. Are you sure the path is correct?`);
   }
 
-  try {
-    return await Promise.any([
-      checkFile(path.join(projectPath, 'yarn.lock')).then<'yarn'>(() => 'yarn'),
-      checkFile(path.join(projectPath, 'pnpm-lock.yaml')).then<'pnpm'>(() => 'pnpm'),
-      checkFile(path.join(projectPath, 'package-lock.json')).then<'npm'>(() => 'npm'),
-      checkFile(path.join(projectPath, 'npm-shrinkwrap.json')).then<'npm'>(() => 'npm'),
-      checkFile(path.join(projectPath, 'bun.lockb')).then<'bun'>(() => 'bun')
-    ]);
-  } catch {
-    throw new Error('Can not determine the preferred package manager.');
-  }
+  const tasks:Array<Promise<PackageManager>> = [
+    checkFile(path.join(projectPath, 'yarn.lock')).then<'yarn'>(() => 'yarn'),
+    checkFile(path.join(projectPath, 'pnpm-lock.yaml')).then<'pnpm'>(() => 'pnpm'),
+    checkFile(path.join(projectPath, 'package-lock.json')).then<'npm'>(() => 'npm'),
+    checkFile(path.join(projectPath, 'npm-shrinkwrap.json')).then<'npm'>(() => 'npm'),
+    checkFile(path.join(projectPath, 'bun.lockb')).then<'bun'>(() => 'bun')
+  ];
+  return new Promise((resolve, reject) => {
+    let cap = tasks.length;
+    tasks.forEach((task) => task.then(v => resolve(v), _ => {
+      cap--;
+      if (!cap) reject(new Error('Can not determine the preferred package manager.'));
+    }));
+  });
 }
