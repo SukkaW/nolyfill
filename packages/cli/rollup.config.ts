@@ -13,6 +13,12 @@ import type { PackageJson } from 'type-fest';
 
 const builtinModulesSet = new Set(builtinModules);
 
+const slash = (path: string) => {
+  const isExtendedLengthPath = path.startsWith('\\\\?\\');
+  if (isExtendedLengthPath) return path;
+  return path.replace(/\\/g, '/');
+};
+
 export default async () => {
   const dependencies = Object.keys(
     (
@@ -49,6 +55,7 @@ export default async () => {
       {
         name: 'build-nolyfill-cli',
         load(id) {
+          id = slash(id);
           // Here we remove the query-selector-all.js from arborist,  as it introduces shit
           // load of dependencies that we totally don't use
           if (id.includes('/arborist/lib/query-selector-all.js')) {
