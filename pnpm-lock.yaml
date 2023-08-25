@@ -18,6 +18,7 @@ overrides:
   asynciterator.prototype: workspace:@nolyfill/asynciterator.prototype@*
   available-typed-arrays: workspace:@nolyfill/available-typed-arrays@*
   define-properties: workspace:@nolyfill/define-properties@*
+  es-aggregate-error: workspace:@nolyfill/es-aggregate-error@*
   es-iterator-helpers: workspace:@nolyfill/es-iterator-helpers@*
   es-set-tostringtag: workspace:@nolyfill/es-set-tostringtag@*
   function-bind: workspace:@nolyfill/function-bind@*
@@ -47,6 +48,7 @@ overrides:
   object.groupby: workspace:@nolyfill/object.groupby@*
   object.hasown: workspace:@nolyfill/object.hasown@*
   object.values: workspace:@nolyfill/object.values@*
+  promise.any: workspace:@nolyfill/promise.any@*
   reflect.getprototypeof: workspace:@nolyfill/reflect.getprototypeof@*
   regexp.prototype.flags: workspace:@nolyfill/regexp.prototype.flags@*
   safe-array-concat: workspace:@nolyfill/safe-array-concat@*
@@ -261,6 +263,12 @@ importers:
         specifier: workspace:*
         version: link:../shared
 
+  packages/es-aggregate-error:
+    dependencies:
+      '@nolyfill/shared':
+        specifier: workspace:*
+        version: link:../shared
+
   packages/es-iterator-helpers:
     dependencies:
       '@nolyfill/shared':
@@ -402,6 +410,15 @@ importers:
 
   packages/object.values:
     dependencies:
+      '@nolyfill/shared':
+        specifier: workspace:*
+        version: link:../shared
+
+  packages/promise.any:
+    dependencies:
+      '@nolyfill/es-aggregate-error':
+        specifier: workspace:*
+        version: link:../es-aggregate-error
       '@nolyfill/shared':
         specifier: workspace:*
         version: link:../shared

@@ -1,0 +1,17 @@
+{
+  "name": "@nolyfill/promise.any",
+  "version": "1.0.15",
+  "main": "./index.js",
+  "license": "MIT",
+  "files": [
+    "*.js"
+  ],
+  "scripts": {},
+  "dependencies": {
+    "@nolyfill/shared": "workspace:*",
+    "@nolyfill/es-aggregate-error": "workspace:*"
+  },
+  "engines": {
+    "node": ">=12.4.0"
+  }
+}
