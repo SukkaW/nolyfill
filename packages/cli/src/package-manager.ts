@@ -4,6 +4,8 @@ import fsp from 'fs/promises';
 
 import { fileExists } from '@nolyfill/internal';
 
+import _any from 'core-js-pure/features/promise/any';
+
 export type PackageManager = 'npm' | 'pnpm' | 'yarn' | 'bun';
 
 const checkFile = (path: PathLike) => fsp.access(path, fs.constants.F_OK);
@@ -16,7 +18,7 @@ export async function detectPackageManager(projectPath: string): Promise<Package
   }
 
   try {
-    return await Promise.any([
+    return await _any([
       checkFile(path.join(projectPath, 'yarn.lock')).then<'yarn'>(() => 'yarn'),
       checkFile(path.join(projectPath, 'pnpm-lock.yaml')).then<'pnpm'>(() => 'pnpm'),
       checkFile(path.join(projectPath, 'package-lock.json')).then<'npm'>(() => 'npm'),

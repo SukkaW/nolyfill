@@ -235,6 +235,9 @@ importers:
       commander:
         specifier: ^11.0.0
         version: 11.0.0
+      core-js-pure:
+        specifier: ^3.32.1
+        version: 3.32.1
       detect-indent:
         specifier: ^6.1.0
         version: 6.1.0
@@ -2296,6 +2299,11 @@ packages:
 
   /console-control-strings@1.1.0:
     resolution: {integrity: sha512-ty/fTekppD2fIwRvnZAVdeOiGd1c7YXEixbgJTNzqcxJWKQnjJ/V1bNEEE6hygpM3WjwHFUVK6HTjWSzV4a8sQ==}
+    dev: true
+
+  /core-js-pure@3.32.1:
+    resolution: {integrity: sha512-f52QZwkFVDPf7UEQZGHKx6NYxsxmVGJe5DIvbzOdRMJlmT6yv0KDjR8rmy3ngr/t5wU54c7Sp/qIJH0ppbhVpQ==}
+    requiresBuild: true
     dev: true
 
   /cross-spawn@7.0.3:
