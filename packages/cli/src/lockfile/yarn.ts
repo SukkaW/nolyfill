@@ -65,9 +65,15 @@ function searchInLockfile(lockFileContents: string, packages: string[]) {
 function getPackageNameFromDescriptor(descriptor: string): string {
   // example: signal-exit@npm:^3.0.0, signal-exit@npm:^3.0.2
   // example: @types/node@npm:^16.0.0, @types/node@npm:^18.0.0
+  // example: has@^1.0.3, has@npm:@nolyfill/has@latest
+
   const firstDescriptor = descriptor.split(',')[0];
 
-  return firstDescriptor.startsWith('@')
-    ? firstDescriptor.slice(0, firstDescriptor.indexOf('@', 1))
-    : firstDescriptor.split('@')[0];
+  const s = firstDescriptor.includes('@npm:')
+    ? firstDescriptor.split('@npm:')[1]
+    : firstDescriptor;
+
+  return s.startsWith('@')
+    ? s.slice(0, s.indexOf('@', 1))
+    : s.split('@')[0];
 }
