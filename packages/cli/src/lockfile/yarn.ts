@@ -14,49 +14,43 @@ interface FirstLevelDependency {
   dependencies?: Dependency | undefined
 }
 
-export async function searchPackagesFromYarn(dirPath: string, packages: string[]): Promise<PackageNode[]> {
+export async function searchPackagesFromYarn(dirPath: string, _packages: string[]): Promise<PackageNode[]> {
   const yarnLockPath = path.join(dirPath, 'yarn.lock');
-  return searchInLockfile(await fsp.readFile(yarnLockPath, 'utf-8'), packages);
+  return searchInLockfile(await fsp.readFile(yarnLockPath, 'utf-8'));
 }
 
-function searchInLockfile(lockFileContents: string, packages: string[]) {
+function searchInLockfile(lockFileContents: string) {
   const yarnYml = parseSyml(lockFileContents);
   delete yarnYml.__metadata;
 
+  const referenceMap = new Map<string, PackageNode>();
+  const createPackageNode = (packageName: string, version: string, yarnPkg?: FirstLevelDependency): PackageNode => {
+    if (referenceMap.has(packageName)) {
+      return referenceMap.get(packageName)!;
+    }
+
+    const packageNode: PackageNode = {
+      // After yarn overrides, the package name remains the original one,
+      // while the "resolved" has been pointed to the new package's tarball.
+      name: yarnPkg?.resolved?.includes(`/@nolyfill/${packageName}/`)
+        ? `@nolyfill/${packageName}`
+        : packageName,
+      version,
+      dependencies: []
+    };
+    referenceMap.set(packageName, packageNode);
+
+    packageNode.dependencies = Object.entries(yarnPkg?.dependencies || {}).map(([depName, depVersion]) => {
+      return createPackageNode(depName, depVersion);
+    });
+    return packageNode;
+  };
+
   const packageNodes: PackageNode[] = [];
+
   Object.keys(yarnYml).forEach((descriptor) => {
     const pkg = yarnYml[descriptor] as FirstLevelDependency;
-    const packageName = getPackageNameFromDescriptor(descriptor);
-
-    if (packages.includes(packageName)) {
-      const packageNode = {
-        name: packageName,
-        version: pkg.version,
-        dependencies: []
-      };
-      packageNodes.push(packageNode);
-    } else if (pkg.dependencies) {
-      const packageNode: PackageNode = {
-        name: packageName,
-        version: pkg.version,
-        dependencies: []
-      };
-
-      Object.keys(pkg.dependencies).forEach((depName) => {
-        if (packages.includes(depName)) {
-          const depNode: PackageNode = {
-            name: depName,
-            version: pkg.dependencies![depName],
-            dependencies: []
-          };
-          packageNode.dependencies!.push(depNode);
-        }
-      });
-
-      if (packageNode.dependencies!.length > 0) {
-        packageNodes.push(packageNode);
-      }
-    }
+    packageNodes.push(createPackageNode(getPackageNameFromDescriptor(descriptor), pkg.version, pkg));
   });
 
   return packageNodes;
