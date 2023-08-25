@@ -25,7 +25,7 @@ function convertToPackageNode(npmNode: Node | Link): PackageNode {
     }
 
     const node: PackageNode = {
-      name: npmNode.name,
+      name: ('packageName' in npmNode && typeof npmNode.packageName === 'string') ? npmNode.packageName : npmNode.name,
       version: npmNode.version || npmNode.package.version || '0.0.0',
       dependencies: []
     };
