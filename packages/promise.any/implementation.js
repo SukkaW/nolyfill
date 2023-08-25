@@ -1,5 +1,5 @@
 'use strict';
-module.exports = function any(iterable) {
+module.exports = Promise.any || function any(iterable) {
   const AggregateError = require('@nolyfill/es-aggregate-error/polyfill')();
   try {
     return Promise.all(
