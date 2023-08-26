@@ -19,7 +19,8 @@
     "composite": false,
   },
   "include": [
-    "./packages/"
+    "./packages/",
+    "bump.config.ts"
   ],
   "exclude": [
     "./**/dist/*"

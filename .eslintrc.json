@@ -23,6 +23,7 @@
     },
     {
       "files": [
+        "bump.config.ts",
         "packages/**/*.ts",
         "packages/**/*.tsx"
       ],

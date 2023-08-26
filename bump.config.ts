@@ -1,4 +1,3 @@
-// eslint-disable-next-line n/no-extraneous-import -- config file
 import { defineConfig } from 'bumpp';
 
 export default defineConfig({

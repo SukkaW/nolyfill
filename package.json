@@ -7,7 +7,7 @@
     "build:analyze": "ANALYZE=true turbo run build",
     "codegen": "node create.cjs",
     "prerelease": "turbo run build",
-    "release": "bumpp -r && pnpm --access=public -r publish"
+    "release": "bumpp -r"
   },
   "devDependencies": {
     "@jsdevtools/ez-spawn": "^3.0.4",
