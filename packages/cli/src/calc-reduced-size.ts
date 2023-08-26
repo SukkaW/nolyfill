@@ -30,5 +30,6 @@ export const genReducedSizeMessage = (packageList: PackageNode[], { willReduce =
   const { totalSizeInstall, totalSizePublish } = calcReducedSize(packageList);
   const formatReducedSize = (size: number) => picocolors.bold(picocolors.bgBlack(picocolors.white(formatBytes(size))));
 
-  return `Nolyfill ${willReduce ? 'will reduce' : 'have reduced'} ${formatReducedSize(totalSizeInstall)} on your disk and ${formatReducedSize(totalSizePublish)} for your users!`;
+  return `Nolyfill ${willReduce ? 'will reduce' : 'have reduced'} ${formatReducedSize(totalSizeInstall)} on your disk and ${formatReducedSize(totalSizePublish)} for your users!
+${picocolors.gray('Note that the size reduction is only an estimate, the actual size reduction may vary.')}`;
 };
