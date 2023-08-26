@@ -19,7 +19,7 @@ const impl = Promise.any || function any(iterable) {
   } catch (e) {
     return $reject(e);
   }
-};;
+};
 const bound = impl.bind(Promise);
 makeEsShim(bound, impl);
 module.exports = bound;

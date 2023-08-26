@@ -49,6 +49,7 @@ overrides:
   object.groupby: workspace:@nolyfill/object.groupby@*
   object.hasown: workspace:@nolyfill/object.hasown@*
   object.values: workspace:@nolyfill/object.values@*
+  promise.allsettled: workspace:@nolyfill/promise.allsettled@*
   promise.any: workspace:@nolyfill/promise.any@*
   reflect.getprototypeof: workspace:@nolyfill/reflect.getprototypeof@*
   regexp.prototype.flags: workspace:@nolyfill/regexp.prototype.flags@*
@@ -419,6 +420,12 @@ importers:
         version: link:../shared
 
   packages/object.values:
+    dependencies:
+      '@nolyfill/shared':
+        specifier: workspace:*
+        version: link:../shared
+
+  packages/promise.allsettled:
     dependencies:
       '@nolyfill/shared':
         specifier: workspace:*

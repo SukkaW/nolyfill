@@ -45,6 +45,7 @@ export const allPackages = [
   "object.groupby",
   "object.hasown",
   "object.values",
+  "promise.allsettled",
   "promise.any",
   "reflect.getprototypeof",
   "regexp.prototype.flags",

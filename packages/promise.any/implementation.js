@@ -18,4 +18,4 @@ module.exports = Promise.any || function any(iterable) {
   } catch (e) {
     return $reject(e);
   }
-};;
+};
