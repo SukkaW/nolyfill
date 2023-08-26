@@ -41,6 +41,7 @@ overrides:
   is-symbol: workspace:@nolyfill/is-symbol@*
   is-weakref: workspace:@nolyfill/is-weakref@*
   iterator.prototype: workspace:@nolyfill/iterator.prototype@*
+  object-is: workspace:@nolyfill/object-is@*
   object-keys: workspace:@nolyfill/object-keys@*
   object.assign: workspace:@nolyfill/object.assign@*
   object.entries: workspace:@nolyfill/object.entries@*
@@ -52,12 +53,14 @@ overrides:
   promise.allsettled: workspace:@nolyfill/promise.allsettled@*
   promise.any: workspace:@nolyfill/promise.any@*
   reflect.getprototypeof: workspace:@nolyfill/reflect.getprototypeof@*
+  reflect.ownkeys: workspace:@nolyfill/reflect.ownkeys@*
   regexp.prototype.flags: workspace:@nolyfill/regexp.prototype.flags@*
   safe-array-concat: workspace:@nolyfill/safe-array-concat@*
   safe-regex-test: workspace:@nolyfill/safe-regex-test@*
   string.prototype.matchall: workspace:@nolyfill/string.prototype.matchall@*
   string.prototype.padend: workspace:@nolyfill/string.prototype.padend@*
   string.prototype.padstart: workspace:@nolyfill/string.prototype.padstart@*
+  string.prototype.replaceall: workspace:@nolyfill/string.prototype.replaceall@*
   string.prototype.trim: workspace:@nolyfill/string.prototype.trim@*
   string.prototype.trimend: workspace:@nolyfill/string.prototype.trimend@*
   string.prototype.trimleft: workspace:@nolyfill/string.prototype.trimleft@*
@@ -377,6 +380,12 @@ importers:
 
   packages/iterator.prototype: {}
 
+  packages/object-is:
+    dependencies:
+      '@nolyfill/shared':
+        specifier: workspace:*
+        version: link:../shared
+
   packages/object-keys:
     dependencies:
       '@nolyfill/shared':
@@ -446,6 +455,12 @@ importers:
         specifier: workspace:*
         version: link:../shared
 
+  packages/reflect.ownkeys:
+    dependencies:
+      '@nolyfill/shared':
+        specifier: workspace:*
+        version: link:../shared
+
   packages/regexp.prototype.flags:
     dependencies:
       '@nolyfill/shared':
@@ -471,6 +486,12 @@ importers:
         version: link:../shared
 
   packages/string.prototype.padstart:
+    dependencies:
+      '@nolyfill/shared':
+        specifier: workspace:*
+        version: link:../shared
+
+  packages/string.prototype.replaceall:
     dependencies:
       '@nolyfill/shared':
         specifier: workspace:*
