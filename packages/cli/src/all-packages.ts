@@ -66,3 +66,261 @@ export const allPackages = [
   "which-boxed-primitive",
   "which-typed-array"
 ];
+export const packageSize: Record<string, { publish: number, install: number }> = {
+  "array-buffer-byte-length": {
+    "publish": 8053,
+    "install": 222826
+  },
+  "array-includes": {
+    "publish": 24990,
+    "install": 3316588
+  },
+  "array.from": {
+    "publish": 31895,
+    "install": 3691890
+  },
+  "array.prototype.find": {
+    "publish": 16372,
+    "install": 3686390
+  },
+  "array.prototype.findlastindex": {
+    "publish": 28212,
+    "install": 4221571
+  },
+  "array.prototype.flat": {
+    "publish": 18207,
+    "install": 3319828
+  },
+  "array.prototype.flatmap": {
+    "publish": 18571,
+    "install": 3651934
+  },
+  "array.prototype.reduce": {
+    "publish": 29140,
+    "install": 3692996
+  },
+  "array.prototype.tosorted": {
+    "publish": 18100,
+    "install": 3688118
+  },
+  "arraybuffer.prototype.slice": {
+    "publish": 18815,
+    "install": 334799
+  },
+  "asynciterator.prototype": {
+    "publish": 7228,
+    "install": 27831
+  },
+  "available-typed-arrays": {
+    "publish": 15180,
+    "install": 15180
+  },
+  "deep-equal": {
+    "publish": 82799,
+    "install": 2084616
+  },
+  "define-properties": {
+    "publish": 12453,
+    "install": 143312
+  },
+  "es-aggregate-error": {
+    "publish": 25733,
+    "install": 3685728
+  },
+  "es-iterator-helpers": {
+    "publish": 150727,
+    "install": 4518765
+  },
+  "es-set-tostringtag": {
+    "publish": 8908,
+    "install": 105450
+  },
+  "function-bind": {
+    "publish": 26022,
+    "install": 26022
+  },
+  "function.prototype.name": {
+    "publish": 18245,
+    "install": 1872828
+  },
+  "get-symbol-description": {
+    "publish": 11291,
+    "install": 109472
+  },
+  "globalthis": {
+    "publish": 23503,
+    "install": 157970
+  },
+  "gopd": {
+    "publish": 7703,
+    "install": 93358
+  },
+  "harmony-reflect": {
+    "publish": 89584,
+    "install": 89584
+  },
+  "has": {
+    "publish": 3481,
+    "install": 29538
+  },
+  "has-property-descriptors": {
+    "publish": 9308,
+    "install": 94963
+  },
+  "has-proto": {
+    "publish": 7195,
+    "install": 7195
+  },
+  "has-symbols": {
+    "publish": 21570,
+    "install": 21570
+  },
+  "has-tostringtag": {
+    "publish": 11842,
+    "install": 31062
+  },
+  "is-array-buffer": {
+    "publish": 11882,
+    "install": 214773
+  },
+  "is-date-object": {
+    "publish": 21914,
+    "install": 53033
+  },
+  "is-regex": {
+    "publish": 31065,
+    "install": 141085
+  },
+  "is-shared-array-buffer": {
+    "publish": 11886,
+    "install": 121641
+  },
+  "is-string": {
+    "publish": 20203,
+    "install": 51312
+  },
+  "is-symbol": {
+    "publish": 23028,
+    "install": 42236
+  },
+  "is-weakref": {
+    "publish": 12967,
+    "install": 111080
+  },
+  "iterator.prototype": {
+    "publish": 9111,
+    "install": 4360810
+  },
+  "object-keys": {
+    "publish": 27637,
+    "install": 27637
+  },
+  "object.assign": {
+    "publish": 1166150,
+    "install": 1312309
+  },
+  "object.entries": {
+    "publish": 30974,
+    "install": 3322572
+  },
+  "object.fromentries": {
+    "publish": 15109,
+    "install": 3675104
+  },
+  "object.getownpropertydescriptors": {
+    "publish": 21419,
+    "install": 3729139
+  },
+  "object.groupby": {
+    "publish": 20252,
+    "install": 4203588
+  },
+  "object.hasown": {
+    "publish": 15673,
+    "install": 3675668
+  },
+  "object.values": {
+    "publish": 30470,
+    "install": 3322068
+  },
+  "promise.any": {
+    "publish": 21812,
+    "install": 3831524
+  },
+  "reflect.getprototypeof": {
+    "publish": 19551,
+    "install": 3832438
+  },
+  "regexp.prototype.flags": {
+    "publish": 38482,
+    "install": 205468
+  },
+  "safe-array-concat": {
+    "publish": 11294,
+    "install": 124479
+  },
+  "safe-regex-test": {
+    "publish": 7332,
+    "install": 148746
+  },
+  "string.prototype.matchall": {
+    "publish": 35918,
+    "install": 3656612
+  },
+  "string.prototype.padend": {
+    "publish": 16471,
+    "install": 3674089
+  },
+  "string.prototype.padstart": {
+    "publish": 16773,
+    "install": 3676768
+  },
+  "string.prototype.trim": {
+    "publish": 31730,
+    "install": 3659995
+  },
+  "string.prototype.trimend": {
+    "publish": 21205,
+    "install": 3624137
+  },
+  "string.prototype.trimleft": {
+    "publish": 19289,
+    "install": 187724
+  },
+  "string.prototype.trimright": {
+    "publish": 19355,
+    "install": 189340
+  },
+  "string.prototype.trimstart": {
+    "publish": 21444,
+    "install": 3659995
+  },
+  "typed-array-buffer": {
+    "publish": 7944,
+    "install": 243802
+  },
+  "typed-array-byte-length": {
+    "publish": 13711,
+    "install": 249569
+  },
+  "typed-array-byte-offset": {
+    "publish": 13716,
+    "install": 249574
+  },
+  "typed-array-length": {
+    "publish": 18520,
+    "install": 212059
+  },
+  "unbox-primitive": {
+    "publish": 14851,
+    "install": 253761
+  },
+  "which-boxed-primitive": {
+    "publish": 16035,
+    "install": 215373
+  },
+  "which-typed-array": {
+    "publish": 33757,
+    "install": 218214
+  }
+};
