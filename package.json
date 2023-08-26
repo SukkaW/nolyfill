@@ -7,7 +7,7 @@
     "build:analyze": "ANALYZE=true turbo run build",
     "codegen": "node create.cjs",
     "prerelease": "turbo run build",
-    "release": "bumpp -r"
+    "release": "bumpp -r --all --commit=\"release: %s\" --tag=\"%s\""
   },
   "devDependencies": {
     "@jsdevtools/ez-spawn": "^3.0.4",
@@ -30,7 +30,7 @@
   "engines": {
     "node": ">=16.8.0"
   },
-  "version": "1.0.16-beta.0",
+  "version": "1.0.16-beta.2",
   "pnpm": {
     "overrides": {
       "array-buffer-byte-length": "workspace:@nolyfill/array-buffer-byte-length@*",
