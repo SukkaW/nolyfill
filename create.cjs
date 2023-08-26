@@ -484,6 +484,9 @@ async function createEsShimLikePackage(packageName, packageImplementation, isSta
       `${JSON.stringify({
         name: `@nolyfill/${packageName}`,
         version: currentPackageJson.version,
+        repository: {
+          url: 'https://github.com/SukkaW/nolyfill'
+        },
         main: './index.js',
         license: 'MIT',
         files: ['*.js'],
@@ -526,6 +529,9 @@ async function createSingleFilePackage(packageName, implementation, extraDepende
       `${JSON.stringify({
         name: `@nolyfill/${packageName}`,
         version: currentPackageJson.version,
+        repository: {
+          url: 'https://github.com/SukkaW/nolyfill'
+        },
         main: './index.js',
         license: 'MIT',
         files: ['*.js'],
