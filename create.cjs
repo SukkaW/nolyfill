@@ -485,7 +485,9 @@ async function createEsShimLikePackage(packageName, packageImplementation, isSta
         name: `@nolyfill/${packageName}`,
         version: currentPackageJson.version,
         repository: {
-          url: 'https://github.com/SukkaW/nolyfill'
+          type: 'git',
+          url: 'https://github.com/SukkaW/nolyfill',
+          directory: `packages/${packageName}`
         },
         main: './index.js',
         license: 'MIT',
@@ -530,7 +532,9 @@ async function createSingleFilePackage(packageName, implementation, extraDepende
         name: `@nolyfill/${packageName}`,
         version: currentPackageJson.version,
         repository: {
-          url: 'https://github.com/SukkaW/nolyfill'
+          type: 'git',
+          url: 'https://github.com/SukkaW/nolyfill',
+          directory: `packages/${packageName}`
         },
         main: './index.js',
         license: 'MIT',
