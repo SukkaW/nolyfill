@@ -10,6 +10,7 @@ import { overridesPackageJson } from './json';
 import type { PKG } from './types';
 import { handleSigTerm } from './handle-sigterm';
 import { findPackagesCoveredByNolyfill } from './find-coverable-packages';
+import { checkForUpdates } from './check-update';
 
 interface CliOptions {
   /** see full error messages, mostly for debugging */
@@ -118,6 +119,7 @@ const program = new Command('nolyfill');
         }
       });
 
+    await checkForUpdates('nolyfill', version);
     await program.parseAsync(process.argv);
   } catch (e) {
     handleError(e as Error, !!program.opts<CliOptions>().debug);
