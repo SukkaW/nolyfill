@@ -30,7 +30,9 @@ jobs:
           cache: 'pnpm'
           registry-url: 'https://registry.npmjs.org'
       - name: Install the latest npm
-        run: npm install -g npm && npm install
+        run: npm install -g npm
+      - name: Install dependencies
+        run: pnpm install
       - name: Run build
         run: pnpm run build
       - name: Publish
