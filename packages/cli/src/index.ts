@@ -10,6 +10,7 @@ import { overridesPackageJson } from './json';
 import type { PKG } from './types';
 import { handleSigTerm } from './handle-sigterm';
 import { findPackagesCoveredByNolyfill } from './find-coverable-packages';
+import { genReducedSizeMessage } from './calc-reduced-size';
 
 interface CliOptions {
   /** see full error messages, mostly for debugging */
@@ -88,6 +89,7 @@ const program = new Command('nolyfill');
           console.log(renderTree(packagesToBeOverride));
 
           console.log(`Run "${picocolors.bold(picocolors.green('nolyfill install'))}" to replace them with a super lightweight ✨ version.\n`);
+          console.log(genReducedSizeMessage(packagesToBeOverride, { willReduce: true }));
         }
       });
 
@@ -113,7 +115,7 @@ const program = new Command('nolyfill');
           console.log(renderTree(packagesToBeOverride));
 
           await overridesPackageJson(packageManager, projectPath, packagesToBeOverride);
-
+          console.log(genReducedSizeMessage(packagesToBeOverride));
           printPostInstallInstructions(packageManager);
         }
       });
