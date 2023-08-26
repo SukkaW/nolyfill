@@ -1,0 +1,16 @@
+{
+  "name": "@nolyfill/deep-equal",
+  "version": "1.0.15",
+  "main": "./index.js",
+  "license": "MIT",
+  "files": [
+    "*.js"
+  ],
+  "scripts": {},
+  "dependencies": {
+    "dequal": "2.0.3"
+  },
+  "engines": {
+    "node": ">=12.4.0"
+  }
+}

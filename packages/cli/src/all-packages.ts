@@ -13,6 +13,7 @@ export const allPackages = [
   "arraybuffer.prototype.slice",
   "asynciterator.prototype",
   "available-typed-arrays",
+  "deep-equal",
   "define-properties",
   "es-aggregate-error",
   "es-iterator-helpers",

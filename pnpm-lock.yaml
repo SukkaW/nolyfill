@@ -17,6 +17,7 @@ overrides:
   arraybuffer.prototype.slice: workspace:@nolyfill/arraybuffer.prototype.slice@*
   asynciterator.prototype: workspace:@nolyfill/asynciterator.prototype@*
   available-typed-arrays: workspace:@nolyfill/available-typed-arrays@*
+  deep-equal: workspace:@nolyfill/deep-equal@*
   define-properties: workspace:@nolyfill/define-properties@*
   es-aggregate-error: workspace:@nolyfill/es-aggregate-error@*
   es-iterator-helpers: workspace:@nolyfill/es-iterator-helpers@*
@@ -259,6 +260,12 @@ importers:
       treeverse:
         specifier: ^3.0.0
         version: 3.0.0
+
+  packages/deep-equal:
+    dependencies:
+      dequal:
+        specifier: 2.0.3
+        version: 2.0.3
 
   packages/define-properties:
     dependencies:
@@ -2365,6 +2372,11 @@ packages:
   /delegates@1.0.0:
     resolution: {integrity: sha512-bd2L678uiWATM6m5Z1VzNCErI3jiGzt6HGY8OVICs40JQq/HALfbyNJmp0UDakEY4pMMaN0Ly5om/B1VI/+xfQ==}
     dev: true
+
+  /dequal@2.0.3:
+    resolution: {integrity: sha512-0je+qPKHEMohvfRTCEo3CrPG6cAzAYgmzKyxRiYSSDkS6eGJdyVJm7WaYA5ECaAD9wLB2T4EEeymA5aFVcYXCA==}
+    engines: {node: '>=6'}
+    dev: false
 
   /destr@2.0.1:
     resolution: {integrity: sha512-M1Ob1zPSIvlARiJUkKqvAZ3VAqQY6Jcuth/pBKQ2b1dX/Qx0OnJ8Vux6J2H5PTMQeRzWrrbTu70VxBfv/OPDJA==}

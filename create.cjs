@@ -370,7 +370,8 @@ module.exports = (value) => {
     });
   }
 };`],
-  ['define-properties', 'module.exports = require(\'@nolyfill/shared\').defineProperties', { '@nolyfill/shared': 'workspace:*' }]
+  ['define-properties', 'module.exports = require(\'@nolyfill/shared\').defineProperties', { '@nolyfill/shared': 'workspace:*' }],
+  ['deep-equal', 'module.exports = require(\'dequal\').dequal', { dequal: '2.0.3' }]
 ]);
 
 const manualPackagesList = /** @type {const} */ ([
