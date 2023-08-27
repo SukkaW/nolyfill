@@ -30,7 +30,7 @@
   "engines": {
     "node": ">=16.8.0"
   },
-  "version": "1.0.16",
+  "version": "1.0.17",
   "pnpm": {
     "overrides": {
       "array-buffer-byte-length": "workspace:@nolyfill/array-buffer-byte-length@*",
