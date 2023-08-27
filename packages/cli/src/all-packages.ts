@@ -32,6 +32,7 @@ export const allPackages = [
   "is-arguments",
   "is-array-buffer",
   "is-date-object",
+  "is-generator-function",
   "is-regex",
   "is-shared-array-buffer",
   "is-string",

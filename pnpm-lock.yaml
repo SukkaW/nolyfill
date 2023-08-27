@@ -36,6 +36,7 @@ overrides:
   is-arguments: workspace:@nolyfill/is-arguments@*
   is-array-buffer: workspace:@nolyfill/is-array-buffer@*
   is-date-object: workspace:@nolyfill/is-date-object@*
+  is-generator-function: workspace:@nolyfill/is-generator-function@*
   is-regex: workspace:@nolyfill/is-regex@*
   is-shared-array-buffer: workspace:@nolyfill/is-shared-array-buffer@*
   is-string: workspace:@nolyfill/is-string@*
@@ -369,6 +370,8 @@ importers:
         version: link:../shared
 
   packages/is-date-object: {}
+
+  packages/is-generator-function: {}
 
   packages/is-regex: {}
 
