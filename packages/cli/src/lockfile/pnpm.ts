@@ -4,7 +4,7 @@ import path from 'path';
 import { fileExists } from '@nolyfill/internal';
 import fsp from 'fs/promises';
 import { parseSyml } from '@yarnpkg/parsers';
-import fastGlob from 'fast-glob';
+import globby from 'globby';
 
 export async function searchPackagesFromPNPM(dirPath: string, packages: string[]): Promise<PackageNode[]> {
   const dirPaths = [dirPath];
@@ -14,12 +14,21 @@ export async function searchPackagesFromPNPM(dirPath: string, packages: string[]
     const pnpmWorkspaceContent = await fsp.readFile(pnpmWorkspacePath, 'utf-8');
     const pnpmWorkspaceYaml = parseSyml(pnpmWorkspaceContent) as { packages?: string[] };
     if (pnpmWorkspaceYaml.packages) {
-      const workspaceDirPaths = await fastGlob(pnpmWorkspaceYaml.packages, {
+      const workspaceDirPaths = await globby(pnpmWorkspaceYaml.packages, {
         cwd: dirPath,
         onlyDirectories: true,
-        absolute: true
+        absolute: true,
+        gitignore: true,
+        ignore: [
+          '**/node_modules',
+          '**/.git'
+        ]
       });
-      dirPaths.push(...workspaceDirPaths);
+
+      const dirPathsHasPackageJson = (await Promise.all(workspaceDirPaths.map(async (dirPath) => {
+        return (await fileExists(path.join(dirPath, 'package.json'))) ? dirPath : null;
+      }))).filter((x): x is string => !!x);
+      dirPaths.push(...dirPathsHasPackageJson);
     }
   }
 

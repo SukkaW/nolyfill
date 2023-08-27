@@ -251,9 +251,9 @@ importers:
       detect-indent:
         specifier: ^6.1.0
         version: 6.1.0
-      fast-glob:
-        specifier: ^3.3.1
-        version: 3.3.1
+      globby:
+        specifier: ^11.1.0
+        version: 11.1.0
       picocolors:
         specifier: ^1.0.0
         version: 1.0.0
