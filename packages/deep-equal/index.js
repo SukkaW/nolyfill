@@ -1,2 +1,2 @@
 'use strict';
-module.exports = require('dequal').dequal
+module.exports = (foo, bar) => require('dequal').dequal(foo, bar)

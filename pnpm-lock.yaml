@@ -33,6 +33,7 @@ overrides:
   has-proto: workspace:@nolyfill/has-proto@*
   has-symbols: workspace:@nolyfill/has-symbols@*
   has-tostringtag: workspace:@nolyfill/has-tostringtag@*
+  is-arguments: workspace:@nolyfill/is-arguments@*
   is-array-buffer: workspace:@nolyfill/is-array-buffer@*
   is-date-object: workspace:@nolyfill/is-date-object@*
   is-regex: workspace:@nolyfill/is-regex@*
@@ -358,6 +359,8 @@ importers:
   packages/has-tostringtag: {}
 
   packages/internal: {}
+
+  packages/is-arguments: {}
 
   packages/is-array-buffer:
     dependencies:

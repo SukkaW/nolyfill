@@ -30,6 +30,7 @@
 | `@nolyfill/has-proto` | [![npm](https://img.shields.io/npm/dm/@nolyfill/has-proto.svg?style=flat-square&logo=npm&logoColor=white&label=download&color=333)](https://www.npmjs.com/package/@nolyfill/has-proto) |
 | `@nolyfill/has-symbols` | [![npm](https://img.shields.io/npm/dm/@nolyfill/has-symbols.svg?style=flat-square&logo=npm&logoColor=white&label=download&color=333)](https://www.npmjs.com/package/@nolyfill/has-symbols) |
 | `@nolyfill/has-tostringtag` | [![npm](https://img.shields.io/npm/dm/@nolyfill/has-tostringtag.svg?style=flat-square&logo=npm&logoColor=white&label=download&color=333)](https://www.npmjs.com/package/@nolyfill/has-tostringtag) |
+| `@nolyfill/is-arguments` | [![npm](https://img.shields.io/npm/dm/@nolyfill/is-arguments.svg?style=flat-square&logo=npm&logoColor=white&label=download&color=333)](https://www.npmjs.com/package/@nolyfill/is-arguments) |
 | `@nolyfill/is-array-buffer` | [![npm](https://img.shields.io/npm/dm/@nolyfill/is-array-buffer.svg?style=flat-square&logo=npm&logoColor=white&label=download&color=333)](https://www.npmjs.com/package/@nolyfill/is-array-buffer) |
 | `@nolyfill/is-date-object` | [![npm](https://img.shields.io/npm/dm/@nolyfill/is-date-object.svg?style=flat-square&logo=npm&logoColor=white&label=download&color=333)](https://www.npmjs.com/package/@nolyfill/is-date-object) |
 | `@nolyfill/is-regex` | [![npm](https://img.shields.io/npm/dm/@nolyfill/is-regex.svg?style=flat-square&logo=npm&logoColor=white&label=download&color=333)](https://www.npmjs.com/package/@nolyfill/is-regex) |
