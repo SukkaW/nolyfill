@@ -9,8 +9,9 @@ import { renderTree } from './renderTree';
 import { overridesPackageJson } from './json';
 import type { PKG } from './types';
 import { handleSigTerm } from './handle-sigterm';
-import { findPackagesCoveredByNolyfill } from './find-coverable-packages';
+import { findPackagesCoveredByNolyfill, findPackagesNotCoveredByNolyfill } from './find-coverable-packages';
 import { checkForUpdates } from './check-update';
+import { generateIssue } from './generate-issue';
 
 interface CliOptions {
   /** see full error messages, mostly for debugging */
@@ -83,7 +84,13 @@ const program = new Command('nolyfill');
         const packagesToBeOverride = await findPackagesCoveredByNolyfill(packageManager, projectPath);
 
         if (packagesToBeOverride.length === 0) {
-          console.log(`${picocolors.green('Congratulations! Your project does not contain any redundant polyfills that can be optimized by nolyfill 🚀')}\n`);
+          const packagesNotCoveredByNolyfill = await findPackagesNotCoveredByNolyfill(packageManager, projectPath);
+
+          if (packagesNotCoveredByNolyfill.length === 0) {
+            console.log(`${picocolors.green('Congratulations! Your project does not contain any redundant polyfills that can be optimized by nolyfill 🚀')}\n`);
+          } else {
+            await generateIssue(projectPath, packageManager, packagesNotCoveredByNolyfill);
+          }
         } else {
           console.log(picocolors.yellow(`Found ${picocolors.green(picocolors.bold(packagesToBeOverride.length))} redundant packages:`));
           console.log(renderTree(packagesToBeOverride));
@@ -108,7 +115,13 @@ const program = new Command('nolyfill');
         const packagesToBeOverride = await findPackagesCoveredByNolyfill(packageManager, projectPath);
 
         if (packagesToBeOverride.length === 0) {
-          console.log(`${picocolors.green('Congratulations! Your project does not contain any redundant polyfills that can be optimized by nolyfill 🚀')}\n`);
+          const packagesNotCoveredByNolyfill = await findPackagesNotCoveredByNolyfill(packageManager, projectPath);
+
+          if (packagesNotCoveredByNolyfill.length === 0) {
+            console.log(`${picocolors.green('Congratulations! Your project does not contain any redundant polyfills that can be optimized by nolyfill 🚀')}\n`);
+          } else {
+            await generateIssue(projectPath, packageManager, packagesNotCoveredByNolyfill);
+          }
         } else {
           console.log(picocolors.yellow(`Found ${picocolors.green(picocolors.bold(packagesToBeOverride.length))} redundant packages:`));
           console.log(renderTree(packagesToBeOverride));

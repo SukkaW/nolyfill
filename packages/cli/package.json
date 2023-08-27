@@ -19,6 +19,7 @@
     "node": ">=12.4.0"
   },
   "devDependencies": {
+    "@jsdevtools/ez-spawn": "^3.0.4",
     "@napi-rs/magic-string": "^0.3.4",
     "@nolyfill/internal": "workspace:*",
     "@nolyfill/promise.any": "workspace:*",

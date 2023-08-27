@@ -5,8 +5,10 @@ import { allPackages } from './all-packages';
 import type { PackageNode } from './types';
 import type { PackageManager } from './package-manager';
 
-export const findPackagesCoveredByNolyfill = async (packageManager: PackageManager, projectPath: string) => {
-  const searchResult = await searchPackages(packageManager, projectPath, allPackages);
+const findPackages = async (packageManager: PackageManager, projectPath: string, packages: string[]) => {
+  const packagesSet = new Set(packages);
+
+  const searchResult = await searchPackages(packageManager, projectPath, packages);
   // console.log(renderTree(searchResult));
 
   const namesOfPackagesToBeOverride = new Set<string>();
@@ -18,8 +20,8 @@ export const findPackagesCoveredByNolyfill = async (packageManager: PackageManag
 
     seen.add(node);
 
-    if (allPackages.includes(node.name)) {
-      const {dependencies: _, ...rest} = node;
+    if (packagesSet.has(node.name)) {
+      const { dependencies: _, ...rest } = node;
 
       if (!namesOfPackagesToBeOverride.has(node.name)) {
         namesOfPackagesToBeOverride.add(node.name);
@@ -34,3 +36,13 @@ export const findPackagesCoveredByNolyfill = async (packageManager: PackageManag
 
   return Array.from(packagesToBeOverride).sort((a, b) => a.name.localeCompare(b.name));
 };
+
+export const findPackagesCoveredByNolyfill = (packageManager: PackageManager, projectPath: string) => findPackages(packageManager, projectPath, allPackages);
+
+const detectPackages = [
+  'get-intrinsic',
+  'es-abstract',
+  'call-bind'
+];
+
+export const findPackagesNotCoveredByNolyfill = (packageManager: PackageManager, projectPath: string) => findPackages(packageManager, projectPath, detectPackages);
