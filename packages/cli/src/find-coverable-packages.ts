@@ -42,7 +42,8 @@ export const findPackagesCoveredByNolyfill = (packageManager: PackageManager, pr
 const detectPackages = [
   'get-intrinsic',
   'es-abstract',
-  'call-bind'
+  'call-bind',
+  'es-shim-unscopables'
 ];
 
 export const findPackagesNotCoveredByNolyfill = (packageManager: PackageManager, projectPath: string) => findPackages(packageManager, projectPath, detectPackages);
