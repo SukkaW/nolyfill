@@ -56,10 +56,16 @@ export default async () => {
         name: 'build-nolyfill-cli',
         load(id) {
           id = slash(id);
-          // Here we remove the query-selector-all.js from arborist,  as it introduces shit
+          // Here we remove the query-selector-all.js from arborist, as it introduces shit
           // load of dependencies that we totally don't use
           if (id.includes('/arborist/lib/query-selector-all.js')) {
             return 'module.exports = () => {}';
+          }
+          // @pnpm/cli-utils is introduced by @pnpm/workspace.find-packages, which also introduces
+          // rxjs. We don't need @pnpm/cli-utils (we only wants "findWorkspacePackagesNoCheck", which
+          // doesn't require @pnpm/cli-utils. tree shake's issue), and certainly don't need rxjs.
+          if (id.includes('/@pnpm/cli-utils/lib/index.js')) {
+            return 'module.exports = {}';
           }
           return undefined;
         },
