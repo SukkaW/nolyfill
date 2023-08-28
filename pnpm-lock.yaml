@@ -61,6 +61,7 @@ overrides:
   regexp.prototype.flags: workspace:@nolyfill/regexp.prototype.flags@*
   safe-array-concat: workspace:@nolyfill/safe-array-concat@*
   safe-regex-test: workspace:@nolyfill/safe-regex-test@*
+  side-channel: workspace:@nolyfill/side-channel@*
   string.prototype.at: workspace:@nolyfill/string.prototype.at@*
   string.prototype.matchall: workspace:@nolyfill/string.prototype.matchall@*
   string.prototype.padend: workspace:@nolyfill/string.prototype.padend@*
@@ -502,6 +503,8 @@ importers:
   packages/safe-regex-test: {}
 
   packages/shared: {}
+
+  packages/side-channel: {}
 
   packages/string.prototype.at:
     dependencies:
@@ -3646,7 +3649,7 @@ packages:
     dependencies:
       get-intrinsic: 1.2.1
       has: link:packages/has
-      side-channel: 1.0.4
+      side-channel: link:packages/side-channel
     dev: true
 
   /ip@2.0.0:
@@ -4876,14 +4879,6 @@ packages:
   /shebang-regex@3.0.0:
     resolution: {integrity: sha512-7++dFhtcx3353uBaq8DDR4NuxBetBzC7ZQOhmTQInHEd6bSrXdiEyzCvG07Z44UYdLShWUyXt5M/yhz8ekcb1A==}
     engines: {node: '>=8'}
-    dev: true
-
-  /side-channel@1.0.4:
-    resolution: {integrity: sha512-q5XPytqFEIKHkGdiMIrY10mvLRvnQh42/+GoBlFW3b2LXLE2xxJpZFdm94we0BaoV3RwJyGqg5wS7epxTv0Zvw==}
-    dependencies:
-      call-bind: 1.0.2
-      get-intrinsic: 1.2.1
-      object-inspect: 1.12.3
     dev: true
 
   /signal-exit@3.0.7:
