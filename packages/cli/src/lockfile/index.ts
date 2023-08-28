@@ -1,7 +1,7 @@
 import type { PackageManager } from '../package-manager';
-import { searchPackagesFromPNPM } from './pnpm';
-import { searchPackagesFromNPM } from './npm';
-import { searchPackagesFromYarn } from './yarn';
+import { buildPNPMDepTree } from './pnpm';
+import { buildNPMDepTree } from './npm';
+import { buildYarnDepTree } from './yarn';
 
 export interface PackageLockDeps {
   [depName: string]: PackageLockDep
@@ -17,14 +17,14 @@ export interface PackageLockDep {
 }
 
 // TODO: make it do dep tree generation only
-export function searchPackages(packageManager: PackageManager, dir: string, packages: string[]) {
+export function buildDepTrees(packageManager: PackageManager, dir: string) {
   switch (packageManager) {
     case 'npm':
-      return searchPackagesFromNPM(dir);
+      return buildNPMDepTree(dir);
     case 'pnpm':
-      return searchPackagesFromPNPM(dir, packages);
+      return buildPNPMDepTree(dir);
     case 'yarn':
-      return searchPackagesFromYarn(dir);
+      return buildYarnDepTree(dir);
     default:
       throw new Error(`Unknown package manager: ${packageManager as string}`);
   }

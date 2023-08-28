@@ -3,7 +3,7 @@ import type { Node, Link } from '@npmcli/arborist';
 import Arborist from '@npmcli/arborist';
 import { cache } from '../lib/cache';
 
-export const searchPackagesFromNPM = cache(async (dirPath: string): Promise<PackageNode[]> => {
+export const buildNPMDepTree = cache(async (dirPath: string): Promise<PackageNode[]> => {
   const arb = new Arborist({
     path: dirPath,
     workspacesEnabled: true

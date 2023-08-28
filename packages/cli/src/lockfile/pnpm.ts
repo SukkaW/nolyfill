@@ -5,7 +5,7 @@ import { fileExists } from '@nolyfill/internal';
 import { findWorkspacePackagesNoCheck } from '@pnpm/workspace.find-packages';
 import { cache } from '../lib/cache';
 
-const getPnpmWorkspaceDirPaths = cache(async (dirPath: string) => {
+export const buildPNPMDepTree = cache(async (dirPath: string): Promise<PackageNode[]> => {
   const dirPaths = [dirPath];
 
   if (await fileExists(path.join(dirPath, 'pnpm-workspace.yaml'))) {
@@ -13,12 +13,7 @@ const getPnpmWorkspaceDirPaths = cache(async (dirPath: string) => {
     dirPaths.push(...allProjects.map((project) => project.dir));
   }
 
-  return dirPaths;
-});
-
-export async function searchPackagesFromPNPM(dirPath: string, packages: string[]): Promise<PackageNode[]> {
-  const dirPaths = await getPnpmWorkspaceDirPaths(dirPath);
-  const result = await searchForPackages(packages, dirPaths, {
+  const result = await searchForPackages(['*'], dirPaths, {
     depth: Infinity,
     lockfileDir: dirPath,
     include: {
@@ -31,4 +26,4 @@ export async function searchPackagesFromPNPM(dirPath: string, packages: string[]
   return result.flatMap((dep) => {
     return [...(dep.dependencies ?? []), ...(dep.devDependencies ?? [])];
   });
-}
+});

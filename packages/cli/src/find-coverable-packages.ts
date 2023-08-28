@@ -1,4 +1,4 @@
-import { searchPackages } from './lockfile';
+import { buildDepTrees } from './lockfile';
 
 import { allPackages } from './all-packages';
 
@@ -8,7 +8,7 @@ import type { PackageManager } from './package-manager';
 const findPackages = async (packageManager: PackageManager, projectPath: string, packages: string[]) => {
   const packagesSet = new Set(packages);
 
-  const searchResult = await searchPackages(packageManager, projectPath, packages);
+  const searchResult = await buildDepTrees(packageManager, projectPath);
   // console.log(renderTree(searchResult));
 
   const namesOfPackagesToBeOverride = new Set<string>();

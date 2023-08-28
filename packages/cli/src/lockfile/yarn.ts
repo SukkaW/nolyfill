@@ -15,7 +15,7 @@ interface FirstLevelDependency {
   dependencies?: Dependency | undefined
 }
 
-export const searchPackagesFromYarn = cache(async (dirPath: string): Promise<PackageNode[]> => {
+export const buildYarnDepTree = cache(async (dirPath: string): Promise<PackageNode[]> => {
   const yarnLockPath = path.join(dirPath, 'yarn.lock');
   return searchInLockfile(await fsp.readFile(yarnLockPath, 'utf-8'));
 });
