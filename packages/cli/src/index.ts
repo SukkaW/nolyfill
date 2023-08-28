@@ -6,9 +6,9 @@ import handleError from './handle-error';
 import { detectPackageManager, type PackageManager } from './package-manager';
 import { renderTree } from './renderTree';
 
-import { overridesPackageJson } from './json';
+import { overridesPackageJson } from './lib/json';
 import type { PKG } from './types';
-import { handleSigTerm } from './handle-sigterm';
+import { handleSigTerm } from './lib/handle-sigterm';
 import { findPackagesCoveredByNolyfill, findPackagesNotCoveredByNolyfill } from './find-coverable-packages';
 import { checkForUpdates } from './check-update';
 import { generateIssue } from './generate-issue';

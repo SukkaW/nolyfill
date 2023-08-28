@@ -2,8 +2,8 @@ import fsp from 'fs/promises';
 import detectIndent from 'detect-indent';
 import path from 'path';
 
-import type { PKG, PackageNode } from './types';
-import type { PackageManager } from './package-manager';
+import type { PKG, PackageNode } from '../types';
+import type { PackageManager } from '../package-manager';
 
 async function readJSON<T>(filepath: string): Promise<T | null> {
   try {
