@@ -3,6 +3,7 @@ import path from 'path';
 import { parseSyml } from '@yarnpkg/parsers';
 
 import type { PackageNode } from '../types';
+import { cache } from '../lib/cache';
 
 interface Dependency {
   [packageName: string]: string
@@ -14,10 +15,10 @@ interface FirstLevelDependency {
   dependencies?: Dependency | undefined
 }
 
-export async function searchPackagesFromYarn(dirPath: string, _packages: string[]): Promise<PackageNode[]> {
+export const searchPackagesFromYarn = cache(async (dirPath: string): Promise<PackageNode[]> => {
   const yarnLockPath = path.join(dirPath, 'yarn.lock');
   return searchInLockfile(await fsp.readFile(yarnLockPath, 'utf-8'));
-}
+});
 
 function searchInLockfile(lockFileContents: string) {
   const yarnYml = parseSyml(lockFileContents);

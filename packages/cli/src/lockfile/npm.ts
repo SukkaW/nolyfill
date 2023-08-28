@@ -3,8 +3,9 @@ import type { Node, Link } from '@npmcli/arborist';
 import type Arborist from '@npmcli/arborist';
 // @ts-expect-error -- patched package
 import PatchedArborist from '../npm/arborist.cjs';
+import { cache } from '../lib/cache';
 
-export async function searchPackagesFromNPM(dirPath: string, _packages: string[]): Promise<PackageNode[]> {
+export const searchPackagesFromNPM = cache(async (dirPath: string): Promise<PackageNode[]> => {
   const arb: Arborist = new PatchedArborist({
     path: dirPath,
     workspacesEnabled: true
@@ -14,7 +15,7 @@ export async function searchPackagesFromNPM(dirPath: string, _packages: string[]
   const node = convertToPackageNode(tree);
 
   return node.dependencies || [];
-}
+});
 
 function convertToPackageNode(npmNode: Node | Link): PackageNode {
   const referenceMap = new WeakMap<Node | Link, PackageNode>();
