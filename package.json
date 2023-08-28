@@ -105,7 +105,9 @@
       "which-typed-array": "workspace:@nolyfill/which-typed-array@*"
     },
     "patchedDependencies": {
-      "@types/npmcli__arborist@5.6.1": "patches/@types__npmcli__arborist@5.6.1.patch"
+      "@types/npmcli__arborist@5.6.1": "patches/@types__npmcli__arborist@5.6.1.patch",
+      "@pnpm/workspace.find-packages@1.0.5": "patches/@pnpm__workspace.find-packages@1.0.5.patch",
+      "@npmcli/arborist@6.3.0": "patches/@npmcli__arborist@6.3.0.patch"
     }
   },
   "overrides": {

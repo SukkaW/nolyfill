@@ -1,0 +1,92 @@
+diff --git a/lib/index.js b/lib/index.js
+index d1ce8e1c081d7f3379a8ee48a8e471d7058779ea..b8966765874c71b660d553e501e9faa6cc1b852a 100644
+--- a/lib/index.js
++++ b/lib/index.js
+@@ -5,24 +5,24 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
+ Object.defineProperty(exports, "__esModule", { value: true });
+ exports.arrayOfWorkspacePackagesToMap = exports.findWorkspacePackagesNoCheck = exports.findWorkspacePackages = void 0;
+ const path_1 = __importDefault(require("path"));
+-const cli_utils_1 = require("@pnpm/cli-utils");
++// const cli_utils_1 = require("@pnpm/cli-utils");
+ const constants_1 = require("@pnpm/constants");
+ const util_lex_comparator_1 = require("@pnpm/util.lex-comparator");
+ const fs_find_packages_1 = require("@pnpm/fs.find-packages");
+-const logger_1 = require("@pnpm/logger");
++// const logger_1 = require("@pnpm/logger");
+ const read_yaml_file_1 = __importDefault(require("read-yaml-file"));
+-async function findWorkspacePackages(workspaceRoot, opts) {
+-    const pkgs = await findWorkspacePackagesNoCheck(workspaceRoot, opts);
+-    for (const pkg of pkgs) {
+-        (0, cli_utils_1.packageIsInstallable)(pkg.dir, pkg.manifest, opts ?? {});
+-        // When setting shared-workspace-lockfile=false, `pnpm` can be set in sub-project's package.json.
+-        if (opts?.sharedWorkspaceLockfile && pkg.dir !== workspaceRoot) {
+-            checkNonRootProjectManifest(pkg);
+-        }
+-    }
+-    return pkgs;
+-}
+-exports.findWorkspacePackages = findWorkspacePackages;
++// async function findWorkspacePackages(workspaceRoot, opts) {
++//     const pkgs = await findWorkspacePackagesNoCheck(workspaceRoot, opts);
++//     for (const pkg of pkgs) {
++//         (0, cli_utils_1.packageIsInstallable)(pkg.dir, pkg.manifest, opts ?? {});
++//         // When setting shared-workspace-lockfile=false, `pnpm` can be set in sub-project's package.json.
++//         if (opts?.sharedWorkspaceLockfile && pkg.dir !== workspaceRoot) {
++//             checkNonRootProjectManifest(pkg);
++//         }
++//     }
++//     return pkgs;
++// }
++// exports.findWorkspacePackages = findWorkspacePackages;
+ async function findWorkspacePackagesNoCheck(workspaceRoot, opts) {
+     let patterns = opts?.patterns;
+     if (patterns == null) {
+@@ -52,26 +52,26 @@ async function requirePackagesManifest(dir) {
+         throw err;
+     }
+ }
+-function arrayOfWorkspacePackagesToMap(pkgs) {
+-    return pkgs.reduce((acc, pkg) => {
+-        if (!pkg.manifest.name)
+-            return acc;
+-        if (!acc[pkg.manifest.name]) {
+-            acc[pkg.manifest.name] = {};
+-        }
+-        acc[pkg.manifest.name][pkg.manifest.version ?? '0.0.0'] = pkg;
+-        return acc;
+-    }, {});
+-}
+-exports.arrayOfWorkspacePackagesToMap = arrayOfWorkspacePackagesToMap;
+-function checkNonRootProjectManifest({ manifest, dir }) {
+-    for (const rootOnlyField of ['pnpm', 'resolutions']) {
+-        if (manifest?.[rootOnlyField]) {
+-            logger_1.logger.warn({
+-                message: `The field "${rootOnlyField}" was found in ${dir}/package.json. This will not take effect. You should configure "${rootOnlyField}" at the root of the workspace instead.`,
+-                prefix: dir,
+-            });
+-        }
+-    }
+-}
++// function arrayOfWorkspacePackagesToMap(pkgs) {
++//     return pkgs.reduce((acc, pkg) => {
++//         if (!pkg.manifest.name)
++//             return acc;
++//         if (!acc[pkg.manifest.name]) {
++//             acc[pkg.manifest.name] = {};
++//         }
++//         acc[pkg.manifest.name][pkg.manifest.version ?? '0.0.0'] = pkg;
++//         return acc;
++//     }, {});
++// }
++// exports.arrayOfWorkspacePackagesToMap = arrayOfWorkspacePackagesToMap;
++// function checkNonRootProjectManifest({ manifest, dir }) {
++//     for (const rootOnlyField of ['pnpm', 'resolutions']) {
++//         if (manifest?.[rootOnlyField]) {
++//             logger_1.logger.warn({
++//                 message: `The field "${rootOnlyField}" was found in ${dir}/package.json. This will not take effect. You should configure "${rootOnlyField}" at the root of the workspace instead.`,
++//                 prefix: dir,
++//             });
++//         }
++//     }
++// }
+ //# sourceMappingURL=index.js.map

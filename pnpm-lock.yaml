@@ -77,6 +77,12 @@ overrides:
   which-typed-array: workspace:@nolyfill/which-typed-array@*
 
 patchedDependencies:
+  '@npmcli/arborist@6.3.0':
+    hash: eobdrhtmolyi74xb3rpenl2k74
+    path: patches/@npmcli__arborist@6.3.0.patch
+  '@pnpm/workspace.find-packages@1.0.5':
+    hash: bqf7ad4m3v4rfox34y4e7ykddm
+    path: patches/@pnpm__workspace.find-packages@1.0.5.patch
   '@types/npmcli__arborist@5.6.1':
     hash: 6ms3onjw4t22bbhdxmnddktj5e
     path: patches/@types__npmcli__arborist@5.6.1.patch
@@ -211,13 +217,13 @@ importers:
         version: link:../promise.any
       '@npmcli/arborist':
         specifier: ^6.3.0
-        version: 6.3.0
+        version: 6.3.0(patch_hash=eobdrhtmolyi74xb3rpenl2k74)
       '@pnpm/list':
         specifier: ^9.0.10
         version: 9.0.10(@pnpm/logger@5.0.0)
       '@pnpm/workspace.find-packages':
         specifier: ^1.0.5
-        version: 1.0.5(@pnpm/logger@5.0.0)
+        version: 1.0.5(patch_hash=bqf7ad4m3v4rfox34y4e7ykddm)(@pnpm/logger@5.0.0)
       '@rollup/plugin-commonjs':
         specifier: ^25.0.4
         version: 25.0.4(rollup@3.28.0)
@@ -266,9 +272,6 @@ importers:
       rollup-plugin-visualizer:
         specifier: ^5.9.2
         version: 5.9.2(rollup@3.28.0)
-      treeverse:
-        specifier: ^3.0.0
-        version: 3.0.0
 
   packages/deep-equal:
     dependencies:
@@ -865,7 +868,7 @@ packages:
     resolution: {integrity: sha512-KXZccTDEnWqNrrx6JjpJKU/wJvNeg9BDgjS0XhmlZab7br921HtyVbsYzJr4L+xIvjdJ20Wh9dgxgCI2a5CEQw==}
     dev: true
 
-  /@npmcli/arborist@6.3.0:
+  /@npmcli/arborist@6.3.0(patch_hash=eobdrhtmolyi74xb3rpenl2k74):
     resolution: {integrity: sha512-XrS14qBDhK95RdGhjTSx8AgeZPNah949qp3b0v3GUFOugtPc9Z85rpWid57mONS8gHbuGIHjFzuA+5hSM7BuBA==}
     engines: {node: ^14.17.0 || ^16.13.0 || >=18.0.0}
     hasBin: true
@@ -907,6 +910,7 @@ packages:
       - bluebird
       - supports-color
     dev: true
+    patched: true
 
   /@npmcli/fs@3.1.0:
     resolution: {integrity: sha512-7kZUAaLscfgbwBQRbvdMYaZOWyMEcPTH/tJjnyAWJ/dvvs9Ef+CERx/qJb9GExJpl1qipaDGn7KqHnFGGixd0w==}
@@ -1490,7 +1494,7 @@ packages:
     engines: {node: '>=12.22.0'}
     dev: true
 
-  /@pnpm/workspace.find-packages@1.0.5(@pnpm/logger@5.0.0):
+  /@pnpm/workspace.find-packages@1.0.5(patch_hash=bqf7ad4m3v4rfox34y4e7ykddm)(@pnpm/logger@5.0.0):
     resolution: {integrity: sha512-TKoRZQ2CDOASe0AbMRBVOVorpc7+qLbGQiE8e+zEwUc8lV8/SZo7S1o5DccqDYWJDHE1K11fM8JWjTHu+qYGOQ==}
     engines: {node: '>=16.14'}
     peerDependencies:
@@ -1504,6 +1508,7 @@ packages:
       '@pnpm/util.lex-comparator': 1.0.0
       read-yaml-file: 2.1.0
     dev: true
+    patched: true
 
   /@pnpm/write-project-manifest@5.0.2:
     resolution: {integrity: sha512-BSYKyVOp+GbqxqYBuBex05iJgplgbiwoJGxLsK989lGT9Ekc0QatNpbyhk1vVhocv7AlRySrAyI7Yk2l4do/9g==}
