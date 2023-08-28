@@ -8,7 +8,9 @@ overrides:
   array-buffer-byte-length: workspace:@nolyfill/array-buffer-byte-length@*
   array-includes: workspace:@nolyfill/array-includes@*
   array.from: workspace:@nolyfill/array.from@*
+  array.prototype.at: workspace:@nolyfill/array.prototype.at@*
   array.prototype.find: workspace:@nolyfill/array.prototype.find@*
+  array.prototype.findlast: workspace:@nolyfill/array.prototype.findlast@*
   array.prototype.findlastindex: workspace:@nolyfill/array.prototype.findlastindex@*
   array.prototype.flat: workspace:@nolyfill/array.prototype.flat@*
   array.prototype.flatmap: workspace:@nolyfill/array.prototype.flatmap@*
@@ -59,6 +61,7 @@ overrides:
   regexp.prototype.flags: workspace:@nolyfill/regexp.prototype.flags@*
   safe-array-concat: workspace:@nolyfill/safe-array-concat@*
   safe-regex-test: workspace:@nolyfill/safe-regex-test@*
+  string.prototype.at: workspace:@nolyfill/string.prototype.at@*
   string.prototype.matchall: workspace:@nolyfill/string.prototype.matchall@*
   string.prototype.padend: workspace:@nolyfill/string.prototype.padend@*
   string.prototype.padstart: workspace:@nolyfill/string.prototype.padstart@*
@@ -158,7 +161,19 @@ importers:
         specifier: workspace:*
         version: link:../shared
 
+  packages/array.prototype.at:
+    dependencies:
+      '@nolyfill/shared':
+        specifier: workspace:*
+        version: link:../shared
+
   packages/array.prototype.find:
+    dependencies:
+      '@nolyfill/shared':
+        specifier: workspace:*
+        version: link:../shared
+
+  packages/array.prototype.findlast:
     dependencies:
       '@nolyfill/shared':
         specifier: workspace:*
@@ -487,6 +502,12 @@ importers:
   packages/safe-regex-test: {}
 
   packages/shared: {}
+
+  packages/string.prototype.at:
+    dependencies:
+      '@nolyfill/shared':
+        specifier: workspace:*
+        version: link:../shared
 
   packages/string.prototype.matchall:
     dependencies:
