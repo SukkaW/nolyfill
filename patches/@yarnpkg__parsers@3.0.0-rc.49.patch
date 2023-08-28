@@ -1,0 +1,18 @@
+diff --git a/package.json b/package.json
+index 816baea094befd9df2ea7d6bcb6517d09d55b388..c2bb0e40c7ff1e87c5a759ffadc8391d01ac0535 100644
+--- a/package.json
++++ b/package.json
+@@ -5,7 +5,12 @@
+   "main": "./lib/index.js",
+   "exports": {
+     ".": "./lib/index.js",
+-    "./package.json": "./package.json"
++    "./package.json": "./package.json",
++    "./lib/syml": {
++      "types": "./lib/syml.d.ts",
++      "require": "./lib/syml.js",
++      "default": "./lib/syml.js"
++    }
+   },
+   "dependencies": {
+     "js-yaml": "^3.10.0",

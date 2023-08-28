@@ -86,6 +86,9 @@ patchedDependencies:
   '@types/npmcli__arborist@5.6.1':
     hash: 6ms3onjw4t22bbhdxmnddktj5e
     path: patches/@types__npmcli__arborist@5.6.1.patch
+  '@yarnpkg/parsers@3.0.0-rc.49':
+    hash: jnkz5i74nw4absifqd32jud6me
+    path: patches/@yarnpkg__parsers@3.0.0-rc.49.patch
 
 importers:
 
@@ -253,7 +256,7 @@ importers:
         version: 1.1.6
       '@yarnpkg/parsers':
         specifier: 3.0.0-rc.49
-        version: 3.0.0-rc.49
+        version: 3.0.0-rc.49(patch_hash=jnkz5i74nw4absifqd32jud6me)
       commander:
         specifier: ^11.0.0
         version: 11.0.0
@@ -2143,13 +2146,14 @@ packages:
       eslint-visitor-keys: 3.4.3
     dev: true
 
-  /@yarnpkg/parsers@3.0.0-rc.49:
+  /@yarnpkg/parsers@3.0.0-rc.49(patch_hash=jnkz5i74nw4absifqd32jud6me):
     resolution: {integrity: sha512-e6inWHiEoAmazVwYWSSBo+vKvq6Coz5CK41GkP9OKvvJOZWZRk1IFEK4unTxAzJK4ivUkF1r+kbfiy/xngslfA==}
     engines: {node: '>=18.12.0'}
     dependencies:
       js-yaml: 3.14.1
       tslib: 2.6.1
     dev: true
+    patched: true
 
   /@zkochan/js-yaml@0.0.6:
     resolution: {integrity: sha512-nzvgl3VfhcELQ8LyVrYOru+UtAy1nrygk2+AGbTm8a5YcO6o8lSjAT+pfg3vJWxIoZKOUhrK6UU7xW/+00kQrg==}

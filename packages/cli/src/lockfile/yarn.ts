@@ -1,6 +1,6 @@
 import fsp from 'fs/promises';
 import path from 'path';
-import { parseSyml } from '@yarnpkg/parsers';
+import { parseSyml } from '@yarnpkg/parsers/lib/syml';
 
 import type { PackageNode } from '../types';
 import { cache } from '../lib/cache';
@@ -33,7 +33,15 @@ function searchInLockfile(lockFileContents: string) {
     const packageNode: PackageNode = {
       // After yarn overrides, the package name remains the original one,
       // while the "resolved" has been pointed to the new package's tarball.
-      name: yarnPkg?.resolved?.includes(`/@nolyfill/${packageName}/`)
+      name: (
+        yarnPkg?.resolved?.includes(`/@nolyfill/${packageName}/`)
+        || (
+          yarnPkg
+          && 'resolution' in yarnPkg
+          && typeof yarnPkg.resolution === 'string'
+          && yarnPkg.resolution.startsWith(`@nolyfill/${packageName}`)
+        )
+      )
         ? `@nolyfill/${packageName}`
         : packageName,
       version,
@@ -65,7 +73,7 @@ function getPackageNameFromDescriptor(descriptor: string): string {
   const firstDescriptor = descriptor.split(',')[0];
 
   const s = firstDescriptor.includes('@npm:')
-    ? firstDescriptor.split('@npm:')[1]
+    ? firstDescriptor.split('@npm:')[0]
     : firstDescriptor;
 
   return s.startsWith('@')
