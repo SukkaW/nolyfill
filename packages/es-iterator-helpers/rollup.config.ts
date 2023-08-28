@@ -51,6 +51,8 @@ export default defineConfig(async () => {
     return dependencies.some(dep => id === dep || id.startsWith(`${dep}/`));
   };
 
+  await fs.promises.rm(path.resolve('dist'), { recursive: true, force: true });
+
   return defineConfig({
     input,
     output: {
@@ -60,12 +62,10 @@ export default defineConfig(async () => {
       esModule: false,
       hoistTransitiveImports: false,
       chunkFileNames: 'dist/[name].js',
-      compact: false,
+      compact: true,
       generatedCode: 'es2015',
-      interop: 'auto',
-      manualChunks() {
-        return 'index';
-      }
+      interop: 'compat',
+      experimentalMinChunkSize: 4096
     },
     plugins: [
       nodeResolve(),

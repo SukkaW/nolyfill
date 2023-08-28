@@ -307,8 +307,8 @@ importers:
         specifier: ^1.3.76
         version: 1.3.76
       ljharb-es-iterator-helpers:
-        specifier: npm:es-iterator-helpers@^1.0.13
-        version: /es-iterator-helpers@1.0.13
+        specifier: npm:es-iterator-helpers@^1.0.14
+        version: /es-iterator-helpers@1.0.14
       resolve-pkg:
         specifier: ^2.0.0
         version: 2.0.0
@@ -2902,8 +2902,8 @@ packages:
       which-typed-array: link:packages/which-typed-array
     dev: true
 
-  /es-iterator-helpers@1.0.13:
-    resolution: {integrity: sha512-LK3VGwzvaPWobO8xzXXGRUOGw8Dcjyfk62CsY/wfHN75CwsJPbuypOYJxK6g5RyEL8YDjIWcl6jgd8foO6mmrA==}
+  /es-iterator-helpers@1.0.14:
+    resolution: {integrity: sha512-JgtVnwiuoRuzLvqelrvN3Xu7H9bu2ap/kQ2CrM62iidP8SKuD99rWU3CJy++s7IVL2qb/AjXPGR/E7i9ngd/Cw==}
     dependencies:
       asynciterator.prototype: link:packages/asynciterator.prototype
       call-bind: 1.0.2
