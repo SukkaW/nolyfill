@@ -32,6 +32,17 @@
     "nolyfill#build": {
       "dependsOn": [
         "@nolyfill/es-iterator-helpers#build"
+      ],
+      "env": [
+        "ANALYZE"
+      ]
+    },
+    "nolyfill#build:analyze": {
+      "dependsOn": [
+        "@nolyfill/es-iterator-helpers#build:analyze"
+      ],
+      "env": [
+        "ANALYZE"
       ]
     },
     "lint": {},
@@ -39,9 +50,6 @@
       "dependsOn": [
         "^build",
         "//#codegen"
-      ],
-      "env": [
-        "ANALYZE"
       ]
     }
   }
