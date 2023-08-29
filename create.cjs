@@ -428,7 +428,7 @@ module.exports = function isGeneratorFunction(fn) {
   if (typeof fn !== 'function') return false;
   if (isFnRegex.test(Function.prototype.toString.call(fn))) return true;
   return Object.getPrototypeOf(fn) === GeneratorFunction;
-}`],
+};`],
   ['side-channel', `module.exports = () => {
   let $wm, $m;
 
@@ -465,7 +465,43 @@ module.exports = function isGeneratorFunction(fn) {
     }
   };
   return { get, set, has, assert };
-}`]
+};`],
+  ['internal-slot', `const channel = new WeakMap();
+const check = (O, slot) => {
+  if (!O || (typeof O !== 'object' && typeof O !== 'function')) {
+    throw new TypeError('\`O\` is not an object');
+  }
+  if (typeof slot !== 'string') {
+    throw new TypeError('\`slot\` must be a string');
+  }
+};
+const has = (O, slot) => {
+  check(O, slot);
+  const slots = channel.get(O);
+  return !!slots && Object.prototype.hasOwnProperty.call(slots, \`$\${slot}\`);
+};
+const get = (O, slot) => {
+  check(O, slot);
+  const slots = channel.get(O);
+  return slots && slots[\`$\${slot}\`];
+};
+const set = (O, slot, V) => {
+  check(O, slot);
+  let slots = channel.get(O);
+  if (!slots) {
+    slots = {};
+    channel.set(O, slots);
+  }
+  slots[\`$\${slot}\`] = V;
+};
+const assert = (O, slot) => {
+  check(O, slot);
+  channel.assert(O);
+  if (!has(O, slot)) {
+    throw new TypeError(\`\\\`\${slot}\\\` is not present on \\\`O\\\`\`);
+  }
+};
+module.exports = Object.freeze({ has, get, set, assert });`]
 ]);
 
 const manualPackagesList = /** @type {const} */ ([

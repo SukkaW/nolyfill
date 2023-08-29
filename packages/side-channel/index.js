@@ -35,4 +35,4 @@ module.exports = () => {
     }
   };
   return { get, set, has, assert };
-}
+};

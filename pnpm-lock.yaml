@@ -35,6 +35,7 @@ overrides:
   has-proto: workspace:@nolyfill/has-proto@*
   has-symbols: workspace:@nolyfill/has-symbols@*
   has-tostringtag: workspace:@nolyfill/has-tostringtag@*
+  internal-slot: workspace:@nolyfill/internal-slot@*
   is-arguments: workspace:@nolyfill/is-arguments@*
   is-array-buffer: workspace:@nolyfill/is-array-buffer@*
   is-date-object: workspace:@nolyfill/is-date-object@*
@@ -382,6 +383,8 @@ importers:
   packages/has-tostringtag: {}
 
   packages/internal: {}
+
+  packages/internal-slot: {}
 
   packages/is-arguments: {}
 
@@ -2909,7 +2912,7 @@ packages:
       has-property-descriptors: link:packages/has-property-descriptors
       has-proto: link:packages/has-proto
       has-symbols: link:packages/has-symbols
-      internal-slot: 1.0.5
+      internal-slot: link:packages/internal-slot
       is-array-buffer: link:packages/is-array-buffer
       is-callable: 1.2.7
       is-negative-zero: 2.0.2
@@ -2949,7 +2952,7 @@ packages:
       has-property-descriptors: link:packages/has-property-descriptors
       has-proto: link:packages/has-proto
       has-symbols: link:packages/has-symbols
-      internal-slot: 1.0.5
+      internal-slot: link:packages/internal-slot
       iterator.prototype: link:packages/iterator.prototype
       safe-array-concat: link:packages/safe-array-concat
     dev: true
@@ -3641,15 +3644,6 @@ packages:
   /ini@3.0.1:
     resolution: {integrity: sha512-it4HyVAUTKBc6m8e1iXWvXSTdndF7HbdN713+kvLrymxTaU4AUBWrJ4vEooP+V7fexnVD3LKcBshjGGPefSMUQ==}
     engines: {node: ^12.13.0 || ^14.15.0 || >=16.0.0}
-    dev: true
-
-  /internal-slot@1.0.5:
-    resolution: {integrity: sha512-Y+R5hJrzs52QCG2laLn4udYVnxsfny9CpOhNhUvk/SSSVyF6T27FzRbF0sroPidSu3X8oEAkOn2K804mjpt6UQ==}
-    engines: {node: '>= 0.4'}
-    dependencies:
-      get-intrinsic: 1.2.1
-      has: link:packages/has
-      side-channel: link:packages/side-channel
     dev: true
 
   /ip@2.0.0:
