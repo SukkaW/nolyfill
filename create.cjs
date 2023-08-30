@@ -497,7 +497,9 @@ const set = (O, slot, V) => {
 };
 const assert = (O, slot) => {
   check(O, slot);
-  channel.assert(O);
+  if (!channel.has(O)) {
+    throw new TypeError('Side channel does not contain the given key');
+  }
   if (!has(O, slot)) {
     throw new TypeError(\`\\\`\${slot}\\\` is not present on \\\`O\\\`\`);
   }
