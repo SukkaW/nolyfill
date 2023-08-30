@@ -1,6 +1,6 @@
 {
   "name": "@nolyfill/has-tostringtag",
-  "version": "1.0.20",
+  "version": "1.0.21",
   "repository": {
     "type": "git",
     "url": "https://github.com/SukkaW/nolyfill",
