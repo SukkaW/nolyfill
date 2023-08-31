@@ -697,7 +697,7 @@ function generateDonwloadStats() {
 
   return '| name | download |\n| ---- | -------- |\n'.concat(
     pkgList.map(
-      pkg => `| \`${pkg}\` | [![npm](https://img.shields.io/npm/dm/${pkg}.svg?style=flat-square&logo=npm&logoColor=white&label=download&color=333)](https://www.npmjs.com/package/${pkg}) |`
+      pkg => `| \`${pkg}\` | [![npm](https://img.shields.io/npm/dt/${pkg}.svg?style=flat-square&logo=npm&logoColor=white&label=total%20downloads&color=333)](https://www.npmjs.com/package/${pkg}) |`
     ).join('\n')
   );
 }
