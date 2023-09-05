@@ -1,0 +1,19 @@
+{
+  "name": "@nolyfill/iterator.prototype",
+  "version": "1.0.21",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/SukkaW/nolyfill",
+    "directory": "packages/generated/iterator.prototype"
+  },
+  "main": "./index.js",
+  "license": "MIT",
+  "files": [
+    "*.js"
+  ],
+  "scripts": {},
+  "dependencies": {},
+  "engines": {
+    "node": ">=12.4.0"
+  }
+}

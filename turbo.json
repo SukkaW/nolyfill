@@ -6,11 +6,15 @@
     ".eslintrc.json"
   ],
   "pipeline": {
-     "topological": {
-       "dependsOn": ["^topological"]
-     },
+    "topological": {
+      "dependsOn": [
+        "^topological"
+      ]
+    },
     "//#codegen": {
-      "inputs": ["create.cjs"]
+      "inputs": [
+        "create.cjs"
+      ]
     },
     "build": {
       "dependsOn": [

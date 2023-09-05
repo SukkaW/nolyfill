@@ -556,7 +556,7 @@ export const allPackages = ${JSON.stringify(allPackagesList, null, 2)};\n`;
       `${JSON.stringify(newPackageJson, null, 2)}\n`
     ),
     compareAndWriteFile(
-      path.join(__dirname, 'packages', 'cli', 'src', 'all-packages.ts'),
+      path.join(__dirname, 'packages/tools', 'cli', 'src', 'all-packages.ts'),
       cliAllPackagesTs
     ),
     compareAndWriteFile(
@@ -577,7 +577,7 @@ export const allPackages = ${JSON.stringify(allPackagesList, null, 2)};\n`;
  * @param {string | null} [bindTo]
  */
 async function createEsShimLikePackage(packageName, packageImplementation, isStatic, extraDependencies = {}, minimumNodeVersion = '>=12.4.0', bindTo = null) {
-  const packagePath = path.join(__dirname, 'packages', packageName);
+  const packagePath = path.join(__dirname, 'packages/generated', packageName);
   await fsPromises.mkdir(
     packagePath,
     { recursive: true }
@@ -624,7 +624,7 @@ async function createEsShimLikePackage(packageName, packageImplementation, isSta
         repository: {
           type: 'git',
           url: 'https://github.com/SukkaW/nolyfill',
-          directory: `packages/${packageName}`
+          directory: `packages/generated/${packageName}`
         },
         main: './index.js',
         license: 'MIT',
@@ -651,7 +651,7 @@ async function createEsShimLikePackage(packageName, packageImplementation, isSta
  * @param {string} [minimumNodeVersion]
  */
 async function createSingleFilePackage(packageName, implementation, extraDependencies = {}, minimumNodeVersion = '>=12.4.0') {
-  const packagePath = path.join(__dirname, 'packages', packageName);
+  const packagePath = path.join(__dirname, 'packages/generated', packageName);
   await fsPromises.mkdir(
     packagePath,
     { recursive: true }
@@ -670,7 +670,7 @@ async function createSingleFilePackage(packageName, implementation, extraDepende
         repository: {
           type: 'git',
           url: 'https://github.com/SukkaW/nolyfill',
-          directory: `packages/${packageName}`
+          directory: `packages/generated/${packageName}`
         },
         main: './index.js',
         license: 'MIT',
