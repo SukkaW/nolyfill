@@ -24,6 +24,7 @@
     {
       "files": [
         "bump.config.ts",
+        "*.d.ts",
         "packages/**/*.ts",
         "packages/**/*.tsx"
       ],
