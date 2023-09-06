@@ -132,9 +132,9 @@ importers:
       eslint-plugin-n:
         specifier: ^16.0.2
         version: 16.0.2(eslint@8.47.0)
-      fast-glob:
-        specifier: ^3.3.1
-        version: 3.3.1
+      path-scurry:
+        specifier: ^1.10.1
+        version: 1.10.1
       picocolors:
         specifier: ^1.0.0
         version: 1.0.0

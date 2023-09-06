@@ -5,7 +5,7 @@ const fsPromises = require('fs/promises');
 const fs = require('fs');
 const path = require('path');
 const ezspawn = require('@jsdevtools/ez-spawn');
-const fg = require('fast-glob');
+const { PathScurry } = require('path-scurry');
 const colors = require('picocolors');
 
 const currentPackageJson = require('./package.json');
@@ -686,16 +686,17 @@ async function writePackage(pkg) {
 
   const promises = [];
 
-  const existingFiles = await fg(['**/*'], {
-    cwd: pkg.path,
-    dot: false,
-    onlyFiles: true,
-    ignore: [
-      'package.json',
-      'node_modules',
-      'dist'
-    ]
+  const ps = new PathScurry(pkg.path);
+
+  const files = await ps.walk({
+    filter(file) {
+      return !['dist', 'node_modules', 'package.json'].includes(file.name) && file.name[0] !== '.';
+    }
   });
+
+  const existingFiles = files
+    .filter(f => f.isFile())
+    .map(file => file.relativePosix());
 
   const extraFiles = existingFiles.filter(file => !(file in pkg.files));
 
