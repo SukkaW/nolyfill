@@ -1,0 +1,21 @@
+{
+  "name": "@nolyfill/typed-array-byte-offset",
+  "version": "1.0.21",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/SukkaW/nolyfill",
+    "directory": "packages/generated/typed-array-byte-offset"
+  },
+  "main": "./index.js",
+  "license": "MIT",
+  "files": [
+    "*.js"
+  ],
+  "scripts": {},
+  "dependencies": {
+    "@nolyfill/shared": "workspace:*"
+  },
+  "engines": {
+    "node": ">=12.4.0"
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "name": "@nolyfill/string.prototype.matchall",
+  "version": "1.0.21",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/SukkaW/nolyfill",
+    "directory": "packages/generated/string.prototype.matchall"
+  },
+  "main": "./index.js",
+  "license": "MIT",
+  "files": [
+    "*.js"
+  ],
+  "scripts": {},
+  "dependencies": {
+    "@nolyfill/shared": "workspace:*"
+  },
+  "engines": {
+    "node": ">=12.4.0"
+  }
+}

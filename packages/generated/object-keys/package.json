@@ -1,0 +1,21 @@
+{
+  "name": "@nolyfill/object-keys",
+  "version": "1.0.21",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/SukkaW/nolyfill",
+    "directory": "packages/generated/object-keys"
+  },
+  "main": "./index.js",
+  "license": "MIT",
+  "files": [
+    "*.js"
+  ],
+  "scripts": {},
+  "dependencies": {
+    "@nolyfill/shared": "workspace:*"
+  },
+  "engines": {
+    "node": ">=12.4.0"
+  }
+}
