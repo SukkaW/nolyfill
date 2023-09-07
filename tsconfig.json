@@ -20,6 +20,7 @@
   },
   "include": [
     "./packages/",
+    "*.d.ts",
     "bump.config.ts"
   ],
   "exclude": [
