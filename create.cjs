@@ -2,7 +2,6 @@
 'use strict';
 
 const fsPromises = require('fs/promises');
-const fs = require('fs');
 const path = require('path');
 const ezspawn = require('@jsdevtools/ez-spawn');
 const { PathScurry } = require('path-scurry');
@@ -10,7 +9,7 @@ const colors = require('picocolors');
 
 const currentPackageJson = require('./package.json');
 
-const { compareAndWriteFile } = require('@nolyfill/internal');
+const { fileExists, compareAndWriteFile } = require('@nolyfill/internal');
 
 /**
  * @typedef {Object} VirtualPackage
@@ -575,6 +574,7 @@ export const allPackages = ${JSON.stringify(allPackagesList, null, 2)};\n`;
     )
   ]);
 
+  console.log('Updating pnpm-lock.yaml...');
   await ezspawn.async('pnpm', ['i']);
 })();
 
@@ -717,9 +717,6 @@ async function writePackage(pkg) {
   }
 
   const packageJsonPath = path.join(pkg.path, 'package.json');
-  const existingPackageJson = fs.existsSync(packageJsonPath)
-    ? JSON.parse(await fsPromises.readFile(packageJsonPath, 'utf8'))
-    : {};
 
   // write files, and check if they changed
   Object.entries(pkg.files).forEach(([file, content]) => {
@@ -734,10 +731,19 @@ async function writePackage(pkg) {
     );
   });
 
-  // package.json changed
-  if (JSON.stringify({ ...existingPackageJson, version: undefined }) !== JSON.stringify({ ...pkg.packageJson, version: undefined })) {
-    hasChanged = true;
-  }
+  // check if package.json changed
+  promises.push((async () => {
+    const existingPackageJson = (
+      existingFileFullpaths.has(packageJsonPath)
+      || await fileExists(packageJsonPath)
+    ) ? JSON.parse(await fsPromises.readFile(packageJsonPath, 'utf8'))
+      : {};
+
+    // exclude version from comparison
+    if (JSON.stringify({ ...existingPackageJson, version: undefined }) !== JSON.stringify({ ...pkg.packageJson, version: undefined })) {
+      hasChanged = true;
+    }
+  })());
 
   await Promise.all(promises);
 
