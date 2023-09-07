@@ -693,7 +693,7 @@ async function writePackage(pkg) {
   const promises = [];
 
   /** @type {Set<string>} */
-  const existingFiles = new Set();
+  const existingFileFullpaths = new Set();
 
   const ps = new PathScurry(pkg.path);
   for await (const file of ps) {
@@ -711,7 +711,7 @@ async function writePackage(pkg) {
           fsPromises.rm(path.join(pkg.path, relativePath))
         );
       } else {
-        existingFiles.add(relativePath);
+        existingFileFullpaths.add(file.fullpathPosix());
       }
     }
   }
@@ -724,18 +724,14 @@ async function writePackage(pkg) {
   // write files, and check if they changed
   Object.entries(pkg.files).forEach(([file, content]) => {
     const filePath = path.join(pkg.path, file);
-    promises.push((async () => {
-      if (existingFiles.has(file)) {
-        const existingContent = await fsPromises.readFile(filePath, 'utf-8');
-        if (existingContent !== content) {
-          hasChanged = true;
-          await fsPromises.writeFile(filePath, content, 'utf-8');
-        }
-      } else {
-        hasChanged = true;
-        await fsPromises.writeFile(filePath, content, 'utf-8');
-      }
-    })());
+    promises.push(
+      compareAndWriteFile(filePath, content, existingFileFullpaths)
+        .then(written => {
+          if (written) {
+            hasChanged = true;
+          }
+        })
+    );
   });
 
   // package.json changed
