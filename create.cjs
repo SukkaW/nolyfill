@@ -6,6 +6,7 @@ const path = require('path');
 const ezspawn = require('@jsdevtools/ez-spawn');
 const { PathScurry } = require('path-scurry');
 const colors = require('picocolors');
+const { dequal } = require('dequal');
 
 const currentPackageJson = require('./package.json');
 
@@ -740,7 +741,7 @@ async function writePackage(pkg) {
       : {};
 
     // exclude version from comparison
-    if (JSON.stringify({ ...existingPackageJson, version: undefined }) !== JSON.stringify({ ...pkg.packageJson, version: undefined })) {
+    if (!dequal({ ...existingPackageJson, version: undefined }, { ...pkg.packageJson, version: undefined })) {
       hasChanged = true;
     }
   })());
