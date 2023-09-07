@@ -625,7 +625,7 @@ async function createEsShimLikePackage(packageName, packageImplementation, isSta
     }
   };
 
-  await writePackage(pkg);
+  return writePackage(pkg);
 }
 
 /**
@@ -659,7 +659,7 @@ async function createSingleFilePackage(packageName, implementation, extraDepende
     }
   };
 
-  await writePackage(pkg);
+  return writePackage(pkg);
 }
 
 function generateDownloadStats() {
@@ -719,7 +719,7 @@ async function writePackage(pkg) {
   Object.entries(pkg.files).forEach(([file, content]) => {
     const filePath = path.join(pkg.path, file);
     promises.push((async () => {
-      if (fs.existsSync(filePath)) {
+      if (existingFiles.includes(file)) {
         const existingContent = await fsPromises.readFile(filePath, 'utf-8');
         if (existingContent !== content) {
           hasChanged = true;
