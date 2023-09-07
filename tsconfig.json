@@ -21,7 +21,8 @@
   "include": [
     "./packages/",
     "*.d.ts",
-    "bump.config.ts"
+    "bump.config.ts",
+    "create.ts"
   ],
   "exclude": [
     "./**/dist/*"
