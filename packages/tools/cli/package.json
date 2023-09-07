@@ -14,7 +14,7 @@
   "repository": "https://github.com/SukkaW/nolyfill",
   "scripts": {
     "canary": "node -r @swc-node/register src/index.ts",
-    "build": "rollup -c rollup.config.ts --configPlugin swc3"
+    "build": "rimraf dist && rollup -c rollup.config.ts --configPlugin swc3"
   },
   "engines": {
     "node": ">=12.4.0"

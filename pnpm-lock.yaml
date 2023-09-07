@@ -141,6 +141,9 @@ importers:
       picocolors:
         specifier: ^1.0.0
         version: 1.0.0
+      rimraf:
+        specifier: ^5.0.1
+        version: 5.0.1
       turbo:
         specifier: ^1.10.13
         version: 1.10.13
@@ -4782,6 +4785,14 @@ packages:
     hasBin: true
     dependencies:
       glob: 7.2.3
+    dev: true
+
+  /rimraf@5.0.1:
+    resolution: {integrity: sha512-OfFZdwtd3lZ+XZzYP/6gTACubwFcHdLRqS9UX3UwpU2dnGQYkPFISRwvM3w9IiB2w7bW5qGo/uAwE4SmXXSKvg==}
+    engines: {node: '>=14'}
+    hasBin: true
+    dependencies:
+      glob: 10.3.4
     dev: true
 
   /rollup-plugin-dts@6.0.1(rollup@3.28.0)(typescript@5.2.2):
