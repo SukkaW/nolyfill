@@ -2,6 +2,7 @@
   "name": "nolyfill",
   "version": "1.0.21",
   "main": "./index.js",
+  "types": "./index.d.ts",
   "license": "MIT",
   "bin": "bin/nolyfill.js",
   "files": [
@@ -40,6 +41,7 @@
     "detect-indent": "^6.1.0",
     "picocolors": "^1.0.0",
     "rollup": "^3.28.0",
+    "rollup-plugin-dts": "^6.0.1",
     "rollup-plugin-swc3": "^0.9.1",
     "rollup-plugin-visualizer": "^5.9.2"
   }
