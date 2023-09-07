@@ -43,7 +43,8 @@ export default async () => {
         esModule: false,
         // graceful-fs requires patching fs exports, so we must allow fs exports to be modified
         externalLiveBindings: false,
-        freeze: false
+        freeze: false,
+        hoistTransitiveImports: false
       },
       plugins: [
         nodeResolve({
@@ -113,17 +114,15 @@ export default async () => {
           }
         },
         swc({
-        // minify: true,
+          minify: true,
           jsc: {
             externalHelpers: true,
             minify: {
-            // https://github.com/swc-project/swc/issues/7847
-              compress: false,
-              // compress: {
-              //   passes: 2,
-              //   sequences: false,
-              //   hoist_props: false
-              // },
+              compress: {
+                passes: 2,
+                sequences: false,
+                hoist_props: false
+              },
               mangle: true,
               module: true
             }
