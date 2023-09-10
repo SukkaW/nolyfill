@@ -13,7 +13,7 @@
     },
     "//#codegen": {
       "inputs": [
-        "create.cjs"
+        "create.ts"
       ]
     },
     "build": {
