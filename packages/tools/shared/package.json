@@ -6,12 +6,20 @@
     "url": "https://github.com/SukkaW/nolyfill",
     "directory": "packages/shared"
   },
-  "main": "./index.js",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "module": "dist/index.mjs",
   "license": "MIT",
   "files": [
-    "*.js"
+    "dist"
   ],
   "scripts": {
+    "build": "rollup -c rollup.config.ts --configPlugin swc3",
     "lint": "eslint ."
+  },
+  "devDependencies": {
+    "rollup": "^3.28.0",
+    "rollup-plugin-dts": "^6.0.1",
+    "rollup-plugin-swc3": "^0.9.1"
   }
 }
