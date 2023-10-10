@@ -7,6 +7,7 @@
     "lint": "eslint ."
   },
   "dependencies": {
-    "@nolyfill/shared": "workspace:*"
+    "@nolyfill/shared": "workspace:*",
+    "@nolyfill/es-aggregate-error": "workspace:*"
   }
 }

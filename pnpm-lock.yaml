@@ -160,6 +160,15 @@ importers:
         specifier: ^5.1.6
         version: 5.1.6
 
+  packages/data/es-shim-like:
+    dependencies:
+      '@nolyfill/es-aggregate-error':
+        specifier: workspace:*
+        version: link:../../generated/es-aggregate-error
+      '@nolyfill/shared':
+        specifier: workspace:*
+        version: link:../../tools/shared
+
   packages/generated/array-buffer-byte-length:
     dependencies:
       '@nolyfill/is-array-buffer':

@@ -1,7 +1,9 @@
 import { defineEsShim } from "@nolyfill/shared";
+// @ts-expect-error -- TODO: types
+import createAggregateError from '@nolyfill/es-aggregate-error/polyfill';
 
 const implementation = Promise.any || function any<T>(this: typeof Promise, iterable: ReadonlyArray<T | PromiseLike<T>> | Readonly<Iterable<T | PromiseLike<T>>>): Promise<T> {
-  const AggregateError = require('@nolyfill/es-aggregate-error/polyfill')();
+  const AggregateError = createAggregateError();
   const $reject = Promise.reject.bind(this);
   const $resolve = Promise.resolve.bind(this);
   const $all = Promise.all.bind(this);
