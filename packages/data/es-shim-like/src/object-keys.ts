@@ -1,3 +1,3 @@
 import { defineEsShim } from '@nolyfill/shared';
 
-export default defineEsShim(Object.keys, true)
+export default defineEsShim(Object.keys, true);

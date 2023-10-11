@@ -1,4 +1,4 @@
-import { defineEsShim } from "@nolyfill/shared";
+import { defineEsShim } from '@nolyfill/shared';
 
 const implementation = Promise.allSettled || function allSettled<T>(this: typeof Promise, iterable: Iterable<T | PromiseLike<T>>): Promise<Array<PromiseSettledResult<Awaited<T>>>> {
   const $reject = Promise.reject.bind(this);
@@ -15,7 +15,6 @@ const implementation = Promise.allSettled || function allSettled<T>(this: typeof
       return $reject(e);
     }
   }));
-}
+};
 
-export default defineEsShim(implementation, true, implementation.bind(Promise))
-
+export default defineEsShim(implementation, true, implementation.bind(Promise));

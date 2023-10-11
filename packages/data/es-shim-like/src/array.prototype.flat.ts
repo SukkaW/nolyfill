@@ -1,3 +1,3 @@
 import { defineEsShim } from '@nolyfill/shared';
 
-export default defineEsShim(Array.prototype.flat)
+export default defineEsShim(Array.prototype.flat);

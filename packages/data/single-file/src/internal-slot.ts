@@ -10,12 +10,12 @@ const check = (O: WeakKey, slot: string) => {
 const has = (O: WeakKey, slot: string) => {
   check(O, slot);
   const slots = channel.get(O);
-  return !!slots && Object.prototype.hasOwnProperty.call(slots, `$${slot}`);
+  return !!slots && Object.hasOwn(slots, `$${slot}`);
 };
 const get = (O: WeakKey, slot: string) => {
   check(O, slot);
   const slots = channel.get(O);
-  return slots && slots[`$${slot}`];
+  return slots?.[`$${slot}`];
 };
 const set = (O: WeakKey, slot: string, V: any) => {
   check(O, slot);

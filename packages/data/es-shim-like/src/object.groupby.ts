@@ -2,7 +2,7 @@ import { defineEsShim } from '@nolyfill/shared';
 
 const implementation = (Object as any).groupBy || function groupBy<T, K extends PropertyKey>(
   items: Iterable<T>,
-  callbackfn: (value: T, index: number) => K,
+  callbackfn: (value: T, index: number) => K
 ): Record<K, T[]> {
   const o = Object.create(null);
   let k = 0;
@@ -17,4 +17,4 @@ const implementation = (Object as any).groupBy || function groupBy<T, K extends 
   return o;
 };
 
-export default defineEsShim(implementation, true)
+export default defineEsShim(implementation, true);

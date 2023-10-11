@@ -3,7 +3,7 @@ import { defineEsShim } from '@nolyfill/shared';
 const implementation = typeof AggregateError === 'function'
   ? AggregateError
   : (() => {
-    function AggregateError(errors: ReadonlyArray<any>, message?: string) {
+    function AggregateError(errors: readonly any[], message?: string) {
       const error = new Error(message);
       Object.setPrototypeOf(error, AggregateError.prototype);
       // @ts-expect-error -- manipulating to fake inheritance
@@ -36,4 +36,4 @@ const implementation = typeof AggregateError === 'function'
     return AggregateError;
   })();
 
-export default defineEsShim(implementation, true)
+export default defineEsShim(implementation, true);

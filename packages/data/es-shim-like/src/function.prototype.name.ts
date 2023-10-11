@@ -1,3 +1,3 @@
 import { defineEsShim } from '@nolyfill/shared';
 
-export default defineEsShim(Function.prototype.name)
+export default defineEsShim(Function.prototype.name);

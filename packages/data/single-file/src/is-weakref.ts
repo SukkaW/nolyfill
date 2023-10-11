@@ -7,4 +7,4 @@ const is = (value: unknown) => {
   } catch (e) {
     return false;
   }
-}
+};

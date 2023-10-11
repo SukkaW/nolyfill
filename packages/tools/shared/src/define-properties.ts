@@ -21,7 +21,7 @@ const defineProperty = (object: any, name: string | number | symbol, value: any,
 export const defineProperties = <M extends object>(
   object: object,
   map: M & ThisType<any>,
-  predicates?: Partial<Record<keyof M, () => boolean>>,
+  predicates?: Partial<Record<keyof M, () => boolean>>
 ) => {
   const props: Array<keyof M> = Array.prototype.concat.call(Object.keys(map), Object.getOwnPropertySymbols(map));
   for (let i = 0, l = props.length; i < l; i++) {

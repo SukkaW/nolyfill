@@ -22,4 +22,4 @@ export default function unboxPrimitive(value: unknown) {
     return BigInt.prototype.valueOf.call(value);
   } catch (_) {}
   throw new RangeError('unknown boxed primitive');
-};
+}

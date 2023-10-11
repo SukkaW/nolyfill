@@ -1,3 +1,3 @@
 import { defineEsShim } from '@nolyfill/shared';
 
-export default defineEsShim(String.prototype.replaceAll)
+export default defineEsShim(String.prototype.replaceAll);

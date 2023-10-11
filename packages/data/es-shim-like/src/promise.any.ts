@@ -1,4 +1,4 @@
-import { defineEsShim } from "@nolyfill/shared";
+import { defineEsShim } from '@nolyfill/shared';
 // @ts-expect-error -- TODO: types
 import createAggregateError from '@nolyfill/es-aggregate-error/polyfill';
 
@@ -23,4 +23,4 @@ const implementation = Promise.any || function any<T>(this: typeof Promise, iter
   }
 };
 
-export default defineEsShim(implementation, true, implementation.bind(Promise))
+export default defineEsShim(implementation, true, implementation.bind(Promise));

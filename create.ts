@@ -118,7 +118,7 @@ const manualPackagesList = [
   'function-bind', // function-bind's main entry point is not uncurried, and doesn't follow es-shim API
   'has-tostringtag', // two entries (index.js, shams.js)
   'has-symbols', // two entries (index.js, shams.js)
-  'es-iterator-helpers', // use rollup prebundle approach
+  'es-iterator-helpers' // use rollup prebundle approach
   // 'globalthis' // globalthis package's entrypoint is a function, not the implementation
 ] as const;
 
@@ -138,18 +138,16 @@ const nonNolyfillPackagesList = [
 
   const newPackageJson = {
     ...currentPackageJson,
-    overrides: allPackagesList
-      .reduce<Record<string, string>>((acc, packageName) => {
-        acc[packageName] = `npm:@nolyfill/${packageName}@latest`;
-        return acc;
-      }, {}),
+    overrides: allPackagesList.reduce<Record<string, string>>((acc, packageName) => {
+      acc[packageName] = `npm:@nolyfill/${packageName}@latest`;
+      return acc;
+    }, {}),
     pnpm: {
       ...currentPackageJson.pnpm,
-      overrides: allPackagesList
-        .reduce<Record<string, string>>((acc, packageName) => {
-          acc[packageName] = `workspace:@nolyfill/${packageName}@*`;
-          return acc;
-        }, {})
+      overrides: allPackagesList.reduce<Record<string, string>>((acc, packageName) => {
+        acc[packageName] = `workspace:@nolyfill/${packageName}@*`;
+        return acc;
+      }, {})
     }
   };
 
@@ -218,11 +216,11 @@ async function createEsShimLikePackage(
     path: path.join(__dirname, 'packages/generated', packageName),
     files: {
       'entry.js': code + esShimLikeExportInterop,
-      'implementation.js': `'use strict';\nmodule.exports = require('./entry.js').implementation;\n`,
-      'polyfill.js': `'use strict';\nmodule.exports = require('./entry.js').polyfill;\n`,
-      'shim.js': `'use strict';\nmodule.exports = require('./entry.js').shim;\n`,
-      'auto.js': `'use strict';\n/* noop */\n`,
-      'index.js': `'use strict';\nmodule.exports = require('./entry.js').index();\n`
+      'implementation.js': '\'use strict\';\nmodule.exports = require(\'./entry.js\').implementation;\n',
+      'polyfill.js': '\'use strict\';\nmodule.exports = require(\'./entry.js\').polyfill;\n',
+      'shim.js': '\'use strict\';\nmodule.exports = require(\'./entry.js\').shim;\n',
+      'auto.js': '\'use strict\';\n/* noop */\n',
+      'index.js': '\'use strict\';\nmodule.exports = require(\'./entry.js\').index();\n'
     },
     packageJson: {
       name: `@nolyfill/${packageName}`,
@@ -268,7 +266,7 @@ async function createSingleFilePackage(
   const pkg: VirtualPackage = {
     path: path.join(__dirname, 'packages/generated', packageName),
     files: {
-      'index.js': code + defaultExportInterop,
+      'index.js': code + defaultExportInterop
     },
     packageJson: {
       name: `@nolyfill/${packageName}`,

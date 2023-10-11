@@ -1,3 +1,3 @@
 import { defineEsShim } from '@nolyfill/shared';
 
-export default defineEsShim(String.prototype.trimEnd)
+export default defineEsShim(String.prototype.trimEnd);

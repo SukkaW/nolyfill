@@ -1,4 +1,4 @@
-import { defineEsShim } from "@nolyfill/shared";
+import { defineEsShim } from '@nolyfill/shared';
 
 const implementation = Array.prototype.findLast
   || function <T>(this: T[], callback: (value: T, index: number, array: T[]) => unknown, thisArg: any) {
@@ -6,7 +6,7 @@ const implementation = Array.prototype.findLast
       const value = this[i];
       if (callback.call(thisArg, value, i, this)) return value;
     }
-    return;
-  }
 
-export default defineEsShim(implementation)
+  };
+
+export default defineEsShim(implementation);

@@ -5,6 +5,6 @@ function isGeneratorFunction(fn: unknown): fn is Function {
   if (typeof fn !== 'function') return false;
   if (isFnRegex.test(Function.prototype.toString.call(fn))) return true;
   return Object.getPrototypeOf(fn) === GeneratorFunction;
-};
+}
 
 export default isGeneratorFunction;

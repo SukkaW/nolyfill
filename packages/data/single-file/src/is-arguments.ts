@@ -14,4 +14,4 @@ const isLegacyArguments = (value: any) => (isStandardArguments(value)
 );
 // isStandardArguments.isLegacyArguments = isLegacyArguments; // for tests
 // eslint-disable-next-line prefer-rest-params -- detect arguments object
-module.exports = (function () { return isStandardArguments(arguments); }()) ? isStandardArguments : isLegacyArguments
+module.exports = (function () { return isStandardArguments(arguments); }()) ? isStandardArguments : isLegacyArguments;

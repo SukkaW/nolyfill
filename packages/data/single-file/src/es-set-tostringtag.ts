@@ -3,7 +3,7 @@ interface SetToStringTagOption {
 }
 
 const set = (object: any, value: any, options: SetToStringTagOption = {}) => {
-  if (options.force || !Object.prototype.hasOwnProperty.call(object, Symbol.toStringTag)) {
+  if (options.force || !Object.hasOwn(object, Symbol.toStringTag)) {
     Object.defineProperty(object, Symbol.toStringTag, {
       configurable: true,
       enumerable: false,

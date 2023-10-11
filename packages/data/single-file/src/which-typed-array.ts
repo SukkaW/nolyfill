@@ -23,7 +23,7 @@ const cacheEntries = Object.entries(
     },
     Object.create(null)
   )
-) as [`$${string}`, any][];
+) as Array<[`$${string}`, any]>;
 
 const tryTypedArrays = (value: unknown): false | AvaliableTypedArray => {
   let found: false | AvaliableTypedArray = false;

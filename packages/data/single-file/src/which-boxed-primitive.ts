@@ -21,7 +21,7 @@ const which = (value: unknown) => {
       return 'BigInt';
     } catch (_) {}
   }
-  return;
+
 };
 
 export default which;
