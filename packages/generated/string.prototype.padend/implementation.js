@@ -1,2 +1,2 @@
 'use strict';
-module.exports = String.prototype.padEnd;
+module.exports = require('./entry.js').implementation;

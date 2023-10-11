@@ -1,2 +1,2 @@
 'use strict';
-module.exports = Function.prototype.name;
+module.exports = require('./entry.js').implementation;

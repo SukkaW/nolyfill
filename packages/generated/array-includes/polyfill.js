@@ -1,2 +1,2 @@
 'use strict';
-module.exports = () => Array.prototype.includes;
+module.exports = require('./entry.js').polyfill;

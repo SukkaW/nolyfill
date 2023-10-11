@@ -1,2 +1,2 @@
 'use strict';
-module.exports = () => Object.assign;
+module.exports = require('./entry.js').polyfill;

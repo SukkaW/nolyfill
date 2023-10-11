@@ -1,2 +1,2 @@
 'use strict';
-module.exports = () => String.prototype.replaceAll;
+module.exports = require('./entry.js').polyfill;

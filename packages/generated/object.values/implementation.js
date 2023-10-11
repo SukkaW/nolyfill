@@ -1,2 +1,2 @@
 'use strict';
-module.exports = Object.values;
+module.exports = require('./entry.js').implementation;

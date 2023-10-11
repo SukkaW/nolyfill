@@ -1,2 +1,2 @@
 'use strict';
-module.exports = () => Array.prototype.reduce;
+module.exports = require('./entry.js').shim;

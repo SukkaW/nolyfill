@@ -1,2 +1,2 @@
 'use strict';
-module.exports = globalThis;
+module.exports = require('./entry.js').implementation;

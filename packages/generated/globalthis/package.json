@@ -1,10 +1,10 @@
 {
   "name": "@nolyfill/globalthis",
-  "version": "1.0.21",
+  "version": "1.0.22",
   "repository": {
     "type": "git",
     "url": "https://github.com/SukkaW/nolyfill",
-    "directory": "packages/manual/has-symbols"
+    "directory": "packages/generated/globalthis"
   },
   "main": "./index.js",
   "license": "MIT",

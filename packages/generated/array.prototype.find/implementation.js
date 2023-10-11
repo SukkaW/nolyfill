@@ -1,2 +1,2 @@
 'use strict';
-module.exports = Array.prototype.find;
+module.exports = require('./entry.js').implementation;

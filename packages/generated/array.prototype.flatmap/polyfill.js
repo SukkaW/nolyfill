@@ -1,2 +1,2 @@
 'use strict';
-module.exports = () => Array.prototype.flatMap;
+module.exports = require('./entry.js').polyfill;

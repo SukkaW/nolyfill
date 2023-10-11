@@ -1,2 +1,2 @@
 'use strict';
-module.exports = () => Object.getOwnPropertyDescriptors;
+module.exports = require('./entry.js').polyfill;

@@ -1,2 +1,2 @@
 'use strict';
-module.exports = () => Array.from;
+module.exports = require('./entry.js').shim;

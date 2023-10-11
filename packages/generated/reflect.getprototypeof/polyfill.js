@@ -1,2 +1,2 @@
 'use strict';
-module.exports = () => Reflect.getPrototypeOf;
+module.exports = require('./entry.js').polyfill;
