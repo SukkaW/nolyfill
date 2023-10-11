@@ -119,7 +119,7 @@ const manualPackagesList = [
   'has-tostringtag', // two entries (index.js, shams.js)
   'has-symbols', // two entries (index.js, shams.js)
   'es-iterator-helpers', // use rollup prebundle approach
-  'globalthis' // globalthis package's entrypoint is a function, not the implementation
+  // 'globalthis' // globalthis package's entrypoint is a function, not the implementation
 ] as const;
 
 const nonNolyfillPackagesList = [
