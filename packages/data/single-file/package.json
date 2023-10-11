@@ -1,0 +1,13 @@
+{
+  "name": "nolyfill-single-file",
+  "version": "0.0.0",
+  "private": true,
+  "license": "MIT",
+  "scripts": {
+    "lint": "eslint ."
+  },
+  "dependencies": {
+    "@nolyfill/shared": "workspace:*",
+    "@nolyfill/is-array-buffer": "workspace:*"
+  }
+}

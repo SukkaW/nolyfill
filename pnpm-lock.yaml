@@ -169,6 +169,15 @@ importers:
         specifier: workspace:*
         version: link:../../tools/shared
 
+  packages/data/single-file:
+    dependencies:
+      '@nolyfill/is-array-buffer':
+        specifier: workspace:*
+        version: link:../../generated/is-array-buffer
+      '@nolyfill/shared':
+        specifier: workspace:*
+        version: link:../../tools/shared
+
   packages/generated/array-buffer-byte-length:
     dependencies:
       '@nolyfill/is-array-buffer':
