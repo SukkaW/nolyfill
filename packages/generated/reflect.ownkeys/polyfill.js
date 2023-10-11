@@ -1,2 +1,2 @@
 'use strict';
-module.exports = () => Reflect.ownKeys;
+module.exports = require('./entry.js').polyfill;

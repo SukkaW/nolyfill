@@ -1,2 +1,2 @@
 'use strict';
-module.exports = () => String.prototype.trimLeft;
+module.exports = require('./entry.js').shim;

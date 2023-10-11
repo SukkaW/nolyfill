@@ -1,2 +1,2 @@
 'use strict';
-module.exports = ArrayBuffer.prototype.slice;
+module.exports = require('./entry.js').implementation;

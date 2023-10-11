@@ -1,2 +1,2 @@
 'use strict';
-module.exports = () => Object.fromEntries;
+module.exports = require('./entry.js').shim;

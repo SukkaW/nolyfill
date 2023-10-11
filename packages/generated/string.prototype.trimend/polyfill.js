@@ -1,2 +1,2 @@
 'use strict';
-module.exports = () => String.prototype.trimEnd;
+module.exports = require('./entry.js').polyfill;

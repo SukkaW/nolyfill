@@ -1,2 +1,2 @@
 'use strict';
-module.exports = String.prototype.trimStart;
+module.exports = require('./entry.js').implementation;
