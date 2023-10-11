@@ -8,16 +8,16 @@ Object.defineProperty(exports, "default", {
         return _default;
     }
 });
-var _shared = require("@nolyfill/shared");
-var typedArrayByteOffSet = (0, _shared.uncurryThis)(Object.getOwnPropertyDescriptor(_shared.TypedArrayPrototype, "byteOffset").get);
-var g = function(value) {
+const _shared = require("@nolyfill/shared");
+const typedArrayByteOffSet = (0, _shared.uncurryThis)(Object.getOwnPropertyDescriptor(_shared.TypedArrayPrototype, 'byteOffset').get);
+const g = (value)=>{
     try {
         return typedArrayByteOffSet(value);
     } catch (e) {
         return false;
     }
 };
-var _default = g;
+const _default = g;
 
 if ((typeof exports.default === 'object' && exports.default !== null) || typeof exports.default === 'function') {
   Object.assign(exports.default, exports);

@@ -8,8 +8,8 @@ Object.defineProperty(exports, "default", {
         return _default;
     }
 });
-var _shared = require("@nolyfill/shared");
-var _default = (0, _shared.defineEsShim)(ArrayBuffer.prototype.slice);
+const _shared = require("@nolyfill/shared");
+const _default = (0, _shared.defineEsShim)(ArrayBuffer.prototype.slice);
 
 Object.assign(exports.default, exports);
 module.exports = exports.default;

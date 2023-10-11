@@ -193,7 +193,8 @@ const sharedSwcOption = {
   jsc: {
     parser: {
       syntax: 'typescript'
-    }
+    },
+    target: 'es2018'
   },
   module: { type: 'commonjs' }
 } as const;

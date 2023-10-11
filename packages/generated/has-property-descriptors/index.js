@@ -8,13 +8,9 @@ Object.defineProperty(exports, "default", {
         return _default;
     }
 });
-var hasPropertyDescriptors = function() {
-    return true;
-};
-hasPropertyDescriptors.hasArrayLengthDefineBug = function() {
-    return false;
-};
-var _default = hasPropertyDescriptors;
+const hasPropertyDescriptors = ()=>true;
+hasPropertyDescriptors.hasArrayLengthDefineBug = ()=>false;
+const _default = hasPropertyDescriptors;
 
 if ((typeof exports.default === 'object' && exports.default !== null) || typeof exports.default === 'function') {
   Object.assign(exports.default, exports);

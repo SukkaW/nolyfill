@@ -8,7 +8,7 @@ Object.defineProperty(exports, "default", {
         return _default;
     }
 });
-var _default = Object.getPrototypeOf(Object.getPrototypeOf([][Symbol.iterator]()));
+const _default = Object.getPrototypeOf(Object.getPrototypeOf([][Symbol.iterator]()));
 
 if ((typeof exports.default === 'object' && exports.default !== null) || typeof exports.default === 'function') {
   Object.assign(exports.default, exports);

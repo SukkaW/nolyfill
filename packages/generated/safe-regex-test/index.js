@@ -8,15 +8,13 @@ Object.defineProperty(exports, "default", {
         return _default;
     }
 });
-var safeRegexTest = function(r) {
-    if (!r || typeof r !== "object" && typeof r !== "function" || Object.prototype.toString.call(r) !== "[object RegExp]") {
-        throw new TypeError("`regex` must be a RegExp");
+const safeRegexTest = (r)=>{
+    if (!r || typeof r !== 'object' && typeof r !== 'function' || Object.prototype.toString.call(r) !== '[object RegExp]') {
+        throw new TypeError('\`regex\` must be a RegExp');
     }
-    return function(s) {
-        return RegExp.prototype.exec.call(r, s) !== null;
-    };
+    return (s)=>RegExp.prototype.exec.call(r, s) !== null;
 };
-var _default = safeRegexTest;
+const _default = safeRegexTest;
 
 if ((typeof exports.default === 'object' && exports.default !== null) || typeof exports.default === 'function') {
   Object.assign(exports.default, exports);

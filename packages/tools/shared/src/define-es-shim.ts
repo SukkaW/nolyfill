@@ -16,7 +16,6 @@ export const defineEsShim = (impl: any, isStaticMethod = false, main: any = null
     /** auto.js */
     auto() {
       /** noop */
-
     },
     index() {
       const bound = main || (isStaticMethod ? impl : uncurryThis(impl));

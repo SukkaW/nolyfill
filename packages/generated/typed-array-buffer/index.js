@@ -8,8 +8,8 @@ Object.defineProperty(exports, "default", {
         return _default;
     }
 });
-var _shared = require("@nolyfill/shared");
-var _default = (0, _shared.uncurryThis)(Object.getOwnPropertyDescriptor(Object.getPrototypeOf(Int8Array.prototype), "buffer").get);
+const _shared = require("@nolyfill/shared");
+const _default = (0, _shared.uncurryThis)(Object.getOwnPropertyDescriptor(Object.getPrototypeOf(Int8Array.prototype), 'buffer').get);
 
 if ((typeof exports.default === 'object' && exports.default !== null) || typeof exports.default === 'function') {
   Object.assign(exports.default, exports);

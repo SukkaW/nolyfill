@@ -8,19 +8,19 @@ Object.defineProperty(exports, "default", {
         return _default;
     }
 });
-var _shared = require("@nolyfill/shared");
-var implementation = typeof AggregateError === "function" ? AggregateError : function() {
+const _shared = require("@nolyfill/shared");
+const implementation = typeof AggregateError === 'function' ? AggregateError : (()=>{
     function AggregateError1(errors, message) {
-        var error = new Error(message);
+        const error = new Error(message);
         Object.setPrototypeOf(error, AggregateError1.prototype);
         // @ts-expect-error -- manipulating to fake inheritance
         delete error.constructor;
-        Object.defineProperty(error, "errors", {
+        Object.defineProperty(error, 'errors', {
             value: Array.from(errors)
         });
         return error;
     }
-    Object.defineProperty(AggregateError1, "prototype", {
+    Object.defineProperty(AggregateError1, 'prototype', {
         writable: false
     });
     Object.defineProperties(AggregateError1.prototype, {
@@ -34,19 +34,19 @@ var implementation = typeof AggregateError === "function" ? AggregateError : fun
             enumerable: false,
             configurable: true,
             writable: true,
-            value: ""
+            value: ''
         },
         name: {
             enumerable: false,
             configurable: true,
             writable: true,
-            value: "AggregateError"
+            value: 'AggregateError'
         }
     });
     Object.setPrototypeOf(AggregateError1.prototype, Error.prototype);
     return AggregateError1;
-}();
-var _default = (0, _shared.defineEsShim)(implementation, true);
+})();
+const _default = (0, _shared.defineEsShim)(implementation, true);
 
 Object.assign(exports.default, exports);
 module.exports = exports.default;

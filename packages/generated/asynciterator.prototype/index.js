@@ -9,13 +9,13 @@ Object.defineProperty(exports, "default", {
         return _default;
     }
 });
-var asyncIterProto = typeof AsyncIterator === "function" ? AsyncIterator.prototype : {};
+const asyncIterProto = typeof AsyncIterator === 'function' ? AsyncIterator.prototype : {};
 if (!(Symbol.iterator in asyncIterProto)) {
     asyncIterProto[Symbol.iterator] = function() {
         return this;
     };
 }
-var _default = asyncIterProto;
+const _default = asyncIterProto;
 
 if ((typeof exports.default === 'object' && exports.default !== null) || typeof exports.default === 'function') {
   Object.assign(exports.default, exports);

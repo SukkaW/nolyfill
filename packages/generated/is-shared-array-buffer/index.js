@@ -8,10 +8,10 @@ Object.defineProperty(exports, "default", {
         return _default;
     }
 });
-var _shared = require("@nolyfill/shared");
-var bL = (0, _shared.uncurryThis)(Object.getOwnPropertyDescriptor(SharedArrayBuffer.prototype, "byteLength").get);
-var is = function(obj) {
-    if (!obj || typeof obj !== "object") {
+const _shared = require("@nolyfill/shared");
+const bL = (0, _shared.uncurryThis)(Object.getOwnPropertyDescriptor(SharedArrayBuffer.prototype, 'byteLength').get);
+const is = (obj)=>{
+    if (!obj || typeof obj !== 'object') {
         return false;
     }
     try {
@@ -21,7 +21,7 @@ var is = function(obj) {
         return false;
     }
 };
-var _default = is;
+const _default = is;
 
 if ((typeof exports.default === 'object' && exports.default !== null) || typeof exports.default === 'function') {
   Object.assign(exports.default, exports);

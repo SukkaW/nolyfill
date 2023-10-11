@@ -8,7 +8,7 @@ Object.defineProperty(exports, "default", {
         return _shared.defineProperties;
     }
 });
-var _shared = require("@nolyfill/shared");
+const _shared = require("@nolyfill/shared");
 
 if ((typeof exports.default === 'object' && exports.default !== null) || typeof exports.default === 'function') {
   Object.assign(exports.default, exports);

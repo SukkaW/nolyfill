@@ -8,10 +8,8 @@ Object.defineProperty(exports, "default", {
         return _default;
     }
 });
-var hasProto = function() {
-    return true;
-};
-var _default = hasProto;
+const hasProto = ()=>true;
+const _default = hasProto;
 
 if ((typeof exports.default === 'object' && exports.default !== null) || typeof exports.default === 'function') {
   Object.assign(exports.default, exports);

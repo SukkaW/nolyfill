@@ -8,9 +8,9 @@ Object.defineProperty(exports, "default", {
         return _default;
     }
 });
-var is = function(value) {
-    if (typeof value === "string") return true;
-    if (typeof value !== "object") return false;
+const is = (value)=>{
+    if (typeof value === 'string') return true;
+    if (typeof value !== 'object') return false;
     try {
         String.prototype.valueOf.call(value);
         return true;
@@ -18,7 +18,7 @@ var is = function(value) {
         return false;
     }
 };
-var _default = is;
+const _default = is;
 
 if ((typeof exports.default === 'object' && exports.default !== null) || typeof exports.default === 'function') {
   Object.assign(exports.default, exports);

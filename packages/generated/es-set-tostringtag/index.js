@@ -8,18 +8,17 @@ Object.defineProperty(exports, "default", {
         return _default;
     }
 });
-var set = function(object, value) {
-    var options = arguments.length > 2 && arguments[2] !== void 0 ? arguments[2] : {};
+const set = (object, value, options = {})=>{
     if (options.force || !Object.hasOwn(object, Symbol.toStringTag)) {
         Object.defineProperty(object, Symbol.toStringTag, {
             configurable: true,
             enumerable: false,
-            value: value,
+            value,
             writable: false
         });
     }
 };
-var _default = set;
+const _default = set;
 
 if ((typeof exports.default === 'object' && exports.default !== null) || typeof exports.default === 'function') {
   Object.assign(exports.default, exports);

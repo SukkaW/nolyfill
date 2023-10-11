@@ -8,18 +8,18 @@ Object.defineProperty(exports, "default", {
         return _default;
     }
 });
-var create = function() {
-    var $wm, $m;
-    var get = function(key) {
-        if (key && (typeof key === "object" || typeof key === "function")) {
+const create = ()=>{
+    let $wm, $m;
+    const get = (key)=>{
+        if (key && (typeof key === 'object' || typeof key === 'function')) {
             if ($wm) return $wm.get(key);
         } else if ($m) {
             return $m.get(key);
         }
         return undefined;
     };
-    var set = function(key, value) {
-        if (key && (typeof key === "object" || typeof key === "function")) {
+    const set = (key, value)=>{
+        if (key && (typeof key === 'object' || typeof key === 'function')) {
             if (!$wm) $wm = new WeakMap();
             $wm.set(key, value);
         } else {
@@ -27,8 +27,8 @@ var create = function() {
             $m.set(key, value);
         }
     };
-    var has = function(key) {
-        if (key && (typeof key === "object" || typeof key === "function")) {
+    const has = (key)=>{
+        if (key && (typeof key === 'object' || typeof key === 'function')) {
             if ($wm) {
                 return $wm.has(key);
             }
@@ -37,19 +37,19 @@ var create = function() {
         }
         return false;
     };
-    var assert = function(key) {
+    const assert = (key)=>{
         if (!has(key)) {
-            throw new TypeError("Side channel does not contain the given key");
+            throw new TypeError('Side channel does not contain the given key');
         }
     };
     return {
-        get: get,
-        set: set,
-        has: has,
-        assert: assert
+        get,
+        set,
+        has,
+        assert
     };
 };
-var _default = create;
+const _default = create;
 
 if ((typeof exports.default === 'object' && exports.default !== null) || typeof exports.default === 'function') {
   Object.assign(exports.default, exports);

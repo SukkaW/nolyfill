@@ -8,11 +8,11 @@ Object.defineProperty(exports, "default", {
         return _default;
     }
 });
-var is = function(value) {
-    if (!value || typeof value !== "object" && typeof value !== "function") return false;
-    return Object.prototype.toString.call(value) === "[object RegExp]";
+const is = (value)=>{
+    if (!value || typeof value !== 'object' && typeof value !== 'function') return false;
+    return Object.prototype.toString.call(value) === '[object RegExp]';
 };
-var _default = is;
+const _default = is;
 
 if ((typeof exports.default === 'object' && exports.default !== null) || typeof exports.default === 'function') {
   Object.assign(exports.default, exports);

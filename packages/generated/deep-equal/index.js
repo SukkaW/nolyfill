@@ -8,11 +8,9 @@ Object.defineProperty(exports, "default", {
         return _default;
     }
 });
-var _dequal = require("dequal");
-var deepEqual = function(a, b) {
-    return (0, _dequal.dequal)(a, b);
-};
-var _default = deepEqual;
+const _dequal = require("dequal");
+const deepEqual = (a, b)=>(0, _dequal.dequal)(a, b);
+const _default = deepEqual;
 
 if ((typeof exports.default === 'object' && exports.default !== null) || typeof exports.default === 'function') {
   Object.assign(exports.default, exports);

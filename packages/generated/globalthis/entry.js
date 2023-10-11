@@ -8,10 +8,8 @@ Object.defineProperty(exports, "default", {
         return _default;
     }
 });
-var _shared = require("@nolyfill/shared");
-var _default = (0, _shared.defineEsShim)(globalThis, true, function() {
-    return globalThis;
-});
+const _shared = require("@nolyfill/shared");
+const _default = (0, _shared.defineEsShim)(globalThis, true, ()=>globalThis);
 
 Object.assign(exports.default, exports);
 module.exports = exports.default;
