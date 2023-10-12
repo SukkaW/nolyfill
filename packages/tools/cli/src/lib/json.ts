@@ -8,7 +8,7 @@ import type { PackageManager } from '../package-manager';
 async function readJSON<T>(filepath: string): Promise<T | null> {
   try {
     return JSON.parse(await fsp.readFile(filepath, 'utf-8')) as T;
-  } catch (error) {
+  } catch {
     return null;
   }
 }

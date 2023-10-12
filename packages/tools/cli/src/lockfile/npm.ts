@@ -34,7 +34,6 @@ function convertToPackageNode(npmNode: Node | Link): PackageNode {
     for (const edge of npmNode.edgesOut.values()) {
       // https://github.com/npm/cli/blob/f916d333c16b4f0433d8a304e856b73ed4f949cd/workspaces/arborist/lib/edge.js#L231-L234
       // edge.to can be null if the dependency is optional
-      // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition -- see above
       if (edge.to != null) {
         node.dependencies?.push(buildNodeFromDep(edge.to));
       }

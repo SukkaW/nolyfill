@@ -1,5 +1,5 @@
 const create = () => {
-  let $wm: WeakMap<any, any>, $m: Map<any, any>;
+  let $wm: WeakMap<any, any> | undefined, $m: Map<any, any> | undefined;
 
   const get = (key: any) => {
     if (key && (typeof key === 'object' || typeof key === 'function')) {

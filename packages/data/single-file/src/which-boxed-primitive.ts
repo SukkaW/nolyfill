@@ -19,9 +19,10 @@ const which = (value: unknown) => {
     try {
       BigInt.prototype.valueOf.call(value);
       return 'BigInt';
-    } catch (_) {}
+    } catch {}
   }
-
+  // eslint-disable-next-line sukka/unicorn/no-useless-undefined -- explicitly return undefined to match the behavior
+  return undefined;
 };
 
 export default which;

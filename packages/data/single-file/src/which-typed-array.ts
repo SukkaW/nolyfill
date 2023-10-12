@@ -10,20 +10,17 @@ const availableTypedArray = [
 type AvaliableTypedArray = typeof availableTypedArray[number];
 
 const cacheEntries = Object.entries(
-  availableTypedArray.reduce<Record<`$${AvaliableTypedArray}`, any>>(
-    (acc, typedArray) => {
-      const proto = Object.getPrototypeOf(new globalThis[typedArray]());
-      acc[`$${typedArray}`] = uncurryThis(
-        (
-          Object.getOwnPropertyDescriptor(proto, Symbol.toStringTag)
+  availableTypedArray.reduce((acc, typedArray) => {
+    const proto = Object.getPrototypeOf(new globalThis[typedArray]());
+    acc[`$${typedArray}`] = uncurryThis(
+      (
+        Object.getOwnPropertyDescriptor(proto, Symbol.toStringTag)
           || Object.getOwnPropertyDescriptor(Object.getPrototypeOf(proto), Symbol.toStringTag)
-        )!.get!
-      );
-      return acc;
-    },
-    Object.create(null)
-  )
-) as Array<[`$${string}`, any]>;
+      )!.get!
+    );
+    return acc;
+  }, Object.create(null))
+) as Array<[`$${string}`, (...args: unknown[]) => string]>;
 
 const tryTypedArrays = (value: unknown): false | AvaliableTypedArray => {
   let found: false | AvaliableTypedArray = false;
@@ -33,7 +30,7 @@ const tryTypedArrays = (value: unknown): false | AvaliableTypedArray => {
         if (`$${getter(value)}` === typedArray) {
           found = typedArray.slice(1) as AvaliableTypedArray;
         }
-      } catch (e) { /**/ }
+      } catch { /**/ }
     }
   });
   return found;

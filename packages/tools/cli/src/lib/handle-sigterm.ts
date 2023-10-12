@@ -1,5 +1,6 @@
+const onSigExit = () => process.exit(0);
+
 export const handleSigTerm = () => {
-  const handleSigTerm = () => process.exit(0);
-  process.on('SIGINT', handleSigTerm);
-  process.on('SIGTERM', handleSigTerm);
+  process.on('SIGINT', onSigExit);
+  process.on('SIGTERM', onSigExit);
 };

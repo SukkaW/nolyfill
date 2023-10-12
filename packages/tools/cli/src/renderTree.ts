@@ -1,4 +1,3 @@
-/* eslint-disable no-nested-ternary -- readability */
 import picocolors from 'picocolors';
 import type { PackageNode } from './types';
 

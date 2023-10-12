@@ -4,7 +4,9 @@ const is = (value: unknown) => {
   try {
     WeakRef.prototype.deref.call(value);
     return true;
-  } catch (e) {
+  } catch {
     return false;
   }
 };
+
+export default is;

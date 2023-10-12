@@ -8,7 +8,7 @@ const is = (obj: unknown): obj is SharedArrayBuffer => {
   try {
     bL(obj);
     return true;
-  } catch (_) {
+  } catch {
     return false;
   }
 };
