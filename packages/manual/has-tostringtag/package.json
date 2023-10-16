@@ -7,11 +7,11 @@
     "directory": "packages/manual/has-symbols"
   },
   "main": "./index.js",
-  "license": "MIT",
   "files": [
     "*.js"
   ],
   "scripts": {},
+  "license": "MIT",
   "dependencies": {},
   "engines": {
     "node": ">=12.4.0"

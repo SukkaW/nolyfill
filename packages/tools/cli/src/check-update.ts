@@ -8,7 +8,7 @@ import { env } from 'process';
 import picocolors from 'picocolors';
 import type { PackageJson } from 'type-fest';
 
-const UPDATE_CHECK_INTERVAL = 3600000;
+const UPDATE_CHECK_INTERVAL = 3_600_000;
 const UPDATE_CHECK_DIST_TAG = 'latest';
 
 const compareVersions = (a: string, b: string) => a.localeCompare(b, 'en-US', { numeric: true });

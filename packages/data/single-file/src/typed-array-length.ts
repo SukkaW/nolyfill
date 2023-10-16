@@ -4,7 +4,7 @@ const typedArrayLength = uncurryThis(Object.getOwnPropertyDescriptor(TypedArrayP
 const g = (value: unknown) => {
   try {
     return typedArrayLength(value);
-  } catch (e) {
+  } catch {
     return false;
   }
 };

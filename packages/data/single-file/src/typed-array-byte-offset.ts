@@ -4,7 +4,7 @@ const typedArrayByteOffSet = uncurryThis(Object.getOwnPropertyDescriptor(TypedAr
 const g = (value: unknown) => {
   try {
     return typedArrayByteOffSet(value);
-  } catch (e) {
+  } catch {
     return false;
   }
 };

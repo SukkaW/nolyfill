@@ -12,7 +12,6 @@ import replace from '@rollup/plugin-replace';
 import { minify } from 'rollup-plugin-swc3';
 
 export default defineConfig(async () => {
-  // eslint-disable-next-line @typescript-eslint/no-var-requires -- safe
   const esIteratorHelpersPkgJsonPath = resolve('ljharb-es-iterator-helpers/package.json');
   if (!esIteratorHelpersPkgJsonPath) {
     throw new Error('Could not find ljharb-es-iterator-helpers/package.json');

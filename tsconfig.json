@@ -1,22 +1,22 @@
 {
   "compilerOptions": {
+    "composite": false,
     "target": "esnext",
     "lib": [
       "esnext"
     ],
-    "verbatimModuleSyntax": true,
-    "isolatedModules": true,
     "moduleResolution": "node",
-    "esModuleInterop": true,
     "resolveJsonModule": true,
+    "noEmit": true,
+    "isolatedModules": true,
+    "verbatimModuleSyntax": true,
+    "esModuleInterop": true,
     "strict": true,
     "noFallthroughCasesInSwitch": true,
     "noImplicitAny": true,
     "noImplicitOverride": true,
     "noImplicitReturns": true,
-    "noImplicitThis": true,
-    "noEmit": true,
-    "composite": false,
+    "noImplicitThis": true
   },
   "include": [
     "./packages/",

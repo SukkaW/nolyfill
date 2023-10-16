@@ -2,12 +2,12 @@
   "name": "nolyfill-single-file",
   "version": "0.0.0",
   "private": true,
-  "license": "MIT",
   "scripts": {
     "lint": "eslint ."
   },
+  "license": "MIT",
   "dependencies": {
-    "@nolyfill/shared": "workspace:*",
-    "@nolyfill/is-array-buffer": "workspace:*"
+    "@nolyfill/is-array-buffer": "workspace:*",
+    "@nolyfill/shared": "workspace:*"
   }
 }

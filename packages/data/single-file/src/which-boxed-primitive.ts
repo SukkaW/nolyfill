@@ -19,9 +19,9 @@ const which = (value: unknown) => {
     try {
       BigInt.prototype.valueOf.call(value);
       return 'BigInt';
-    } catch (_) {}
+    } catch {}
   }
-
+  return undefined;
 };
 
 export default which;

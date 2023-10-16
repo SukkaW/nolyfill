@@ -3,7 +3,7 @@ const is = (value: unknown): value is Date => {
   try {
     Date.prototype.getDay.call(value);
     return true;
-  } catch (e) {
+  } catch {
     return false;
   }
 };

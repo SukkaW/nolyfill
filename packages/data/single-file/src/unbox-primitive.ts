@@ -20,6 +20,6 @@ export default function unboxPrimitive(value: unknown) {
   }
   try {
     return BigInt.prototype.valueOf.call(value);
-  } catch (_) {}
+  } catch {}
   throw new RangeError('unknown boxed primitive');
 }

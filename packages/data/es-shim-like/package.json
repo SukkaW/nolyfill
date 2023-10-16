@@ -2,12 +2,12 @@
   "name": "es-shim-like",
   "version": "0.0.0",
   "private": true,
-  "license": "MIT",
   "scripts": {
     "lint": "eslint ."
   },
+  "license": "MIT",
   "dependencies": {
-    "@nolyfill/shared": "workspace:*",
-    "@nolyfill/es-aggregate-error": "workspace:*"
+    "@nolyfill/es-aggregate-error": "workspace:*",
+    "@nolyfill/shared": "workspace:*"
   }
 }

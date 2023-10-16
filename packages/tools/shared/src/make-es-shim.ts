@@ -1,13 +1,15 @@
 import { defineProperties } from './define-properties';
 
-export interface EsShimProp<T> {
-  implementation: T,
-  getPolyfill(): T,
-  shim(): T
+export interface EsShimProp<I> {
+  implementation: I,
+  getPolyfill(): I,
+  shim(): I
 }
 
-export const makeEsShim = (shim: any, implementation: any) => defineProperties(shim, {
-  implementation,
-  getPolyfill: () => implementation,
-  shim: () => implementation
-});
+export function makeEsShim<T extends object, I>(shim: T, implementation: I): asserts shim is T & EsShimProp<I> {
+  defineProperties(shim, {
+    implementation,
+    getPolyfill: () => implementation,
+    shim: () => implementation
+  });
+}

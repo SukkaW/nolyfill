@@ -7,9 +7,8 @@
     "directory": "packages/shared"
   },
   "main": "dist/index.js",
-  "types": "dist/index.d.ts",
   "module": "dist/index.mjs",
-  "license": "MIT",
+  "types": "dist/index.d.ts",
   "files": [
     "dist"
   ],
@@ -17,6 +16,7 @@
     "build": "rollup -c rollup.config.ts --configPlugin swc3",
     "lint": "eslint ."
   },
+  "license": "MIT",
   "devDependencies": {
     "rollup": "^3.28.0",
     "rollup-plugin-dts": "^6.0.1",

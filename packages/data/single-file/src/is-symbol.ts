@@ -4,7 +4,7 @@ const is = (value: unknown): value is symbol => {
   try {
     if (typeof (value as any).valueOf() !== 'symbol') return false;
     return Symbol.prototype.toString.call(value).startsWith('Symbol(');
-  } catch (e) {
+  } catch {
     return false;
   }
 };
