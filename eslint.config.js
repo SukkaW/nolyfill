@@ -2,11 +2,15 @@
 
 module.exports = require('eslint-config-sukka').sukka({
   node: true,
-  ts: {
-    tsconfigPath: './tsconfig.json'
-  }
+  ts: true
 }, {
-  ignores: ['dist', 'packages/es-iterator-helpers/**/*.js', 'packages/tools/cli/bin/nolyfill.js', 'packages/generated/**/*.js']
+  ignores: [
+    'dist',
+    'packages/es-iterator-helpers/**/*.js',
+    'packages/tools/cli/bin/nolyfill.js',
+    'packages/generated/**/*.js',
+    'packages/generated/*/package.json'
+  ]
 }, {
   rules: {
     '@fluffyfox/array/prefer-from': 'off',

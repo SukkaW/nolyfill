@@ -176,6 +176,13 @@ export const allPackages = ${JSON.stringify(allPackagesList, null, 2)};\n`;
   await ezspawn.async('pnpm', ['i']);
 })();
 
+function sortObjectByKey(obj: Record<string, string>) {
+  return Object.keys(obj).sort().reduce<Record<string, string>>((acc, key) => {
+    acc[key] = obj[key];
+    return acc;
+  }, {});
+}
+
 const esShimLikeExportInterop = `
 Object.assign(exports.default, exports);
 module.exports = exports.default;
@@ -235,10 +242,10 @@ async function createEsShimLikePackage(
       license: 'MIT',
       files: ['*.js'],
       scripts: {},
-      dependencies: {
+      dependencies: sortObjectByKey({
         '@nolyfill/shared': 'workspace:*',
         ...extraDependencies
-      },
+      }),
       engines: {
         node: minimumNodeVersion
       }
@@ -281,7 +288,7 @@ async function createSingleFilePackage(
       license: 'MIT',
       files: ['*.js'],
       scripts: {},
-      dependencies: extraDependencies,
+      dependencies: sortObjectByKey(extraDependencies),
       engines: {
         node: minimumNodeVersion
       }

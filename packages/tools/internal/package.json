@@ -4,8 +4,8 @@
   "private": true,
   "main": "./index.js",
   "types": "./index.d.ts",
-  "license": "MIT",
   "scripts": {},
+  "license": "MIT",
   "dependencies": {},
   "engines": {
     "node": ">=12.4.0"

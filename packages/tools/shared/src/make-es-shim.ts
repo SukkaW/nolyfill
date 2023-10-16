@@ -1,4 +1,3 @@
-import type assert from 'assert';
 import { defineProperties } from './define-properties';
 
 export interface EsShimProp<I> {

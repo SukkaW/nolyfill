@@ -1,4 +1,6 @@
 {
+  "name": "nolyfill",
+  "version": "1.0.21",
   "private": true,
   "files": [],
   "scripts": {
@@ -30,11 +32,9 @@
     "typescript": "^5.1.6"
   },
   "packageManager": "pnpm@8.6.10",
-  "name": "nolyfill",
   "engines": {
     "node": ">=16.8.0"
   },
-  "version": "1.0.21",
   "pnpm": {
     "overrides": {
       "array-buffer-byte-length": "workspace:@nolyfill/array-buffer-byte-length@*",

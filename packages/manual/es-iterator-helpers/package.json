@@ -7,10 +7,9 @@
     "directory": "packages/manual/has-symbols"
   },
   "main": "./index.js",
-  "license": "MIT",
   "files": [
-    "*.js",
-    "**/*.js"
+    "**/*.js",
+    "*.js"
   ],
   "exports": {
     "./auto": "./auto.js",
@@ -90,11 +89,9 @@
   "scripts": {
     "build": "rollup -c rollup.config.ts --configPlugin swc3"
   },
+  "license": "MIT",
   "dependencies": {
     "@nolyfill/shared": "workspace:*"
-  },
-  "engines": {
-    "node": ">=12.4.0"
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^25.0.4",
@@ -105,5 +102,8 @@
     "resolve-pkg": "^2.0.0",
     "rollup": "^3.28.0",
     "rollup-plugin-swc3": "^0.9.1"
+  },
+  "engines": {
+    "node": ">=12.4.0"
   }
 }

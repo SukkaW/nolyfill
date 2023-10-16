@@ -21,7 +21,6 @@ const which = (value: unknown) => {
       return 'BigInt';
     } catch {}
   }
-  // eslint-disable-next-line sukka/unicorn/no-useless-undefined -- explicitly return undefined to match the behavior
   return undefined;
 };
 

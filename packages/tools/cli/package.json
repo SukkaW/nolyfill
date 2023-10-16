@@ -1,24 +1,21 @@
 {
   "name": "nolyfill",
   "version": "1.0.21",
-  "main": "./index.js",
-  "types": "./index.d.ts",
-  "license": "MIT",
-  "bin": "bin/nolyfill.js",
-  "files": [
-    "dist/**",
-    "!dist/stats.html",
-    "bin"
-  ],
   "homepage": "https://github.com/SukkaW/nolyfill",
   "repository": "https://github.com/SukkaW/nolyfill",
+  "main": "./index.js",
+  "types": "./index.d.ts",
+  "bin": "bin/nolyfill.js",
+  "files": [
+    "!dist/stats.html",
+    "bin",
+    "dist/**"
+  ],
   "scripts": {
     "canary": "node -r @swc-node/register src/index.ts",
     "build": "rimraf dist && rollup -c rollup.config.ts --configPlugin swc3"
   },
-  "engines": {
-    "node": ">=12.4.0"
-  },
+  "license": "MIT",
   "devDependencies": {
     "@jsdevtools/ez-spawn": "^3.0.4",
     "@napi-rs/magic-string": "^0.3.4",
@@ -44,5 +41,8 @@
     "rollup-plugin-dts": "^6.0.1",
     "rollup-plugin-swc3": "^0.9.1",
     "rollup-plugin-visualizer": "^5.9.2"
+  },
+  "engines": {
+    "node": ">=12.4.0"
   }
 }
