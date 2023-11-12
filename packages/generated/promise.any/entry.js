@@ -1,3 +1,2 @@
 "use strict";var e;Object.defineProperty(exports,"__esModule",{value:!0}),Object.defineProperty(exports,"default",{enumerable:!0,get:function(){return n}});const r=require("@nolyfill/shared"),t=(e=require("@nolyfill/es-aggregate-error/polyfill"))&&e.__esModule?e:{default:e},i=Promise.any||function(e){let r=(0,t.default)(),i=Promise.reject.bind(this),n=Promise.resolve.bind(this),o=Promise.all.bind(this);try{return o(Array.from(e).map(e=>n(e).then(e=>i(e),e=>e))).then(e=>{throw new r(e,"Every promise rejected")},e=>e)}catch(e){return i(e)}},n=(0,r.defineEsShim)(i,!0,i.bind(Promise));
-Object.assign(exports.default, exports);
-module.exports = exports.default;
+Object.assign(exports.default, exports); module.exports = exports.default;

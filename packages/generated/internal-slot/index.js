@@ -1,3 +1,2 @@
 "use strict";const e=new WeakMap,t=(e,t)=>{if(!e||"object"!=typeof e&&"function"!=typeof e)throw TypeError("`O` is not an object");if("string"!=typeof t)throw TypeError("`slot` must be a string")},r=(r,o)=>{t(r,o);let n=e.get(r);return!!n&&Object.hasOwn(n,`$${o}`)};module.exports=Object.freeze({has:r,get:(r,o)=>{t(r,o);let n=e.get(r);return null==n?void 0:n[`$${o}`]},set:(r,o,n)=>{t(r,o);let s=e.get(r);s||(s={},e.set(r,s)),s[`$${o}`]=n},assert:(o,n)=>{if(t(o,n),!e.has(o))throw TypeError("Side channel does not contain the given key");if(!r(o,n))throw TypeError(`"${n}" is not present on "O"`)}});
-((typeof exports.default === 'object' && exports.default !== null) || typeof exports.default === 'function') && Object.assign(exports.default,exports);
-module.exports = exports.default;
+((typeof exports.default === 'object' && exports.default !== null) || typeof exports.default === 'function') && Object.assign(exports.default,exports); module.exports = exports.default;

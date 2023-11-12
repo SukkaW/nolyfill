@@ -187,13 +187,11 @@ function sortObjectByKey(obj: Record<string, string>) {
 }
 
 const esShimLikeExportInterop = `
-Object.assign(exports.default, exports);
-module.exports = exports.default;
+Object.assign(exports.default, exports); module.exports = exports.default;
 `;
 
 const defaultExportInterop = `
-((typeof exports.default === 'object' && exports.default !== null) || typeof exports.default === 'function') && Object.assign(exports.default,exports);
-module.exports = exports.default;
+((typeof exports.default === 'object' && exports.default !== null) || typeof exports.default === 'function') && Object.assign(exports.default,exports); module.exports = exports.default;
 `;
 
 const sharedSwcOption: SwcOptions = {

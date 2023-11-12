@@ -1,4 +1,3 @@
 "use strict";Object.defineProperty(exports,"__esModule",{value:!0}),Object.defineProperty(exports,"default",{enumerable:!0,get:function(){return t}});const e=require("@nolyfill/shared"),r="function"==typeof AggregateError?AggregateError:(()=>{function e(r,t){let o=Error(t);return Object.setPrototypeOf(o,e.prototype),// @ts-expect-error -- manipulating to fake inheritance
 delete o.constructor,Object.defineProperty(o,"errors",{value:Array.from(r)}),o}return Object.defineProperty(e,"prototype",{writable:!1}),Object.defineProperties(e.prototype,{constructor:{enumerable:!1,configurable:!0,writable:!0,value:e},message:{enumerable:!1,configurable:!0,writable:!0,value:""},name:{enumerable:!1,configurable:!0,writable:!0,value:"AggregateError"}}),Object.setPrototypeOf(e.prototype,Error.prototype),e})(),t=(0,e.defineEsShim)(r,!0);
-Object.assign(exports.default, exports);
-module.exports = exports.default;
+Object.assign(exports.default, exports); module.exports = exports.default;
