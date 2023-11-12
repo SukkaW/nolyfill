@@ -24,6 +24,7 @@ overrides:
   es-aggregate-error: workspace:@nolyfill/es-aggregate-error@*
   es-iterator-helpers: workspace:@nolyfill/es-iterator-helpers@*
   es-set-tostringtag: workspace:@nolyfill/es-set-tostringtag@*
+  es6-object-assign: workspace:@nolyfill/es6-object-assign@*
   function-bind: workspace:@nolyfill/function-bind@*
   function.prototype.name: workspace:@nolyfill/function.prototype.name@*
   get-symbol-description: workspace:@nolyfill/get-symbol-description@*
@@ -40,6 +41,7 @@ overrides:
   is-array-buffer: workspace:@nolyfill/is-array-buffer@*
   is-date-object: workspace:@nolyfill/is-date-object@*
   is-generator-function: workspace:@nolyfill/is-generator-function@*
+  is-nan: workspace:@nolyfill/is-nan@*
   is-regex: workspace:@nolyfill/is-regex@*
   is-shared-array-buffer: workspace:@nolyfill/is-shared-array-buffer@*
   is-string: workspace:@nolyfill/is-string@*
@@ -271,6 +273,8 @@ importers:
 
   packages/generated/es-set-tostringtag: {}
 
+  packages/generated/es6-object-assign: {}
+
   packages/generated/function.prototype.name:
     dependencies:
       '@nolyfill/shared':
@@ -316,6 +320,12 @@ importers:
   packages/generated/is-date-object: {}
 
   packages/generated/is-generator-function: {}
+
+  packages/generated/is-nan:
+    dependencies:
+      '@nolyfill/shared':
+        specifier: workspace:*
+        version: link:../../tools/shared
 
   packages/generated/is-regex: {}
 

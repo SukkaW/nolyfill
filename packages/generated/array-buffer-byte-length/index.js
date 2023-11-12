@@ -17,7 +17,7 @@ function _interop_require_default(obj) {
 }
 const bL = (0, _shared.uncurryThis)(Object.getOwnPropertyDescriptor(ArrayBuffer.prototype, 'byteLength').get);
 const is = (ab)=>{
-    if (!(0, _isarraybuffer.default)(ab)) return NaN;
+    if (!(0, _isarraybuffer.default)(ab)) return Number.NaN;
     return bL(ab);
 };
 const _default = is;

@@ -9,10 +9,10 @@ Object.defineProperty(exports, "default", {
     }
 });
 const _shared = require("@nolyfill/shared");
-const implementation = Array.prototype.toSorted || function(compareFn) {
+const implementation = Array.prototype.toSorted || function toSorted(compareFn) {
     const o = Object(this);
     const l = Number(o.length);
-    const a = Array.from(l);
+    const a = new Array(l);
     for(let i = 0; i < l; i++){
         a[i] = o[i];
     }
