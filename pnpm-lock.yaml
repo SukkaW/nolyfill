@@ -8,6 +8,7 @@ overrides:
   array-buffer-byte-length: workspace:@nolyfill/array-buffer-byte-length@*
   array-includes: workspace:@nolyfill/array-includes@*
   array.from: workspace:@nolyfill/array.from@*
+  array.of: workspace:@nolyfill/array.of@*
   array.prototype.at: workspace:@nolyfill/array.prototype.at@*
   array.prototype.concat: workspace:@nolyfill/array.prototype.concat@*
   array.prototype.copywithin: workspace:@nolyfill/array.prototype.copywithin@*
@@ -214,6 +215,12 @@ importers:
         version: link:../../tools/shared
 
   packages/generated/array.from:
+    dependencies:
+      '@nolyfill/shared':
+        specifier: workspace:*
+        version: link:../../tools/shared
+
+  packages/generated/array.of:
     dependencies:
       '@nolyfill/shared':
         specifier: workspace:*

@@ -4,6 +4,7 @@ export const allPackages = [
   "array-buffer-byte-length",
   "array-includes",
   "array.from",
+  "array.of",
   "array.prototype.at",
   "array.prototype.concat",
   "array.prototype.copywithin",
