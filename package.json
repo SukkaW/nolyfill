@@ -27,7 +27,7 @@
     "path-scurry": "^1.10.1",
     "picocolors": "^1.0.0",
     "rimraf": "^5.0.5",
-    "turbo": "^1.10.15",
+    "turbo": "^1.10.16",
     "type-fest": "^4.4.0",
     "typescript": "^5.2.2"
   },
