@@ -96,12 +96,9 @@
   "devDependencies": {
     "@rollup/plugin-commonjs": "^25.0.7",
     "@rollup/plugin-node-resolve": "^15.2.3",
-    "@rollup/plugin-replace": "^5.0.4",
-    "@swc/core": "^1.3.93",
+    "@rollup/plugin-replace": "^5.0.5",
     "ljharb-es-iterator-helpers": "npm:es-iterator-helpers@^1.0.15",
-    "resolve-pkg": "^2.0.0",
-    "rollup": "^4.1.4",
-    "rollup-plugin-swc3": "^0.10.2"
+    "resolve-pkg": "^2.0.0"
   },
   "engines": {
     "node": ">=12.4.0"

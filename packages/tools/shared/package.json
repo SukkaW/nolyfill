@@ -16,10 +16,5 @@
     "build": "rollup -c rollup.config.ts --configPlugin swc3",
     "lint": "eslint ."
   },
-  "license": "MIT",
-  "devDependencies": {
-    "rollup": "^4.1.4",
-    "rollup-plugin-dts": "^6.1.0",
-    "rollup-plugin-swc3": "^0.10.2"
-  }
+  "license": "MIT"
 }

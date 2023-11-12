@@ -67,6 +67,7 @@ export default async () => {
             if (id.includes('/arborist/lib/query-selector-all.js')) {
               return 'module.exports = () => {}';
             }
+            return null;
           },
           transform: {
             order: 'pre',
