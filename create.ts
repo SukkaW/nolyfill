@@ -8,6 +8,7 @@ import colors from 'picocolors';
 import { dequal } from 'dequal';
 import { fileExists, compareAndWriteFile } from '@nolyfill/internal';
 import { transform } from '@swc/core';
+import type { Options as SwcOptions } from '@swc/core';
 
 import type { PackageJson } from 'type-fest';
 
@@ -191,22 +192,27 @@ module.exports = exports.default;
 `;
 
 const defaultExportInterop = `
-if ((typeof exports.default === 'object' && exports.default !== null) || typeof exports.default === 'function') {
-  Object.assign(exports.default, exports);
-}
+((typeof exports.default === 'object' && exports.default !== null) || typeof exports.default === 'function') && Object.assign(exports.default,exports);
 module.exports = exports.default;
 `;
 
-const sharedSwcOption = {
+const sharedSwcOption: SwcOptions = {
   isModule: true,
   jsc: {
     parser: {
       syntax: 'typescript'
     },
-    target: 'es2018'
+    target: 'es2018',
+    minify: {
+      compress: true,
+      mangle: true,
+      module: true,
+      sourceMap: false
+    }
   },
+  minify: true,
   module: { type: 'commonjs' }
-} as const;
+};
 
 async function createEsShimLikePackage(
   packageName: string,

@@ -1,29 +1,3 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-Object.defineProperty(exports, "default", {
-    enumerable: true,
-    get: function() {
-        return _default;
-    }
-});
-const _shared = require("@nolyfill/shared");
-const bL = (0, _shared.uncurryThis)(Object.getOwnPropertyDescriptor(ArrayBuffer.prototype, 'byteLength').get);
-const is = (obj)=>{
-    if (!obj || typeof obj !== 'object') {
-        return false;
-    }
-    try {
-        bL(obj);
-        return true;
-    } catch (e) {
-        return false;
-    }
-};
-const _default = is;
-
-if ((typeof exports.default === 'object' && exports.default !== null) || typeof exports.default === 'function') {
-  Object.assign(exports.default, exports);
-}
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),Object.defineProperty(exports,"default",{enumerable:!0,get:function(){return t}});const e=require("@nolyfill/shared"),r=(0,e.uncurryThis)(Object.getOwnPropertyDescriptor(ArrayBuffer.prototype,"byteLength").get),t=e=>{if(!e||"object"!=typeof e)return!1;try{return r(e),!0}catch(e){return!1}};
+((typeof exports.default === 'object' && exports.default !== null) || typeof exports.default === 'function') && Object.assign(exports.default,exports);
 module.exports = exports.default;

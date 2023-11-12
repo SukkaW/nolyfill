@@ -1,36 +1,3 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-Object.defineProperty(exports, "default", {
-    enumerable: true,
-    get: function() {
-        return unboxPrimitive;
-    }
-});
-function unboxPrimitive(value) {
-    if (value == null || typeof value !== 'object' && typeof value !== 'function') {
-        throw new TypeError(value === null ? 'value is an unboxed primitive' : 'value is a non-boxed-primitive object');
-    }
-    if (typeof value === 'string' || Object.prototype.toString.call(value) === '[object String]') {
-        return String.prototype.toString.call(value);
-    }
-    if (typeof value === 'number' || Object.prototype.toString.call(value) === '[object Number]') {
-        return Number.prototype.valueOf.call(value);
-    }
-    if (typeof value === 'boolean' || Object.prototype.toString.call(value) === '[object Boolean]') {
-        return Boolean.prototype.valueOf.call(value);
-    }
-    if (typeof value === 'symbol' || Object.prototype.toString.call(value) === '[object Symbol]' && typeof value.valueOf() === 'symbol' && Symbol.prototype.toString.call(value).startsWith('Symbol(')) {
-        return Symbol.prototype.valueOf.call(value);
-    }
-    try {
-        return BigInt.prototype.valueOf.call(value);
-    } catch (e) {}
-    throw new RangeError('unknown boxed primitive');
-}
-
-if ((typeof exports.default === 'object' && exports.default !== null) || typeof exports.default === 'function') {
-  Object.assign(exports.default, exports);
-}
+"use strict";function t(t){if(null==t||"object"!=typeof t&&"function"!=typeof t)throw TypeError(null===t?"value is an unboxed primitive":"value is a non-boxed-primitive object");if("string"==typeof t||"[object String]"===Object.prototype.toString.call(t))return String.prototype.toString.call(t);if("number"==typeof t||"[object Number]"===Object.prototype.toString.call(t))return Number.prototype.valueOf.call(t);if("boolean"==typeof t||"[object Boolean]"===Object.prototype.toString.call(t))return Boolean.prototype.valueOf.call(t);if("symbol"==typeof t||"[object Symbol]"===Object.prototype.toString.call(t)&&"symbol"==typeof t.valueOf()&&Symbol.prototype.toString.call(t).startsWith("Symbol("))return Symbol.prototype.valueOf.call(t);try{return BigInt.prototype.valueOf.call(t)}catch(t){}throw RangeError("unknown boxed primitive")}Object.defineProperty(exports,"__esModule",{value:!0}),Object.defineProperty(exports,"default",{enumerable:!0,get:function(){return t}});
+((typeof exports.default === 'object' && exports.default !== null) || typeof exports.default === 'function') && Object.assign(exports.default,exports);
 module.exports = exports.default;

@@ -1,13 +1,5 @@
-"use strict";
-const isStandardArguments = (value)=>value && typeof value === 'object' && Symbol.toStringTag in value ? false : Object.prototype.toString.call(value) === '[object Arguments]';
-const isLegacyArguments = (value)=>isStandardArguments(value) ? true : value !== null && typeof value === 'object' && typeof value.length === 'number' && value.length >= 0 && Object.prototype.toString.call(value) !== '[object Array]' && Object.prototype.toString.call(value.callee) === '[object Function]';
-// isStandardArguments.isLegacyArguments = isLegacyArguments; // for tests
+"use strict";const t=t=>(!t||"object"!=typeof t||!(Symbol.toStringTag in t))&&"[object Arguments]"===Object.prototype.toString.call(t);// isStandardArguments.isLegacyArguments = isLegacyArguments; // for tests
 // eslint-disable-next-line prefer-rest-params -- detect arguments object
-module.exports = function() {
-    return isStandardArguments(arguments);
-}() ? isStandardArguments : isLegacyArguments;
-
-if ((typeof exports.default === 'object' && exports.default !== null) || typeof exports.default === 'function') {
-  Object.assign(exports.default, exports);
-}
+module.exports=!function(){return t(arguments)}()?e=>!!t(e)||null!==e&&"object"==typeof e&&"number"==typeof e.length&&e.length>=0&&"[object Array]"!==Object.prototype.toString.call(e)&&"[object Function]"===Object.prototype.toString.call(e.callee):t;
+((typeof exports.default === 'object' && exports.default !== null) || typeof exports.default === 'function') && Object.assign(exports.default,exports);
 module.exports = exports.default;

@@ -13,8 +13,8 @@
   ],
   "scripts": {},
   "dependencies": {
-    "@nolyfill/shared": "workspace:*",
-    "@nolyfill/es-aggregate-error": "workspace:*"
+    "@nolyfill/es-aggregate-error": "workspace:*",
+    "@nolyfill/shared": "workspace:*"
   },
   "engines": {
     "node": ">=12.4.0"

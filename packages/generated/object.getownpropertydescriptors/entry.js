@@ -1,15 +1,3 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-Object.defineProperty(exports, "default", {
-    enumerable: true,
-    get: function() {
-        return _default;
-    }
-});
-const _shared = require("@nolyfill/shared");
-const _default = (0, _shared.defineEsShim)(Object.getOwnPropertyDescriptors, true);
-
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),Object.defineProperty(exports,"default",{enumerable:!0,get:function(){return r}});const e=require("@nolyfill/shared"),r=(0,e.defineEsShim)(Object.getOwnPropertyDescriptors,!0);
 Object.assign(exports.default, exports);
 module.exports = exports.default;

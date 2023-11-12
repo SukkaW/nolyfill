@@ -1,18 +1,3 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-Object.defineProperty(exports, "default", {
-    enumerable: true,
-    get: function() {
-        return _default;
-    }
-});
-const hasPropertyDescriptors = ()=>true;
-hasPropertyDescriptors.hasArrayLengthDefineBug = ()=>false;
-const _default = hasPropertyDescriptors;
-
-if ((typeof exports.default === 'object' && exports.default !== null) || typeof exports.default === 'function') {
-  Object.assign(exports.default, exports);
-}
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),Object.defineProperty(exports,"default",{enumerable:!0,get:function(){return t}});const e=()=>!0;e.hasArrayLengthDefineBug=()=>!1;const t=e;
+((typeof exports.default === 'object' && exports.default !== null) || typeof exports.default === 'function') && Object.assign(exports.default,exports);
 module.exports = exports.default;

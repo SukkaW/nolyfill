@@ -1,25 +1,3 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-Object.defineProperty(exports, "default", {
-    enumerable: true,
-    get: function() {
-        return _default;
-    }
-});
-const is = (value)=>{
-    if (typeof value !== 'object' || value === null) return false;
-    try {
-        Date.prototype.getDay.call(value);
-        return true;
-    } catch (e) {
-        return false;
-    }
-};
-const _default = is;
-
-if ((typeof exports.default === 'object' && exports.default !== null) || typeof exports.default === 'function') {
-  Object.assign(exports.default, exports);
-}
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),Object.defineProperty(exports,"default",{enumerable:!0,get:function(){return e}});const e=e=>{if("object"!=typeof e||null===e)return!1;try{return Date.prototype.getDay.call(e),!0}catch(e){return!1}};
+((typeof exports.default === 'object' && exports.default !== null) || typeof exports.default === 'function') && Object.assign(exports.default,exports);
 module.exports = exports.default;

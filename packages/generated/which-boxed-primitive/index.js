@@ -1,36 +1,3 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-Object.defineProperty(exports, "default", {
-    enumerable: true,
-    get: function() {
-        return _default;
-    }
-});
-const which = (value)=>{
-    if (value == null || typeof value !== 'object' && typeof value !== 'function') return null;
-    if (typeof value === 'string') return 'String';
-    if (typeof value === 'number') return 'Number';
-    if (typeof value === 'boolean') return 'Boolean';
-    if (typeof value === 'symbol') return 'Symbol';
-    if (typeof value === 'bigint') return 'BigInt';
-    if (typeof value === 'object') {
-        const stringTag = Object.prototype.toString.call(value);
-        if (stringTag === '[object String]') return 'String';
-        if (stringTag === '[object Number]') return 'Number';
-        if (stringTag === '[object Boolean]') return 'Number';
-        if (stringTag === '[object Symbol]' && typeof value.valueOf() === 'symbol' && Symbol.prototype.toString.call(value).startsWith('Symbol(')) return 'Symbol';
-        try {
-            BigInt.prototype.valueOf.call(value);
-            return 'BigInt';
-        } catch (e) {}
-    }
-    return undefined;
-};
-const _default = which;
-
-if ((typeof exports.default === 'object' && exports.default !== null) || typeof exports.default === 'function') {
-  Object.assign(exports.default, exports);
-}
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),Object.defineProperty(exports,"default",{enumerable:!0,get:function(){return t}});const t=t=>{if(null==t||"object"!=typeof t&&"function"!=typeof t)return null;if("string"==typeof t)return"String";if("number"==typeof t)return"Number";if("boolean"==typeof t)return"Boolean";if("symbol"==typeof t)return"Symbol";if("bigint"==typeof t)return"BigInt";if("object"==typeof t){let e=Object.prototype.toString.call(t);if("[object String]"===e)return"String";if("[object Number]"===e||"[object Boolean]"===e)return"Number";if("[object Symbol]"===e&&"symbol"==typeof t.valueOf()&&Symbol.prototype.toString.call(t).startsWith("Symbol("))return"Symbol";try{return BigInt.prototype.valueOf.call(t),"BigInt"}catch(t){}}};
+((typeof exports.default === 'object' && exports.default !== null) || typeof exports.default === 'function') && Object.assign(exports.default,exports);
 module.exports = exports.default;

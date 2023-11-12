@@ -1,33 +1,5 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-Object.defineProperty(exports, "default", {
-    enumerable: true,
-    get: function() {
-        return _default;
-    }
-});
-const empty = [];
-// @ts-expect-error -- JS is awesome
-empty[Symbol.isConcatSpreadable] = true;
-const concat = (...args)=>{
-    for(let i = 0, l = args.length; i < l; i += 1){
-        const arg = args[i];
-        if (arg && typeof arg === 'object' && typeof arg[Symbol.isConcatSpreadable] === 'boolean') {
-            const arr = Array.isArray(arg) ? Array.prototype.slice.call(arg) : [
-                arg
-            ];
-            // @ts-expect-error -- JS is awesome
-            arr[Symbol.isConcatSpreadable] = true;
-            args[i] = arr;
-        }
-    }
-    return Array.prototype.concat.apply(empty, args);
-};
-const _default = concat;
-
-if ((typeof exports.default === 'object' && exports.default !== null) || typeof exports.default === 'function') {
-  Object.assign(exports.default, exports);
-}
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),Object.defineProperty(exports,"default",{enumerable:!0,get:function(){return t}});const e=[];// @ts-expect-error -- JS is awesome
+e[Symbol.isConcatSpreadable]=!0;const t=(...t)=>{for(let e=0,r=t.length;e<r;e+=1){let r=t[e];if(r&&"object"==typeof r&&"boolean"==typeof r[Symbol.isConcatSpreadable]){let o=Array.isArray(r)?Array.prototype.slice.call(r):[r];// @ts-expect-error -- JS is awesome
+o[Symbol.isConcatSpreadable]=!0,t[e]=o}}return Array.prototype.concat.apply(e,t)};
+((typeof exports.default === 'object' && exports.default !== null) || typeof exports.default === 'function') && Object.assign(exports.default,exports);
 module.exports = exports.default;
