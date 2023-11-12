@@ -1,6 +1,8 @@
 "use strict";
 module.exports = {
-    polyfill () {}
+    polyfill () {
+    // noop
+    }
 };
 
 if ((typeof exports.default === 'object' && exports.default !== null) || typeof exports.default === 'function') {
