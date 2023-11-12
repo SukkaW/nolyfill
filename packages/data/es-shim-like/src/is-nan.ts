@@ -1,3 +1,3 @@
 import { defineEsShim } from '@nolyfill/shared';
 
-export default defineEsShim(isNaN);
+export default defineEsShim(Number.isNaN, true);

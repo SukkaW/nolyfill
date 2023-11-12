@@ -9,7 +9,7 @@ Object.defineProperty(exports, "default", {
     }
 });
 const _shared = require("@nolyfill/shared");
-const _default = (0, _shared.defineEsShim)(isNaN);
+const _default = (0, _shared.defineEsShim)(Number.isNaN, true);
 
 Object.assign(exports.default, exports);
 module.exports = exports.default;
