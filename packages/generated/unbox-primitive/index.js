@@ -26,7 +26,7 @@ function unboxPrimitive(value) {
     }
     try {
         return BigInt.prototype.valueOf.call(value);
-    } catch (_) {}
+    } catch (e) {}
     throw new RangeError('unknown boxed primitive');
 }
 

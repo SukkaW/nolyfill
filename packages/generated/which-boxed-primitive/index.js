@@ -24,8 +24,9 @@ const which = (value)=>{
         try {
             BigInt.prototype.valueOf.call(value);
             return 'BigInt';
-        } catch (_) {}
+        } catch (e) {}
     }
+    return undefined;
 };
 const _default = which;
 

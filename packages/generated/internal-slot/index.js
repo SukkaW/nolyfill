@@ -14,10 +14,9 @@ const has = (O, slot)=>{
     return !!slots && Object.hasOwn(slots, `$${slot}`);
 };
 const get = (O, slot)=>{
-    var _slots;
     check(O, slot);
     const slots = channel.get(O);
-    return (_slots = slots) === null || _slots === void 0 ? void 0 : _slots[`$${slot}`];
+    return slots === null || slots === void 0 ? void 0 : slots[`$${slot}`];
 };
 const set = (O, slot, V)=>{
     check(O, slot);

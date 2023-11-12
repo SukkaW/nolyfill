@@ -17,7 +17,7 @@ const is = (obj)=>{
     try {
         bL(obj);
         return true;
-    } catch (_) {
+    } catch (e) {
         return false;
     }
 };
