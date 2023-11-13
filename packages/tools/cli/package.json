@@ -12,7 +12,7 @@
     "dist/**"
   ],
   "scripts": {
-    "canary": "node -r @swc-node/register src/index.ts",
+    "canary": "node -r @swc-node/register src/cli.ts",
     "build": "rimraf dist && rollup -c rollup.config.ts --configPlugin swc3"
   },
   "license": "MIT",
