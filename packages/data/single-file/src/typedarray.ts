@@ -1,4 +1,4 @@
-module.exports = {
+export default {
     ArrayBuffer,
     DataView,
     Float32Array,
