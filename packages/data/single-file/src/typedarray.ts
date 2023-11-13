@@ -1,6 +1,4 @@
-import { defineEsShim } from '@nolyfill/shared';
-
-export default defineEsShim({
+module.exports = {
     ArrayBuffer,
     DataView,
     Float32Array,
@@ -12,4 +10,4 @@ export default defineEsShim({
     Uint8ClampedArray,
     Uint16Array,
     Uint32Array
-}, true);
+};
