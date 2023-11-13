@@ -10,9 +10,6 @@ overrides:
   array.from: workspace:@nolyfill/array.from@*
   array.of: workspace:@nolyfill/array.of@*
   array.prototype.at: workspace:@nolyfill/array.prototype.at@*
-  array.prototype.concat: workspace:@nolyfill/array.prototype.concat@*
-  array.prototype.copywithin: workspace:@nolyfill/array.prototype.copywithin@*
-  array.prototype.entries: workspace:@nolyfill/array.prototype.entries@*
   array.prototype.every: workspace:@nolyfill/array.prototype.every@*
   array.prototype.find: workspace:@nolyfill/array.prototype.find@*
   array.prototype.findlast: workspace:@nolyfill/array.prototype.findlast@*
@@ -20,17 +17,11 @@ overrides:
   array.prototype.flat: workspace:@nolyfill/array.prototype.flat@*
   array.prototype.flatmap: workspace:@nolyfill/array.prototype.flatmap@*
   array.prototype.foreach: workspace:@nolyfill/array.prototype.foreach@*
-  array.prototype.join: workspace:@nolyfill/array.prototype.join@*
   array.prototype.keys: workspace:@nolyfill/array.prototype.keys@*
   array.prototype.push: workspace:@nolyfill/array.prototype.push@*
   array.prototype.reduce: workspace:@nolyfill/array.prototype.reduce@*
-  array.prototype.reduceright: workspace:@nolyfill/array.prototype.reduceright@*
-  array.prototype.slice: workspace:@nolyfill/array.prototype.slice@*
   array.prototype.some: workspace:@nolyfill/array.prototype.some@*
-  array.prototype.splice: workspace:@nolyfill/array.prototype.splice@*
   array.prototype.tosorted: workspace:@nolyfill/array.prototype.tosorted@*
-  array.prototype.unshift: workspace:@nolyfill/array.prototype.unshift@*
-  array.prototype.values: workspace:@nolyfill/array.prototype.values@*
   arraybuffer.prototype.slice: workspace:@nolyfill/arraybuffer.prototype.slice@*
   asynciterator.prototype: workspace:@nolyfill/asynciterator.prototype@*
   available-typed-arrays: workspace:@nolyfill/available-typed-arrays@*
