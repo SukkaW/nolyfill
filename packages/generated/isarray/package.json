@@ -1,0 +1,19 @@
+{
+  "name": "@nolyfill/isarray",
+  "version": "1.0.25",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/SukkaW/nolyfill",
+    "directory": "packages/generated/isarray"
+  },
+  "main": "./index.js",
+  "license": "MIT",
+  "files": [
+    "*.js"
+  ],
+  "scripts": {},
+  "dependencies": {},
+  "engines": {
+    "node": ">=12.4.0"
+  }
+}

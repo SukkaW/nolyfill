@@ -120,7 +120,9 @@ const singleFilePackagesList = [
   ['internal-slot'],
   ['typedarray'], // although https://github.com/es-shims/typedarray, but it only has one file, so here.
   ['has'],
-  ['hasown']
+  ['hasown'],
+  ['jsonify'],
+  ['isarray']
 ] as const;
 
 const manualPackagesList = [

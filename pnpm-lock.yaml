@@ -51,7 +51,9 @@ overrides:
   is-string: workspace:@nolyfill/is-string@*
   is-symbol: workspace:@nolyfill/is-symbol@*
   is-weakref: workspace:@nolyfill/is-weakref@*
+  isarray: workspace:@nolyfill/isarray@*
   iterator.prototype: workspace:@nolyfill/iterator.prototype@*
+  jsonify: workspace:@nolyfill/jsonify@*
   object-is: workspace:@nolyfill/object-is@*
   object-keys: workspace:@nolyfill/object-keys@*
   object.assign: workspace:@nolyfill/object.assign@*
@@ -443,7 +445,11 @@ importers:
 
   packages/generated/is-weakref: {}
 
+  packages/generated/isarray: {}
+
   packages/generated/iterator.prototype: {}
+
+  packages/generated/jsonify: {}
 
   packages/generated/object-is:
     dependencies:
