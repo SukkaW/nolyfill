@@ -51,6 +51,12 @@ Print the help message.
 
 ----
 
+## Development
+
+Add the definition in `packages/data/es-shim-like/src/` and `create.ts` , then `npm run codegen`. Notice that rarely used package will not be added, and some packages which are just sub-deps also won't be added.
+
+----
+
 **nolyfill** © [Sukka](https://github.com/SukkaW), Released under the [MIT](./LICENSE) License.
 Authored and maintained by Sukka with help from contributors ([list](https://github.com/SukkaW/nolyfill/graphs/contributors)).
 

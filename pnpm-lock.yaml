@@ -8,12 +8,15 @@ overrides:
   array-buffer-byte-length: workspace:@nolyfill/array-buffer-byte-length@*
   array-includes: workspace:@nolyfill/array-includes@*
   array.from: workspace:@nolyfill/array.from@*
+  array.of: workspace:@nolyfill/array.of@*
   array.prototype.at: workspace:@nolyfill/array.prototype.at@*
+  array.prototype.every: workspace:@nolyfill/array.prototype.every@*
   array.prototype.find: workspace:@nolyfill/array.prototype.find@*
   array.prototype.findlast: workspace:@nolyfill/array.prototype.findlast@*
   array.prototype.findlastindex: workspace:@nolyfill/array.prototype.findlastindex@*
   array.prototype.flat: workspace:@nolyfill/array.prototype.flat@*
   array.prototype.flatmap: workspace:@nolyfill/array.prototype.flatmap@*
+  array.prototype.foreach: workspace:@nolyfill/array.prototype.foreach@*
   array.prototype.reduce: workspace:@nolyfill/array.prototype.reduce@*
   array.prototype.tosorted: workspace:@nolyfill/array.prototype.tosorted@*
   arraybuffer.prototype.slice: workspace:@nolyfill/arraybuffer.prototype.slice@*
@@ -79,6 +82,7 @@ overrides:
   typed-array-byte-length: workspace:@nolyfill/typed-array-byte-length@*
   typed-array-byte-offset: workspace:@nolyfill/typed-array-byte-offset@*
   typed-array-length: workspace:@nolyfill/typed-array-length@*
+  typedarray: workspace:@nolyfill/typedarray@*
   unbox-primitive: workspace:@nolyfill/unbox-primitive@*
   which-boxed-primitive: workspace:@nolyfill/which-boxed-primitive@*
   which-typed-array: workspace:@nolyfill/which-typed-array@*
@@ -204,7 +208,37 @@ importers:
         specifier: workspace:*
         version: link:../../tools/shared
 
+  packages/generated/array.of:
+    dependencies:
+      '@nolyfill/shared':
+        specifier: workspace:*
+        version: link:../../tools/shared
+
   packages/generated/array.prototype.at:
+    dependencies:
+      '@nolyfill/shared':
+        specifier: workspace:*
+        version: link:../../tools/shared
+
+  packages/generated/array.prototype.concat:
+    dependencies:
+      '@nolyfill/shared':
+        specifier: workspace:*
+        version: link:../../tools/shared
+
+  packages/generated/array.prototype.copywithin:
+    dependencies:
+      '@nolyfill/shared':
+        specifier: workspace:*
+        version: link:../../tools/shared
+
+  packages/generated/array.prototype.entries:
+    dependencies:
+      '@nolyfill/shared':
+        specifier: workspace:*
+        version: link:../../tools/shared
+
+  packages/generated/array.prototype.every:
     dependencies:
       '@nolyfill/shared':
         specifier: workspace:*
@@ -240,13 +274,73 @@ importers:
         specifier: workspace:*
         version: link:../../tools/shared
 
+  packages/generated/array.prototype.foreach:
+    dependencies:
+      '@nolyfill/shared':
+        specifier: workspace:*
+        version: link:../../tools/shared
+
+  packages/generated/array.prototype.join:
+    dependencies:
+      '@nolyfill/shared':
+        specifier: workspace:*
+        version: link:../../tools/shared
+
+  packages/generated/array.prototype.keys:
+    dependencies:
+      '@nolyfill/shared':
+        specifier: workspace:*
+        version: link:../../tools/shared
+
+  packages/generated/array.prototype.push:
+    dependencies:
+      '@nolyfill/shared':
+        specifier: workspace:*
+        version: link:../../tools/shared
+
   packages/generated/array.prototype.reduce:
     dependencies:
       '@nolyfill/shared':
         specifier: workspace:*
         version: link:../../tools/shared
 
+  packages/generated/array.prototype.reduceright:
+    dependencies:
+      '@nolyfill/shared':
+        specifier: workspace:*
+        version: link:../../tools/shared
+
+  packages/generated/array.prototype.slice:
+    dependencies:
+      '@nolyfill/shared':
+        specifier: workspace:*
+        version: link:../../tools/shared
+
+  packages/generated/array.prototype.some:
+    dependencies:
+      '@nolyfill/shared':
+        specifier: workspace:*
+        version: link:../../tools/shared
+
+  packages/generated/array.prototype.splice:
+    dependencies:
+      '@nolyfill/shared':
+        specifier: workspace:*
+        version: link:../../tools/shared
+
   packages/generated/array.prototype.tosorted:
+    dependencies:
+      '@nolyfill/shared':
+        specifier: workspace:*
+        version: link:../../tools/shared
+
+  packages/generated/array.prototype.unshift:
+    dependencies:
+      '@nolyfill/shared':
+        specifier: workspace:*
+        version: link:../../tools/shared
+
+  packages/generated/array.prototype.values:
     dependencies:
       '@nolyfill/shared':
         specifier: workspace:*
@@ -528,6 +622,8 @@ importers:
       '@nolyfill/shared':
         specifier: workspace:*
         version: link:../../tools/shared
+
+  packages/generated/typedarray: {}
 
   packages/generated/unbox-primitive: {}
 
