@@ -43,6 +43,7 @@ const detectPackages = [
   'get-intrinsic',
   'es-abstract',
   'call-bind',
+  'function-bind',
   'es-shim-unscopables'
 ];
 
