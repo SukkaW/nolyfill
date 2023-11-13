@@ -623,11 +623,7 @@ importers:
         specifier: workspace:*
         version: link:../../tools/shared
 
-  packages/generated/typedarray:
-    dependencies:
-      '@nolyfill/shared':
-        specifier: workspace:*
-        version: link:../../tools/shared
+  packages/generated/typedarray: {}
 
   packages/generated/unbox-primitive: {}
 

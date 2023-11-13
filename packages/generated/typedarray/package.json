@@ -12,9 +12,7 @@
     "*.js"
   ],
   "scripts": {},
-  "dependencies": {
-    "@nolyfill/shared": "workspace:*"
-  },
+  "dependencies": {},
   "engines": {
     "node": ">=12.4.0"
   }
