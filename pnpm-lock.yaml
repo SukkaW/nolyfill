@@ -17,10 +17,7 @@ overrides:
   array.prototype.flat: workspace:@nolyfill/array.prototype.flat@*
   array.prototype.flatmap: workspace:@nolyfill/array.prototype.flatmap@*
   array.prototype.foreach: workspace:@nolyfill/array.prototype.foreach@*
-  array.prototype.keys: workspace:@nolyfill/array.prototype.keys@*
-  array.prototype.push: workspace:@nolyfill/array.prototype.push@*
   array.prototype.reduce: workspace:@nolyfill/array.prototype.reduce@*
-  array.prototype.some: workspace:@nolyfill/array.prototype.some@*
   array.prototype.tosorted: workspace:@nolyfill/array.prototype.tosorted@*
   arraybuffer.prototype.slice: workspace:@nolyfill/arraybuffer.prototype.slice@*
   asynciterator.prototype: workspace:@nolyfill/asynciterator.prototype@*
