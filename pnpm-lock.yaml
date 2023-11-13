@@ -39,6 +39,7 @@ overrides:
   has-proto: workspace:@nolyfill/has-proto@*
   has-symbols: workspace:@nolyfill/has-symbols@*
   has-tostringtag: workspace:@nolyfill/has-tostringtag@*
+  hasown: workspace:@nolyfill/hasown@*
   internal-slot: workspace:@nolyfill/internal-slot@*
   is-arguments: workspace:@nolyfill/is-arguments@*
   is-array-buffer: workspace:@nolyfill/is-array-buffer@*
@@ -400,15 +401,13 @@ importers:
 
   packages/generated/harmony-reflect: {}
 
-  packages/generated/has:
-    dependencies:
-      '@nolyfill/shared':
-        specifier: workspace:*
-        version: link:../../tools/shared
+  packages/generated/has: {}
 
   packages/generated/has-property-descriptors: {}
 
   packages/generated/has-proto: {}
+
+  packages/generated/hasown: {}
 
   packages/generated/internal-slot: {}
 

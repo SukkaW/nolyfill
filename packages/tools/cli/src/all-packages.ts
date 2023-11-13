@@ -36,6 +36,7 @@ export const allPackages = [
   "has-proto",
   "has-symbols",
   "has-tostringtag",
+  "hasown",
   "internal-slot",
   "is-arguments",
   "is-array-buffer",

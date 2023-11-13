@@ -1,10 +1,10 @@
 {
-  "name": "@nolyfill/has",
+  "name": "@nolyfill/hasown",
   "version": "1.0.25",
   "repository": {
     "type": "git",
     "url": "https://github.com/SukkaW/nolyfill",
-    "directory": "packages/generated/has"
+    "directory": "packages/generated/hasown"
   },
   "main": "./index.js",
   "license": "MIT",
