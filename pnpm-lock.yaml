@@ -68,7 +68,6 @@ overrides:
   string.prototype.at: workspace:@nolyfill/string.prototype.at@*
   string.prototype.codepointat: workspace:@nolyfill/string.prototype.codepointat@*
   string.prototype.includes: workspace:@nolyfill/string.prototype.includes@*
-  string.prototype.lastindexof: workspace:@nolyfill/string.prototype.lastindexof@*
   string.prototype.matchall: workspace:@nolyfill/string.prototype.matchall@*
   string.prototype.padend: workspace:@nolyfill/string.prototype.padend@*
   string.prototype.padstart: workspace:@nolyfill/string.prototype.padstart@*
@@ -76,7 +75,6 @@ overrides:
   string.prototype.replaceall: workspace:@nolyfill/string.prototype.replaceall@*
   string.prototype.split: workspace:@nolyfill/string.prototype.split@*
   string.prototype.startswith: workspace:@nolyfill/string.prototype.startswith@*
-  string.prototype.substr: workspace:@nolyfill/string.prototype.substr@*
   string.prototype.trim: workspace:@nolyfill/string.prototype.trim@*
   string.prototype.trimend: workspace:@nolyfill/string.prototype.trimend@*
   string.prototype.trimleft: workspace:@nolyfill/string.prototype.trimleft@*
