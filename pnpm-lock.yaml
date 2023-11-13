@@ -72,10 +72,15 @@ overrides:
   safe-regex-test: workspace:@nolyfill/safe-regex-test@*
   side-channel: workspace:@nolyfill/side-channel@*
   string.prototype.at: workspace:@nolyfill/string.prototype.at@*
+  string.prototype.codepointat: workspace:@nolyfill/string.prototype.codepointat@*
+  string.prototype.includes: workspace:@nolyfill/string.prototype.includes@*
   string.prototype.matchall: workspace:@nolyfill/string.prototype.matchall@*
   string.prototype.padend: workspace:@nolyfill/string.prototype.padend@*
   string.prototype.padstart: workspace:@nolyfill/string.prototype.padstart@*
+  string.prototype.repeat: workspace:@nolyfill/string.prototype.repeat@*
   string.prototype.replaceall: workspace:@nolyfill/string.prototype.replaceall@*
+  string.prototype.split: workspace:@nolyfill/string.prototype.split@*
+  string.prototype.startswith: workspace:@nolyfill/string.prototype.startswith@*
   string.prototype.trim: workspace:@nolyfill/string.prototype.trim@*
   string.prototype.trimend: workspace:@nolyfill/string.prototype.trimend@*
   string.prototype.trimleft: workspace:@nolyfill/string.prototype.trimleft@*
@@ -550,6 +555,24 @@ importers:
         specifier: workspace:*
         version: link:../../tools/shared
 
+  packages/generated/string.prototype.codepointat:
+    dependencies:
+      '@nolyfill/shared':
+        specifier: workspace:*
+        version: link:../../tools/shared
+
+  packages/generated/string.prototype.includes:
+    dependencies:
+      '@nolyfill/shared':
+        specifier: workspace:*
+        version: link:../../tools/shared
+
+  packages/generated/string.prototype.lastindexof:
+    dependencies:
+      '@nolyfill/shared':
+        specifier: workspace:*
+        version: link:../../tools/shared
+
   packages/generated/string.prototype.matchall:
     dependencies:
       '@nolyfill/shared':
@@ -568,7 +591,31 @@ importers:
         specifier: workspace:*
         version: link:../../tools/shared
 
+  packages/generated/string.prototype.repeat:
+    dependencies:
+      '@nolyfill/shared':
+        specifier: workspace:*
+        version: link:../../tools/shared
+
   packages/generated/string.prototype.replaceall:
+    dependencies:
+      '@nolyfill/shared':
+        specifier: workspace:*
+        version: link:../../tools/shared
+
+  packages/generated/string.prototype.split:
+    dependencies:
+      '@nolyfill/shared':
+        specifier: workspace:*
+        version: link:../../tools/shared
+
+  packages/generated/string.prototype.startswith:
+    dependencies:
+      '@nolyfill/shared':
+        specifier: workspace:*
+        version: link:../../tools/shared
+
+  packages/generated/string.prototype.substr:
     dependencies:
       '@nolyfill/shared':
         specifier: workspace:*
