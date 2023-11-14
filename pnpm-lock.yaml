@@ -386,6 +386,12 @@ importers:
 
   packages/generated/es6-object-assign: {}
 
+  packages/generated/function-bind:
+    dependencies:
+      '@nolyfill/shared':
+        specifier: workspace:*
+        version: link:../../tools/shared
+
   packages/generated/function.prototype.name:
     dependencies:
       '@nolyfill/shared':
@@ -2939,7 +2945,7 @@ packages:
   /call-bind@1.0.2:
     resolution: {integrity: sha512-7O+FbCihrB5WGbFYesctwmTKae6rOiIzmz1icreWJ+0aA7LJfuqhEso2T9ncpcFtzMQtzXf2QGGueWJGTYsqrA==}
     dependencies:
-      function-bind: link:packages/manual/function-bind
+      function-bind: link:packages/generated/function-bind
       get-intrinsic: 1.2.1
     dev: true
 
@@ -3359,7 +3365,7 @@ packages:
       define-properties: link:packages/generated/define-properties
       es-abstract: 1.22.1
       es-set-tostringtag: link:packages/generated/es-set-tostringtag
-      function-bind: link:packages/manual/function-bind
+      function-bind: link:packages/generated/function-bind
       get-intrinsic: 1.2.1
       globalthis: link:packages/generated/globalthis
       has-property-descriptors: link:packages/generated/has-property-descriptors
@@ -3922,7 +3928,7 @@ packages:
   /get-intrinsic@1.2.1:
     resolution: {integrity: sha512-2DcsyfABl+gVHEfCOaTrWgyt+tb6MSEGmKq+kI5HwLbIYgjgmMcV8KQ41uaKz1xxUcn9tJtgFbQUEVcEbd0FYw==}
     dependencies:
-      function-bind: link:packages/manual/function-bind
+      function-bind: link:packages/generated/function-bind
       has: link:packages/generated/has
       has-proto: link:packages/generated/has-proto
       has-symbols: link:packages/manual/has-symbols

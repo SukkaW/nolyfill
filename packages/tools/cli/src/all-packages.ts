@@ -26,6 +26,7 @@ export const allPackages = [
   "es-set-tostringtag",
   "es6-object-assign",
   "function-bind",
+  "function-bind",
   "function.prototype.name",
   "get-symbol-description",
   "globalthis",
