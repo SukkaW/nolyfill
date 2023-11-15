@@ -40,3 +40,7 @@ yarn-error.log*
 
 # es-iterator-helpers
 packages/manual/es-iterator-helpers/**/*.js
+
+# yalc
+.yalc
+yalc.lock
