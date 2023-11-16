@@ -22,6 +22,10 @@ interface PmCommandOptions {
   pm: PackageManager | 'auto'
 }
 
+interface CheckCommandOptions extends PmCommandOptions {
+  format: 'normal' | 'json'
+}
+
 const pmCommandOption = new Option('--pm [package manager]', 'specify which package manager to use')
   .choices(['auto', 'npm', 'pnpm', 'yarn'])
   .default('auto', 'detect package manager automatically');
@@ -72,15 +76,26 @@ const program = new Command('nolyfill');
       .description('check if the project contains redundant polyfills that can be optimized by nolyfill')
       .argument('[path]', 'project path to check')
       .addOption(pmCommandOption)
-      .action(async (source: string | undefined, option: PmCommandOptions) => {
+      .addOption(new Option('-f --format [format]', 'output format for console')
+        .choices(['humanreadable', 'json'])
+        .default('humanreadable')
+      )
+      .action(async (source: string | undefined, option: CheckCommandOptions) => {
         const projectPath = path.resolve(source ?? process.cwd());
         const packageManager = option.pm === 'auto' ? await detectPackageManager(projectPath) : option.pm;
+        const format = option.format;
 
         if (checkUnsupportedPM(packageManager)) {
           return;
         }
 
         const packagesToBeOverride = await findPackagesCoveredByNolyfill(packageManager, projectPath);
+
+        if (format === 'json') {
+          const packagesNotCoveredByNolyfill = await findPackagesNotCoveredByNolyfill(packageManager, projectPath);
+          console.log(JSON.stringify({ packagesCoveredByNolyfill: packagesToBeOverride, packagesNotCoveredByNolyfill }));
+          return;
+        }
 
         if (packagesToBeOverride.length === 0) {
           const packagesNotCoveredByNolyfill = await findPackagesNotCoveredByNolyfill(packageManager, projectPath);
