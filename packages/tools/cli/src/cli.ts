@@ -77,8 +77,8 @@ const program = new Command('nolyfill');
       .argument('[path]', 'project path to check')
       .addOption(pmCommandOption)
       .addOption(new Option('-f --format [format]', 'output format for console')
-        .choices(['normal', 'json'])
-        .default('normal')
+        .choices(['humanreadable', 'json'])
+        .default('humanreadable')
       )
       .action(async (source: string | undefined, option: CheckCommandOptions) => {
         const projectPath = path.resolve(source ?? process.cwd());
