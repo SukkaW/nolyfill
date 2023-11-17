@@ -67,6 +67,7 @@ export const allPackages = [
   "regexp.prototype.flags",
   "safe-array-concat",
   "safe-regex-test",
+  "set-function-length",
   "side-channel",
   "string.prototype.at",
   "string.prototype.codepointat",

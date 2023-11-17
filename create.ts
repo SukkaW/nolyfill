@@ -134,8 +134,8 @@ const manualPackagesList = [
   'function-bind', // function-bind's main entry point is not uncurried, and doesn't follow es-shim API
   'has-tostringtag', // two entries (index.js, shams.js)
   'has-symbols', // two entries (index.js, shams.js)
-  'es-iterator-helpers' // use rollup prebundle approach
-  // 'globalthis' // globalthis package's entrypoint is a function, not the implementation
+  'es-iterator-helpers', // use rollup prebundle approach
+  'set-function-length' // two entries (index.js, env.js)
 ] as const;
 
 const nonNolyfillPackagesList = [

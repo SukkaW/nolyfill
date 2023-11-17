@@ -70,6 +70,7 @@ overrides:
   regexp.prototype.flags: workspace:@nolyfill/regexp.prototype.flags@*
   safe-array-concat: workspace:@nolyfill/safe-array-concat@*
   safe-regex-test: workspace:@nolyfill/safe-regex-test@*
+  set-function-length: workspace:@nolyfill/set-function-length@*
   side-channel: workspace:@nolyfill/side-channel@*
   string.prototype.at: workspace:@nolyfill/string.prototype.at@*
   string.prototype.codepointat: workspace:@nolyfill/string.prototype.codepointat@*
@@ -714,6 +715,8 @@ importers:
   packages/manual/has-symbols: {}
 
   packages/manual/has-tostringtag: {}
+
+  packages/manual/set-function-length: {}
 
   packages/tools/cli:
     devDependencies:

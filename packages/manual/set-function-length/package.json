@@ -1,0 +1,19 @@
+{
+  "name": "@nolyfill/set-function-length",
+  "version": "1.0.25",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/SukkaW/nolyfill",
+    "directory": "packages/manual/set-function-length"
+  },
+  "main": "./index.js",
+  "files": [
+    "*.js"
+  ],
+  "scripts": {},
+  "license": "MIT",
+  "dependencies": {},
+  "engines": {
+    "node": ">=12.4.0"
+  }
+}
