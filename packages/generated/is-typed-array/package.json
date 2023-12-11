@@ -1,0 +1,21 @@
+{
+  "name": "@nolyfill/is-typed-array",
+  "version": "1.0.26",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/SukkaW/nolyfill",
+    "directory": "packages/generated/is-typed-array"
+  },
+  "main": "./index.js",
+  "license": "MIT",
+  "files": [
+    "*.js"
+  ],
+  "scripts": {},
+  "dependencies": {
+    "@nolyfill/which-typed-array": "workspace:*"
+  },
+  "engines": {
+    "node": ">=12.4.0"
+  }
+}

@@ -47,6 +47,7 @@ export const allPackages = [
   "is-shared-array-buffer",
   "is-string",
   "is-symbol",
+  "is-typed-array",
   "is-weakref",
   "isarray",
   "iterator.prototype",

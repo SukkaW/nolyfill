@@ -50,6 +50,7 @@ overrides:
   is-shared-array-buffer: workspace:@nolyfill/is-shared-array-buffer@*
   is-string: workspace:@nolyfill/is-string@*
   is-symbol: workspace:@nolyfill/is-symbol@*
+  is-typed-array: workspace:@nolyfill/is-typed-array@*
   is-weakref: workspace:@nolyfill/is-weakref@*
   isarray: workspace:@nolyfill/isarray@*
   iterator.prototype: workspace:@nolyfill/iterator.prototype@*
@@ -195,6 +196,9 @@ importers:
       '@nolyfill/shared':
         specifier: workspace:*
         version: link:../../tools/shared
+      '@nolyfill/which-typed-array':
+        specifier: workspace:*
+        version: link:../../generated/which-typed-array
 
   packages/generated/array-buffer-byte-length:
     dependencies:
@@ -448,6 +452,12 @@ importers:
   packages/generated/is-string: {}
 
   packages/generated/is-symbol: {}
+
+  packages/generated/is-typed-array:
+    dependencies:
+      '@nolyfill/which-typed-array':
+        specifier: workspace:*
+        version: link:../which-typed-array
 
   packages/generated/is-weakref: {}
 
@@ -3335,7 +3345,7 @@ packages:
       is-regex: link:packages/generated/is-regex
       is-shared-array-buffer: link:packages/generated/is-shared-array-buffer
       is-string: link:packages/generated/is-string
-      is-typed-array: 1.1.12
+      is-typed-array: link:packages/generated/is-typed-array
       is-weakref: link:packages/generated/is-weakref
       object-inspect: 1.12.3
       object-keys: link:packages/generated/object-keys
@@ -4299,13 +4309,6 @@ packages:
     engines: {node: '>=4'}
     dependencies:
       better-path-resolve: 1.0.0
-    dev: true
-
-  /is-typed-array@1.1.12:
-    resolution: {integrity: sha512-Z14TF2JNG8Lss5/HMqt0//T9JeHXttXy5pH/DBU4vi98ozO2btxzq9MwYDZYnKwU8nRsz/+GVFVRDq3DkVuSPg==}
-    engines: {node: '>= 0.4'}
-    dependencies:
-      which-typed-array: link:packages/generated/which-typed-array
     dev: true
 
   /is-windows@1.0.2:

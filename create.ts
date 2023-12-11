@@ -127,7 +127,8 @@ const singleFilePackagesList = [
   ['has'],
   ['hasown'],
   ['jsonify'],
-  ['isarray']
+  ['isarray'],
+  ['is-typed-array', { '@nolyfill/which-typed-array': 'workspace:*' }]
 ] as const;
 
 const manualPackagesList = [
