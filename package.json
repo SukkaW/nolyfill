@@ -27,7 +27,7 @@
     "path-scurry": "^1.10.1",
     "picocolors": "^1.0.0",
     "rimraf": "^5.0.5",
-    "rollup": "^4.4.0",
+    "rollup": "^4.8.0",
     "rollup-plugin-dts": "^6.1.0",
     "rollup-plugin-swc3": "^0.10.3",
     "turbo": "^1.10.16",
@@ -55,6 +55,7 @@
       "array.prototype.reduce": "workspace:@nolyfill/array.prototype.reduce@*",
       "array.prototype.tosorted": "workspace:@nolyfill/array.prototype.tosorted@*",
       "arraybuffer.prototype.slice": "workspace:@nolyfill/arraybuffer.prototype.slice@*",
+      "assert": "workspace:@nolyfill/assert@*",
       "asynciterator.prototype": "workspace:@nolyfill/asynciterator.prototype@*",
       "available-typed-arrays": "workspace:@nolyfill/available-typed-arrays@*",
       "deep-equal": "workspace:@nolyfill/deep-equal@*",
@@ -136,7 +137,8 @@
       "@types/npmcli__arborist@5.6.1": "patches/@types__npmcli__arborist@5.6.1.patch",
       "@npmcli/arborist@6.3.0": "patches/@npmcli__arborist@6.3.0.patch",
       "@yarnpkg/parsers@3.0.0-rc.49": "patches/@yarnpkg__parsers@3.0.0-rc.49.patch",
-      "@pnpm/workspace.find-packages@1.0.14": "patches/@pnpm__workspace.find-packages@1.0.14.patch"
+      "@pnpm/workspace.find-packages@1.0.14": "patches/@pnpm__workspace.find-packages@1.0.14.patch",
+      "assert@2.1.0": "patches/assert@2.1.0.patch"
     }
   },
   "overrides": {
@@ -155,6 +157,7 @@
     "array.prototype.reduce": "npm:@nolyfill/array.prototype.reduce@latest",
     "array.prototype.tosorted": "npm:@nolyfill/array.prototype.tosorted@latest",
     "arraybuffer.prototype.slice": "npm:@nolyfill/arraybuffer.prototype.slice@latest",
+    "assert": "npm:@nolyfill/assert@latest",
     "asynciterator.prototype": "npm:@nolyfill/asynciterator.prototype@latest",
     "available-typed-arrays": "npm:@nolyfill/available-typed-arrays@latest",
     "deep-equal": "npm:@nolyfill/deep-equal@latest",

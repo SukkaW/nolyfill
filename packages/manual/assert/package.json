@@ -1,0 +1,33 @@
+{
+  "name": "@nolyfill/assert",
+  "version": "1.0.26",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/SukkaW/nolyfill",
+    "directory": "packages/manual/assert"
+  },
+  "main": "dist/assert.js",
+  "files": [
+    "dist/assert.js"
+  ],
+  "scripts": {
+    "build": "rollup -c rollup.config.ts --configPlugin swc3"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "@nolyfill/is-nan": "workspace:*",
+    "@nolyfill/object-is": "workspace:*",
+    "@nolyfill/object.assign": "workspace:*"
+  },
+  "devDependencies": {
+    "@rollup/plugin-alias": "^5.1.0",
+    "@rollup/plugin-commonjs": "^25.0.7",
+    "@rollup/plugin-node-resolve": "^15.2.3",
+    "@rollup/plugin-replace": "^5.0.5",
+    "commonjs-assert": "npm:assert@^2.1.0",
+    "resolve-pkg": "^2.0.0"
+  },
+  "engines": {
+    "node": ">=12.4.0"
+  }
+}

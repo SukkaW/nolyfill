@@ -17,6 +17,7 @@ export const allPackages = [
   "array.prototype.reduce",
   "array.prototype.tosorted",
   "arraybuffer.prototype.slice",
+  "assert",
   "asynciterator.prototype",
   "available-typed-arrays",
   "deep-equal",

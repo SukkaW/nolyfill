@@ -1,0 +1,16 @@
+diff --git a/build/assert.js b/build/assert.js
+index b4056fad4efe4508c0bc6dd375334a75ff010d5e..659c48b46bf9b828e864194d374877f74bd1d959 100644
+--- a/build/assert.js
++++ b/build/assert.js
+@@ -44,7 +44,10 @@ var _require$types = require('util/').types,
+   isRegExp = _require$types.isRegExp;
+ var objectAssign = require('object.assign/polyfill')();
+ var objectIs = require('object-is/polyfill')();
+-var RegExpPrototypeTest = require('call-bind/callBound')('RegExp.prototype.test');
++function uncurryThis$$$(f) {
++  return f.call.bind(f);
++}
++var RegExpPrototypeTest = uncurryThis$$$(RegExp.prototype.test);
+ var errorCache = new Map();
+ var isDeepEqual;
+ var isDeepStrictEqual;

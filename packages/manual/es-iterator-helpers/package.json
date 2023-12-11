@@ -4,7 +4,7 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/SukkaW/nolyfill",
-    "directory": "packages/manual/has-symbols"
+    "directory": "packages/manual/es-iterator-helpers"
   },
   "main": "./index.js",
   "files": [
