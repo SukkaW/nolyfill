@@ -15,6 +15,7 @@ export const allPackages = [
   "array.prototype.flatmap",
   "array.prototype.foreach",
   "array.prototype.reduce",
+  "array.prototype.toreversed",
   "array.prototype.tosorted",
   "arraybuffer.prototype.slice",
   "assert",

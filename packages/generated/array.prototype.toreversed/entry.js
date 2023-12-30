@@ -1,0 +1,2 @@
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),Object.defineProperty(exports,"default",{enumerable:!0,get:function(){return t}});const e=require("@nolyfill/shared"),r=Array.prototype.toReversed||function(){let e=Object(this),r=Number(e.length),t=Array(r),n=0;for(;n<r;)t[n]=e[r-n-1],n+=1;return t},t=(0,e.defineEsShim)(r);
+Object.assign(exports.default, exports); module.exports = exports.default;

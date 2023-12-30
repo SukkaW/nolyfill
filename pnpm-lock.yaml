@@ -18,6 +18,7 @@ overrides:
   array.prototype.flatmap: workspace:@nolyfill/array.prototype.flatmap@*
   array.prototype.foreach: workspace:@nolyfill/array.prototype.foreach@*
   array.prototype.reduce: workspace:@nolyfill/array.prototype.reduce@*
+  array.prototype.toreversed: workspace:@nolyfill/array.prototype.toreversed@*
   array.prototype.tosorted: workspace:@nolyfill/array.prototype.tosorted@*
   arraybuffer.prototype.slice: workspace:@nolyfill/arraybuffer.prototype.slice@*
   assert: workspace:@nolyfill/assert@*
@@ -340,6 +341,12 @@ importers:
         version: link:../../tools/shared
 
   packages/generated/array.prototype.splice:
+    dependencies:
+      '@nolyfill/shared':
+        specifier: workspace:*
+        version: link:../../tools/shared
+
+  packages/generated/array.prototype.toreversed:
     dependencies:
       '@nolyfill/shared':
         specifier: workspace:*
