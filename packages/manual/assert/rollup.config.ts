@@ -53,7 +53,8 @@ export default defineConfig(async () => {
         entries: {
           'object.assign/polyfill': '@nolyfill/object.assign/polyfill',
           'object-is/polyfill': '@nolyfill/object-is/polyfill',
-          'is-nan': '@nolyfill/is-nan'
+          'is-nan': '@nolyfill/is-nan',
+          util: 'browserify-util'
         }
       }),
       minify({

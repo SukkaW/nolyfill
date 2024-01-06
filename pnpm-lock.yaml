@@ -720,6 +720,9 @@ importers:
       '@nolyfill/object.assign':
         specifier: workspace:*
         version: link:../../generated/object.assign
+      browserify-util:
+        specifier: ^0.12.6
+        version: 0.12.6
     devDependencies:
       '@rollup/plugin-alias':
         specifier: ^5.1.0
@@ -1192,6 +1195,22 @@ packages:
       '@nodelib/fs.scandir': 2.1.5
       fastq: 1.15.0
     dev: true
+
+  /@nolyfill/is-generator-function@1.0.24:
+    resolution: {integrity: sha512-1b5eOnqdmfMusjU5YNvojLlZguoENQfA3wa1AQNEvBsR5pi41i2Zn1WNvk4Ph1QI3hpW8xWOmAJS1ouMF5cNkA==}
+    engines: {node: '>=12.4.0'}
+    dev: false
+
+  /@nolyfill/shared@1.0.24:
+    resolution: {integrity: sha512-TGCpg3k5N7jj9AgU/1xFw9K1g4AC1vEE5ZFkW77oPNNLzprxT17PvFaNr/lr3BkkT5fJ5LNMntaTIq+pyWaeEA==}
+    dev: false
+
+  /@nolyfill/which-typed-array@1.0.24:
+    resolution: {integrity: sha512-DyeHLuWXQ+q4TYFhSnl6eZ0qadrNk9SJPL13pdoIIaz8TlKKIbv/9UF6wulmlFohJGQizoT5vew5mW1rK1Dlbw==}
+    engines: {node: '>=12.4.0'}
+    dependencies:
+      '@nolyfill/shared': 1.0.24
+    dev: false
 
   /@npm/types@1.0.2:
     resolution: {integrity: sha512-KXZccTDEnWqNrrx6JjpJKU/wJvNeg9BDgjS0XhmlZab7br921HtyVbsYzJr4L+xIvjdJ20Wh9dgxgCI2a5CEQw==}
@@ -2945,6 +2964,15 @@ packages:
       fill-range: 7.0.1
     dev: true
 
+  /browserify-util@0.12.6:
+    resolution: {integrity: sha512-AUwf55wMcb4WpTwYDMCVsLDrEV7GRg+58i4bHFrwUSkjHb1t30ot36nseJ4Ynce35yVX4+4hLsB1Oop7RQI1rg==}
+    engines: {node: '>=12.6.0'}
+    dependencies:
+      '@nolyfill/is-generator-function': 1.0.24
+      '@nolyfill/which-typed-array': 1.0.24
+      inherits: 2.0.4
+    dev: false
+
   /buffer-from@1.1.2:
     resolution: {integrity: sha512-E+XQCRwSbaaiChtv6k6Dwgc+bx+Bs6vuKJHHl5kox/BaKbhiXzqQOwK4cO22yElGp2OCmjwVhT3HmxgyPGnJfQ==}
     dev: true
@@ -4272,7 +4300,6 @@ packages:
 
   /inherits@2.0.4:
     resolution: {integrity: sha512-k/vGaX4/Yla3WzyMCvTQOXYeIHvqOKtnqBduzTHpzpQZzAskKMhZ2K+EnBiSM9zGSoIFeMpXKxa4dYeZIQqewQ==}
-    dev: true
 
   /ini@1.3.8:
     resolution: {integrity: sha512-JV/yugV2uzW5iMRSiZAyDtQd+nxtUnjeLt0acNdw98kKLrvuRVyB80tsREOE7yvGVgalhZ6RNXCmEHkUKBKxew==}

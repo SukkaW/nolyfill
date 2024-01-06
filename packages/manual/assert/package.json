@@ -17,7 +17,8 @@
   "dependencies": {
     "@nolyfill/is-nan": "workspace:*",
     "@nolyfill/object-is": "workspace:*",
-    "@nolyfill/object.assign": "workspace:*"
+    "@nolyfill/object.assign": "workspace:*",
+    "browserify-util": "^0.12.6"
   },
   "devDependencies": {
     "@rollup/plugin-alias": "^5.1.0",
