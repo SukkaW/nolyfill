@@ -8,6 +8,7 @@
   "license": "MIT",
   "dependencies": {
     "@nolyfill/es-aggregate-error": "workspace:*",
+    "@nolyfill/safe-array-concat": "workspace:*",
     "@nolyfill/shared": "workspace:*"
   }
 }

@@ -93,6 +93,7 @@ export const allPackages = [
   "typed-array-length",
   "typedarray",
   "unbox-primitive",
+  "util.promisify",
   "which-boxed-primitive",
   "which-typed-array"
 ];

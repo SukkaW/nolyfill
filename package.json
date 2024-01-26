@@ -131,6 +131,7 @@
       "typed-array-length": "workspace:@nolyfill/typed-array-length@*",
       "typedarray": "workspace:@nolyfill/typedarray@*",
       "unbox-primitive": "workspace:@nolyfill/unbox-primitive@*",
+      "util.promisify": "workspace:@nolyfill/util.promisify@*",
       "which-boxed-primitive": "workspace:@nolyfill/which-boxed-primitive@*",
       "which-typed-array": "workspace:@nolyfill/which-typed-array@*"
     },
@@ -234,6 +235,7 @@
     "typed-array-length": "npm:@nolyfill/typed-array-length@latest",
     "typedarray": "npm:@nolyfill/typedarray@latest",
     "unbox-primitive": "npm:@nolyfill/unbox-primitive@latest",
+    "util.promisify": "npm:@nolyfill/util.promisify@latest",
     "which-boxed-primitive": "npm:@nolyfill/which-boxed-primitive@latest",
     "which-typed-array": "npm:@nolyfill/which-typed-array@latest"
   }

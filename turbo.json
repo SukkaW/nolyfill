@@ -13,7 +13,8 @@
     },
     "//#codegen": {
       "inputs": [
-        "create.ts"
+        "create.ts",
+        "packages/data/**"
       ]
     },
     "build": {

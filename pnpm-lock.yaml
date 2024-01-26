@@ -96,6 +96,7 @@ overrides:
   typed-array-length: workspace:@nolyfill/typed-array-length@*
   typedarray: workspace:@nolyfill/typedarray@*
   unbox-primitive: workspace:@nolyfill/unbox-primitive@*
+  util.promisify: workspace:@nolyfill/util.promisify@*
   which-boxed-primitive: workspace:@nolyfill/which-boxed-primitive@*
   which-typed-array: workspace:@nolyfill/which-typed-array@*
 
@@ -189,6 +190,9 @@ importers:
       '@nolyfill/es-aggregate-error':
         specifier: workspace:*
         version: link:../../generated/es-aggregate-error
+      '@nolyfill/safe-array-concat':
+        specifier: workspace:*
+        version: link:../../generated/safe-array-concat
       '@nolyfill/shared':
         specifier: workspace:*
         version: link:../../tools/shared
@@ -700,6 +704,15 @@ importers:
   packages/generated/typedarray: {}
 
   packages/generated/unbox-primitive: {}
+
+  packages/generated/util.promisify:
+    dependencies:
+      '@nolyfill/safe-array-concat':
+        specifier: workspace:*
+        version: link:../safe-array-concat
+      '@nolyfill/shared':
+        specifier: workspace:*
+        version: link:../../tools/shared
 
   packages/generated/which-boxed-primitive: {}
 
