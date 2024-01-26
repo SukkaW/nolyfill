@@ -22,10 +22,10 @@
     "@nolyfill/internal": "workspace:*",
     "@nolyfill/promise.any": "workspace:*",
     "@npmcli/arborist": "^6.3.0",
-    "@pnpm/list": "^9.1.4",
+    "@pnpm/list": "^9.1.9",
     "@pnpm/workspace.find-packages": "^1.0.14",
     "@rollup/plugin-commonjs": "^25.0.7",
-    "@rollup/plugin-json": "^6.0.1",
+    "@rollup/plugin-json": "^6.1.0",
     "@rollup/plugin-node-resolve": "^15.2.3",
     "@swc-node/register": "^1.6.8",
     "@swc/helpers": "^0.5.3",
@@ -36,7 +36,7 @@
     "commander": "^11.1.0",
     "detect-indent": "^6.1.0",
     "picocolors": "^1.0.0",
-    "rollup-plugin-visualizer": "^5.9.2"
+    "rollup-plugin-visualizer": "^5.12.0"
   },
   "engines": {
     "node": ">=12.4.0"
