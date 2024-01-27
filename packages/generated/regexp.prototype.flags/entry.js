@@ -1,2 +1,2 @@
-"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),Object.defineProperty(exports,"default",{enumerable:!0,get:function(){return t}});const e=require("@nolyfill/shared"),t=(0,e.defineEsShim)(RegExp.prototype.flags);
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),Object.defineProperty(exports,"default",{enumerable:!0,get:function(){return e}});const e=(0,require("@nolyfill/shared").defineEsShim)(RegExp.prototype.flags);
 Object.assign(exports.default, exports); module.exports = exports.default;

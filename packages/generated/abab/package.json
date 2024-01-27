@@ -1,10 +1,10 @@
 {
-  "name": "@nolyfill/string.prototype.padend",
+  "name": "@nolyfill/abab",
   "version": "1.0.28",
   "repository": {
     "type": "git",
     "url": "https://github.com/SukkaW/nolyfill",
-    "directory": "packages/generated/string.prototype.padend"
+    "directory": "packages/generated/abab"
   },
   "main": "./index.js",
   "license": "MIT",
@@ -12,9 +12,7 @@
     "*.js"
   ],
   "scripts": {},
-  "dependencies": {
-    "@nolyfill/shared": "workspace:*"
-  },
+  "dependencies": {},
   "engines": {
     "node": ">=12.4.0"
   }
