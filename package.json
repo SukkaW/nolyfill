@@ -40,6 +40,7 @@
   },
   "pnpm": {
     "overrides": {
+      "abab": "workspace:@nolyfill/abab@*",
       "array-buffer-byte-length": "workspace:@nolyfill/array-buffer-byte-length@*",
       "array-includes": "workspace:@nolyfill/array-includes@*",
       "array.from": "workspace:@nolyfill/array.from@*",
@@ -144,6 +145,7 @@
     }
   },
   "overrides": {
+    "abab": "npm:@nolyfill/abab@latest",
     "array-buffer-byte-length": "npm:@nolyfill/array-buffer-byte-length@latest",
     "array-includes": "npm:@nolyfill/array-includes@latest",
     "array.from": "npm:@nolyfill/array.from@latest",

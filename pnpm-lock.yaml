@@ -5,6 +5,7 @@ settings:
   excludeLinksFromLockfile: false
 
 overrides:
+  abab: workspace:@nolyfill/abab@*
   array-buffer-byte-length: workspace:@nolyfill/array-buffer-byte-length@*
   array-includes: workspace:@nolyfill/array-includes@*
   array.from: workspace:@nolyfill/array.from@*
@@ -208,6 +209,8 @@ importers:
       '@nolyfill/which-typed-array':
         specifier: workspace:*
         version: link:../../generated/which-typed-array
+
+  packages/generated/abab: {}
 
   packages/generated/array-buffer-byte-length:
     dependencies:
