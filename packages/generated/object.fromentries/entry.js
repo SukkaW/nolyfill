@@ -1,2 +1,2 @@
-"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),Object.defineProperty(exports,"default",{enumerable:!0,get:function(){return r}});const e=require("@nolyfill/shared"),r=(0,e.defineEsShim)(Object.fromEntries,!0);
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),Object.defineProperty(exports,"default",{enumerable:!0,get:function(){return e}});const e=(0,require("@nolyfill/shared").defineEsShim)(Object.fromEntries,!0);
 Object.assign(exports.default, exports); module.exports = exports.default;

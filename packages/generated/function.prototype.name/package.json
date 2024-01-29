@@ -1,6 +1,6 @@
 {
   "name": "@nolyfill/function.prototype.name",
-  "version": "1.0.24",
+  "version": "1.0.28",
   "repository": {
     "type": "git",
     "url": "https://github.com/SukkaW/nolyfill",
