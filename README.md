@@ -57,7 +57,7 @@ Add the definition in `packages/data/es-shim-like/src/` or `packages/data/single
 
 ## Contributions
 
-when you `npm i` or anything else, get `Use your platform's native` and it's available at NodeJS <= 12, it's time to nolyfill it.
+when you `npm i` or anything else, get `Use your platform's native` and it's available at Node.js <= 12, it's time to nolyfill it.
 
 ----
 
