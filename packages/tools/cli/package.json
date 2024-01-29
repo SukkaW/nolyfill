@@ -22,7 +22,7 @@
     "@nolyfill/internal": "workspace:*",
     "@nolyfill/promise.any": "workspace:*",
     "@npmcli/arborist": "^6.3.0",
-    "@pnpm/list": "^9.1.9",
+    "@pnpm/list": "^9.1.10",
     "@pnpm/workspace.find-packages": "^1.0.14",
     "@rollup/plugin-commonjs": "^25.0.7",
     "@rollup/plugin-json": "^6.1.0",
