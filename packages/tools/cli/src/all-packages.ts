@@ -24,7 +24,6 @@ export const allPackages = [
   "available-typed-arrays",
   "deep-equal",
   "define-properties",
-  "domexception",
   "es-aggregate-error",
   "es-iterator-helpers",
   "es-set-tostringtag",

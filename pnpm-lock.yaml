@@ -27,7 +27,6 @@ overrides:
   available-typed-arrays: workspace:@nolyfill/available-typed-arrays@*
   deep-equal: workspace:@nolyfill/deep-equal@*
   define-properties: workspace:@nolyfill/define-properties@*
-  domexception: workspace:@nolyfill/domexception@*
   es-aggregate-error: workspace:@nolyfill/es-aggregate-error@*
   es-iterator-helpers: workspace:@nolyfill/es-iterator-helpers@*
   es-set-tostringtag: workspace:@nolyfill/es-set-tostringtag@*
