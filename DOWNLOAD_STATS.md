@@ -2,6 +2,7 @@
 | ---- | -------- |
 | `nolyfill` | [![npm](https://img.shields.io/npm/dt/nolyfill.svg?style=flat-square&logo=npm&logoColor=white&label=total%20downloads&color=333)](https://www.npmjs.com/package/nolyfill) |
 | `@nolyfill/shared` | [![npm](https://img.shields.io/npm/dt/@nolyfill/shared.svg?style=flat-square&logo=npm&logoColor=white&label=total%20downloads&color=333)](https://www.npmjs.com/package/@nolyfill/shared) |
+| `@nolyfill/abab` | [![npm](https://img.shields.io/npm/dt/@nolyfill/abab.svg?style=flat-square&logo=npm&logoColor=white&label=total%20downloads&color=333)](https://www.npmjs.com/package/@nolyfill/abab) |
 | `@nolyfill/array-buffer-byte-length` | [![npm](https://img.shields.io/npm/dt/@nolyfill/array-buffer-byte-length.svg?style=flat-square&logo=npm&logoColor=white&label=total%20downloads&color=333)](https://www.npmjs.com/package/@nolyfill/array-buffer-byte-length) |
 | `@nolyfill/array-includes` | [![npm](https://img.shields.io/npm/dt/@nolyfill/array-includes.svg?style=flat-square&logo=npm&logoColor=white&label=total%20downloads&color=333)](https://www.npmjs.com/package/@nolyfill/array-includes) |
 | `@nolyfill/array.from` | [![npm](https://img.shields.io/npm/dt/@nolyfill/array.from.svg?style=flat-square&logo=npm&logoColor=white&label=total%20downloads&color=333)](https://www.npmjs.com/package/@nolyfill/array.from) |
