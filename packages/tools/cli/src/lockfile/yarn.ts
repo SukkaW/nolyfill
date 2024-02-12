@@ -1,6 +1,6 @@
 import fsp from 'fs/promises';
 import path from 'path';
-import { parseSyml } from '@yarnpkg/parsers/lib/syml';
+import { parseSyml } from '@yarnpkg/parsers';
 
 import type { PackageNode } from '../types';
 import { cache } from '../lib/cache';

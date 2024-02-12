@@ -97,7 +97,7 @@
     "@rollup/plugin-commonjs": "^25.0.7",
     "@rollup/plugin-node-resolve": "^15.2.3",
     "@rollup/plugin-replace": "^5.0.5",
-    "ljharb-es-iterator-helpers": "npm:es-iterator-helpers@^1.0.15",
+    "ljharb-es-iterator-helpers": "npm:es-iterator-helpers@^1.0.16",
     "resolve-pkg": "^2.0.0"
   },
   "engines": {
