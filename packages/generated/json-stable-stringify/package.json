@@ -1,0 +1,19 @@
+{
+  "name": "@nolyfill/json-stable-stringify",
+  "version": "1.0.30",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/SukkaW/nolyfill",
+    "directory": "packages/generated/json-stable-stringify"
+  },
+  "main": "./index.js",
+  "license": "MIT",
+  "files": [
+    "*.js"
+  ],
+  "scripts": {},
+  "dependencies": {},
+  "engines": {
+    "node": ">=12.4.0"
+  }
+}

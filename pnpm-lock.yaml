@@ -57,6 +57,7 @@ overrides:
   is-weakref: workspace:@nolyfill/is-weakref@*
   isarray: workspace:@nolyfill/isarray@*
   iterator.prototype: workspace:@nolyfill/iterator.prototype@*
+  json-stable-stringify: workspace:@nolyfill/json-stable-stringify@*
   jsonify: workspace:@nolyfill/jsonify@*
   object-is: workspace:@nolyfill/object-is@*
   object-keys: workspace:@nolyfill/object-keys@*
@@ -484,6 +485,8 @@ importers:
   packages/generated/isarray: {}
 
   packages/generated/iterator.prototype: {}
+
+  packages/generated/json-stable-stringify: {}
 
   packages/generated/jsonify: {}
 

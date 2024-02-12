@@ -54,6 +54,7 @@ export const allPackages = [
   "is-weakref",
   "isarray",
   "iterator.prototype",
+  "json-stable-stringify",
   "jsonify",
   "object-is",
   "object-keys",
