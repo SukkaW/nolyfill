@@ -19,7 +19,7 @@
     "@swc-node/register": "^1.9.0",
     "@swc/core": "^1.4.8",
     "@types/node": "^20.11.30",
-    "bumpp": "^9.4.0",
+    "bumpp": "9.3.0",
     "dequal": "2.0.3",
     "eslint": "^8.57.0",
     "eslint-config-sukka": "^5.1.2",
@@ -140,9 +140,9 @@
     "patchedDependencies": {
       "@types/npmcli__arborist@5.6.1": "patches/@types__npmcli__arborist@5.6.1.patch",
       "@npmcli/arborist@6.3.0": "patches/@npmcli__arborist@6.3.0.patch",
-      "@yarnpkg/parsers@3.0.0-rc.49": "patches/@yarnpkg__parsers@3.0.0-rc.49.patch",
       "@pnpm/workspace.find-packages@1.0.14": "patches/@pnpm__workspace.find-packages@1.0.14.patch",
-      "assert@2.1.0": "patches/assert@2.1.0.patch"
+      "assert@2.1.0": "patches/assert@2.1.0.patch",
+      "@yarnpkg/parsers@3.0.0": "patches/@yarnpkg__parsers@3.0.0.patch"
     }
   },
   "overrides": {
