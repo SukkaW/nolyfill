@@ -9,7 +9,7 @@
     "build:analyze": "ANALYZE=true turbo run build",
     "codegen": "node -r @swc-node/register create.ts",
     "prerelease": "turbo run build",
-    "release": "bumpp --all --commit=\"release: %s\" --tag=\"%s\""
+    "release": "bumpp --all --commit \"release: %s\" --tag \"%s\""
   },
   "devDependencies": {
     "@eslint-sukka/node": "^5.1.2",
@@ -19,7 +19,7 @@
     "@swc-node/register": "^1.9.0",
     "@swc/core": "^1.4.8",
     "@types/node": "^20.11.30",
-    "bumpp": "9.3.0",
+    "bumpp": "^9.4.0",
     "dequal": "2.0.3",
     "eslint": "^8.57.0",
     "eslint-config-sukka": "^5.1.2",
