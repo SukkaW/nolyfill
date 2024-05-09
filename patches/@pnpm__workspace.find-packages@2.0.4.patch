@@ -1,23 +1,27 @@
 diff --git a/lib/index.js b/lib/index.js
-index d1ce8e1c081d7f3379a8ee48a8e471d7058779ea..b8966765874c71b660d553e501e9faa6cc1b852a 100644
+index c8d68e72ea0907b8f4dfcd83b30d26f9512a99ea..633e8a460c65c2d735ef452a41c02d2dfa951e60 100644
 --- a/lib/index.js
 +++ b/lib/index.js
-@@ -5,24 +5,24 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
+@@ -1,29 +1,29 @@
+ "use strict";
  Object.defineProperty(exports, "__esModule", { value: true });
  exports.arrayOfWorkspacePackagesToMap = exports.findWorkspacePackagesNoCheck = exports.findWorkspacePackages = void 0;
- const path_1 = __importDefault(require("path"));
 -const cli_utils_1 = require("@pnpm/cli-utils");
 +// const cli_utils_1 = require("@pnpm/cli-utils");
- const constants_1 = require("@pnpm/constants");
+ const workspace_read_manifest_1 = require("@pnpm/workspace.read-manifest");
  const util_lex_comparator_1 = require("@pnpm/util.lex-comparator");
  const fs_find_packages_1 = require("@pnpm/fs.find-packages");
 -const logger_1 = require("@pnpm/logger");
-+// const logger_1 = require("@pnpm/logger");
- const read_yaml_file_1 = __importDefault(require("read-yaml-file"));
 -async function findWorkspacePackages(workspaceRoot, opts) {
 -    const pkgs = await findWorkspacePackagesNoCheck(workspaceRoot, opts);
 -    for (const pkg of pkgs) {
--        (0, cli_utils_1.packageIsInstallable)(pkg.dir, pkg.manifest, opts ?? {});
+-        (0, cli_utils_1.packageIsInstallable)(pkg.dir, pkg.manifest, opts ?? {
+-            supportedArchitectures: {
+-                os: ['current'],
+-                cpu: ['current'],
+-                libc: ['current'],
+-            },
+-        });
 -        // When setting shared-workspace-lockfile=false, `pnpm` can be set in sub-project's package.json.
 -        if (opts?.sharedWorkspaceLockfile && pkg.dir !== workspaceRoot) {
 -            checkNonRootProjectManifest(pkg);
@@ -26,10 +30,17 @@ index d1ce8e1c081d7f3379a8ee48a8e471d7058779ea..b8966765874c71b660d553e501e9faa6
 -    return pkgs;
 -}
 -exports.findWorkspacePackages = findWorkspacePackages;
++// const logger_1 = require("@pnpm/logger");
 +// async function findWorkspacePackages(workspaceRoot, opts) {
 +//     const pkgs = await findWorkspacePackagesNoCheck(workspaceRoot, opts);
 +//     for (const pkg of pkgs) {
-+//         (0, cli_utils_1.packageIsInstallable)(pkg.dir, pkg.manifest, opts ?? {});
++//         (0, cli_utils_1.packageIsInstallable)(pkg.dir, pkg.manifest, opts ?? {
++//             supportedArchitectures: {
++//                 os: ['current'],
++//                 cpu: ['current'],
++//                 libc: ['current'],
++//             },
++//         });
 +//         // When setting shared-workspace-lockfile=false, `pnpm` can be set in sub-project's package.json.
 +//         if (opts?.sharedWorkspaceLockfile && pkg.dir !== workspaceRoot) {
 +//             checkNonRootProjectManifest(pkg);
@@ -41,10 +52,10 @@ index d1ce8e1c081d7f3379a8ee48a8e471d7058779ea..b8966765874c71b660d553e501e9faa6
  async function findWorkspacePackagesNoCheck(workspaceRoot, opts) {
      let patterns = opts?.patterns;
      if (patterns == null) {
-@@ -52,26 +52,26 @@ async function requirePackagesManifest(dir) {
-         throw err;
-     }
+@@ -42,26 +42,26 @@ async function findWorkspacePackagesNoCheck(workspaceRoot, opts) {
+     return pkgs;
  }
+ exports.findWorkspacePackagesNoCheck = findWorkspacePackagesNoCheck;
 -function arrayOfWorkspacePackagesToMap(pkgs) {
 -    return pkgs.reduce((acc, pkg) => {
 -        if (!pkg.manifest.name)
