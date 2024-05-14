@@ -106,6 +106,15 @@ patchedDependencies:
   '@npmcli/arborist@6.3.0':
     hash: eobdrhtmolyi74xb3rpenl2k74
     path: patches/@npmcli__arborist@6.3.0.patch
+  '@pnpm/list@10.1.2':
+    hash: l7bpfljktl65jiumqxctryt3jy
+    path: patches/@pnpm__list@10.1.2.patch
+  '@pnpm/list@9.1.12':
+    hash: rsoqlqdrl6n4cha2bs4i43ari4
+    path: patches/@pnpm__list@9.1.12.patch
+  '@pnpm/workspace.find-packages@2.0.5':
+    hash: fdtkzy6snufy64kmrc6u724vfq
+    path: patches/@pnpm__workspace.find-packages@2.0.5.patch
   '@types/npmcli__arborist@5.6.1':
     hash: 6ms3onjw4t22bbhdxmnddktj5e
     path: patches/@types__npmcli__arborist@5.6.1.patch
@@ -810,13 +819,13 @@ importers:
         version: 6.3.0(patch_hash=eobdrhtmolyi74xb3rpenl2k74)
       '@pnpm/list':
         specifier: ^10.1.2
-        version: 10.1.2(@pnpm/logger@5.0.0)
+        version: 10.1.2(patch_hash=l7bpfljktl65jiumqxctryt3jy)(@pnpm/logger@5.0.0)
       '@pnpm/list--old':
         specifier: npm:@pnpm/list@^9.1.10
-        version: '@pnpm/list@9.1.12(@pnpm/logger@5.0.0)'
+        version: '@pnpm/list@9.1.12(patch_hash=rsoqlqdrl6n4cha2bs4i43ari4)(@pnpm/logger@5.0.0)'
       '@pnpm/workspace.find-packages':
         specifier: ^2.0.5
-        version: 2.0.5(@pnpm/logger@5.0.0)
+        version: 2.0.5(patch_hash=fdtkzy6snufy64kmrc6u724vfq)(@pnpm/logger@5.0.0)
       '@rollup/plugin-commonjs':
         specifier: ^25.0.7
         version: 25.0.7(rollup@4.17.2)
@@ -4417,7 +4426,7 @@ snapshots:
     dependencies:
       lru-cache: 6.0.0
 
-  '@pnpm/list@10.1.2(@pnpm/logger@5.0.0)':
+  '@pnpm/list@10.1.2(patch_hash=l7bpfljktl65jiumqxctryt3jy)(@pnpm/logger@5.0.0)':
     dependencies:
       '@pnpm/read-package-json': 9.0.1
       '@pnpm/read-project-manifest': 6.0.1
@@ -4433,7 +4442,7 @@ snapshots:
       - domexception
       - supports-color
 
-  '@pnpm/list@9.1.12(@pnpm/logger@5.0.0)':
+  '@pnpm/list@9.1.12(patch_hash=rsoqlqdrl6n4cha2bs4i43ari4)(@pnpm/logger@5.0.0)':
     dependencies:
       '@pnpm/read-package-json': 8.0.8
       '@pnpm/read-project-manifest': 5.0.11
@@ -4813,7 +4822,7 @@ snapshots:
 
   '@pnpm/util.lex-comparator@3.0.0': {}
 
-  '@pnpm/workspace.find-packages@2.0.5(@pnpm/logger@5.0.0)':
+  '@pnpm/workspace.find-packages@2.0.5(patch_hash=fdtkzy6snufy64kmrc6u724vfq)(@pnpm/logger@5.0.0)':
     dependencies:
       '@pnpm/cli-utils': 3.0.5(@pnpm/logger@5.0.0)
       '@pnpm/fs.find-packages': 3.0.1

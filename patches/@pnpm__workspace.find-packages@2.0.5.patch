@@ -1,0 +1,105 @@
+diff --git a/lib/index.js b/lib/index.js
+index c8d68e72ea0907b8f4dfcd83b30d26f9512a99ea..c4dfd37d947bc4eae7faadfc9a1f1274768f353f 100644
+--- a/lib/index.js
++++ b/lib/index.js
+@@ -1,29 +1,30 @@
+ "use strict";
+ Object.defineProperty(exports, "__esModule", { value: true });
+-exports.arrayOfWorkspacePackagesToMap = exports.findWorkspacePackagesNoCheck = exports.findWorkspacePackages = void 0;
+-const cli_utils_1 = require("@pnpm/cli-utils");
++// exports.arrayOfWorkspacePackagesToMap = exports.findWorkspacePackagesNoCheck = exports.findWorkspacePackages = void 0;
++exports.findWorkspacePackagesNoCheck = void 0;
++// const cli_utils_1 = require("@pnpm/cli-utils");
+ const workspace_read_manifest_1 = require("@pnpm/workspace.read-manifest");
+ const util_lex_comparator_1 = require("@pnpm/util.lex-comparator");
+ const fs_find_packages_1 = require("@pnpm/fs.find-packages");
+-const logger_1 = require("@pnpm/logger");
+-async function findWorkspacePackages(workspaceRoot, opts) {
+-    const pkgs = await findWorkspacePackagesNoCheck(workspaceRoot, opts);
+-    for (const pkg of pkgs) {
+-        (0, cli_utils_1.packageIsInstallable)(pkg.dir, pkg.manifest, opts ?? {
+-            supportedArchitectures: {
+-                os: ['current'],
+-                cpu: ['current'],
+-                libc: ['current'],
+-            },
+-        });
+-        // When setting shared-workspace-lockfile=false, `pnpm` can be set in sub-project's package.json.
+-        if (opts?.sharedWorkspaceLockfile && pkg.dir !== workspaceRoot) {
+-            checkNonRootProjectManifest(pkg);
+-        }
+-    }
+-    return pkgs;
+-}
+-exports.findWorkspacePackages = findWorkspacePackages;
++// const logger_1 = require("@pnpm/logger");
++// async function findWorkspacePackages(workspaceRoot, opts) {
++//     const pkgs = await findWorkspacePackagesNoCheck(workspaceRoot, opts);
++//     for (const pkg of pkgs) {
++//         (0, cli_utils_1.packageIsInstallable)(pkg.dir, pkg.manifest, opts ?? {
++//             supportedArchitectures: {
++//                 os: ['current'],
++//                 cpu: ['current'],
++//                 libc: ['current'],
++//             },
++//         });
++//         // When setting shared-workspace-lockfile=false, `pnpm` can be set in sub-project's package.json.
++//         if (opts?.sharedWorkspaceLockfile && pkg.dir !== workspaceRoot) {
++//             checkNonRootProjectManifest(pkg);
++//         }
++//     }
++//     return pkgs;
++// }
++// exports.findWorkspacePackages = findWorkspacePackages;
+ async function findWorkspacePackagesNoCheck(workspaceRoot, opts) {
+     let patterns = opts?.patterns;
+     if (patterns == null) {
+@@ -42,26 +43,26 @@ async function findWorkspacePackagesNoCheck(workspaceRoot, opts) {
+     return pkgs;
+ }
+ exports.findWorkspacePackagesNoCheck = findWorkspacePackagesNoCheck;
+-function arrayOfWorkspacePackagesToMap(pkgs) {
+-    return pkgs.reduce((acc, pkg) => {
+-        if (!pkg.manifest.name)
+-            return acc;
+-        if (!acc[pkg.manifest.name]) {
+-            acc[pkg.manifest.name] = {};
+-        }
+-        acc[pkg.manifest.name][pkg.manifest.version ?? '0.0.0'] = pkg;
+-        return acc;
+-    }, {});
+-}
+-exports.arrayOfWorkspacePackagesToMap = arrayOfWorkspacePackagesToMap;
+-function checkNonRootProjectManifest({ manifest, dir }) {
+-    for (const rootOnlyField of ['pnpm', 'resolutions']) {
+-        if (manifest?.[rootOnlyField]) {
+-            logger_1.logger.warn({
+-                message: `The field "${rootOnlyField}" was found in ${dir}/package.json. This will not take effect. You should configure "${rootOnlyField}" at the root of the workspace instead.`,
+-                prefix: dir,
+-            });
+-        }
+-    }
+-}
++// function arrayOfWorkspacePackagesToMap(pkgs) {
++//     return pkgs.reduce((acc, pkg) => {
++//         if (!pkg.manifest.name)
++//             return acc;
++//         if (!acc[pkg.manifest.name]) {
++//             acc[pkg.manifest.name] = {};
++//         }
++//         acc[pkg.manifest.name][pkg.manifest.version ?? '0.0.0'] = pkg;
++//         return acc;
++//     }, {});
++// }
++// exports.arrayOfWorkspacePackagesToMap = arrayOfWorkspacePackagesToMap;
++// function checkNonRootProjectManifest({ manifest, dir }) {
++//     for (const rootOnlyField of ['pnpm', 'resolutions']) {
++//         if (manifest?.[rootOnlyField]) {
++//             logger_1.logger.warn({
++//                 message: `The field "${rootOnlyField}" was found in ${dir}/package.json. This will not take effect. You should configure "${rootOnlyField}" at the root of the workspace instead.`,
++//                 prefix: dir,
++//             });
++//         }
++//     }
++// }
+ //# sourceMappingURL=index.js.map
