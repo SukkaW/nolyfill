@@ -20,7 +20,8 @@ export const buildPNPMDepTree = cache(async (dirPath: string): Promise<PackageNo
       dependencies: true,
       devDependencies: true,
       optionalDependencies: false
-    }
+    },
+    virtualStoreDirMaxLength: Infinity
   });
 
   return result.flatMap((dep) => {
