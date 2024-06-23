@@ -23,6 +23,7 @@ export const allPackages = [
   "asynciterator.prototype",
   "available-typed-arrays",
   "deep-equal",
+  "deep-equal-json",
   "define-properties",
   "es-aggregate-error",
   "es-iterator-helpers",
