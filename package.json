@@ -142,7 +142,9 @@
       "@npmcli/arborist@6.3.0": "patches/@npmcli__arborist@6.3.0.patch",
       "assert@2.1.0": "patches/assert@2.1.0.patch",
       "@yarnpkg/parsers@3.0.0": "patches/@yarnpkg__parsers@3.0.0.patch",
-      "@pnpm/workspace.find-packages@2.0.4": "patches/@pnpm__workspace.find-packages@2.0.4.patch"
+      "@pnpm/list@9.1.12": "patches/@pnpm__list@9.1.12.patch",
+      "@pnpm/list@10.1.2": "patches/@pnpm__list@10.1.2.patch",
+      "@pnpm/workspace.find-packages@2.0.5": "patches/@pnpm__workspace.find-packages@2.0.5.patch"
     }
   },
   "overrides": {

@@ -1,12 +1,14 @@
 diff --git a/lib/index.js b/lib/index.js
-index c8d68e72ea0907b8f4dfcd83b30d26f9512a99ea..633e8a460c65c2d735ef452a41c02d2dfa951e60 100644
+index c8d68e72ea0907b8f4dfcd83b30d26f9512a99ea..c4dfd37d947bc4eae7faadfc9a1f1274768f353f 100644
 --- a/lib/index.js
 +++ b/lib/index.js
-@@ -1,29 +1,29 @@
+@@ -1,29 +1,30 @@
  "use strict";
  Object.defineProperty(exports, "__esModule", { value: true });
- exports.arrayOfWorkspacePackagesToMap = exports.findWorkspacePackagesNoCheck = exports.findWorkspacePackages = void 0;
+-exports.arrayOfWorkspacePackagesToMap = exports.findWorkspacePackagesNoCheck = exports.findWorkspacePackages = void 0;
 -const cli_utils_1 = require("@pnpm/cli-utils");
++// exports.arrayOfWorkspacePackagesToMap = exports.findWorkspacePackagesNoCheck = exports.findWorkspacePackages = void 0;
++exports.findWorkspacePackagesNoCheck = void 0;
 +// const cli_utils_1 = require("@pnpm/cli-utils");
  const workspace_read_manifest_1 = require("@pnpm/workspace.read-manifest");
  const util_lex_comparator_1 = require("@pnpm/util.lex-comparator");
@@ -52,7 +54,7 @@ index c8d68e72ea0907b8f4dfcd83b30d26f9512a99ea..633e8a460c65c2d735ef452a41c02d2d
  async function findWorkspacePackagesNoCheck(workspaceRoot, opts) {
      let patterns = opts?.patterns;
      if (patterns == null) {
-@@ -42,26 +42,26 @@ async function findWorkspacePackagesNoCheck(workspaceRoot, opts) {
+@@ -42,26 +43,26 @@ async function findWorkspacePackagesNoCheck(workspaceRoot, opts) {
      return pkgs;
  }
  exports.findWorkspacePackagesNoCheck = findWorkspacePackagesNoCheck;

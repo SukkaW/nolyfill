@@ -1,0 +1,219 @@
+diff --git a/lib/index.js b/lib/index.js
+index fb43e867e7bcd6bac090c7aac1c6bfea48440a39..6195182d6a8816a89148badd7ed0f5a1e3e12c81 100644
+--- a/lib/index.js
++++ b/lib/index.js
+@@ -3,52 +3,53 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
+     return (mod && mod.__esModule) ? mod : { "default": mod };
+ };
+ Object.defineProperty(exports, "__esModule", { value: true });
+-exports.list = exports.listForPackages = exports.searchForPackages = exports.flattenSearchedPackages = exports.renderTree = exports.renderParseable = exports.renderJson = void 0;
+-const path_1 = __importDefault(require("path"));
++// exports.list = exports.listForPackages = exports.searchForPackages = exports.flattenSearchedPackages = exports.renderTree = exports.renderParseable = exports.renderJson = void 0;
++exports.searchForPackages = void 0;
++// const path_1 = __importDefault(require("path"));
+ const read_project_manifest_1 = require("@pnpm/read-project-manifest");
+ const reviewing_dependencies_hierarchy_1 = require("@pnpm/reviewing.dependencies-hierarchy");
+-const renderJson_1 = require("./renderJson");
+-Object.defineProperty(exports, "renderJson", { enumerable: true, get: function () { return renderJson_1.renderJson; } });
+-const renderParseable_1 = require("./renderParseable");
+-Object.defineProperty(exports, "renderParseable", { enumerable: true, get: function () { return renderParseable_1.renderParseable; } });
+-const renderTree_1 = require("./renderTree");
+-Object.defineProperty(exports, "renderTree", { enumerable: true, get: function () { return renderTree_1.renderTree; } });
+-const pruneTree_1 = require("./pruneTree");
+-const DEFAULTS = {
+-    alwaysPrintRootPackage: true,
+-    depth: 0,
+-    long: false,
+-    registries: undefined,
+-    reportAs: 'tree',
+-    showExtraneous: true,
+-};
+-function flattenSearchedPackages(pkgs, opts) {
+-    const flattedPkgs = [];
+-    for (const pkg of pkgs) {
+-        _walker([
+-            ...(pkg.optionalDependencies ?? []),
+-            ...(pkg.dependencies ?? []),
+-            ...(pkg.devDependencies ?? []),
+-            ...(pkg.unsavedDependencies ?? []),
+-        ], path_1.default.relative(opts.lockfileDir, pkg.path) || '.');
+-    }
+-    return flattedPkgs;
+-    function _walker(packages, depPath) {
+-        for (const pkg of packages) {
+-            const nextDepPath = `${depPath} > ${pkg.name}@${pkg.version}`;
+-            if (pkg.dependencies?.length) {
+-                _walker(pkg.dependencies, nextDepPath);
+-            }
+-            else {
+-                flattedPkgs.push({
+-                    depPath: nextDepPath,
+-                    ...pkg,
+-                });
+-            }
+-        }
+-    }
+-}
+-exports.flattenSearchedPackages = flattenSearchedPackages;
++// const renderJson_1 = require("./renderJson");
++// Object.defineProperty(exports, "renderJson", { enumerable: true, get: function () { return renderJson_1.renderJson; } });
++// const renderParseable_1 = require("./renderParseable");
++// Object.defineProperty(exports, "renderParseable", { enumerable: true, get: function () { return renderParseable_1.renderParseable; } });
++// const renderTree_1 = require("./renderTree");
++// Object.defineProperty(exports, "renderTree", { enumerable: true, get: function () { return renderTree_1.renderTree; } });
++// const pruneTree_1 = require("./pruneTree");
++// const DEFAULTS = {
++//     alwaysPrintRootPackage: true,
++//     depth: 0,
++//     long: false,
++//     registries: undefined,
++//     reportAs: 'tree',
++//     showExtraneous: true,
++// };
++// function flattenSearchedPackages(pkgs, opts) {
++//     const flattedPkgs = [];
++//     for (const pkg of pkgs) {
++//         _walker([
++//             ...(pkg.optionalDependencies ?? []),
++//             ...(pkg.dependencies ?? []),
++//             ...(pkg.devDependencies ?? []),
++//             ...(pkg.unsavedDependencies ?? []),
++//         ], path_1.default.relative(opts.lockfileDir, pkg.path) || '.');
++//     }
++//     return flattedPkgs;
++//     function _walker(packages, depPath) {
++//         for (const pkg of packages) {
++//             const nextDepPath = `${depPath} > ${pkg.name}@${pkg.version}`;
++//             if (pkg.dependencies?.length) {
++//                 _walker(pkg.dependencies, nextDepPath);
++//             }
++//             else {
++//                 flattedPkgs.push({
++//                     depPath: nextDepPath,
++//                     ...pkg,
++//                 });
++//             }
++//         }
++//     }
++// }
++// exports.flattenSearchedPackages = flattenSearchedPackages;
+ async function searchForPackages(packages, projectPaths, opts) {
+     const search = (0, reviewing_dependencies_hierarchy_1.createPackagesSearcher)(packages);
+     return Promise.all(Object.entries(await (0, reviewing_dependencies_hierarchy_1.buildDependenciesHierarchy)(projectPaths, {
+@@ -71,60 +72,60 @@ async function searchForPackages(packages, projectPaths, opts) {
+     }));
+ }
+ exports.searchForPackages = searchForPackages;
+-async function listForPackages(packages, projectPaths, maybeOpts) {
+-    const opts = { ...DEFAULTS, ...maybeOpts };
+-    const pkgs = await searchForPackages(packages, projectPaths, opts);
+-    const prunedPkgs = (0, pruneTree_1.pruneDependenciesTrees)(pkgs ?? null, 10);
+-    const print = getPrinter(opts.reportAs);
+-    return print(prunedPkgs, {
+-        alwaysPrintRootPackage: opts.alwaysPrintRootPackage,
+-        depth: opts.depth,
+-        long: opts.long,
+-        search: Boolean(packages.length),
+-        showExtraneous: opts.showExtraneous,
+-    });
+-}
+-exports.listForPackages = listForPackages;
+-async function list(projectPaths, maybeOpts) {
+-    const opts = { ...DEFAULTS, ...maybeOpts };
+-    const pkgs = await Promise.all(Object.entries(opts.depth === -1
+-        ? projectPaths.reduce((acc, projectPath) => {
+-            acc[projectPath] = {};
+-            return acc;
+-        }, {})
+-        : await (0, reviewing_dependencies_hierarchy_1.buildDependenciesHierarchy)(projectPaths, {
+-            depth: opts.depth,
+-            include: maybeOpts?.include,
+-            lockfileDir: maybeOpts?.lockfileDir,
+-            onlyProjects: maybeOpts?.onlyProjects,
+-            registries: opts.registries,
+-            modulesDir: opts.modulesDir,
+-        }))
+-        .map(async ([projectPath, dependenciesHierarchy]) => {
+-        const entryPkg = await (0, read_project_manifest_1.safeReadProjectManifestOnly)(projectPath) ?? {};
+-        return {
+-            name: entryPkg.name,
+-            version: entryPkg.version,
+-            private: entryPkg.private,
+-            path: projectPath,
+-            ...dependenciesHierarchy,
+-        };
+-    }));
+-    const print = getPrinter(opts.reportAs);
+-    return print(pkgs, {
+-        alwaysPrintRootPackage: opts.alwaysPrintRootPackage,
+-        depth: opts.depth,
+-        long: opts.long,
+-        search: false,
+-        showExtraneous: opts.showExtraneous,
+-    });
+-}
+-exports.list = list;
+-function getPrinter(reportAs) {
+-    switch (reportAs) {
+-        case 'parseable': return renderParseable_1.renderParseable;
+-        case 'json': return renderJson_1.renderJson;
+-        case 'tree': return renderTree_1.renderTree;
+-    }
+-}
++// async function listForPackages(packages, projectPaths, maybeOpts) {
++//     const opts = { ...DEFAULTS, ...maybeOpts };
++//     const pkgs = await searchForPackages(packages, projectPaths, opts);
++//     const prunedPkgs = (0, pruneTree_1.pruneDependenciesTrees)(pkgs ?? null, 10);
++//     const print = getPrinter(opts.reportAs);
++//     return print(prunedPkgs, {
++//         alwaysPrintRootPackage: opts.alwaysPrintRootPackage,
++//         depth: opts.depth,
++//         long: opts.long,
++//         search: Boolean(packages.length),
++//         showExtraneous: opts.showExtraneous,
++//     });
++// }
++// exports.listForPackages = listForPackages;
++// async function list(projectPaths, maybeOpts) {
++//     const opts = { ...DEFAULTS, ...maybeOpts };
++//     const pkgs = await Promise.all(Object.entries(opts.depth === -1
++//         ? projectPaths.reduce((acc, projectPath) => {
++//             acc[projectPath] = {};
++//             return acc;
++//         }, {})
++//         : await (0, reviewing_dependencies_hierarchy_1.buildDependenciesHierarchy)(projectPaths, {
++//             depth: opts.depth,
++//             include: maybeOpts?.include,
++//             lockfileDir: maybeOpts?.lockfileDir,
++//             onlyProjects: maybeOpts?.onlyProjects,
++//             registries: opts.registries,
++//             modulesDir: opts.modulesDir,
++//         }))
++//         .map(async ([projectPath, dependenciesHierarchy]) => {
++//         const entryPkg = await (0, read_project_manifest_1.safeReadProjectManifestOnly)(projectPath) ?? {};
++//         return {
++//             name: entryPkg.name,
++//             version: entryPkg.version,
++//             private: entryPkg.private,
++//             path: projectPath,
++//             ...dependenciesHierarchy,
++//         };
++//     }));
++//     const print = getPrinter(opts.reportAs);
++//     return print(pkgs, {
++//         alwaysPrintRootPackage: opts.alwaysPrintRootPackage,
++//         depth: opts.depth,
++//         long: opts.long,
++//         search: false,
++//         showExtraneous: opts.showExtraneous,
++//     });
++// }
++// exports.list = list;
++// function getPrinter(reportAs) {
++//     switch (reportAs) {
++//         case 'parseable': return renderParseable_1.renderParseable;
++//         case 'json': return renderJson_1.renderJson;
++//         case 'tree': return renderTree_1.renderTree;
++//     }
++// }
+ //# sourceMappingURL=index.js.map
