@@ -44,6 +44,7 @@ export const allPackages = [
   "internal-slot",
   "is-arguments",
   "is-array-buffer",
+  "is-core-module",
   "is-date-object",
   "is-generator-function",
   "is-nan",
