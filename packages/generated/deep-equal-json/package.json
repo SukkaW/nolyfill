@@ -1,0 +1,21 @@
+{
+  "name": "@nolyfill/deep-equal-json",
+  "version": "1.0.32",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/SukkaW/nolyfill",
+    "directory": "packages/generated/deep-equal-json"
+  },
+  "main": "./index.js",
+  "license": "MIT",
+  "files": [
+    "*.js"
+  ],
+  "scripts": {},
+  "dependencies": {
+    "dequal": "2.0.3"
+  },
+  "engines": {
+    "node": ">=12.4.0"
+  }
+}

@@ -121,6 +121,7 @@ const singleFilePackagesList = [
   ['es-set-tostringtag'],
   ['define-properties', { '@nolyfill/shared': 'workspace:*' }],
   ['deep-equal', { dequal: '2.0.3' }],
+  ['deep-equal-json', { dequal: '2.0.3' }],
   ['is-arguments'],
   ['is-generator-function'],
   // ['is-negative-zero', 'module.exports = (n) => n === 0 && (1 / n) === -Infinity;'],

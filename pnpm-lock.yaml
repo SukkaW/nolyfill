@@ -26,6 +26,7 @@ overrides:
   asynciterator.prototype: workspace:@nolyfill/asynciterator.prototype@*
   available-typed-arrays: workspace:@nolyfill/available-typed-arrays@*
   deep-equal: workspace:@nolyfill/deep-equal@*
+  deep-equal-json: workspace:@nolyfill/deep-equal-json@*
   define-properties: workspace:@nolyfill/define-properties@*
   es-aggregate-error: workspace:@nolyfill/es-aggregate-error@*
   es-iterator-helpers: workspace:@nolyfill/es-iterator-helpers@*
@@ -395,6 +396,12 @@ importers:
   packages/generated/available-typed-arrays: {}
 
   packages/generated/deep-equal:
+    dependencies:
+      dequal:
+        specifier: 2.0.3
+        version: 2.0.3
+
+  packages/generated/deep-equal-json:
     dependencies:
       dequal:
         specifier: 2.0.3
