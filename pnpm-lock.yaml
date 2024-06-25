@@ -47,6 +47,7 @@ overrides:
   internal-slot: workspace:@nolyfill/internal-slot@*
   is-arguments: workspace:@nolyfill/is-arguments@*
   is-array-buffer: workspace:@nolyfill/is-array-buffer@*
+  is-core-module: workspace:@nolyfill/is-core-module@*
   is-date-object: workspace:@nolyfill/is-date-object@*
   is-generator-function: workspace:@nolyfill/is-generator-function@*
   is-nan: workspace:@nolyfill/is-nan@*
@@ -464,6 +465,8 @@ importers:
       '@nolyfill/shared':
         specifier: workspace:*
         version: link:../../tools/shared
+
+  packages/generated/is-core-module: {}
 
   packages/generated/is-date-object: {}
 
@@ -2800,12 +2803,6 @@ packages:
   is-callable@1.2.7:
     resolution: {integrity: sha512-1BC0BVFhS/p0qtw6enp8e+8OD0UrK0oFLztSjNzhcKA3WDuJxxAPXzPuPtKkjEY9UUoEWlX/8fgKeu2S8i9JTA==}
     engines: {node: '>= 0.4'}
-
-  is-core-module@2.13.0:
-    resolution: {integrity: sha512-Z7dk6Qo8pOCp3l4tsX2C5ZVas4V+UxwQodwZhLopL91TX8UyyHEXafPcyoeeWuLrwzHcr3igO78wNLwHJHsMCQ==}
-
-  is-core-module@2.13.1:
-    resolution: {integrity: sha512-hHrIjvZsftOsvKSn2TRYl63zvxsgE0K+0mYMoH6gD4omR5IWB2KynivBQczo3+wF1cCkjzvptnI9Q0sPU66ilw==}
 
   is-data-view@1.0.1:
     resolution: {integrity: sha512-AHkaJrsUVW6wq6JS8y3JnM/GJF/9cf+k20+iDzlSaJrinEo5+7vRiteOSwBhHRiAyQATN1AmY4hwzxJKPmYf+w==}
@@ -5858,7 +5855,7 @@ snapshots:
   eslint-import-resolver-node@0.3.9:
     dependencies:
       debug: 3.2.7
-      is-core-module: 2.13.1
+      is-core-module: link:packages/generated/is-core-module
       resolve: 1.22.8
     transitivePeerDependencies:
       - supports-color
@@ -5923,7 +5920,7 @@ snapshots:
       globals: 13.24.0
       ignore: 5.3.1
       is-builtin-module: 3.2.1
-      is-core-module: 2.13.1
+      is-core-module: link:packages/generated/is-core-module
       minimatch: 3.1.2
       resolve: 1.22.8
       semver: 7.6.0
@@ -6337,14 +6334,6 @@ snapshots:
 
   is-callable@1.2.7: {}
 
-  is-core-module@2.13.0:
-    dependencies:
-      has: link:packages/generated/has
-
-  is-core-module@2.13.1:
-    dependencies:
-      hasown: link:packages/generated/hasown
-
   is-data-view@1.0.1:
     dependencies:
       is-typed-array: link:packages/generated/is-typed-array
@@ -6660,7 +6649,7 @@ snapshots:
   normalize-package-data@5.0.0:
     dependencies:
       hosted-git-info: 6.1.1
-      is-core-module: 2.13.0
+      is-core-module: link:packages/generated/is-core-module
       semver: 7.6.0
       validate-npm-package-license: 3.0.4
 
@@ -6982,13 +6971,13 @@ snapshots:
 
   resolve@1.22.4:
     dependencies:
-      is-core-module: 2.13.0
+      is-core-module: link:packages/generated/is-core-module
       path-parse: 1.0.7
       supports-preserve-symlinks-flag: 1.0.0
 
   resolve@1.22.8:
     dependencies:
-      is-core-module: 2.13.1
+      is-core-module: link:packages/generated/is-core-module
       path-parse: 1.0.7
       supports-preserve-symlinks-flag: 1.0.0
 
