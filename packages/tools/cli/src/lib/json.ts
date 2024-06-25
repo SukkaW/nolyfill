@@ -23,7 +23,7 @@ async function writeJSON(filepath: string, data: unknown) {
 export const overridesPackageJson = async (packageManager: PackageManager, projectPath: string, packages: PackageNode[]) => {
   const overrides = Object.fromEntries(packages.map((node) => [
     node.name,
-    `npm:@nolyfill/${node.name}@latest`
+    `npm:@nolyfill/${node.name}@1.0`
   ]));
   const packageJsonPath = path.join(projectPath, 'package.json');
   const packageJson = await readJSON<PKG>(packageJsonPath);
