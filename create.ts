@@ -163,7 +163,7 @@ const nonNolyfillPackagesList = [
   const newPackageJson = {
     ...currentPackageJson,
     overrides: allPackagesList.reduce<Record<string, string>>((acc, packageName) => {
-      acc[packageName] = `npm:@nolyfill/${packageName}@latest`;
+      acc[packageName] = `npm:@nolyfill/${packageName}@^1.0`;
       return acc;
     }, {}),
     pnpm: {
