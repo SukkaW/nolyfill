@@ -27,6 +27,8 @@ const transformOldOverrides = (overrides: Record<string, string> | undefined) =>
   return Object.entries(overrides).reduce<Record<string, string>>((acc, [key, value]) => {
     if (value.startsWith('npm:@nolyfill/') && value.endsWith('@latest')) {
       acc[key] = `${value.slice(0, value.lastIndexOf('@latest'))}@${PRIMARY_NOLYFILL_VERSION}`;
+    } else {
+      acc[key] = value;
     }
     return acc;
   }, {});
