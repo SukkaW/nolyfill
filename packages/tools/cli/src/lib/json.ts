@@ -5,7 +5,7 @@ import path from 'path';
 import type { PKG, PackageNode } from '../types';
 import type { PackageManager } from '../package-manager';
 
-const PRIMARY_NOLYFILL_VERSION = '1.0';
+const PRIMARY_NOLYFILL_VERSION = '^1';
 
 async function readJSON<T>(filepath: string): Promise<T | null> {
   try {
