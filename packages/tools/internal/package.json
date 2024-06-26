@@ -1,6 +1,6 @@
 {
   "name": "@nolyfill/internal",
-  "version": "1.0.32",
+  "version": "1.0.33",
   "private": true,
   "main": "./index.js",
   "types": "./index.d.ts",
