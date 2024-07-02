@@ -96,6 +96,7 @@ export const allPackages = [
   "typed-array-byte-offset",
   "typed-array-length",
   "typedarray",
+  "typedarray.prototype.slice",
   "unbox-primitive",
   "util.promisify",
   "which-boxed-primitive",

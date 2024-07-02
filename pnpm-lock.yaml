@@ -99,6 +99,7 @@ overrides:
   typed-array-byte-offset: workspace:@nolyfill/typed-array-byte-offset@*
   typed-array-length: workspace:@nolyfill/typed-array-length@*
   typedarray: workspace:@nolyfill/typedarray@*
+  typedarray.prototype.slice: workspace:@nolyfill/typedarray.prototype.slice@*
   unbox-primitive: workspace:@nolyfill/unbox-primitive@*
   util.promisify: workspace:@nolyfill/util.promisify@*
   which-boxed-primitive: workspace:@nolyfill/which-boxed-primitive@*
@@ -726,6 +727,12 @@ importers:
         version: link:../../tools/shared
 
   packages/generated/typedarray: {}
+
+  packages/generated/typedarray.prototype.slice:
+    dependencies:
+      '@nolyfill/shared':
+        specifier: workspace:*
+        version: link:../../tools/shared
 
   packages/generated/unbox-primitive: {}
 
