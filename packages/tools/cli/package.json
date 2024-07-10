@@ -36,6 +36,7 @@
     "@yarnpkg/parsers": "3.0.0",
     "commander": "^11.1.0",
     "detect-indent": "^6.1.0",
+    "fast-npm-meta": "^0.2.1",
     "picocolors": "^1.0.0",
     "rollup-plugin-visualizer": "^5.12.0"
   },

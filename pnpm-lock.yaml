@@ -876,6 +876,9 @@ importers:
       detect-indent:
         specifier: ^6.1.0
         version: 6.1.0
+      fast-npm-meta:
+        specifier: ^0.2.1
+        version: 0.2.1
       picocolors:
         specifier: ^1.0.0
         version: 1.0.0
@@ -2562,6 +2565,9 @@ packages:
 
   fast-levenshtein@2.0.6:
     resolution: {integrity: sha512-DCXu6Ifhqcks7TZKY3Hxp3y6qphY5SJZmrWMDrKcERSOXWQdMhU9Ig/PYrzyw/ul9jOIyh0N4M0tbC5hodg8dw==}
+
+  fast-npm-meta@0.2.1:
+    resolution: {integrity: sha512-Iheh2ZXfpZ6lHO6+8wdo0sW4DUWZGw6e5t0Vp2jcTX+HNlneboxxBjLffa3E9ZWHyu8ZsGmd/GcoORKpq03UQA==}
 
   fast-safe-stringify@2.1.1:
     resolution: {integrity: sha512-W+KJc2dmILlPplD/H4K9l9LcAHAfPtP6BY84uVLXQ6Evcz9Lcg33Y2z1IVblT6xdY54PXYVHEv+0Wpq8Io6zkA==}
@@ -6074,6 +6080,8 @@ snapshots:
   fast-json-stable-stringify@2.1.0: {}
 
   fast-levenshtein@2.0.6: {}
+
+  fast-npm-meta@0.2.1: {}
 
   fast-safe-stringify@2.1.1: {}
 
