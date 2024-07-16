@@ -12,7 +12,6 @@ export default function isCore(x: string, _nodeVersion: unknown) {
     || (
       typeof x === 'string'
       && x.startsWith('node:')
-      && publicBuiltinIds.has(x.slice(5))
     )
   );
 }
