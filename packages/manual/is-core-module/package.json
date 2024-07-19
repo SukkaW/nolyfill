@@ -20,9 +20,8 @@
     "build": "rollup -c rollup.config.ts --configPlugin swc3"
   },
   "license": "MIT",
-  "dependencies": {},
   "devDependencies": {
-    "@rollup/plugin-commonjs": "^25.0.8",
+    "@rollup/plugin-commonjs": "^26.0.1",
     "@rollup/plugin-node-resolve": "^15.2.3",
     "@rollup/plugin-replace": "^5.0.7",
     "ljharb-is-core-module": "npm:is-core-module@^2.15.0",
