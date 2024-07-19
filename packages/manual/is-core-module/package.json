@@ -22,9 +22,9 @@
   "license": "MIT",
   "dependencies": {},
   "devDependencies": {
-    "@rollup/plugin-commonjs": "^25.0.7",
+    "@rollup/plugin-commonjs": "^25.0.8",
     "@rollup/plugin-node-resolve": "^15.2.3",
-    "@rollup/plugin-replace": "^5.0.5",
+    "@rollup/plugin-replace": "^5.0.7",
     "ljharb-is-core-module": "npm:is-core-module@^2.15.0",
     "resolve-pkg": "^2.0.0"
   },
