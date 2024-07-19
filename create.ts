@@ -134,8 +134,7 @@ const singleFilePackagesList = [
   ['jsonify'],
   ['isarray'],
   ['is-typed-array', { '@nolyfill/which-typed-array': 'workspace:*' }],
-  ['json-stable-stringify'],
-  ['is-core-module']
+  ['json-stable-stringify']
 ] as const;
 
 const manualPackagesList = [
@@ -144,7 +143,8 @@ const manualPackagesList = [
   'has-symbols', // two entries (index.js, shams.js)
   'es-iterator-helpers', // use rollup prebundle approach
   'assert', // use rollup prebundle approach
-  'set-function-length' // two entries (index.js, env.js)
+  'set-function-length', // two entries (index.js, env.js)
+  'is-core-module' // bundle
 ] as const;
 
 const nonNolyfillPackagesList = [
