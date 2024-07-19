@@ -25,7 +25,7 @@ async function writeJSON(filepath: string, data: unknown) {
 const transformOldOverrides = (overrides: Record<string, string> | undefined) => {
   if (!overrides) return;
   return Object.entries(overrides).reduce<Record<string, string>>((acc, [key, value]) => {
-    if (value.startsWith('npm:@nolyfill/') && value.endsWith('@latest')) {
+    if (typeof value === 'string' && value.startsWith('npm:@nolyfill/') && value.endsWith('@latest')) {
       acc[key] = `${value.slice(0, value.lastIndexOf('@latest'))}@${PRIMARY_NOLYFILL_VERSION}`;
     } else {
       acc[key] = value;
