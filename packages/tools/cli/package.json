@@ -1,6 +1,6 @@
 {
   "name": "nolyfill",
-  "version": "1.0.37",
+  "version": "1.0.38",
   "homepage": "https://github.com/SukkaW/nolyfill",
   "repository": "https://github.com/SukkaW/nolyfill",
   "main": "./dist/index.js",
