@@ -1,1 +1,1 @@
-"use strict";const e=require("module"),t=new Set(e.builtinModules.concat(e.builtinModules.map(e=>"node:"+e)).concat(["node:sea","node:test/reporters","node:test"]));module.exports=(e,o)=>t.has(e);
+"use strict";const e=require("module"),o=new Set(e.builtinModules.concat(e.builtinModules.map(e=>"node:"+e)).concat(["inspector/promises","node:inspector/promises","node:sea","node:test/reporters","test/mock_loader","node:test/mock_loader","node:test"]));module.exports=(e,t)=>o.has(e);
