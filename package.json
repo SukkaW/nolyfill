@@ -12,7 +12,7 @@
     "release": "bumpp --all --commit \"release: %s\" --tag \"%s\""
   },
   "devDependencies": {
-    "@eslint-sukka/node": "^6.1.4",
+    "@eslint-sukka/node": "^6.1.6",
     "@eslint-sukka/ts": "^5.1.2",
     "@jsdevtools/ez-spawn": "^3.0.4",
     "@nolyfill/internal": "workspace:*",
@@ -22,15 +22,15 @@
     "bumpp": "^9.4.1",
     "dequal": "2.0.3",
     "eslint": "^9.7.0",
-    "eslint-config-sukka": "^6.1.4",
-    "eslint-formatter-sukka": "^6.1.4",
+    "eslint-config-sukka": "^6.1.6",
+    "eslint-formatter-sukka": "^6.1.6",
     "path-scurry": "^1.11.1",
     "picocolors": "^1.0.1",
     "rimraf": "^6.0.1",
-    "rollup": "^4.18.1",
+    "rollup": "^4.19.0",
     "rollup-plugin-dts": "^6.1.1",
     "rollup-plugin-swc3": "^0.11.2",
-    "turbo": "^2.0.7",
+    "turbo": "^2.0.9",
     "type-fest": "^4.22.1",
     "typescript": "^5.5.3"
   },
