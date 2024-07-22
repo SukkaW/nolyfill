@@ -4,30 +4,36 @@ export interface EsShimProp<I> {
   shim(): I
 }
 
+const GET_POLYFILL = 'getPolyfill';
+const SHIM = 'shim';
+const IMPLEMENTATION = 'implementation';
+
+const sharedDescriptor = {
+  configurable: true,
+  enumerable: false,
+  writable: true
+};
+
+const ObjectDefineProperty = Object.defineProperty;
+
 export function makeEsShim<T extends object, I>(shim: T, implementation: I): asserts shim is T & EsShimProp<I> {
   const getPolyfill = () => implementation;
-  if (!('implementation' in shim)) {
-    Object.defineProperty(shim, 'implementation', {
-      configurable: true,
-      enumerable: false,
+  if (!(IMPLEMENTATION in shim)) {
+    ObjectDefineProperty(shim, IMPLEMENTATION, {
       value: implementation,
-      writable: true
+      ...sharedDescriptor
     });
   }
-  if (!('getPolyfill' in shim)) {
-    Object.defineProperty(shim, 'getPolyfill', {
-      configurable: true,
-      enumerable: false,
+  if (!(GET_POLYFILL in shim)) {
+    ObjectDefineProperty(shim, GET_POLYFILL, {
       value: getPolyfill,
-      writable: true
+      ...sharedDescriptor
     });
   }
-  if (!('shim' in shim)) {
-    Object.defineProperty(shim, 'shim', {
-      configurable: true,
-      enumerable: false,
+  if (!(SHIM in shim)) {
+    ObjectDefineProperty(shim, SHIM, {
       value: getPolyfill,
-      writable: true
+      ...sharedDescriptor
     });
   }
 }
