@@ -7,6 +7,7 @@ import { nodeResolve } from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
 import replace from '@rollup/plugin-replace';
 import { swc } from 'rollup-plugin-swc3';
+import { dts } from 'rollup-plugin-dts';
 
 import { builtinModules } from 'module';
 
@@ -36,40 +37,53 @@ export default defineConfig(() => {
   const builtinModulesWithNodePrefixSet = new Set(builtinModulesWithNodePrefix);
   const injectedModules = coreModules.filter(x => !builtinModulesWithNodePrefixSet.has(x));
 
-  return defineConfig({
-    input: './src.ts',
-    output: {
-      file: './index.js',
-      format: 'cjs',
-      sourcemap: false,
-      esModule: false,
-      hoistTransitiveImports: false,
-      compact: true,
-      generatedCode: 'es2015',
-      interop: 'compat'
-    },
-    plugins: [
-      nodeResolve(),
-      commonjs(),
-      swc({
-        minify: true,
-        jsc: {
-          minify: {
-            module: true,
-            compress: {
-              passes: 2,
-              unsafe: true
-            },
-            mangle: {}
+  return defineConfig([
+    {
+      input: './src.ts',
+      output: {
+        file: './index.js',
+        format: 'cjs',
+        sourcemap: false,
+        esModule: false,
+        hoistTransitiveImports: false,
+        compact: true,
+        generatedCode: 'es2015',
+        interop: 'compat'
+      },
+      plugins: [
+        nodeResolve(),
+        commonjs(),
+        swc({
+          minify: true,
+          jsc: {
+            minify: {
+              module: true,
+              compress: {
+                passes: 2,
+                unsafe: true
+              },
+              mangle: {}
+            }
           }
-        }
-      }),
-      replace({
-        __INJECTED_CORE_MODULES__: JSON.stringify(injectedModules),
-        preventAssignment: true
-      })
-    ]
-  });
+        }),
+        replace({
+          __INJECTED_CORE_MODULES__: JSON.stringify(injectedModules),
+          preventAssignment: true
+        })
+      ]
+    },
+    {
+      input: './src.ts',
+      output: {
+        file: './index.d.ts',
+        format: 'cjs',
+        sourcemap: false
+      },
+      plugins: [
+        dts()
+      ]
+    }
+  ]);
 });
 
 /** is-core-module version range parser */
