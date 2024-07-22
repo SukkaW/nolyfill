@@ -9,8 +9,6 @@ import replace from '@rollup/plugin-replace';
 import { swc } from 'rollup-plugin-swc3';
 import { dts } from 'rollup-plugin-dts';
 
-import { builtinModules } from 'module';
-
 export default defineConfig(() => {
   const coreJsonPath = resolve('ljharb-is-core-module/package.json');
   if (!coreJsonPath) {
@@ -29,14 +27,6 @@ export default defineConfig(() => {
 
     return acc;
   }, [[], []]);
-
-  const builtinModulesWithNodePrefix = builtinModules.concat(builtinModules.map(x => `node:${x}`));
-  for (const x of builtinModulesWithNodePrefix) {
-    if (!coreModules.includes(x)) {
-      console.warn(`[${x}] is a builtin module, but not included in core.json`);
-    }
-  }
-
   const node12ModulesWithNodePrefix = new Set(node12Modules.concat(node12Modules.map(x => `node:${x}`)));
   const injectedModules = coreModules.filter(x => !node12ModulesWithNodePrefix.has(x));
 
