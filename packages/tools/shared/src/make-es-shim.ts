@@ -1,4 +1,14 @@
-import { defineProperties } from './define-properties';
+const defineProperty = (object: any, name: string | number | symbol, value: any) => {
+  if (name in object) {
+    return;
+  }
+  Object.defineProperty(object, name, {
+    configurable: true,
+    enumerable: false,
+    value,
+    writable: true
+  });
+};
 
 export interface EsShimProp<I> {
   implementation: I,
@@ -7,9 +17,8 @@ export interface EsShimProp<I> {
 }
 
 export function makeEsShim<T extends object, I>(shim: T, implementation: I): asserts shim is T & EsShimProp<I> {
-  defineProperties(shim, {
-    implementation,
-    getPolyfill: () => implementation,
-    shim: () => implementation
-  });
+  const getPolyfill = () => implementation;
+  defineProperty(shim, 'implementation', implementation);
+  defineProperty(shim, 'getPolyfill', getPolyfill);
+  defineProperty(shim, 'shim', getPolyfill);
 }
