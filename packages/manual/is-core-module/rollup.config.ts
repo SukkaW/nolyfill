@@ -18,14 +18,17 @@ export default defineConfig(() => {
   }
   const coreJson = JSON.parse(fs.readFileSync(path.resolve(coreJsonPath, '../core.json'), 'utf-8')) as Record<string, boolean | string | string[]>;
 
-  const coreModules = Object.entries(coreJson).reduce<string[]>((acc, [key, value]) => {
+  const [coreModules, node12Modules] = Object.entries(coreJson).reduce<[coreModules: string[], node12Modules: string[]]>((acc, [key, value]) => {
     // this excludes all dropped core modules (e.g. buffer_ieee754)
-    if (versionIncluded('999999.999999.999999', value)) {
-      acc.push(key);
+    if (versionIncluded('999999.99999.999999', value)) {
+      acc[0].push(key);
+    }
+    if (versionIncluded('12.4.0', value)) {
+      acc[1].push(key);
     }
 
     return acc;
-  }, []);
+  }, [[], []]);
 
   const builtinModulesWithNodePrefix = builtinModules.concat(builtinModules.map(x => `node:${x}`));
   for (const x of builtinModulesWithNodePrefix) {
@@ -34,8 +37,8 @@ export default defineConfig(() => {
     }
   }
 
-  const builtinModulesWithNodePrefixSet = new Set(builtinModulesWithNodePrefix);
-  const injectedModules = coreModules.filter(x => !builtinModulesWithNodePrefixSet.has(x));
+  const node12ModulesWithNodePrefix = new Set(node12Modules.concat(node12Modules.map(x => `node:${x}`)));
+  const injectedModules = coreModules.filter(x => !node12ModulesWithNodePrefix.has(x));
 
   return defineConfig([
     {
