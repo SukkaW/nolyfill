@@ -7,7 +7,6 @@ import { nodeResolve } from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
 import replace from '@rollup/plugin-replace';
 import { swc } from 'rollup-plugin-swc3';
-import { dts } from 'rollup-plugin-dts';
 
 export default defineConfig(() => {
   const coreJsonPath = resolve('ljharb-is-core-module/package.json');
@@ -63,17 +62,6 @@ export default defineConfig(() => {
           __INJECTED_CORE_MODULES__: JSON.stringify(injectedModules),
           preventAssignment: true
         })
-      ]
-    },
-    {
-      input: './src.ts',
-      output: {
-        file: './index.d.ts',
-        format: 'cjs',
-        sourcemap: false
-      },
-      plugins: [
-        dts()
       ]
     }
   ]);
