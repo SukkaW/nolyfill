@@ -1,15 +1,3 @@
-const defineProperty = (object: any, name: string | number | symbol, value: any) => {
-  if (name in object) {
-    return;
-  }
-  Object.defineProperty(object, name, {
-    configurable: true,
-    enumerable: false,
-    value,
-    writable: true
-  });
-};
-
 export interface EsShimProp<I> {
   implementation: I,
   getPolyfill(): I,
@@ -18,7 +6,28 @@ export interface EsShimProp<I> {
 
 export function makeEsShim<T extends object, I>(shim: T, implementation: I): asserts shim is T & EsShimProp<I> {
   const getPolyfill = () => implementation;
-  defineProperty(shim, 'implementation', implementation);
-  defineProperty(shim, 'getPolyfill', getPolyfill);
-  defineProperty(shim, 'shim', getPolyfill);
+  if (!('implementation' in shim)) {
+    Object.defineProperty(shim, 'implementation', {
+      configurable: true,
+      enumerable: false,
+      value: implementation,
+      writable: true
+    });
+  }
+  if (!('getPolyfill' in shim)) {
+    Object.defineProperty(shim, 'getPolyfill', {
+      configurable: true,
+      enumerable: false,
+      value: getPolyfill,
+      writable: true
+    });
+  }
+  if (!('shim' in shim)) {
+    Object.defineProperty(shim, 'shim', {
+      configurable: true,
+      enumerable: false,
+      value: getPolyfill,
+      writable: true
+    });
+  }
 }
