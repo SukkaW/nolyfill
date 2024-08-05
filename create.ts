@@ -134,7 +134,9 @@ const singleFilePackagesList = [
   ['jsonify'],
   ['isarray'],
   ['is-typed-array', { '@nolyfill/which-typed-array': 'workspace:*' }],
-  ['json-stable-stringify']
+  ['json-stable-stringify'],
+  ['safe-buffer'],
+  ['safer-buffer']
 ] as const;
 
 const manualPackagesList = [
