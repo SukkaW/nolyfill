@@ -1,1 +1,1 @@
-export const flatten = (x: any[]) => x.flat();
+export const flatten = (x: any[]) => x.flat(Infinity);
