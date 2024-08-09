@@ -58,11 +58,13 @@ overrides:
   is-string: workspace:@nolyfill/is-string@*
   is-symbol: workspace:@nolyfill/is-symbol@*
   is-typed-array: workspace:@nolyfill/is-typed-array@*
+  is-typedarray: workspace:@nolyfill/is-typedarray@*
   is-weakref: workspace:@nolyfill/is-weakref@*
   isarray: workspace:@nolyfill/isarray@*
   iterator.prototype: workspace:@nolyfill/iterator.prototype@*
   json-stable-stringify: workspace:@nolyfill/json-stable-stringify@*
   jsonify: workspace:@nolyfill/jsonify@*
+  number-is-nan: workspace:@nolyfill/number-is-nan@*
   object-is: workspace:@nolyfill/object-is@*
   object-keys: workspace:@nolyfill/object-keys@*
   object.assign: workspace:@nolyfill/object.assign@*
@@ -503,6 +505,12 @@ importers:
         specifier: workspace:*
         version: link:../which-typed-array
 
+  packages/generated/is-typedarray:
+    dependencies:
+      '@nolyfill/which-typed-array':
+        specifier: workspace:*
+        version: link:../which-typed-array
+
   packages/generated/is-weakref: {}
 
   packages/generated/isarray: {}
@@ -512,6 +520,8 @@ importers:
   packages/generated/json-stable-stringify: {}
 
   packages/generated/jsonify: {}
+
+  packages/generated/number-is-nan: {}
 
   packages/generated/object-is:
     dependencies:
