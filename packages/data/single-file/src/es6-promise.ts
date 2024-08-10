@@ -1,1 +1,4 @@
-export default Promise;
+module.exports = {
+  Promise,
+  polyfill() {}
+};
