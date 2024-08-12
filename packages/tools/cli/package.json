@@ -37,6 +37,7 @@
     "commander": "^11.1.0",
     "detect-indent": "^6.1.0",
     "fast-npm-meta": "^0.2.2",
+    "package-manager-detector": "^0.1.1",
     "picocolors": "^1.0.1",
     "rollup-plugin-visualizer": "^5.12.0"
   },
