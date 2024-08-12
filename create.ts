@@ -139,7 +139,6 @@ const singleFilePackagesList = [
   ['safe-buffer'],
   ['safer-buffer'],
   ['array-flatten'],
-  ['es6-promise'],
   ['number-is-nan']
 ] as const;
 
