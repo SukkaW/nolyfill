@@ -54,7 +54,6 @@ export const allPackages = [
   "is-string",
   "is-symbol",
   "is-typed-array",
-  "is-typedarray",
   "is-weakref",
   "isarray",
   "iterator.prototype",

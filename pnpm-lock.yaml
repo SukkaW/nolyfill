@@ -57,7 +57,6 @@ overrides:
   is-string: workspace:@nolyfill/is-string@*
   is-symbol: workspace:@nolyfill/is-symbol@*
   is-typed-array: workspace:@nolyfill/is-typed-array@*
-  is-typedarray: workspace:@nolyfill/is-typedarray@*
   is-weakref: workspace:@nolyfill/is-weakref@*
   isarray: workspace:@nolyfill/isarray@*
   iterator.prototype: workspace:@nolyfill/iterator.prototype@*
@@ -434,8 +433,6 @@ importers:
 
   packages/generated/es6-object-assign: {}
 
-  packages/generated/es6-promise: {}
-
   packages/generated/function.prototype.name:
     dependencies:
       '@nolyfill/shared':
@@ -499,12 +496,6 @@ importers:
   packages/generated/is-symbol: {}
 
   packages/generated/is-typed-array:
-    dependencies:
-      '@nolyfill/which-typed-array':
-        specifier: workspace:*
-        version: link:../which-typed-array
-
-  packages/generated/is-typedarray:
     dependencies:
       '@nolyfill/which-typed-array':
         specifier: workspace:*
