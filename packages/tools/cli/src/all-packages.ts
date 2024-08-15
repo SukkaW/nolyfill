@@ -3,6 +3,7 @@
 export const allPackages = [
   "abab",
   "array-buffer-byte-length",
+  "array-flatten",
   "array-includes",
   "array.from",
   "array.of",
@@ -58,6 +59,7 @@ export const allPackages = [
   "iterator.prototype",
   "json-stable-stringify",
   "jsonify",
+  "number-is-nan",
   "object-is",
   "object-keys",
   "object.assign",

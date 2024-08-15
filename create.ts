@@ -136,7 +136,9 @@ const singleFilePackagesList = [
   ['is-typed-array', { '@nolyfill/which-typed-array': 'workspace:*' }],
   ['json-stable-stringify'],
   ['safe-buffer'],
-  ['safer-buffer']
+  ['safer-buffer'],
+  ['array-flatten'],
+  ['number-is-nan']
 ] as const;
 
 const manualPackagesList = [

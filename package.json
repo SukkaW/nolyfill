@@ -42,6 +42,7 @@
     "overrides": {
       "abab": "workspace:@nolyfill/abab@*",
       "array-buffer-byte-length": "workspace:@nolyfill/array-buffer-byte-length@*",
+      "array-flatten": "workspace:@nolyfill/array-flatten@*",
       "array-includes": "workspace:@nolyfill/array-includes@*",
       "array.from": "workspace:@nolyfill/array.from@*",
       "array.of": "workspace:@nolyfill/array.of@*",
@@ -96,6 +97,7 @@
       "iterator.prototype": "workspace:@nolyfill/iterator.prototype@*",
       "json-stable-stringify": "workspace:@nolyfill/json-stable-stringify@*",
       "jsonify": "workspace:@nolyfill/jsonify@*",
+      "number-is-nan": "workspace:@nolyfill/number-is-nan@*",
       "object-is": "workspace:@nolyfill/object-is@*",
       "object-keys": "workspace:@nolyfill/object-keys@*",
       "object.assign": "workspace:@nolyfill/object.assign@*",
@@ -155,6 +157,7 @@
   "overrides": {
     "abab": "npm:@nolyfill/abab@^1.0",
     "array-buffer-byte-length": "npm:@nolyfill/array-buffer-byte-length@^1.0",
+    "array-flatten": "npm:@nolyfill/array-flatten@^1.0",
     "array-includes": "npm:@nolyfill/array-includes@^1.0",
     "array.from": "npm:@nolyfill/array.from@^1.0",
     "array.of": "npm:@nolyfill/array.of@^1.0",
@@ -209,6 +212,7 @@
     "iterator.prototype": "npm:@nolyfill/iterator.prototype@^1.0",
     "json-stable-stringify": "npm:@nolyfill/json-stable-stringify@^1.0",
     "jsonify": "npm:@nolyfill/jsonify@^1.0",
+    "number-is-nan": "npm:@nolyfill/number-is-nan@^1.0",
     "object-is": "npm:@nolyfill/object-is@^1.0",
     "object-keys": "npm:@nolyfill/object-keys@^1.0",
     "object.assign": "npm:@nolyfill/object.assign@^1.0",

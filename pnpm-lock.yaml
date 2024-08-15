@@ -7,6 +7,7 @@ settings:
 overrides:
   abab: workspace:@nolyfill/abab@*
   array-buffer-byte-length: workspace:@nolyfill/array-buffer-byte-length@*
+  array-flatten: workspace:@nolyfill/array-flatten@*
   array-includes: workspace:@nolyfill/array-includes@*
   array.from: workspace:@nolyfill/array.from@*
   array.of: workspace:@nolyfill/array.of@*
@@ -61,6 +62,7 @@ overrides:
   iterator.prototype: workspace:@nolyfill/iterator.prototype@*
   json-stable-stringify: workspace:@nolyfill/json-stable-stringify@*
   jsonify: workspace:@nolyfill/jsonify@*
+  number-is-nan: workspace:@nolyfill/number-is-nan@*
   object-is: workspace:@nolyfill/object-is@*
   object-keys: workspace:@nolyfill/object-keys@*
   object.assign: workspace:@nolyfill/object.assign@*
@@ -232,6 +234,8 @@ importers:
       '@nolyfill/shared':
         specifier: workspace:*
         version: link:../../tools/shared
+
+  packages/generated/array-flatten: {}
 
   packages/generated/array-includes:
     dependencies:
@@ -506,6 +510,8 @@ importers:
   packages/generated/json-stable-stringify: {}
 
   packages/generated/jsonify: {}
+
+  packages/generated/number-is-nan: {}
 
   packages/generated/object-is:
     dependencies:
