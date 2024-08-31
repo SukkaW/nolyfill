@@ -907,6 +907,9 @@ importers:
       fast-npm-meta:
         specifier: ^0.2.2
         version: 0.2.2
+      package-manager-detector:
+        specifier: ^0.1.1
+        version: 0.1.1
       picocolors:
         specifier: ^1.0.1
         version: 1.0.1
@@ -3590,6 +3593,9 @@ packages:
 
   package-json-from-dist@1.0.0:
     resolution: {integrity: sha512-dATvCeZN/8wQsGywez1mzHtTlP22H8OEfPrVMLNr4/eGa+ijtLn/6M5f0dY8UKNrC2O9UCU6SSoG3qRKnt7STw==}
+
+  package-manager-detector@0.1.1:
+    resolution: {integrity: sha512-KRfleQVD8jK1lIOo6fJxAtBH0fYo/r9q1+2Zs931cz0GLt1WeGYgIC0J+kETRZk8Ha2HghztDQSEqbeo00bzhw==}
 
   pacote@15.2.0:
     resolution: {integrity: sha512-rJVZeIwHTUta23sIZgEIM62WYwbmGbThdbnkt81ravBplQv+HjyroqnLRNH2+sLJHcGZmLRmhPwACqhfTcOmnA==}
@@ -7474,6 +7480,8 @@ snapshots:
       aggregate-error: 3.1.0
 
   package-json-from-dist@1.0.0: {}
+
+  package-manager-detector@0.1.1: {}
 
   pacote@15.2.0:
     dependencies:
