@@ -16,6 +16,7 @@
     "@eslint-sukka/ts": "^5.1.2",
     "@jsdevtools/ez-spawn": "^3.0.4",
     "@nolyfill/internal": "workspace:*",
+    "@package-json/types": "^0.0.6",
     "@swc-node/register": "^1.10.9",
     "@swc/core": "^1.7.0",
     "@types/node": "^20.14.11",
@@ -31,7 +32,6 @@
     "rollup-plugin-dts": "^6.1.1",
     "rollup-plugin-swc3": "^0.11.2",
     "turbo": "^2.0.9",
-    "type-fest": "^4.22.1",
     "typescript": "^5.5.3"
   },
   "packageManager": "pnpm@9.5.0",

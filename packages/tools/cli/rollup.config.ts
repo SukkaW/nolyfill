@@ -10,7 +10,7 @@ import fs from 'fs';
 import { builtinModules } from 'module';
 import { MagicString } from '@napi-rs/magic-string';
 
-import type { PackageJson } from 'type-fest';
+import type { PackageJson } from '@package-json/types';
 
 const builtinModulesSet = new Set(builtinModules);
 
