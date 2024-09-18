@@ -148,6 +148,9 @@ importers:
       '@nolyfill/internal':
         specifier: workspace:*
         version: link:packages/tools/internal
+      '@package-json/types':
+        specifier: ^0.0.6
+        version: 0.0.6
       '@swc-node/register':
         specifier: ^1.10.9
         version: 1.10.9(@swc/core@1.7.0(@swc/helpers@0.5.12))(@swc/types@0.1.12)(typescript@5.5.3)
@@ -193,9 +196,6 @@ importers:
       turbo:
         specifier: ^2.0.9
         version: 2.0.9
-      type-fest:
-        specifier: ^4.22.1
-        version: 4.22.1
       typescript:
         specifier: ^5.5.3
         version: 5.5.3
@@ -1247,6 +1247,9 @@ packages:
     resolution: {integrity: sha512-l8BDQWyP0Piw8hlmYPUqTRKLsq+ceG9h+9p6ZrjNzwW9AmJX7T7T2hgoVVHqS6f4WNA/CFkb3RyZP9QTzNkyyA==}
     cpu: [x64]
     os: [win32]
+
+  '@package-json/types@0.0.6':
+    resolution: {integrity: sha512-UBVVLQfUXvzGrgKt7TqLupdzsslRSqgel/01UTc/2yUOdqFM5ZNLCNzz/ev51SRpNrlYKtqAY8nL6FdMWBWw1A==}
 
   '@pkgjs/parseargs@0.11.0':
     resolution: {integrity: sha512-+1VkjdD0QBLPodGrJUeqarH8VAIvQODIbwh9XpP5Syisf7YoQgsJKPNFoqqLQlu+VQ/tVSshMR6loPMn8U+dPg==}
@@ -4642,6 +4645,8 @@ snapshots:
 
   '@oxc-resolver/binding-win32-x64-msvc@1.10.2':
     optional: true
+
+  '@package-json/types@0.0.6': {}
 
   '@pkgjs/parseargs@0.11.0':
     optional: true
