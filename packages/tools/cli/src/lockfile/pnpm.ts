@@ -24,7 +24,7 @@ export const buildPNPMDepTree = cache(async (dirPath: string): Promise<PackageNo
       optionalDependencies: false
     },
     virtualStoreDirMaxLength: Infinity
-  })
+  });
 
   const searchOld = () => searchForPackages_Old(['*'], dirPaths, {
     depth: Infinity,
@@ -33,12 +33,12 @@ export const buildPNPMDepTree = cache(async (dirPath: string): Promise<PackageNo
       dependencies: true,
       devDependencies: true,
       optionalDependencies: false
-    },
-  })
+    }
+  });
 
-  const lockfileVersion = await getPNPMLockfileVersion(dirPath)
+  const lockfileVersion = await getPNPMLockfileVersion(dirPath);
 
-  const result = await ((+lockfileVersion) < 6 ? searchOld() : searchNew())
+  const result = await ((+lockfileVersion) < 6 ? searchOld() : searchNew());
 
   return result.flatMap((dep) => {
     return [...(dep.dependencies ?? []), ...(dep.devDependencies ?? [])];

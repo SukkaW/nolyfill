@@ -25,7 +25,7 @@
     "eslint": "^9.12.0",
     "eslint-config-sukka": "^6.7.0",
     "eslint-formatter-sukka": "^6.7.0",
-    "path-scurry": "^1.11.1",
+    "path-scurry": "^2.0.0",
     "picocolors": "^1.1.0",
     "rimraf": "^6.0.1",
     "rollup": "^4.24.0",
@@ -145,13 +145,13 @@
       "which-typed-array": "workspace:@nolyfill/which-typed-array@*"
     },
     "patchedDependencies": {
-      "@types/npmcli__arborist@5.6.1": "patches/@types__npmcli__arborist@5.6.1.patch",
-      "@npmcli/arborist@6.3.0": "patches/@npmcli__arborist@6.3.0.patch",
       "assert@2.1.0": "patches/assert@2.1.0.patch",
-      "@yarnpkg/parsers@3.0.0": "patches/@yarnpkg__parsers@3.0.0.patch",
       "@pnpm/list@9.1.12": "patches/@pnpm__list@9.1.12.patch",
-      "@pnpm/list@10.1.2": "patches/@pnpm__list@10.1.2.patch",
-      "@pnpm/workspace.find-packages@2.0.5": "patches/@pnpm__workspace.find-packages@2.0.5.patch"
+      "@pnpm/workspace.find-packages@2.1.1": "patches/@pnpm__workspace.find-packages@2.1.1.patch",
+      "@pnpm/list@10.2.1": "patches/@pnpm__list@10.2.1.patch",
+      "@yarnpkg/parsers": "patches/@yarnpkg__parsers.patch",
+      "@npmcli/arborist": "patches/@npmcli__arborist.patch",
+      "@types/npmcli__arborist": "patches/@types__npmcli__arborist.patch"
     }
   },
   "overrides": {

@@ -1,0 +1,22 @@
+diff --git a/index.d.ts b/index.d.ts
+index b2d8604b10d62efe7c6f78a049fe0d58c6bb6a31..3a21b858cc7d22b61e43d0128bcb7086543754d5 100644
+--- a/index.d.ts
++++ b/index.d.ts
+@@ -3,6 +3,7 @@
+ import { LockDependency, PackageLock as _PackageLock } from "@npm/types";
+ import { PackageJson } from "@npmcli/package-json";
+ import { EventEmitter } from "events";
++import type { version } from "os";
+ import { Options as PacoteOptions, Packument } from "pacote";
+ 
+ declare class Arborist extends EventEmitter {
+@@ -116,6 +117,9 @@ declare namespace Arborist {
+         protected constructor(options: never);
+         /** The name of this node's folder in `node_modules`. */
+         name: string;
++
++        readonly version?: string;
++
+         /**
+          * Physical parent node in the tree.  The package in whose `node_modules`
+          * folder this package lives.  Null if node is top of tree.
