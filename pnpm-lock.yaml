@@ -158,8 +158,8 @@ importers:
         specifier: ^1.7.36
         version: 1.7.36(@swc/helpers@0.5.13)
       '@types/node':
-        specifier: ^20.14.11
-        version: 20.14.11
+        specifier: ^20.16.11
+        version: 20.16.11
       bumpp:
         specifier: ^9.4.1
         version: 9.4.1
@@ -813,8 +813,8 @@ importers:
         specifier: ^6.0.1
         version: 6.0.1(rollup@4.24.0)
       ljharb-es-iterator-helpers:
-        specifier: npm:es-iterator-helpers@^1.0.19
-        version: es-iterator-helpers@1.0.19
+        specifier: npm:es-iterator-helpers@^1.1.0
+        version: es-iterator-helpers@1.1.0
       resolve-pkg:
         specifier: ^2.0.0
         version: 2.0.0
@@ -837,8 +837,8 @@ importers:
         specifier: ^6.0.1
         version: 6.0.1(rollup@4.24.0)
       ljharb-is-core-module:
-        specifier: npm:is-core-module@^2.15.0
-        version: is-core-module@2.15.0
+        specifier: npm:is-core-module@^2.15.1
+        version: is-core-module@2.15.1
       resolve-pkg:
         specifier: ^2.0.0
         version: 2.0.0
@@ -882,10 +882,10 @@ importers:
         version: 15.3.0(rollup@4.24.0)
       '@swc-node/register':
         specifier: ^1.10.9
-        version: 1.10.9(@swc/core@1.7.36(@swc/helpers@0.5.12))(@swc/types@0.1.13)(typescript@5.6.3)
+        version: 1.10.9(@swc/core@1.7.36(@swc/helpers@0.5.13))(@swc/types@0.1.13)(typescript@5.6.3)
       '@swc/helpers':
-        specifier: ^0.5.12
-        version: 0.5.12
+        specifier: ^0.5.13
+        version: 0.5.13
       '@types/npmcli__arborist':
         specifier: ^5.6.1
         version: 5.6.1(patch_hash=6ms3onjw4t22bbhdxmnddktj5e)
@@ -1907,9 +1907,6 @@ packages:
   '@swc/counter@0.1.3':
     resolution: {integrity: sha512-e2BR4lsJkkRlKZ/qCHPw9ZaSxc0MVUd7gtbtaB7aMvHeJVYe8sOB8DBZkP2DtISHGSku9sCK6T6cnY0CtXrOCQ==}
 
-  '@swc/helpers@0.5.12':
-    resolution: {integrity: sha512-KMZNXiGibsW9kvZAO1Pam2JPTDBm+KSHMMHWdsyI/1DbIZjT2A6Gy3hblVXUMEDvUAKq+e0vL0X0o54owWji7g==}
-
   '@swc/helpers@0.5.13':
     resolution: {integrity: sha512-UoKGxQ3r5kYI9dALKJapMmuK+1zWM/H17Z1+iwnNmzcJRnfFuevZs375TA5rW31pu4BS4NoSy1fRsexDXfWn5w==}
 
@@ -1952,8 +1949,8 @@ packages:
   '@types/node-fetch@2.6.4':
     resolution: {integrity: sha512-1ZX9fcN4Rvkvgv4E6PAY5WXUFWFcRWxZa3EW83UjycOB9ljJCedb2CupIP4RZMEwF/M3eTcCihbBRgwtGbg5Rg==}
 
-  '@types/node@20.14.11':
-    resolution: {integrity: sha512-kprQpL8MMeszbz6ojB5/tU8PLN4kesnN8Gjzw349rDlNgsSzg90lAVj3llK99Dh7JON+t9AuscPPFW6mPbTnSA==}
+  '@types/node@20.16.11':
+    resolution: {integrity: sha512-y+cTCACu92FyA5fgQSAI8A1H429g7aSK2HsO7K4XYUWc4dY5IUz55JSDIYT6/VsOLfGy8vmvQYC2hfb0iF16Uw==}
 
   '@types/npm-package-arg@6.1.1':
     resolution: {integrity: sha512-452/1Kp9IdM/oR10AyqAgZOxUt7eLbm+EMJ194L6oarMYdZNiFIFAOJ7IIr0OrZXTySgfHjJezh2oiyk2kc3ag==}
@@ -2656,8 +2653,8 @@ packages:
     resolution: {integrity: sha512-Zf5H2Kxt2xjTvbJvP2ZWLEICxA6j+hAmMzIlypy4xcBg1vKVnx89Wy0GbS+kf5cwCVFFzdCFh2XSCFNULS6csw==}
     engines: {node: '>= 0.4'}
 
-  es-iterator-helpers@1.0.19:
-    resolution: {integrity: sha512-zoMwbCcH5hwUkKJkT8kDIBZSz9I6mVG//+lDCinLCGov4+r7NIy0ld8o03M0cJxl2spVf6ESYVS6/gpIfq1FFw==}
+  es-iterator-helpers@1.1.0:
+    resolution: {integrity: sha512-/SurEfycdyssORP/E+bj4sEu1CWw4EmLDsHynHwSXQ7utgbrMRWW195pTrCjFgFCddf/UkYm3oqKPRq5i8bJbw==}
     engines: {node: '>= 0.4'}
 
   es-object-atoms@1.0.0:
@@ -3152,8 +3149,8 @@ packages:
     resolution: {integrity: sha512-1BC0BVFhS/p0qtw6enp8e+8OD0UrK0oFLztSjNzhcKA3WDuJxxAPXzPuPtKkjEY9UUoEWlX/8fgKeu2S8i9JTA==}
     engines: {node: '>= 0.4'}
 
-  is-core-module@2.15.0:
-    resolution: {integrity: sha512-Dd+Lb2/zvk9SKy1TGCt1wFJFo/MWBPMX5x7KcvLajWTGuomczdQX61PvY5yK6SVACwpoexWo81IfFyoKY2QnTA==}
+  is-core-module@2.15.1:
+    resolution: {integrity: sha512-z0vtXSwucUJtANQWldhbtbt7BnL0vxiFjIdDLAatwhDYty2bad6s+rijD6Ri4YuYJubLzIJLUidCh09e1djEVQ==}
     engines: {node: '>= 0.4'}
 
   is-data-view@1.0.1:
@@ -4199,8 +4196,8 @@ packages:
   ufo@1.5.3:
     resolution: {integrity: sha512-Y7HYmWaFwPUmkoQCUIAYpKqkOf+SbVj/2fJJZ4RJMCfZp0rTGwRbzQD+HghfnhKOjL9E01okqz+ncJskGYfBNw==}
 
-  undici-types@5.26.5:
-    resolution: {integrity: sha512-JlCMO+ehdEIKqlFxk6IfVoAUVmgz7cU7zD/h9XZ0qzeosSHmUJVOzSQvvYSYWXkFXC+IfLKSIffhv0sVZup6pA==}
+  undici-types@6.19.8:
+    resolution: {integrity: sha512-ve2KP6f/JnbPBFyobGHuerC9g1FYGn/F8n1LWTwNxCEzd6IfqTwUQcNXgEtmmQ6DlRrC1hrSrBnCZPokRrDHjw==}
 
   unique-filename@3.0.0:
     resolution: {integrity: sha512-afXhuC55wkAmZ0P18QsVE6kp8JaxrEokN2HGIoIVv2ijHQd419H0+6EigAFcIzXeMIkcIkNBpB3L/DXB3cTS/g==}
@@ -5499,30 +5496,10 @@ snapshots:
       - supports-color
       - typescript
 
-  '@swc-node/core@1.13.3(@swc/core@1.7.36(@swc/helpers@0.5.12))(@swc/types@0.1.13)':
-    dependencies:
-      '@swc/core': 1.7.36(@swc/helpers@0.5.12)
-      '@swc/types': 0.1.13
-
   '@swc-node/core@1.13.3(@swc/core@1.7.36(@swc/helpers@0.5.13))(@swc/types@0.1.13)':
     dependencies:
       '@swc/core': 1.7.36(@swc/helpers@0.5.13)
       '@swc/types': 0.1.13
-
-  '@swc-node/register@1.10.9(@swc/core@1.7.36(@swc/helpers@0.5.12))(@swc/types@0.1.13)(typescript@5.6.3)':
-    dependencies:
-      '@swc-node/core': 1.13.3(@swc/core@1.7.36(@swc/helpers@0.5.12))(@swc/types@0.1.13)
-      '@swc-node/sourcemap-support': 0.5.1
-      '@swc/core': 1.7.36(@swc/helpers@0.5.12)
-      colorette: 2.0.20
-      debug: 4.3.5
-      oxc-resolver: 1.10.2
-      pirates: 4.0.6
-      tslib: 2.6.3
-      typescript: 5.6.3
-    transitivePeerDependencies:
-      - '@swc/types'
-      - supports-color
 
   '@swc-node/register@1.10.9(@swc/core@1.7.36(@swc/helpers@0.5.13))(@swc/types@0.1.13)(typescript@5.6.3)':
     dependencies:
@@ -5574,23 +5551,6 @@ snapshots:
   '@swc/core-win32-x64-msvc@1.7.36':
     optional: true
 
-  '@swc/core@1.7.36(@swc/helpers@0.5.12)':
-    dependencies:
-      '@swc/counter': 0.1.3
-      '@swc/types': 0.1.13
-    optionalDependencies:
-      '@swc/core-darwin-arm64': 1.7.36
-      '@swc/core-darwin-x64': 1.7.36
-      '@swc/core-linux-arm-gnueabihf': 1.7.36
-      '@swc/core-linux-arm64-gnu': 1.7.36
-      '@swc/core-linux-arm64-musl': 1.7.36
-      '@swc/core-linux-x64-gnu': 1.7.36
-      '@swc/core-linux-x64-musl': 1.7.36
-      '@swc/core-win32-arm64-msvc': 1.7.36
-      '@swc/core-win32-ia32-msvc': 1.7.36
-      '@swc/core-win32-x64-msvc': 1.7.36
-      '@swc/helpers': 0.5.12
-
   '@swc/core@1.7.36(@swc/helpers@0.5.13)':
     dependencies:
       '@swc/counter': 0.1.3
@@ -5610,14 +5570,9 @@ snapshots:
 
   '@swc/counter@0.1.3': {}
 
-  '@swc/helpers@0.5.12':
-    dependencies:
-      tslib: 2.6.3
-
   '@swc/helpers@0.5.13':
     dependencies:
       tslib: 2.8.0
-    optional: true
 
   '@swc/types@0.1.13':
     dependencies:
@@ -5639,7 +5594,7 @@ snapshots:
 
   '@types/cacache@17.0.0':
     dependencies:
-      '@types/node': 20.14.11
+      '@types/node': 20.16.11
 
   '@types/eslint@8.56.6':
     dependencies:
@@ -5659,18 +5614,18 @@ snapshots:
 
   '@types/node-fetch@2.6.4':
     dependencies:
-      '@types/node': 20.14.11
+      '@types/node': 20.16.11
       form-data: 3.0.1
 
-  '@types/node@20.14.11':
+  '@types/node@20.16.11':
     dependencies:
-      undici-types: 5.26.5
+      undici-types: 6.19.8
 
   '@types/npm-package-arg@6.1.1': {}
 
   '@types/npm-registry-fetch@8.0.4':
     dependencies:
-      '@types/node': 20.14.11
+      '@types/node': 20.16.11
       '@types/node-fetch': 2.6.4
       '@types/npm-package-arg': 6.1.1
       '@types/npmlog': 4.1.4
@@ -5689,7 +5644,7 @@ snapshots:
 
   '@types/pacote@11.1.5':
     dependencies:
-      '@types/node': 20.14.11
+      '@types/node': 20.16.11
       '@types/npm-registry-fetch': 8.0.4
       '@types/npmlog': 4.1.4
       '@types/ssri': 7.1.1
@@ -5700,11 +5655,11 @@ snapshots:
 
   '@types/ssri@7.1.1':
     dependencies:
-      '@types/node': 20.14.11
+      '@types/node': 20.16.11
 
   '@types/ssri@7.1.5':
     dependencies:
-      '@types/node': 20.14.11
+      '@types/node': 20.16.11
 
   '@types/treeverse@3.0.5': {}
 
@@ -6470,7 +6425,7 @@ snapshots:
 
   es-errors@1.3.0: {}
 
-  es-iterator-helpers@1.0.19:
+  es-iterator-helpers@1.1.0:
     dependencies:
       call-bind: 1.0.7
       define-properties: link:packages/generated/define-properties
@@ -7077,7 +7032,7 @@ snapshots:
 
   is-callable@1.2.7: {}
 
-  is-core-module@2.15.0:
+  is-core-module@2.15.1:
     dependencies:
       hasown: link:packages/generated/hasown
 
@@ -8115,7 +8070,7 @@ snapshots:
 
   ufo@1.5.3: {}
 
-  undici-types@5.26.5: {}
+  undici-types@6.19.8: {}
 
   unique-filename@3.0.0:
     dependencies:

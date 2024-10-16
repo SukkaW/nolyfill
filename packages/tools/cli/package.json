@@ -29,7 +29,7 @@
     "@rollup/plugin-json": "^6.1.0",
     "@rollup/plugin-node-resolve": "^15.3.0",
     "@swc-node/register": "^1.10.9",
-    "@swc/helpers": "^0.5.12",
+    "@swc/helpers": "^0.5.13",
     "@types/npmcli__arborist": "^5.6.1",
     "@types/treeverse": "^3.0.5",
     "@types/yarnpkg__lockfile": "^1.1.9",
