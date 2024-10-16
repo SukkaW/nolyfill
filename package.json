@@ -13,7 +13,6 @@
   },
   "devDependencies": {
     "@eslint-sukka/node": "^6.7.0",
-    "@eslint-sukka/ts": "^5.1.2",
     "@jsdevtools/ez-spawn": "^3.0.4",
     "@nolyfill/internal": "workspace:*",
     "@package-json/types": "^0.0.11",
