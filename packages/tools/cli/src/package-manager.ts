@@ -1,10 +1,9 @@
-import { detect } from 'package-manager-detector';
+import { detect, type DetectResult } from 'package-manager-detector';
 
 export type PackageManager = 'npm' | 'pnpm' | 'yarn' | 'bun';
-type PackageManagerDetectorReturn = Awaited<ReturnType<typeof detect>>;
 
-export function tramsformPackageManager(input: PackageManagerDetectorReturn): PackageManager {
-  if (input.agent == null) {
+export function tramsformPackageManager(input: DetectResult | null): PackageManager {
+  if (input == null) {
     throw new Error('Can not determine the preferred package manager');
   }
   return input.agent.split('@')[0] as PackageManager;

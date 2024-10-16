@@ -1,0 +1,215 @@
+diff --git a/lib/arborist/index.js b/lib/arborist/index.js
+index ec25117c2a8744ecd4725fce12863c48b630f938..c7147f010eaca9c2187831051629616c41329f9b 100644
+--- a/lib/arborist/index.js
++++ b/lib/arborist/index.js
+@@ -28,26 +28,26 @@
+ 
+ const { resolve } = require('path')
+ const { homedir } = require('os')
+-const { depth } = require('treeverse')
++// const { depth } = require('treeverse')
+ const { saveTypeMap } = require('../add-rm-pkg-deps.js')
+ 
+ const mixins = [
+-  require('../tracker.js'),
+-  require('./pruner.js'),
+-  require('./deduper.js'),
+-  require('./audit.js'),
+-  require('./build-ideal-tree.js'),
++  // require('../tracker.js'),
++  // require('./pruner.js'),
++  // require('./deduper.js'),
++  // require('./audit.js'),
++  // require('./build-ideal-tree.js'),
+   require('./set-workspaces.js'),
+-  require('./load-actual.js'),
++  // require('./load-actual.js'),
+   require('./load-virtual.js'),
+-  require('./rebuild.js'),
+-  require('./reify.js'),
+-  require('./isolated-reifier.js'),
++  // require('./rebuild.js'),
++  // require('./reify.js'),
++  // require('./isolated-reifier.js'),
+ ]
+ 
+ const _workspacesEnabled = Symbol.for('workspacesEnabled')
+ const Base = mixins.reduce((a, b) => b(a), require('events'))
+-const getWorkspaceNodes = require('../get-workspace-nodes.js')
++// const getWorkspaceNodes = require('../get-workspace-nodes.js')
+ 
+ // if it's 1, 2, or 3, set it explicitly that.
+ // if undefined or null, set it null
+@@ -66,7 +66,7 @@ const lockfileVersion = lfv => {
+ 
+ class Arborist extends Base {
+   constructor (options = {}) {
+-    process.emit('time', 'arborist:ctor')
++    // process.emit('time', 'arborist:ctor')
+     super(options)
+     this.options = {
+       nodeVersion: process.version,
+@@ -91,77 +91,77 @@ class Arborist extends Base {
+     }
+     this.cache = resolve(this.options.cache)
+     this.path = resolve(this.options.path)
+-    process.emit('timeEnd', 'arborist:ctor')
++    // process.emit('timeEnd', 'arborist:ctor')
+   }
+ 
+   // TODO: We should change these to static functions instead
+   //   of methods for the next major version
+ 
+   // returns an array of the actual nodes for all the workspaces
+-  workspaceNodes (tree, workspaces) {
+-    return getWorkspaceNodes(tree, workspaces)
+-  }
++  // workspaceNodes (tree, workspaces) {
++  //   return getWorkspaceNodes(tree, workspaces)
++  // }
+ 
+   // returns a set of workspace nodes and all their deps
+-  workspaceDependencySet (tree, workspaces, includeWorkspaceRoot) {
+-    const wsNodes = this.workspaceNodes(tree, workspaces)
+-    if (includeWorkspaceRoot) {
+-      for (const edge of tree.edgesOut.values()) {
+-        if (edge.type !== 'workspace' && edge.to) {
+-          wsNodes.push(edge.to)
+-        }
+-      }
+-    }
+-    const wsDepSet = new Set(wsNodes)
+-    const extraneous = new Set()
+-    for (const node of wsDepSet) {
+-      for (const edge of node.edgesOut.values()) {
+-        const dep = edge.to
+-        if (dep) {
+-          wsDepSet.add(dep)
+-          if (dep.isLink) {
+-            wsDepSet.add(dep.target)
+-          }
+-        }
+-      }
+-      for (const child of node.children.values()) {
+-        if (child.extraneous) {
+-          extraneous.add(child)
+-        }
+-      }
+-    }
+-    for (const extra of extraneous) {
+-      wsDepSet.add(extra)
+-    }
+-
+-    return wsDepSet
+-  }
++  // workspaceDependencySet (tree, workspaces, includeWorkspaceRoot) {
++  //   const wsNodes = this.workspaceNodes(tree, workspaces)
++  //   if (includeWorkspaceRoot) {
++  //     for (const edge of tree.edgesOut.values()) {
++  //       if (edge.type !== 'workspace' && edge.to) {
++  //         wsNodes.push(edge.to)
++  //       }
++  //     }
++  //   }
++  //   const wsDepSet = new Set(wsNodes)
++  //   const extraneous = new Set()
++  //   for (const node of wsDepSet) {
++  //     for (const edge of node.edgesOut.values()) {
++  //       const dep = edge.to
++  //       if (dep) {
++  //         wsDepSet.add(dep)
++  //         if (dep.isLink) {
++  //           wsDepSet.add(dep.target)
++  //         }
++  //       }
++  //     }
++  //     for (const child of node.children.values()) {
++  //       if (child.extraneous) {
++  //         extraneous.add(child)
++  //       }
++  //     }
++  //   }
++  //   for (const extra of extraneous) {
++  //     wsDepSet.add(extra)
++  //   }
++
++  //   return wsDepSet
++  // }
+ 
+   // returns a set of root dependencies, excluding dependencies that are
+   // exclusively workspace dependencies
+-  excludeWorkspacesDependencySet (tree) {
+-    const rootDepSet = new Set()
+-    depth({
+-      tree,
+-      visit: node => {
+-        for (const { to } of node.edgesOut.values()) {
+-          if (!to || to.isWorkspace) {
+-            continue
+-          }
+-          for (const edgeIn of to.edgesIn.values()) {
+-            if (edgeIn.from.isRoot || rootDepSet.has(edgeIn.from)) {
+-              rootDepSet.add(to)
+-            }
+-          }
+-        }
+-        return node
+-      },
+-      filter: node => node,
+-      getChildren: (node, tree) =>
+-        [...tree.edgesOut.values()].map(edge => edge.to),
+-    })
+-    return rootDepSet
+-  }
++  // excludeWorkspacesDependencySet (tree) {
++  //   const rootDepSet = new Set()
++  //   depth({
++  //     tree,
++  //     visit: node => {
++  //       for (const { to } of node.edgesOut.values()) {
++  //         if (!to || to.isWorkspace) {
++  //           continue
++  //         }
++  //         for (const edgeIn of to.edgesIn.values()) {
++  //           if (edgeIn.from.isRoot || rootDepSet.has(edgeIn.from)) {
++  //             rootDepSet.add(to)
++  //           }
++  //         }
++  //       }
++  //       return node
++  //     },
++  //     filter: node => node,
++  //     getChildren: (node, tree) =>
++  //       [...tree.edgesOut.values()].map(edge => edge.to),
++  //   })
++  //   return rootDepSet
++  // }
+ }
+ 
+ module.exports = Arborist
+diff --git a/lib/node.js b/lib/node.js
+index bdc021b7c12a99a0816abb6da6929a204c457566..0f85715676a36c674dca6990970f9ade2a961845 100644
+--- a/lib/node.js
++++ b/lib/node.js
+@@ -63,7 +63,7 @@ const consistentResolve = require('./consistent-resolve.js')
+ const printableTree = require('./printable.js')
+ const CaseInsensitiveMap = require('./case-insensitive-map.js')
+ 
+-const querySelectorAll = require('./query-selector-all.js')
++// const querySelectorAll = require('./query-selector-all.js')
+ 
+ class Node {
+   #global
+@@ -1457,9 +1457,9 @@ class Node {
+ 
+   // maybe accept both string value or array of strings
+   // seems to be what dom API does
+-  querySelectorAll (query, opts) {
+-    return querySelectorAll(this, query, opts)
+-  }
++  // querySelectorAll (query, opts) {
++  //   return querySelectorAll(this, query, opts)
++  // }
+ 
+   toJSON () {
+     return printableTree(this)

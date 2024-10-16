@@ -1,15 +1,25 @@
 diff --git a/lib/index.js b/lib/index.js
-index 0a3e9ff710e410973c1be1f30d69dba04e34e417..2c9de253ad710b83be002e3c912a06aa4ae7cb42 100644
+index c1bd8a1136bae0719b128947e91fb7663dfefedf..59fa774b27352bec059f54c0aae387d12d453c3c 100644
 --- a/lib/index.js
 +++ b/lib/index.js
-@@ -3,52 +3,53 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
-     return (mod && mod.__esModule) ? mod : { "default": mod };
- };
+@@ -1,57 +1,57 @@
+ "use strict";
+-var __importDefault = (this && this.__importDefault) || function (mod) {
+-    return (mod && mod.__esModule) ? mod : { "default": mod };
+-};
++// var __importDefault = (this && this.__importDefault) || function (mod) {
++//     return (mod && mod.__esModule) ? mod : { "default": mod };
++// };
  Object.defineProperty(exports, "__esModule", { value: true });
--exports.list = exports.listForPackages = exports.searchForPackages = exports.flattenSearchedPackages = exports.renderTree = exports.renderParseable = exports.renderJson = void 0;
+ exports.renderTree = exports.renderParseable = exports.renderJson = void 0;
+-exports.flattenSearchedPackages = flattenSearchedPackages;
++// exports.flattenSearchedPackages = flattenSearchedPackages;
+ exports.searchForPackages = searchForPackages;
+-exports.listForPackages = listForPackages;
+-exports.list = list;
 -const path_1 = __importDefault(require("path"));
-+// exports.list = exports.listForPackages = exports.searchForPackages = exports.flattenSearchedPackages = exports.renderTree = exports.renderParseable = exports.renderJson = void 0;
-+exports.searchForPackages = void 0;
++// exports.listForPackages = listForPackages;
++// exports.list = list;
 +// const path_1 = __importDefault(require("path"));
  const read_project_manifest_1 = require("@pnpm/read-project-manifest");
  const reviewing_dependencies_hierarchy_1 = require("@pnpm/reviewing.dependencies-hierarchy");
@@ -54,7 +64,6 @@ index 0a3e9ff710e410973c1be1f30d69dba04e34e417..2c9de253ad710b83be002e3c912a06aa
 -        }
 -    }
 -}
--exports.flattenSearchedPackages = flattenSearchedPackages;
 +// const renderJson_1 = require("./renderJson");
 +// Object.defineProperty(exports, "renderJson", { enumerable: true, get: function () { return renderJson_1.renderJson; } });
 +// const renderParseable_1 = require("./renderParseable");
@@ -96,14 +105,13 @@ index 0a3e9ff710e410973c1be1f30d69dba04e34e417..2c9de253ad710b83be002e3c912a06aa
 +//         }
 +//     }
 +// }
-+// exports.flattenSearchedPackages = flattenSearchedPackages;
  async function searchForPackages(packages, projectPaths, opts) {
      const search = (0, reviewing_dependencies_hierarchy_1.createPackagesSearcher)(packages);
      return Promise.all(Object.entries(await (0, reviewing_dependencies_hierarchy_1.buildDependenciesHierarchy)(projectPaths, {
-@@ -72,61 +73,61 @@ async function searchForPackages(packages, projectPaths, opts) {
+@@ -76,60 +76,60 @@ async function searchForPackages(packages, projectPaths, opts) {
+         };
      }));
  }
- exports.searchForPackages = searchForPackages;
 -async function listForPackages(packages, projectPaths, maybeOpts) {
 -    const opts = { ...DEFAULTS, ...maybeOpts };
 -    const pkgs = await searchForPackages(packages, projectPaths, opts);
@@ -117,7 +125,6 @@ index 0a3e9ff710e410973c1be1f30d69dba04e34e417..2c9de253ad710b83be002e3c912a06aa
 -        showExtraneous: opts.showExtraneous,
 -    });
 -}
--exports.listForPackages = listForPackages;
 -async function list(projectPaths, maybeOpts) {
 -    const opts = { ...DEFAULTS, ...maybeOpts };
 -    const pkgs = await Promise.all(Object.entries(opts.depth === -1
@@ -127,6 +134,7 @@ index 0a3e9ff710e410973c1be1f30d69dba04e34e417..2c9de253ad710b83be002e3c912a06aa
 -        }, {})
 -        : await (0, reviewing_dependencies_hierarchy_1.buildDependenciesHierarchy)(projectPaths, {
 -            depth: opts.depth,
+-            excludePeerDependencies: maybeOpts?.excludePeerDependencies,
 -            include: maybeOpts?.include,
 -            lockfileDir: maybeOpts?.lockfileDir,
 -            onlyProjects: maybeOpts?.onlyProjects,
@@ -153,7 +161,6 @@ index 0a3e9ff710e410973c1be1f30d69dba04e34e417..2c9de253ad710b83be002e3c912a06aa
 -        showExtraneous: opts.showExtraneous,
 -    });
 -}
--exports.list = list;
 -function getPrinter(reportAs) {
 -    switch (reportAs) {
 -        case 'parseable': return renderParseable_1.renderParseable;
@@ -174,7 +181,6 @@ index 0a3e9ff710e410973c1be1f30d69dba04e34e417..2c9de253ad710b83be002e3c912a06aa
 +//         showExtraneous: opts.showExtraneous,
 +//     });
 +// }
-+// exports.listForPackages = listForPackages;
 +// async function list(projectPaths, maybeOpts) {
 +//     const opts = { ...DEFAULTS, ...maybeOpts };
 +//     const pkgs = await Promise.all(Object.entries(opts.depth === -1
@@ -184,6 +190,7 @@ index 0a3e9ff710e410973c1be1f30d69dba04e34e417..2c9de253ad710b83be002e3c912a06aa
 +//         }, {})
 +//         : await (0, reviewing_dependencies_hierarchy_1.buildDependenciesHierarchy)(projectPaths, {
 +//             depth: opts.depth,
++//             excludePeerDependencies: maybeOpts?.excludePeerDependencies,
 +//             include: maybeOpts?.include,
 +//             lockfileDir: maybeOpts?.lockfileDir,
 +//             onlyProjects: maybeOpts?.onlyProjects,
@@ -210,7 +217,6 @@ index 0a3e9ff710e410973c1be1f30d69dba04e34e417..2c9de253ad710b83be002e3c912a06aa
 +//         showExtraneous: opts.showExtraneous,
 +//     });
 +// }
-+// exports.list = list;
 +// function getPrinter(reportAs) {
 +//     switch (reportAs) {
 +//         case 'parseable': return renderParseable_1.renderParseable;
