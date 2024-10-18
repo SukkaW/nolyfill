@@ -1,6 +1,6 @@
 {
   "name": "@nolyfill/safer-buffer",
-  "version": "1.0.40",
+  "version": "1.0.41",
   "repository": {
     "type": "git",
     "url": "https://github.com/SukkaW/nolyfill",
