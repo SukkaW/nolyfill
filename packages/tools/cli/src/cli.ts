@@ -2,7 +2,6 @@ import path from 'path';
 import picocolors from 'picocolors';
 import { Command, Option } from 'commander';
 import handleError from './handle-error';
-import { detectPackageManager, type PackageManager } from './package-manager';
 import { renderTree } from './renderTree';
 
 import { overridesPackageJson } from './lib/json';
@@ -11,6 +10,7 @@ import { handleSigTerm } from './lib/handle-sigterm';
 import { findPackagesCoveredByNolyfill, findPackagesNotCoveredByNolyfill } from './find-coverable-packages';
 import { checkForUpdates } from './check-update';
 import { generateIssue } from './generate-issue';
+import { detectPackageManager, type PackageManager } from './package-manager';
 
 interface CliOptions {
   /** see full error messages, mostly for debugging */
@@ -32,7 +32,7 @@ const pmCommandOption = new Option('--pm [package manager]', 'specify which pack
 
 handleSigTerm();
 
-// eslint-disable-next-line @typescript-eslint/no-var-requires -- version
+// eslint-disable-next-line @typescript-eslint/no-require-imports -- TBD
 const { version } = require('../package.json') as PKG;
 
 const checkUnsupportedPM = (packageManager: PackageManager) => {
@@ -78,10 +78,10 @@ const program = new Command('nolyfill');
       .addOption(pmCommandOption)
       .addOption(new Option('-f --format [format]', 'output format for console')
         .choices(['humanreadable', 'json'])
-        .default('humanreadable')
-      )
+        .default('humanreadable'))
       .action(async (source: string | undefined, option: CheckCommandOptions) => {
         const projectPath = path.resolve(source ?? process.cwd());
+        // TODO: use `package-manager-detector` agent option
         const packageManager = option.pm === 'auto' ? await detectPackageManager(projectPath) : option.pm;
         const format = option.format;
 
@@ -120,6 +120,7 @@ const program = new Command('nolyfill');
       .addOption(pmCommandOption)
       .action(async (source: string | undefined, option: PmCommandOptions) => {
         const projectPath = path.resolve(source ?? process.cwd());
+        // TODO: use `package-manager-detector` agent option
         const packageManager = option.pm === 'auto' ? await detectPackageManager(projectPath) : option.pm;
 
         if (checkUnsupportedPM(packageManager)) {

@@ -1,4 +1,4 @@
-import type { PackageJson } from 'type-fest';
+import type { PackageJson } from '@package-json/types';
 
 import resolve from 'resolve-pkg';
 import fs from 'fs';

@@ -10,7 +10,7 @@ import { fileExists, compareAndWriteFile } from '@nolyfill/internal';
 import { transform } from '@swc/core';
 import type { Options as SwcOptions } from '@swc/core';
 
-import type { PackageJson } from 'type-fest';
+import type { PackageJson } from '@package-json/types';
 
 /**
  * The package.json inside the project has a non-nullable "version" field,

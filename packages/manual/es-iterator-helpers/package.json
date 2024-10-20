@@ -94,10 +94,10 @@
     "@nolyfill/shared": "workspace:*"
   },
   "devDependencies": {
-    "@rollup/plugin-commonjs": "^26.0.1",
-    "@rollup/plugin-node-resolve": "^15.2.3",
-    "@rollup/plugin-replace": "^5.0.7",
-    "ljharb-es-iterator-helpers": "npm:es-iterator-helpers@^1.0.19",
+    "@rollup/plugin-commonjs": "^28.0.1",
+    "@rollup/plugin-node-resolve": "^15.3.0",
+    "@rollup/plugin-replace": "^6.0.1",
+    "ljharb-es-iterator-helpers": "npm:es-iterator-helpers@^1.1.0",
     "resolve-pkg": "^2.0.0"
   },
   "engines": {
