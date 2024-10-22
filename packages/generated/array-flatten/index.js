@@ -1,2 +1,2 @@
-"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),Object.defineProperty(exports,"flatten",{enumerable:!0,get:function(){return e}});const e=e=>e.flat(1/0);
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),function(e,t){for(var n in t)Object.defineProperty(e,n,{enumerable:!0,get:t[n]})}(exports,{default:function(){return t},flatten:function(){return e}});const e=e=>e.flat(1/0),t=e;
 ((typeof exports.default === 'object' && exports.default !== null) || typeof exports.default === 'function') && (Object.assign(exports.default,exports), module.exports = exports.default);
