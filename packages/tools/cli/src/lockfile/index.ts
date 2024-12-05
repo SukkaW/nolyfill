@@ -2,8 +2,8 @@ import type { PackageManager } from '../package-manager';
 import { buildPNPMDepTree } from './pnpm';
 import { buildNPMDepTree } from './npm';
 import { buildYarnDepTree } from './yarn';
-import fsp from 'fs/promises';
-import path from 'path';
+import fsp from 'node:fs/promises';
+import path from 'node:path';
 
 export interface PackageLockDeps {
   [depName: string]: PackageLockDep
@@ -34,10 +34,9 @@ export function buildDepTrees(packageManager: PackageManager, dir: string) {
 
 export async function getPNPMLockfileVersion(dir: string) {
   const content = await fsp.readFile(path.resolve(dir, 'pnpm-lock.yaml'), 'utf-8');
-  const [, lockfileVersion] = content.match(/^lockfileVersion: '?(\d*(?:.\d*)?)'?$/m) ?? [];
+  const [, lockfileVersion] = (/^lockfileVersion: ["']?(\d*(?:\.\d*)?)["']?$/m.exec(content)) ?? [];
 
-  if (!lockfileVersion)
-    throw new Error(`Can't detect lockfile version`)
+  if (!lockfileVersion) throw new Error('Can\'t detect lockfile version');
 
   return lockfileVersion;
 }
