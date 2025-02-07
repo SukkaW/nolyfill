@@ -1,2 +1,2 @@
-"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),function(e,t){Object.keys(e).forEach(function(r){"default"===r||Object.prototype.hasOwnProperty.call(t,r)||Object.defineProperty(t,r,{enumerable:!0,get:function(){return e[r]}})})}(require("node:buffer"),exports);
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),function(e,t){Object.keys(e).forEach(function(r){"default"===r||Object.prototype.hasOwnProperty.call(t,r)||Object.defineProperty(t,r,{enumerable:!0,get:function(){return e[r]}})})}(require("buffer"),exports);
 ((typeof exports.default === 'object' && exports.default !== null) || typeof exports.default === 'function') && (Object.assign(exports.default,exports), module.exports = exports.default);
