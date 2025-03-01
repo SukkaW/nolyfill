@@ -6,7 +6,7 @@ empty[Symbol.isConcatSpreadable] = true;
 const concat = (...args) => {
     for (let i = 0, l = args.length; i < l; i += 1) {
         const arg = args[i];
-        if (arg && typeof arg === 'object' && typeof arg[Symbol.isConcatSpreadable] === 'boolean') {
+        if (arg && typeof arg === 'object' && Symbol.isConcatSpreadable in arg && typeof arg[Symbol.isConcatSpreadable] === 'boolean') {
             const arr = Array.isArray(arg) ? Array.prototype.slice.call(arg) : [arg];
             // @ts-expect-error -- JS is awesome
             arr[Symbol.isConcatSpreadable] = true;
