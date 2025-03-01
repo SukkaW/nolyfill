@@ -1,7 +1,7 @@
 'use strict';
 
-import fsPromises from 'fs/promises';
-import path from 'path';
+import fsPromises from 'node:fs/promises';
+import path from 'node:path';
 import ezspawn from '@jsdevtools/ez-spawn';
 import { PathScurry } from 'path-scurry';
 import colors from 'picocolors';
@@ -9,6 +9,7 @@ import { dequal } from 'dequal';
 import { fileExists, compareAndWriteFile } from '@nolyfill/internal';
 import { transform } from '@swc/core';
 import type { Options as SwcOptions } from '@swc/core';
+import ts from 'typescript';
 
 import type { PackageJson } from '@package-json/types';
 
@@ -30,7 +31,7 @@ const currentPackageJsonPromise: Promise<CurrentPackageJson> = fsPromises.readFi
 
 interface VirtualPackage {
   path: string,
-  files: Record<string, string>,
+  files: Record<string, string | undefined>,
   packageJson: PackageJson
 }
 
@@ -238,41 +239,63 @@ const sharedSwcOption: SwcOptions = {
   module: { type: 'commonjs' }
 };
 
+const sharedEsmLikeFiles = {
+  'implementation.js': '\'use strict\';\nmodule.exports = require(\'./entry.js\').implementation;\n',
+  'implementation.d.ts': 'import type Entry from \'./entry\';\ndeclare const _default: typeof Entry[\'implementation\'];\nexport default _default;\n',
+  'polyfill.js': '\'use strict\';\nmodule.exports = require(\'./entry.js\').polyfill;\n',
+  'polyfill.d.ts': 'import type Entry from \'./entry\';\ndeclare const _default: typeof Entry[\'polyfill\'];\nexport default _default;\n',
+  'shim.js': '\'use strict\';\nmodule.exports = require(\'./entry.js\').shim;\n',
+  'shim.d.ts': 'import type Entry from \'./entry\';\ndeclare const _default: typeof Entry[\'shim\'];\nexport default _default;\n',
+  'auto.js': '\'use strict\';\n/* noop */\n',
+  'auto.d.ts': 'export {}\n',
+  'index.js': '\'use strict\';\nmodule.exports = require(\'./entry.js\').index();\n',
+  'index.d.ts': 'import type Entry from \'./entry\';\ndeclare const _default: typeof Entry[\'implementation\'];\nexport default _default;\n'
+};
+
 async function createEsShimLikePackage(
   packageName: string,
   extraDependencies: Record<string, string> = {},
   minimumNodeVersion = '>=12.4.0'
 ) {
-  const entryContent = await fsPromises.readFile(
-    path.join(__dirname, 'packages', 'data', 'es-shim-like', 'src', `${packageName}.ts`),
-    { encoding: 'utf-8' }
-  );
-  const { code } = await transform(
-    entryContent,
-    sharedSwcOption
-  );
+  const entryPath = path.join(__dirname, 'packages', 'data', 'es-shim-like', 'src', `${packageName}.ts`);
+  const pkgPath = path.join(__dirname, 'packages/generated', packageName);
+
+  const program = ts.createProgram([entryPath], {
+    declaration: true,
+    emitDeclarationOnly: true,
+    outDir: pkgPath,
+    moduleResolution: ts.ModuleResolutionKind.Bundler,
+    target: ts.ScriptTarget.ES2018,
+    lib: ['ES2018']
+  });
+
+  let dtsText: string | undefined;
+
+  program.emit(undefined, (_fileName, text) => { dtsText = text; }, undefined, true);
+
+  const entryContent = await fsPromises.readFile(entryPath, 'utf-8');
+  const { code } = await transform(entryContent, sharedSwcOption);
 
   const pkg: VirtualPackage = {
     path: path.join(__dirname, 'packages/generated', packageName),
     files: {
+      ...sharedEsmLikeFiles,
       'entry.js': code + esShimLikeExportInterop,
-      'implementation.js': '\'use strict\';\nmodule.exports = require(\'./entry.js\').implementation;\n',
-      'polyfill.js': '\'use strict\';\nmodule.exports = require(\'./entry.js\').polyfill;\n',
-      'shim.js': '\'use strict\';\nmodule.exports = require(\'./entry.js\').shim;\n',
-      'auto.js': '\'use strict\';\n/* noop */\n',
-      'index.js': '\'use strict\';\nmodule.exports = require(\'./entry.js\').index();\n'
+      'entry.d.ts': dtsText
     },
     packageJson: {
       name: `@nolyfill/${packageName}`,
       version: (await currentPackageJsonPromise).version,
+      type: 'commonjs',
       repository: {
         type: 'git',
         url: 'https://github.com/SukkaW/nolyfill',
         directory: `packages/generated/${packageName}`
       },
       main: './index.js',
+      types: './index.d.ts',
       license: 'MIT',
-      files: ['*.js'],
+      files: ['*.js', '*.d.ts'],
       scripts: {},
       dependencies: sortObjectByKey({
         '@nolyfill/shared': 'workspace:*',
@@ -292,33 +315,44 @@ async function createSingleFilePackage(
   extraDependencies: Record<string, string> = {},
   minimumNodeVersion = '>=12.4.0'
 ) {
-  const currentPackageJson = await currentPackageJsonPromise;
+  const entryPath = path.join(__dirname, 'packages', 'data', 'single-file', 'src', `${packageName}.ts`);
+  const pkgPath = path.join(__dirname, 'packages/generated', packageName);
 
-  const entryContent = await fsPromises.readFile(
-    path.join(__dirname, 'packages', 'data', 'single-file', 'src', `${packageName}.ts`),
-    { encoding: 'utf-8' }
-  );
-  const { code } = await transform(
-    entryContent,
-    sharedSwcOption
-  );
+  const program = ts.createProgram([entryPath], {
+    declaration: true,
+    emitDeclarationOnly: true,
+    outDir: pkgPath,
+    moduleResolution: ts.ModuleResolutionKind.Bundler,
+    target: ts.ScriptTarget.ES2018,
+    lib: ['ES2018']
+  });
+
+  let dtsText: string | undefined;
+
+  program.emit(undefined, (_fileName, text) => { dtsText = text; }, undefined, true);
+
+  const entryContent = await fsPromises.readFile(entryPath, 'utf-8');
+  const { code } = await transform(entryContent, sharedSwcOption);
 
   const pkg: VirtualPackage = {
-    path: path.join(__dirname, 'packages/generated', packageName),
+    path: pkgPath,
     files: {
-      'index.js': code + defaultExportInterop
+      'index.js': code + defaultExportInterop,
+      'index.d.ts': dtsText
     },
     packageJson: {
       name: `@nolyfill/${packageName}`,
-      version: currentPackageJson.version,
+      version: (await currentPackageJsonPromise).version,
+      type: 'commonjs',
       repository: {
         type: 'git',
         url: 'https://github.com/SukkaW/nolyfill',
         directory: `packages/generated/${packageName}`
       },
       main: './index.js',
+      types: './index.d.ts',
       license: 'MIT',
-      files: ['*.js'],
+      files: ['*.js', '*.d.ts'],
       scripts: {},
       dependencies: sortObjectByKey(extraDependencies),
       engines: {
@@ -361,15 +395,15 @@ async function writePackage(pkg: VirtualPackage) {
 
     if (file.isFile()) {
       const relativePath = file.relativePosix();
-      if (!(relativePath in pkg.files)) {
+      if (relativePath in pkg.files) {
+        existingFileFullpaths.add(file.fullpathPosix());
+      } else {
         // remove extra files
         hasChanged = true;
 
         promises.push(
           fsPromises.rm(path.join(pkg.path, relativePath))
         );
-      } else {
-        existingFileFullpaths.add(file.fullpathPosix());
       }
     }
   }
@@ -378,6 +412,9 @@ async function writePackage(pkg: VirtualPackage) {
 
   // write files, and check if they changed
   Object.entries(pkg.files).forEach(([file, content]) => {
+    if (content === undefined) {
+      return;
+    }
     const filePath = path.join(pkg.path, file);
     promises.push(
       compareAndWriteFile(filePath, content, existingFileFullpaths)

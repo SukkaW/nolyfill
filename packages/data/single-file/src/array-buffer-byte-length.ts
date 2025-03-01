@@ -1,5 +1,4 @@
 import { uncurryThis } from '@nolyfill/shared';
-// @ts-expect-error -- no types
 import isArrayBuffer from '@nolyfill/is-array-buffer';
 
 const bL = uncurryThis(Object.getOwnPropertyDescriptor(ArrayBuffer.prototype, 'byteLength')!.get!);

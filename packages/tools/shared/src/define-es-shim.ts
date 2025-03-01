@@ -2,7 +2,7 @@ import { makeEsShim } from './make-es-shim';
 import { uncurryThis } from './uncurry-this';
 import type { UncurryThis } from './uncurry-this';
 
-interface DefineEsShim<T, I> {
+export interface DefineEsShim<T, I> {
   implementation: T,
   polyfill(): T,
   shim(): T,
