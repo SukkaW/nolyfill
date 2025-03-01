@@ -1,2 +1,2 @@
-declare const isStandardArguments: (value: any) => boolean;
-declare const isLegacyArguments: (value: any) => boolean;
+declare const _default: (value: unknown) => boolean;
+export default _default;

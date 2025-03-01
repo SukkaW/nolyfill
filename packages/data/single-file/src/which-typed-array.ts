@@ -7,7 +7,7 @@ const availableTypedArray = [
   'Uint16Array', 'Uint32Array', 'Uint8Array', 'Uint8ClampedArray'
 ] as const;
 
-type AvaliableTypedArray = typeof availableTypedArray[number];
+type AvailableTypedArray = typeof availableTypedArray[number];
 
 const cacheEntries = Object.entries(
   availableTypedArray.reduce((acc, typedArray) => {
@@ -22,13 +22,13 @@ const cacheEntries = Object.entries(
   }, Object.create(null))
 ) as Array<[`$${string}`, (...args: unknown[]) => string]>;
 
-const tryTypedArrays = (value: unknown): false | AvaliableTypedArray => {
-  let found: false | AvaliableTypedArray = false;
+const tryTypedArrays = (value: unknown): false | AvailableTypedArray => {
+  let found: false | AvailableTypedArray = false;
   cacheEntries.forEach(([typedArray, getter]) => {
     if (!found) {
       try {
         if (`$${getter(value)}` === typedArray) {
-          found = typedArray.slice(1) as AvaliableTypedArray;
+          found = typedArray.slice(1) as AvailableTypedArray;
         }
       } catch { /**/ }
     }

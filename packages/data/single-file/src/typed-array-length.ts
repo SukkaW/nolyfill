@@ -1,9 +1,11 @@
-import { uncurryThis, TypedArrayPrototype } from '@nolyfill/shared';
+import { uncurryThis, TypedArrayPrototype, type TypedArray } from '@nolyfill/shared';
 
-const typedArrayLength = uncurryThis(Object.getOwnPropertyDescriptor(TypedArrayPrototype, 'length')!.get!);
-const g = (value: unknown) => {
+const typedArrayLength = uncurryThis<(this: TypedArray) => number>(Object.getOwnPropertyDescriptor(TypedArrayPrototype, 'length')!.get!);
+function g(value: TypedArray): number
+function g(value: unknown): false
+function g(value: unknown) {
   try {
-    return typedArrayLength(value);
+    return typedArrayLength(value as TypedArray);
   } catch {
     return false;
   }

@@ -1,3 +1,5 @@
-export type UncurryThis<T, F extends (this: T, ...args: unknown[]) => unknown> = (self: T, ...args: Parameters<F>) => ReturnType<F>;
+import type { AnyFunction } from "./types";
 
-export const uncurryThis = <T, F extends (this: T, ...args: any[]) => any>(fn: F): UncurryThis<T, F> => (thisp, ...args) => fn.call(thisp, ...args);
+export type UncurryThis<T extends AnyFunction> = (self: T extends (this: infer S, ...args: any[]) => any ? S : unknown, ...args: Parameters<T>) => ReturnType<T>;
+
+export const uncurryThis = <T extends AnyFunction>(fn: T): UncurryThis<T> => (self, ...args) => fn.call(self, ...args);

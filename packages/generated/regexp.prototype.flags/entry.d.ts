@@ -1,2 +1,2 @@
-declare const _default: import("@nolyfill/shared").DefineEsShim<(this: unknown, ...args: any[]) => any, import("@nolyfill/shared").UncurryThis<unknown, (this: unknown, ...args: any[]) => any>>;
+declare const _default: import("@nolyfill/shared").DefineEsShim<string, string>;
 export default _default;

@@ -1,2 +1,2 @@
-declare const is: (ab: unknown) => any;
-export default is;
+declare const byteLength: (ab: unknown) => number;
+export default byteLength;
