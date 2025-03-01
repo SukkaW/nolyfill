@@ -6,8 +6,7 @@
     "outDir": "./dist",
     "target": "ES2018",
     "module": "CommonJS",
-    "verbatimModuleSyntax": false,
-    "pretty": false
+    "verbatimModuleSyntax": false
   },
   "include": ["./packages/data/*/src/*.ts", "./packages/tools/shared/src/*.ts"]
 }

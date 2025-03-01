@@ -256,14 +256,13 @@ async function createEsShimLikePackage(
   minimumNodeVersion = '>=12.4.0'
 ) {
   const entryPath = path.join(__dirname, 'dist', 'data', 'es-shim-like', 'src', packageName);
-  const pkgPath = path.join(__dirname, 'packages/generated', packageName);
 
   const [js, dts] = await Promise.all(
     [fsPromises.readFile(entryPath + '.js', 'utf-8'), fsPromises.readFile(entryPath + '.d.ts', 'utf-8')]
   );
 
   const pkg: VirtualPackage = {
-    path: pkgPath,
+    path: path.join(__dirname, 'packages/generated', packageName),
     files: {
       ...sharedEsmLikeFiles,
       'entry.js': js + esShimLikeExportInterop,
@@ -302,14 +301,13 @@ async function createSingleFilePackage(
   minimumNodeVersion = '>=12.4.0'
 ) {
   const entryPath = path.join(__dirname, 'dist', 'data', 'single-file', 'src', packageName);
-  const pkgPath = path.join(__dirname, 'packages/generated', packageName);
 
   const [js, dts] = await Promise.all(
     [fsPromises.readFile(entryPath + '.js', 'utf-8'), fsPromises.readFile(entryPath + '.d.ts', 'utf-8')]
   );
 
   const pkg: VirtualPackage = {
-    path: pkgPath,
+    path: path.join(__dirname, 'packages/generated', packageName),
     files: {
       'index.js': js + defaultExportInterop,
       'index.d.ts': dts

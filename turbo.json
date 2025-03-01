@@ -12,6 +12,9 @@
       ]
     },
     "//#build:tsc": {
+      "dependsOn": [
+        "@nolyfill/shared#build"
+      ],
       "inputs": [
         "packages/data/**",
         "packages/tools/shared/**"
@@ -45,6 +48,14 @@
       "dependsOn": [
         "^build",
         "//#codegen"
+      ]
+    },
+    "@nolyfill/shared#build": {
+      "dependsOn": [
+        "^build"
+      ],
+      "inputs": [
+        "packages/tools/shared/**"
       ]
     },
     "nolyfill#build": {
