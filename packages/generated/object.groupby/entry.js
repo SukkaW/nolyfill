@@ -1,2 +1,20 @@
-"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),Object.defineProperty(exports,"default",{enumerable:!0,get:function(){return r}});const e=require("@nolyfill/shared"),t=Object.groupBy||function(e,t){let r=Object.create(null),l=0;for(let n of e){let e=t(n,l++);e in r?Array.prototype.push.call(r[e],n):r[e]=[n]}return r},r=(0,e.defineEsShim)(t,!0);
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const shared_1 = require("@nolyfill/shared");
+const implementation = Object.groupBy || function groupBy(items, callbackfn) {
+    const o = Object.create(null);
+    let k = 0;
+    for (const value of items) {
+        const key = callbackfn(value, k++);
+        if (key in o) {
+            Array.prototype.push.call(o[key], value);
+        }
+        else {
+            o[key] = [value];
+        }
+    }
+    return o;
+};
+exports.default = (0, shared_1.defineEsShim)(implementation, true);
+
 Object.assign(exports.default, exports); module.exports = exports.default;

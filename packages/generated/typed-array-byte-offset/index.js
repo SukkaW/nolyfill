@@ -1,2 +1,16 @@
-"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),Object.defineProperty(exports,"default",{enumerable:!0,get:function(){return t}});const e=require("@nolyfill/shared"),r=(0,e.uncurryThis)(Object.getOwnPropertyDescriptor(e.TypedArrayPrototype,"byteOffset").get),t=function(e){try{return r(e)}catch(e){return!1}};
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const shared_1 = require("@nolyfill/shared");
+const typedArrayByteOffSet = (0, shared_1.uncurryThis)(Object.getOwnPropertyDescriptor(shared_1.TypedArrayPrototype, 'byteOffset').get);
+function g(value) {
+    try {
+        return typedArrayByteOffSet(value);
+    }
+    catch (_a) {
+        return false;
+    }
+}
+;
+exports.default = g;
+
 ((typeof exports.default === 'object' && exports.default !== null) || typeof exports.default === 'function') && (Object.assign(exports.default,exports), module.exports = exports.default);

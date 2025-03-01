@@ -7,9 +7,7 @@ import { PathScurry } from 'path-scurry';
 import colors from 'picocolors';
 import { dequal } from 'dequal';
 import { fileExists, compareAndWriteFile } from '@nolyfill/internal';
-import { transform } from '@swc/core';
 import type { Options as SwcOptions } from '@swc/core';
-import ts from 'typescript';
 
 import type { PackageJson } from '@package-json/types';
 
@@ -257,31 +255,19 @@ async function createEsShimLikePackage(
   extraDependencies: Record<string, string> = {},
   minimumNodeVersion = '>=12.4.0'
 ) {
-  const entryPath = path.join(__dirname, 'packages', 'data', 'es-shim-like', 'src', `${packageName}.ts`);
+  const entryPath = path.join(__dirname, 'dist', 'data', 'es-shim-like', 'src', packageName);
   const pkgPath = path.join(__dirname, 'packages/generated', packageName);
 
-  const program = ts.createProgram([entryPath], {
-    declaration: true,
-    emitDeclarationOnly: true,
-    outDir: pkgPath,
-    moduleResolution: ts.ModuleResolutionKind.Bundler,
-    target: ts.ScriptTarget.ES2018,
-    lib: ['ES2018']
-  });
-
-  let dtsText: string | undefined;
-
-  program.emit(undefined, (_fileName, text) => { dtsText = text; }, undefined, true);
-
-  const entryContent = await fsPromises.readFile(entryPath, 'utf-8');
-  const { code } = await transform(entryContent, sharedSwcOption);
+  const [js, dts] = await Promise.all(
+    [fsPromises.readFile(entryPath + '.js', 'utf-8'), fsPromises.readFile(entryPath + '.d.ts', 'utf-8')]
+  );
 
   const pkg: VirtualPackage = {
-    path: path.join(__dirname, 'packages/generated', packageName),
+    path: pkgPath,
     files: {
       ...sharedEsmLikeFiles,
-      'entry.js': code + esShimLikeExportInterop,
-      'entry.d.ts': dtsText
+      'entry.js': js + esShimLikeExportInterop,
+      'entry.d.ts': dts
     },
     packageJson: {
       name: `@nolyfill/${packageName}`,
@@ -315,30 +301,18 @@ async function createSingleFilePackage(
   extraDependencies: Record<string, string> = {},
   minimumNodeVersion = '>=12.4.0'
 ) {
-  const entryPath = path.join(__dirname, 'packages', 'data', 'single-file', 'src', `${packageName}.ts`);
+  const entryPath = path.join(__dirname, 'dist', 'data', 'single-file', 'src', packageName);
   const pkgPath = path.join(__dirname, 'packages/generated', packageName);
 
-  const program = ts.createProgram([entryPath], {
-    declaration: true,
-    emitDeclarationOnly: true,
-    outDir: pkgPath,
-    moduleResolution: ts.ModuleResolutionKind.Bundler,
-    target: ts.ScriptTarget.ES2018,
-    lib: ['ES2018']
-  });
-
-  let dtsText: string | undefined;
-
-  program.emit(undefined, (_fileName, text) => { dtsText = text; }, undefined, true);
-
-  const entryContent = await fsPromises.readFile(entryPath, 'utf-8');
-  const { code } = await transform(entryContent, sharedSwcOption);
+  const [js, dts] = await Promise.all(
+    [fsPromises.readFile(entryPath + '.js', 'utf-8'), fsPromises.readFile(entryPath + '.d.ts', 'utf-8')]
+  );
 
   const pkg: VirtualPackage = {
     path: pkgPath,
     files: {
-      'index.js': code + defaultExportInterop,
-      'index.d.ts': dtsText
+      'index.js': js + defaultExportInterop,
+      'index.d.ts': dts
     },
     packageJson: {
       name: `@nolyfill/${packageName}`,

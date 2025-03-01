@@ -1,2 +1,2 @@
-declare const which: (value: unknown) => "BigInt" | "String" | "Number" | "Boolean" | "Symbol";
+declare const which: (value: unknown) => "String" | "Number" | "Boolean" | "Symbol" | "BigInt" | null | undefined;
 export default which;

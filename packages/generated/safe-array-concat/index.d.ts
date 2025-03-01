@@ -1,2 +1,2 @@
-declare const concat: (...args: any[]) => any;
+declare const concat: (...args: any[]) => any[];
 export default concat;

@@ -1,3 +1,82 @@
-"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),Object.defineProperty(exports,"default",{enumerable:!0,get:function(){return t}});const e=function(e,t){return t};function t(t,r){let n=r&&"space"in r&&r.space?"number"==typeof r.space?" ".repeat(r.space):r.space:"",l=!!r&&"cycles"in r&&"boolean"==typeof r.cycles&&r.cycles,o=r&&"replacer"in r&&r.replacer?r.replacer:e,i="function"==typeof r?r:null==r?void 0:r.cmp,u=i?e=>{let t=i.length>2&&function(t){return e[t]},r=t?{get:t}:void 0;return(t,n)=>i({key:t,value:e[t]},{key:n,value:e[n]},r)}:void 0,c=new Set;return function e(t,r,i,f){let s=n?`
-${n.repeat(f)}`:"",p=n?": ":":";if((null==i?void 0:i.toJSON)&&"function"==typeof i.toJSON&&(i=i.toJSON()),void 0===(i=o.call(t,r,i)))return;if("object"!=typeof i||null===i)return JSON.stringify(i);if(Array.isArray(i)){let t=[];for(let r=0;r<i.length;r++){let l=e(i,r,i[r],f+1)||JSON.stringify(null);t.push(s+n+l)}return`[${t.join(",")}${s}]`}if(c.has(i)){if(l)return JSON.stringify("__cycle__");throw TypeError("Converting circular structure to JSON")}c.add(i);let a=Object.keys(i).sort(null==u?void 0:u(i)),y=[];for(let t=0;t<a.length;t++){let r=a[t],l=e(i,r,i[r],f+1);if(!l)continue;let o=JSON.stringify(r)+p+l;y.push(s+n+o)}return c.delete(i),`{${y.join(",")}${s}}`}({"":t},"",t,0)}
+'use strict';
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.default = stableStringify;
+const defaultReplacer = function (_key, value) { return value; };
+function stableStringify(obj, opts) {
+    const space = opts && 'space' in opts && opts.space
+        ? (typeof opts.space === 'number'
+            ? ' '.repeat(opts.space)
+            : opts.space)
+        : '';
+    const cycles = opts && 'cycles' in opts && typeof opts.cycles === 'boolean'
+        ? opts.cycles
+        : false;
+    const replacer = opts && 'replacer' in opts && opts.replacer
+        ? opts.replacer
+        : defaultReplacer;
+    const cmpOpt = typeof opts === 'function' ? opts : opts === null || opts === void 0 ? void 0 : opts.cmp;
+    const cmp = cmpOpt
+        ? ((node) => {
+            const get = cmpOpt.length > 2 && function get(k) { return node[k]; };
+            const thirdArg = get ? { get } : undefined;
+            return (a, b) => {
+                const aobj = { key: a, value: node[a] };
+                const bobj = { key: b, value: node[b] };
+                return cmpOpt(aobj, bobj, thirdArg);
+            };
+        })
+        : undefined;
+    // Cycle
+    const seen = new Set();
+    function stringify(parent, key, node, level) {
+        const indent = space ? `\n${space.repeat(level)}` : '';
+        const colonSeparator = space ? ': ' : ':';
+        if ((node === null || node === void 0 ? void 0 : node.toJSON) && typeof node.toJSON === 'function') {
+            node = node.toJSON();
+        }
+        node = replacer.call(parent, key, node);
+        if (node === undefined) {
+            // @ts-expect-error -- fuck undefined
+            return;
+        }
+        if (typeof node !== 'object' || node === null) {
+            return JSON.stringify(node);
+        }
+        if (Array.isArray(node)) {
+            const out = [];
+            for (let i = 0; i < node.length; i++) {
+                // @ts-expect-error -- fuck js
+                const item = stringify(node, i, node[i], level + 1) || JSON.stringify(null);
+                out.push(indent + space + item);
+            }
+            return `[${out.join(',')}${indent}]`;
+        }
+        if (seen.has(node)) {
+            if (cycles) {
+                return JSON.stringify('__cycle__');
+            }
+            throw new TypeError('Converting circular structure to JSON');
+        }
+        else {
+            seen.add(node);
+        }
+        const keys = Object.keys(node).sort(cmp === null || cmp === void 0 ? void 0 : cmp(node));
+        const out = [];
+        for (let i = 0; i < keys.length; i++) {
+            const key = keys[i];
+            const value = stringify(node, key, node[key], level + 1);
+            if (!value) {
+                continue;
+            }
+            const keyValue = JSON.stringify(key)
+                + colonSeparator
+                + value;
+            out.push(indent + space + keyValue);
+        }
+        seen.delete(node);
+        return `{${out.join(',')}${indent}}`;
+    }
+    return stringify({ '': obj }, '', obj, 0);
+}
+
 ((typeof exports.default === 'object' && exports.default !== null) || typeof exports.default === 'function') && (Object.assign(exports.default,exports), module.exports = exports.default);

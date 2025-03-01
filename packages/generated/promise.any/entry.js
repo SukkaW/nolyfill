@@ -1,2 +1,25 @@
-"use strict";var e;Object.defineProperty(exports,"__esModule",{value:!0}),Object.defineProperty(exports,"default",{enumerable:!0,get:function(){return n}});const r=require("@nolyfill/shared"),t=(e=require("@nolyfill/es-aggregate-error/polyfill"))&&e.__esModule?e:{default:e},i=Promise.any||function(e){let r=(0,t.default)(),i=Promise.reject.bind(this),n=Promise.resolve.bind(this),o=Promise.all.bind(this);try{return o(Array.from(e).map(e=>n(e).then(e=>i(e),e=>e))).then(e=>{throw new r(e,"Every promise rejected")},e=>e)}catch(e){return i(e)}},n=(0,r.defineEsShim)(i,!0,i.bind(Promise));
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+const shared_1 = require("@nolyfill/shared");
+const polyfill_1 = __importDefault(require("@nolyfill/es-aggregate-error/polyfill"));
+const implementation = Promise.any || function any(iterable) {
+    const AggregateError = (0, polyfill_1.default)();
+    const $reject = Promise.reject.bind(this);
+    const $resolve = Promise.resolve.bind(this);
+    const $all = Promise.all.bind(this);
+    try {
+        return $all(Array.from(iterable)
+            .map((item) => $resolve(item).then(x => $reject(x), x => x))).then((errors) => {
+            throw new AggregateError(errors, 'Every promise rejected');
+        }, x => x);
+    }
+    catch (e) {
+        return $reject(e);
+    }
+};
+exports.default = (0, shared_1.defineEsShim)(implementation, true, implementation.bind(Promise));
+
 Object.assign(exports.default, exports); module.exports = exports.default;

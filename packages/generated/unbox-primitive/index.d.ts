@@ -1,1 +1,1 @@
-export default function unboxPrimitive(value: unknown): any;
+export default function unboxPrimitive(value: unknown): string | number | bigint | boolean | symbol;

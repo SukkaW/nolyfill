@@ -1,2 +1,2 @@
-declare const _default: import("@nolyfill/shared").DefineEsShim<(<T>(this: T[], n: number) => any), import("@nolyfill/shared").UncurryThis<(<T>(this: T[], n: number) => any)>>;
+declare const _default: import("@nolyfill/shared").DefineEsShim<(index: number) => string | undefined, import("@nolyfill/shared").UncurryThis<(index: number) => string | undefined>>;
 export default _default;

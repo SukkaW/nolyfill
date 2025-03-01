@@ -1,2 +1,31 @@
-"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),Object.defineProperty(exports,"default",{enumerable:!0,get:function(){return t}});const e=(e,t,r,n)=>{if(t in e){if(!0===n){if(e[t]===r)return}else if("function"!=typeof n||!n())return}Object.defineProperty(e,t,{configurable:!0,enumerable:!1,value:r,writable:!0})},t=(t,r,n)=>{let o=Array.prototype.concat.call(Object.keys(r),Object.getOwnPropertySymbols(r));for(let l=0,i=o.length;l<i;l++){let i=o[l];e(t,i,r[i],null==n?void 0:n[i])}};
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const defineProperty = (object, name, value, predicate) => {
+    if (name in object) {
+        if (predicate === true) {
+            if (object[name] === value) {
+                return;
+            }
+        }
+        else if (typeof predicate !== 'function'
+            || !predicate()) {
+            return;
+        }
+    }
+    Object.defineProperty(object, name, {
+        configurable: true,
+        enumerable: false,
+        value,
+        writable: true
+    });
+};
+const defineProperties = (object, map, predicates) => {
+    const props = Array.prototype.concat.call(Object.keys(map), Object.getOwnPropertySymbols(map));
+    for (let i = 0, l = props.length; i < l; i++) {
+        const k = props[i];
+        defineProperty(object, k, map[k], predicates === null || predicates === void 0 ? void 0 : predicates[k]);
+    }
+};
+exports.default = defineProperties;
+
 ((typeof exports.default === 'object' && exports.default !== null) || typeof exports.default === 'function') && (Object.assign(exports.default,exports), module.exports = exports.default);

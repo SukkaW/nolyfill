@@ -5,6 +5,7 @@
   "files": [],
   "scripts": {
     "lint": "eslint --format sukka .",
+    "build:tsc": "tsc -b tsconfig.build.json",
     "build": "turbo run build",
     "build:analyze": "ANALYZE=true turbo run build",
     "codegen": "node -r @swc-node/register create.ts",

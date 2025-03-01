@@ -1,2 +1,14 @@
-"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),Object.defineProperty(exports,"default",{enumerable:!0,get:function(){return r}});const e=require("@nolyfill/shared"),t=Array.prototype.findLastIndex||function(e,t){for(let r=this.length-1;r>=0;r--)if(e.call(t,this[r],r,this))return r;return -1},r=(0,e.defineEsShim)(t);
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const shared_1 = require("@nolyfill/shared");
+const implementation = Array.prototype.findLastIndex
+    || function findLastIndex(callback, thisArg) {
+        for (let i = this.length - 1; i >= 0; i--) {
+            if (callback.call(thisArg, this[i], i, this))
+                return i;
+        }
+        return -1;
+    };
+exports.default = (0, shared_1.defineEsShim)(implementation);
+
 Object.assign(exports.default, exports); module.exports = exports.default;

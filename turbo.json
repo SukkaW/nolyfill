@@ -11,10 +11,23 @@
         "^topological"
       ]
     },
+    "//#build:tsc": {
+      "inputs": [
+        "packages/data/**",
+        "packages/tools/shared/**"
+      ],
+      "outputs": [
+        "dist/**"
+      ]
+    },
     "//#codegen": {
+      "dependsOn": [
+        "//#build:tsc"
+      ],
       "inputs": [
         "create.ts",
-        "packages/data/**"
+        "packages/data/**",
+        "packages/tools/shared/**"
       ]
     },
     "build": {
