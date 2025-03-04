@@ -1,4 +1,4 @@
-const safeRegexTest = (r?: RegExp | null | undefined) => {
+function safeRegexTest(r?: RegExp | null) {
   if (
     !r
     || (typeof r !== 'object' && typeof r !== 'function')
@@ -7,6 +7,6 @@ const safeRegexTest = (r?: RegExp | null | undefined) => {
     throw new TypeError('`regex` must be a RegExp');
   }
   return (s: string) => RegExp.prototype.exec.call(r, s) !== null;
-};
+}
 
 export default safeRegexTest;

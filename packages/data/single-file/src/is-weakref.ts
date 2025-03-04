@@ -1,4 +1,4 @@
-const is = <T extends WeakKey>(value: unknown): value is WeakRef<T> => {
+function is<T extends WeakKey>(value: unknown): value is WeakRef<T> {
   if (typeof WeakRef === 'undefined') return false;
   if (!value || typeof value !== 'object') return false;
   try {
@@ -7,6 +7,6 @@ const is = <T extends WeakKey>(value: unknown): value is WeakRef<T> => {
   } catch {
     return false;
   }
-};
+}
 
 export default is;

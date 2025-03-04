@@ -10,12 +10,11 @@ const implementation = Promise.any || function any<T>(this: typeof Promise, iter
   try {
     return $all(
       Array.from(iterable)
-        .map((item) => $resolve(item).then(x => $reject(x), x => x))
-    ).then(
+        .map((item) => $resolve(item).catch(error => error).then(x => $reject(x)))
+    ).catch(error => error).then(
       (errors) => {
         throw new AggregateError(errors, 'Every promise rejected');
-      },
-      x => x
+      }
     );
   } catch (e) {
     return $reject(e);

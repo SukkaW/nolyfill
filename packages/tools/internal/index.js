@@ -1,13 +1,14 @@
 'use strict';
 
 // @ts-check
-const fs = require('fs');
+const fs = require('node:fs');
+
 const fsPromises = fs.promises;
 
 /**
  * @param {string} path
  */
-const fileExists = (path) => fsPromises.access(path, fs.constants.F_OK).then(() => true, () => false);
+const fileExists = (path) => fsPromises.access(path, fs.constants.F_OK).catch(() => false).then(() => true);
 
 /**
  * - If filePath doesn't exist, create new file with content, then return true.

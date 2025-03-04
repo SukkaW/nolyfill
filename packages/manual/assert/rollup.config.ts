@@ -1,8 +1,8 @@
 import type { PackageJson } from '@package-json/types';
 
 import resolve from 'resolve-pkg';
-import fs from 'fs';
-import path from 'path';
+import fs from 'node:fs';
+import path from 'node:path';
 
 import { defineConfig } from 'rollup';
 import type { IsExternal } from 'rollup';
@@ -22,9 +22,7 @@ export default defineConfig(async () => {
   const selfPksJson = JSON.parse(await fs.promises.readFile(selfPkgJsonPath, 'utf-8')) as PackageJson;
 
   const dependencies = Object.keys(selfPksJson.dependencies || {});
-  const external: IsExternal = (id) => {
-    return dependencies.some(dep => id === dep || id.startsWith(`${dep}/`));
-  };
+  const external: IsExternal = (id) => dependencies.some(dep => id === dep || id.startsWith(`${dep}/`));
 
   await fs.promises.rm(path.resolve('dist'), { recursive: true, force: true });
 

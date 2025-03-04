@@ -1,5 +1,5 @@
-import fsp from 'fs/promises';
-import path from 'path';
+import fsp from 'node:fs/promises';
+import path from 'node:path';
 import { parseSyml } from '@yarnpkg/parsers/lib/syml';
 
 import type { PackageNode } from '../types';
@@ -49,9 +49,7 @@ function searchInLockfile(lockFileContents: string) {
     };
     referenceMap.set(packageName, packageNode);
 
-    packageNode.dependencies = Object.entries(yarnPkg?.dependencies || {}).map(([depName, depVersion]) => {
-      return createPackageNode(depName, depVersion);
-    });
+    packageNode.dependencies = Object.entries(yarnPkg?.dependencies || {}).map(([depName, depVersion]) => createPackageNode(depName, depVersion));
     return packageNode;
   };
 

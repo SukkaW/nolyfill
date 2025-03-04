@@ -1,4 +1,4 @@
-const which = (value: unknown) => {
+function which(value: unknown) {
   if (value == null || (typeof value !== 'object' && typeof value !== 'function')) return null;
   if (typeof value === 'string') return 'String';
   if (typeof value === 'number') return 'Number';
@@ -22,6 +22,6 @@ const which = (value: unknown) => {
     } catch {}
   }
   return undefined;
-};
+}
 
 export default which;

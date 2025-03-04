@@ -1,4 +1,4 @@
-import type { AnyFunction } from "./types";
+import type { AnyFunction } from './types';
 
 export type UncurryThis<T extends AnyFunction> = (self: T extends (this: infer S, ...args: any[]) => any ? S : unknown, ...args: Parameters<T>) => ReturnType<T>;
 

@@ -1,4 +1,5 @@
-import path from 'path';
+import path from 'node:path';
+import process from 'node:process';
 import picocolors from 'picocolors';
 import { Command, Option } from 'commander';
 import handleError from './handle-error';
@@ -10,7 +11,8 @@ import { handleSigTerm } from './lib/handle-sigterm';
 import { findPackagesCoveredByNolyfill, findPackagesNotCoveredByNolyfill } from './find-coverable-packages';
 import { checkForUpdates } from './check-update';
 import { generateIssue } from './generate-issue';
-import { detectPackageManager, type PackageManager } from './package-manager';
+import { detectPackageManager } from './package-manager';
+import type { PackageManager } from './package-manager';
 
 interface CliOptions {
   /** see full error messages, mostly for debugging */
@@ -35,16 +37,16 @@ handleSigTerm();
 // eslint-disable-next-line @typescript-eslint/no-require-imports -- TBD
 const { version } = require('../package.json') as PKG;
 
-const checkUnsupportedPM = (packageManager: PackageManager) => {
+function checkUnsupportedPM(packageManager: PackageManager) {
   if (packageManager === 'bun') {
     console.log(`${picocolors.bgRed(picocolors.black(' Error '))} nolyfill does not support ${picocolors.bold('Bun')} at the moment.\n`);
     console.log(`Currently, ${picocolors.bold('Bun')} doesn't support package.json overrides (Details: ${picocolors.underline('https://github.com/oven-sh/bun/issues/1134')}). This feature is essential for nolyfill. We'll add support for ${picocolors.bold('Bun')} once the issue is addressed.\n`);
     return true;
   }
   return false;
-};
+}
 
-const printPostInstallInstructions = (packageManager: PackageManager) => {
+function printPostInstallInstructions(packageManager: PackageManager) {
   console.log(`${picocolors.magenta('Almost complete! One last step:')}\n`);
 
   switch (packageManager) {
@@ -62,7 +64,7 @@ const printPostInstallInstructions = (packageManager: PackageManager) => {
     default:
       break;
   }
-};
+}
 
 const program = new Command('nolyfill');
 (async () => {

@@ -4,21 +4,22 @@ import { nodeResolve } from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
 import json from '@rollup/plugin-json';
 import { visualizer } from 'rollup-plugin-visualizer';
-import dts from 'rollup-plugin-dts';
+import { dts } from 'rollup-plugin-dts';
 
-import fs from 'fs';
-import { builtinModules } from 'module';
+import fs from 'node:fs';
+import { builtinModules } from 'node:module';
+import process from 'node:process';
 import { MagicString } from '@napi-rs/magic-string';
 
 import type { PackageJson } from '@package-json/types';
 
 const builtinModulesSet = new Set(builtinModules);
 
-const slash = (path: string) => {
+function slash(path: string) {
   const isExtendedLengthPath = path.startsWith('\\\\?\\');
   if (isExtendedLengthPath) return path;
   return path.replaceAll('\\', '/');
-};
+}
 
 export default async () => {
   const dependencies = Object.keys(

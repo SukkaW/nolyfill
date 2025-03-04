@@ -1,13 +1,13 @@
 /* eslint-disable prefer-arrow-callback -- get env */
 'use strict';
 
-const functionsHaveConfigurableLengths = Object.getOwnPropertyDescriptor(function () {}, 'length').configurable;
+const functionsHaveConfigurableLengths = Object.getOwnPropertyDescriptor(function () { /** noop */ }, 'length').configurable;
 
-const functionsHaveWritableLengths = Object.getOwnPropertyDescriptor(function () {}, 'length').writable;
+const functionsHaveWritableLengths = Object.getOwnPropertyDescriptor(function () { /** noop */ }, 'length').writable;
 
-const boundFnsHaveConfigurableLengths = Object.getOwnPropertyDescriptor((function () {}).bind(), 'length').configurable;
+const boundFnsHaveConfigurableLengths = Object.getOwnPropertyDescriptor((function () { /** noop */ }).bind(), 'length').configurable;
 
-const boundFnsHaveWritableLengths = Object.getOwnPropertyDescriptor((function () {}).bind(), 'length').writable;
+const boundFnsHaveWritableLengths = Object.getOwnPropertyDescriptor((function () { /** noop */ }).bind(), 'length').writable;
 
 module.exports = {
   __proto__: null,

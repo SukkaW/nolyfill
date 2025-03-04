@@ -1,6 +1,6 @@
-import fsp from 'fs/promises';
+import fsp from 'node:fs/promises';
 import detectIndent from 'detect-indent';
-import path from 'path';
+import path from 'node:path';
 
 import type { PKG, PackageNode } from '../types';
 import type { PackageManager } from '../package-manager';
@@ -22,7 +22,7 @@ async function writeJSON(filepath: string, data: unknown) {
   return fsp.writeFile(filepath, `${JSON.stringify(data, null, fileIndent)}\n`, 'utf-8');
 }
 
-const transformOldOverrides = (overrides: Record<string, string> | undefined) => {
+function transformOldOverrides(overrides: Record<string, string> | undefined) {
   if (!overrides) return;
   return Object.entries(overrides).reduce<Record<string, string>>((acc, [key, value]) => {
     if (typeof value === 'string' && value.startsWith('npm:@nolyfill/') && value.endsWith('@latest')) {
@@ -32,9 +32,9 @@ const transformOldOverrides = (overrides: Record<string, string> | undefined) =>
     }
     return acc;
   }, {});
-};
+}
 
-export const overridesPackageJson = async (packageManager: PackageManager, projectPath: string, packages: PackageNode[]) => {
+export async function overridesPackageJson(packageManager: PackageManager, projectPath: string, packages: PackageNode[]) {
   const newOverrides = packages.reduce<Record<string, string>>((acc, cur) => {
     acc[cur.name] = `npm:@nolyfill/${cur.name}@${PRIMARY_NOLYFILL_VERSION}`;
     return acc;
@@ -66,4 +66,4 @@ export const overridesPackageJson = async (packageManager: PackageManager, proje
   }
 
   return writeJSON(packageJsonPath, packageJson);
-};
+}

@@ -1,8 +1,8 @@
-import { join } from 'path';
-import fs from 'fs';
-import fsp from 'fs/promises';
-import { tmpdir } from 'os';
-import { env } from 'process';
+import { join } from 'node:path';
+import fs from 'node:fs';
+import fsp from 'node:fs/promises';
+import { tmpdir } from 'node:os';
+import { env } from 'node:process';
 import picocolors from 'picocolors';
 
 import { getLatestVersion } from 'fast-npm-meta';
@@ -12,16 +12,16 @@ const UPDATE_CHECK_DIST_TAG = 'latest';
 
 const compareVersions = (a: string, b: string) => a.localeCompare(b, 'en-US', { numeric: true });
 
-const getFile = async (name: string, scope: string | undefined, distTag: string) => {
+async function getFile(name: string, scope: string | undefined, distTag: string) {
   const subDir = join(tmpdir(), 'update-check');
 
   if (!fs.existsSync(subDir)) {
     await fsp.mkdir(subDir, { recursive: true });
   }
   return join(subDir, `${scope ? `${scope}-` : ''}${name}-${distTag}.json`);
-};
+}
 
-const evaluateCache = async (file: string, time: number, interval: number) => {
+async function evaluateCache(file: string, time: number, interval: number) {
   if (fs.existsSync(file)) {
     const content = await fsp.readFile(file, 'utf8');
     const { lastUpdate, latest } = JSON.parse(content);
@@ -41,18 +41,18 @@ const evaluateCache = async (file: string, time: number, interval: number) => {
     shouldCheck: true,
     latest: null
   };
-};
+}
 
-const updateCache = (file: string, latest: string | null, lastUpdate: number) => {
+function updateCache(file: string, latest: string | null, lastUpdate: number) {
   const content = JSON.stringify({
     latest,
     lastUpdate
   });
 
   return fsp.writeFile(file, content, 'utf8');
-};
+}
 
-export const checkForUpdates = async (name: string, currentVersion: string): Promise<void> => {
+export async function checkForUpdates(name: string, currentVersion: string): Promise<void> {
   // Do not check for updates if the `NO_UPDATE_CHECK` variable is set.
   if (env.NO_UPDATE_CHECK) return;
 
@@ -87,4 +87,4 @@ export const checkForUpdates = async (name: string, currentVersion: string): Pro
       );
     }
   }
-};
+}

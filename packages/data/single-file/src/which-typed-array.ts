@@ -15,14 +15,14 @@ const cacheEntries = Object.entries(
     acc[`$${typedArray}`] = uncurryThis(
       (
         Object.getOwnPropertyDescriptor(proto, Symbol.toStringTag)
-          || Object.getOwnPropertyDescriptor(Object.getPrototypeOf(proto), Symbol.toStringTag)
+        || Object.getOwnPropertyDescriptor(Object.getPrototypeOf(proto), Symbol.toStringTag)
       )!.get!
     );
     return acc;
   }, Object.create(null))
 ) as Array<[`$${string}`, (...args: unknown[]) => string]>;
 
-const tryTypedArrays = (value: unknown): false | AvailableTypedArray => {
+function tryTypedArrays(value: unknown): false | AvailableTypedArray {
   let found: false | AvailableTypedArray = false;
   cacheEntries.forEach(([typedArray, getter]) => {
     if (!found) {
@@ -34,11 +34,11 @@ const tryTypedArrays = (value: unknown): false | AvailableTypedArray => {
     }
   });
   return found;
-};
+}
 
-const t = (value: unknown) => {
+function t(value: unknown) {
   if (!value || typeof value !== 'object') { return false; }
   return tryTypedArrays(value);
-};
+}
 
 export default t;

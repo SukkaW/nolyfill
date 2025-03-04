@@ -1,4 +1,4 @@
-const is = (value: unknown): value is Date => {
+function is(value: unknown): value is Date {
   if (typeof value !== 'object' || value === null) return false;
   try {
     Date.prototype.getDay.call(value);
@@ -6,6 +6,6 @@ const is = (value: unknown): value is Date => {
   } catch {
     return false;
   }
-};
+}
 
 export default is;

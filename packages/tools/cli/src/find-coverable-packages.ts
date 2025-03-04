@@ -5,7 +5,7 @@ import { allPackages } from './all-packages';
 import type { PackageNode } from './types';
 import type { PackageManager } from './package-manager';
 
-const findPackages = async (packageManager: PackageManager, projectPath: string, packages: string[]) => {
+async function findPackages(packageManager: PackageManager, projectPath: string, packages: string[]) {
   const packagesSet = new Set(packages);
 
   const searchResult = await buildDepTrees(packageManager, projectPath);
@@ -35,7 +35,7 @@ const findPackages = async (packageManager: PackageManager, projectPath: string,
   searchResult.forEach(node => traverse(node));
 
   return Array.from(packagesToBeOverride).sort((a, b) => a.name.localeCompare(b.name));
-};
+}
 
 export const findPackagesCoveredByNolyfill = (packageManager: PackageManager, projectPath: string) => findPackages(packageManager, projectPath, allPackages);
 

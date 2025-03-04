@@ -1,6 +1,6 @@
 'use strict';
 
-import type { CustomPromisify } from 'util';
+import type { CustomPromisify } from 'node:util';
 
 import { defineEsShim } from '@nolyfill/shared';
 import safeConcat from '@nolyfill/safe-array-concat';
@@ -8,7 +8,6 @@ import safeConcat from '@nolyfill/safe-array-concat';
 const kCustomPromisifiedSymbol = Symbol.for('nodejs.util.promisify.custom');
 const kCustomPromisifyArgsSymbol = Symbol('customPromisifyArgs');
 
-// eslint-disable-next-line @typescript-eslint/ban-types -- overload signature
 function promisify<TCustom extends Function>(fn: CustomPromisify<TCustom>): TCustom;
 
 function promisify<TResult>(
@@ -49,7 +48,6 @@ function promisify<T1, T2, T3, T4, T5>(
   fn: (arg1: T1, arg2: T2, arg3: T3, arg4: T4, arg5: T5, callback: (err?: any) => void) => void,
 ): (arg1: T1, arg2: T2, arg3: T3, arg4: T4, arg5: T5) => Promise<void>;
 
-// eslint-disable-next-line @typescript-eslint/ban-types -- overload signature
 function promisify(orig: Function): Function {
   if (typeof orig !== 'function') {
     const error = new TypeError('The "original" argument must be of type function') as NodeJS.ErrnoException;
@@ -63,7 +61,7 @@ function promisify(orig: Function): Function {
   if (kCustomPromisifiedSymbol in orig && orig[kCustomPromisifiedSymbol]) {
     const customFunction = orig[kCustomPromisifiedSymbol];
     if (typeof customFunction !== 'function') {
-      const customError = TypeError('The [util.promisify.custom] property must be of type function.') as NodeJS.ErrnoException;
+      const customError = new TypeError('The [util.promisify.custom] property must be of type function.') as NodeJS.ErrnoException;
       customError.code = 'ERR_INVALID_ARG_TYPE';
       customError.toString = function value() {
         return `${this.name}[${this.code}]: ${this.message}`;
@@ -90,7 +88,7 @@ function promisify(orig: Function): Function {
       orig.apply(self, safeConcat(args, (err: any) => {
         const values = args.length > 1 ? args.slice(1) : [];
         if (err) {
-          reject(err);
+          reject(err as Error);
         } else if (argumentNames && typeof argumentNames !== 'undefined' && values.length > 1) {
           const obj: Record<string, unknown> = {};
           Array.prototype.forEach.call(argumentNames, (name: string, index: number) => {

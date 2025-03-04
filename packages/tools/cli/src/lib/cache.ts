@@ -10,7 +10,6 @@
  * The basic functionality is the same, caching any async functions.
  */
 
-/* eslint-disable @typescript-eslint/ban-types -- we are doing low-level stuff */
 const UNTERMINATED = 0;
 const TERMINATED = 1;
 const ERRORED = 2;
@@ -18,21 +17,21 @@ const ERRORED = 2;
 interface UnterminatedCacheNode<T> {
   s: 0,
   v: void,
-  o: null | WeakMap<Function | Object, CacheNode<T>>,
+  o: null | WeakMap<Function | object, CacheNode<T>>,
   p: null | Map<string | number | null | void | symbol | boolean, CacheNode<T>>
 }
 
 interface TerminatedCacheNode<T> {
   s: 1,
   v: T,
-  o: null | WeakMap<Function | Object, CacheNode<T>>,
+  o: null | WeakMap<Function | object, CacheNode<T>>,
   p: null | Map<string | number | null | void | symbol | boolean, CacheNode<T>>
 }
 
 interface ErroredCacheNode<T> {
   s: 2,
   v: unknown,
-  o: null | WeakMap<Function | Object, CacheNode<T>>,
+  o: null | WeakMap<Function | object, CacheNode<T>>,
   p: null | Map<string | number | null | void | symbol | boolean, CacheNode<T>>
 }
 
@@ -41,7 +40,7 @@ type CacheNode<T> =
   | UnterminatedCacheNode<T>
   | ErroredCacheNode<T>;
 
-const fnMap = new WeakMap<Function | Object, CacheNode<any>>();
+const fnMap = new WeakMap<Function | object, CacheNode<any>>();
 
 function createCacheNode<T>(): CacheNode<T> {
   return {

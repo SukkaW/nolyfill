@@ -1,7 +1,7 @@
 import { searchForPackages } from '@pnpm/list';
 import { searchForPackages as searchForPackages_Old } from '@pnpm/list--old';
 import type { PackageNode } from '../types';
-import path from 'path';
+import path from 'node:path';
 import { fileExists } from '@nolyfill/internal';
 import { findWorkspacePackagesNoCheck } from '@pnpm/workspace.find-packages';
 import { cache } from '../lib/cache';
@@ -40,7 +40,5 @@ export const buildPNPMDepTree = cache(async (dirPath: string): Promise<PackageNo
 
   const result = await ((+lockfileVersion) < 6 ? searchOld() : searchNew());
 
-  return result.flatMap((dep) => {
-    return [...(dep.dependencies ?? []), ...(dep.devDependencies ?? [])];
-  });
+  return result.flatMap((dep) => [...(dep.dependencies ?? []), ...(dep.devDependencies ?? [])]);
 });

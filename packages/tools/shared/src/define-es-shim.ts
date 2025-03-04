@@ -1,6 +1,7 @@
 import { makeEsShim } from './make-es-shim';
 import type { AnyFunction } from './types';
-import { type UncurryThis, uncurryThis } from './uncurry-this';
+import { uncurryThis } from './uncurry-this';
+import type { UncurryThis } from './uncurry-this';
 
 export interface DefineEsShim<T, I> {
   implementation: T,

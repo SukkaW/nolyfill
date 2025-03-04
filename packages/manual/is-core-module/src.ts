@@ -1,4 +1,4 @@
-import { builtinModules } from 'module';
+import { builtinModules } from 'node:module';
 
 declare const __INJECTED_CORE_MODULES__: string[];
 
