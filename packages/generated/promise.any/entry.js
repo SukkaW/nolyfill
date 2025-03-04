@@ -12,9 +12,9 @@ const implementation = Promise.any || function any(iterable) {
     const $all = Promise.all.bind(this);
     try {
         return $all(Array.from(iterable)
-            .map((item) => $resolve(item).then(x => $reject(x), x => x))).then((errors) => {
+            .map((item) => $resolve(item).catch(error => error).then(x => $reject(x)))).catch(error => error).then((errors) => {
             throw new AggregateError(errors, 'Every promise rejected');
-        }, x => x);
+        });
     }
     catch (e) {
         return $reject(e);

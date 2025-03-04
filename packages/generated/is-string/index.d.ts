@@ -1,2 +1,2 @@
-declare const is: (value: unknown) => value is string;
+declare function is(value: unknown): value is string;
 export default is;

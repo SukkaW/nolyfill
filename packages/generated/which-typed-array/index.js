@@ -13,7 +13,7 @@ const cacheEntries = Object.entries(availableTypedArray.reduce((acc, typedArray)
         || Object.getOwnPropertyDescriptor(Object.getPrototypeOf(proto), Symbol.toStringTag)).get);
     return acc;
 }, Object.create(null)));
-const tryTypedArrays = (value) => {
+function tryTypedArrays(value) {
     let found = false;
     cacheEntries.forEach(([typedArray, getter]) => {
         if (!found) {
@@ -26,13 +26,13 @@ const tryTypedArrays = (value) => {
         }
     });
     return found;
-};
-const t = (value) => {
+}
+function t(value) {
     if (!value || typeof value !== 'object') {
         return false;
     }
     return tryTypedArrays(value);
-};
+}
 exports.default = t;
 
 ((typeof exports.default === 'object' && exports.default !== null) || typeof exports.default === 'function') && (Object.assign(exports.default,exports), module.exports = exports.default);

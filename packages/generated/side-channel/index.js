@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const create = () => {
+function create() {
     let $wm, $m;
     const get = (key) => {
         if (key && (typeof key === 'object' || typeof key === 'function')) {
@@ -41,7 +41,7 @@ const create = () => {
         }
     };
     return { get, set, has, assert };
-};
+}
 exports.default = create;
 
 ((typeof exports.default === 'object' && exports.default !== null) || typeof exports.default === 'function') && (Object.assign(exports.default,exports), module.exports = exports.default);

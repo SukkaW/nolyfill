@@ -1,2 +1,2 @@
-declare const is: (obj: unknown) => obj is SharedArrayBuffer;
+declare function is(obj: unknown): obj is SharedArrayBuffer;
 export default is;

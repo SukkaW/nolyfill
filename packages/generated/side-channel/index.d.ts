@@ -1,4 +1,4 @@
-declare const create: () => {
+declare function create(): {
     get: (key: any) => any;
     set: (key: any, value: any) => void;
     has: (key: any) => boolean;

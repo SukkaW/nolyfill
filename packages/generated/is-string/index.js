@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const is = (value) => {
+function is(value) {
     if (typeof value === 'string')
         return true;
     if (typeof value !== 'object')
@@ -12,7 +12,7 @@ const is = (value) => {
     catch (_a) {
         return false;
     }
-};
+}
 exports.default = is;
 
 ((typeof exports.default === 'object' && exports.default !== null) || typeof exports.default === 'function') && (Object.assign(exports.default,exports), module.exports = exports.default);

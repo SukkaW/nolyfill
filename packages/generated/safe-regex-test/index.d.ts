@@ -1,2 +1,2 @@
-declare const safeRegexTest: (r?: RegExp | null | undefined) => (s: string) => boolean;
+declare function safeRegexTest(r?: RegExp | null): (s: string) => boolean;
 export default safeRegexTest;

@@ -1,2 +1,2 @@
-declare const is: (value: unknown) => value is RegExp;
+declare function is(value: unknown): value is RegExp;
 export default is;

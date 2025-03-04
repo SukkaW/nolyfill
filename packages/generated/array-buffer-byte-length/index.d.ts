@@ -1,2 +1,2 @@
-declare const byteLength: (ab: unknown) => number;
+declare function byteLength(ab: unknown): number;
 export default byteLength;

@@ -8,7 +8,6 @@ const shared_1 = require("@nolyfill/shared");
 const safe_array_concat_1 = __importDefault(require("@nolyfill/safe-array-concat"));
 const kCustomPromisifiedSymbol = Symbol.for('nodejs.util.promisify.custom');
 const kCustomPromisifyArgsSymbol = Symbol('customPromisifyArgs');
-// eslint-disable-next-line @typescript-eslint/ban-types -- overload signature
 function promisify(orig) {
     if (typeof orig !== 'function') {
         const error = new TypeError('The "original" argument must be of type function');
@@ -21,7 +20,7 @@ function promisify(orig) {
     if (kCustomPromisifiedSymbol in orig && orig[kCustomPromisifiedSymbol]) {
         const customFunction = orig[kCustomPromisifiedSymbol];
         if (typeof customFunction !== 'function') {
-            const customError = TypeError('The [util.promisify.custom] property must be of type function.');
+            const customError = new TypeError('The [util.promisify.custom] property must be of type function.');
             customError.code = 'ERR_INVALID_ARG_TYPE';
             customError.toString = function value() {
                 return `${this.name}[${this.code}]: ${this.message}`;

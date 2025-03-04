@@ -1,4 +1,4 @@
-import type { CustomPromisify } from 'util';
+import type { CustomPromisify } from 'node:util';
 declare const kCustomPromisifiedSymbol: unique symbol;
 declare function promisify<TCustom extends Function>(fn: CustomPromisify<TCustom>): TCustom;
 declare function promisify<TResult>(fn: (callback: (err: any, result: TResult) => void) => void): () => Promise<TResult>;
