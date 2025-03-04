@@ -1,2 +1,18 @@
-"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),Object.defineProperty(exports,"default",{enumerable:!0,get:function(){return e}});const e=e=>{if("string"==typeof e)return!0;if("object"!=typeof e)return!1;try{return String.prototype.valueOf.call(e),!0}catch(e){return!1}};
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const is = (value) => {
+    if (typeof value === 'string')
+        return true;
+    if (typeof value !== 'object')
+        return false;
+    try {
+        String.prototype.valueOf.call(value);
+        return true;
+    }
+    catch (_a) {
+        return false;
+    }
+};
+exports.default = is;
+
 ((typeof exports.default === 'object' && exports.default !== null) || typeof exports.default === 'function') && (Object.assign(exports.default,exports), module.exports = exports.default);

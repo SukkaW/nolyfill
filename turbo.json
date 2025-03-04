@@ -11,10 +11,26 @@
         "^topological"
       ]
     },
+    "//#build:tsc": {
+      "dependsOn": [
+        "@nolyfill/shared#build"
+      ],
+      "inputs": [
+        "packages/data/**",
+        "packages/tools/shared/**"
+      ],
+      "outputs": [
+        "dist/**"
+      ]
+    },
     "//#codegen": {
+      "dependsOn": [
+        "//#build:tsc"
+      ],
       "inputs": [
         "create.ts",
-        "packages/data/**"
+        "packages/data/**",
+        "packages/tools/shared/**"
       ]
     },
     "build": {
@@ -32,6 +48,14 @@
       "dependsOn": [
         "^build",
         "//#codegen"
+      ]
+    },
+    "@nolyfill/shared#build": {
+      "dependsOn": [
+        "^build"
+      ],
+      "inputs": [
+        "packages/tools/shared/**"
       ]
     },
     "nolyfill#build": {

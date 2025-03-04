@@ -1,2 +1,14 @@
-"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),Object.defineProperty(exports,"default",{enumerable:!0,get:function(){return r}});const e=require("@nolyfill/shared"),t=String.prototype.at||function(e){if((e=Math.trunc(e)||0)<0&&(e+=this.length),!(e<0)&&!(e>=this.length))return String.prototype.charAt.call(this,e)},r=(0,e.defineEsShim)(t);
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const shared_1 = require("@nolyfill/shared");
+const implementation = String.prototype.at || function at(n) {
+    n = Math.trunc(n) || 0;
+    if (n < 0)
+        n += this.length;
+    if (n < 0 || n >= this.length)
+        return;
+    return String.prototype.charAt.call(this, n);
+};
+exports.default = (0, shared_1.defineEsShim)(implementation);
+
 Object.assign(exports.default, exports); module.exports = exports.default;

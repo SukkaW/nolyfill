@@ -1,1 +1,3 @@
-export const TypedArrayPrototype = Object.getPrototypeOf(Int8Array.prototype) as Int8Array;
+import type { TypedArray } from './types';
+
+export const TypedArrayPrototype: TypedArray = Object.getPrototypeOf(Int8Array.prototype);

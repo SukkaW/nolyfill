@@ -1,15 +1,18 @@
 {
   "name": "@nolyfill/is-array-buffer",
-  "version": "1.0.29",
+  "version": "1.0.44",
+  "type": "commonjs",
   "repository": {
     "type": "git",
     "url": "https://github.com/SukkaW/nolyfill",
     "directory": "packages/generated/is-array-buffer"
   },
   "main": "./index.js",
+  "types": "./index.d.ts",
   "license": "MIT",
   "files": [
-    "*.js"
+    "*.js",
+    "*.d.ts"
   ],
   "scripts": {},
   "dependencies": {

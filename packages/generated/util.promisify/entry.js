@@ -1,2 +1,92 @@
-"use strict";var e;Object.defineProperty(exports,"__esModule",{value:!0}),function(e,t){for(var r in t)Object.defineProperty(e,r,{enumerable:!0,get:t[r]})}(exports,{customPromisifyArgs:function(){return l},default:function(){return f}});const t=require("@nolyfill/shared"),r=(e=require("@nolyfill/safe-array-concat"))&&e.__esModule?e:{default:e},o=Symbol.for("nodejs.util.promisify.custom"),i=Symbol("customPromisifyArgs");function n(e){if("function"!=typeof e){let e=TypeError('The "original" argument must be of type function');throw e.code="ERR_INVALID_ARG_TYPE",e.toString=function(){return`${this.name}[${this.code}]: ${this.message}`},e}if(o in e&&e[o]){let t=e[o];if("function"!=typeof t){let e=TypeError("The [util.promisify.custom] property must be of type function.");throw e.code="ERR_INVALID_ARG_TYPE",e.toString=function(){return`${this.name}[${this.code}]: ${this.message}`},e}return Object.defineProperty(t,o,{configurable:!0,enumerable:!1,value:t,writable:!1}),t}let t=i in e&&e[i],n=function(...o){let i=this;return new Promise((n,f)=>{e.apply(i,(0,r.default)(o,e=>{let r=o.length>1?o.slice(1):[];if(e)f(e);else if(t&&void 0!==t&&r.length>1){let e={};Array.prototype.forEach.call(t,(t,o)=>{e[t]=r[o]}),n(e)}else n(r[0])}))})};Object.setPrototypeOf(n,Object.getPrototypeOf(e)),Object.defineProperty(n,o,{configurable:!0,enumerable:!1,value:n,writable:!1});let f=Object.getOwnPropertyDescriptors(e);return Array.prototype.forEach.call(f,(e,t)=>{try{Object.defineProperty(n,e,t)}catch(e){}}),n}n.custom=o;const f=(0,t.defineEsShim)(n,!0),l=i;
+'use strict';
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.customPromisifyArgs = void 0;
+const shared_1 = require("@nolyfill/shared");
+const safe_array_concat_1 = __importDefault(require("@nolyfill/safe-array-concat"));
+const kCustomPromisifiedSymbol = Symbol.for('nodejs.util.promisify.custom');
+const kCustomPromisifyArgsSymbol = Symbol('customPromisifyArgs');
+// eslint-disable-next-line @typescript-eslint/ban-types -- overload signature
+function promisify(orig) {
+    if (typeof orig !== 'function') {
+        const error = new TypeError('The "original" argument must be of type function');
+        error.code = 'ERR_INVALID_ARG_TYPE';
+        error.toString = function value() {
+            return `${this.name}[${this.code}]: ${this.message}`;
+        };
+        throw error;
+    }
+    if (kCustomPromisifiedSymbol in orig && orig[kCustomPromisifiedSymbol]) {
+        const customFunction = orig[kCustomPromisifiedSymbol];
+        if (typeof customFunction !== 'function') {
+            const customError = TypeError('The [util.promisify.custom] property must be of type function.');
+            customError.code = 'ERR_INVALID_ARG_TYPE';
+            customError.toString = function value() {
+                return `${this.name}[${this.code}]: ${this.message}`;
+            };
+            throw customError;
+        }
+        Object.defineProperty(customFunction, kCustomPromisifiedSymbol, {
+            configurable: true,
+            enumerable: false,
+            value: customFunction,
+            writable: false
+        });
+        return customFunction;
+    }
+    // Names to create an object from in case the callback receives multiple
+    // arguments, e.g. ['stdout', 'stderr'] for child_process.exec.
+    const argumentNames = kCustomPromisifyArgsSymbol in orig && orig[kCustomPromisifyArgsSymbol];
+    const promisified = function fn(...args) {
+        // eslint-disable-next-line @typescript-eslint/no-this-alias -- wrap fn
+        const self = this;
+        return new Promise((resolve, reject) => {
+            orig.apply(self, (0, safe_array_concat_1.default)(args, (err) => {
+                const values = args.length > 1 ? args.slice(1) : [];
+                if (err) {
+                    reject(err);
+                }
+                else if (argumentNames && typeof argumentNames !== 'undefined' && values.length > 1) {
+                    const obj = {};
+                    Array.prototype.forEach.call(argumentNames, (name, index) => {
+                        obj[name] = values[index];
+                    });
+                    resolve(obj);
+                }
+                else {
+                    resolve(values[0]);
+                }
+            }));
+        });
+    };
+    Object.setPrototypeOf(promisified, Object.getPrototypeOf(orig));
+    Object.defineProperty(promisified, kCustomPromisifiedSymbol, {
+        configurable: true,
+        enumerable: false,
+        value: promisified,
+        writable: false
+    });
+    const descriptors = Object.getOwnPropertyDescriptors(orig);
+    Array.prototype.forEach.call(descriptors, (k, v) => {
+        try {
+            Object.defineProperty(promisified, k, v);
+        }
+        catch (_a) {
+            // handle nonconfigurable function properties
+        }
+    });
+    return promisified;
+}
+promisify.custom = kCustomPromisifiedSymbol;
+exports.default = (0, shared_1.defineEsShim)(promisify, true);
+/**
+ * @deprecated
+ * Not exposed by native `util.promisify` or supported by browserify's `util.promisify`.
+ *
+ * Use `util.promisify.custom` instead.
+ */
+exports.customPromisifyArgs = kCustomPromisifyArgsSymbol;
+
 Object.assign(exports.default, exports); module.exports = exports.default;

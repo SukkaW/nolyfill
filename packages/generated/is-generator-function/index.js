@@ -1,2 +1,16 @@
-"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),Object.defineProperty(exports,"default",{enumerable:!0,get:function(){return o}});const t=/^\s*(?:function)?\*/,e=Object.getPrototypeOf(function*(){}),o=function(o){return"function"==typeof o&&(!!t.test(Function.prototype.toString.call(o))||Object.getPrototypeOf(o)===e)};
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const isFnRegex = /^\s*(?:function)?\*/;
+// Node.js has full native support for generators since Node.js 6.4.0, so we don't need eval
+const GeneratorFunction = Object.getPrototypeOf(function* () { });
+// eslint-disable-next-line @typescript-eslint/ban-types -- any function
+function isGeneratorFunction(fn) {
+    if (typeof fn !== 'function')
+        return false;
+    if (isFnRegex.test(Function.prototype.toString.call(fn)))
+        return true;
+    return Object.getPrototypeOf(fn) === GeneratorFunction;
+}
+exports.default = isGeneratorFunction;
+
 ((typeof exports.default === 'object' && exports.default !== null) || typeof exports.default === 'function') && (Object.assign(exports.default,exports), module.exports = exports.default);
