@@ -3,7 +3,7 @@ import { swc } from 'rollup-plugin-swc3';
 import { nodeResolve } from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
 import json from '@rollup/plugin-json';
-import { visualizer } from 'rollup-plugin-visualizer';
+import { adapter, analyzer } from 'vite-bundle-analyzer';
 import { dts } from 'rollup-plugin-dts';
 
 import fs from 'node:fs';
@@ -129,10 +129,10 @@ export default async () => {
             }
           }
         }),
-        process.env.ANALYZE === 'true' && visualizer({
-          filename: 'dist/stats.html'
-        // template: 'network'
-        })
+        adapter(analyzer({
+          enabled: process.env.ANALYZE === 'true'
+        }))
+
       ],
       external
     },

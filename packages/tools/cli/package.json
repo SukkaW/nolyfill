@@ -39,7 +39,7 @@
     "fast-npm-meta": "^0.3.1",
     "package-manager-detector": "^0.2.11",
     "picocolors": "^1.1.1",
-    "rollup-plugin-visualizer": "^5.14.0"
+    "vite-bundle-analyzer": "^0.22.0"
   },
   "engines": {
     "node": ">=12.4.0"
