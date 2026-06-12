@@ -62,6 +62,7 @@ overrides:
   iterator.prototype: workspace:@nolyfill/iterator.prototype@*
   json-stable-stringify: workspace:@nolyfill/json-stable-stringify@*
   jsonify: workspace:@nolyfill/jsonify@*
+  node-domexception: workspace:@nolyfill/node-domexception@*
   number-is-nan: workspace:@nolyfill/number-is-nan@*
   object-is: workspace:@nolyfill/object-is@*
   object-keys: workspace:@nolyfill/object-keys@*
@@ -507,6 +508,8 @@ importers:
   packages/generated/json-stable-stringify: {}
 
   packages/generated/jsonify: {}
+
+  packages/generated/node-domexception: {}
 
   packages/generated/number-is-nan: {}
 

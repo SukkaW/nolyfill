@@ -136,7 +136,8 @@ const singleFilePackagesList = [
   ['safe-buffer'],
   ['safer-buffer'],
   ['array-flatten'],
-  ['number-is-nan']
+  ['number-is-nan'],
+  ['node-domexception']
 ] as const;
 
 const manualPackagesList = [
