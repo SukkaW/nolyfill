@@ -59,6 +59,7 @@ export const allPackages = [
   "iterator.prototype",
   "json-stable-stringify",
   "jsonify",
+  "node-domexception",
   "number-is-nan",
   "object-is",
   "object-keys",
