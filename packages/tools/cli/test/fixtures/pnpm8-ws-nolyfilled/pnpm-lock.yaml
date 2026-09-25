@@ -1,0 +1,95 @@
+lockfileVersion: '6.0'
+
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false
+
+overrides:
+  array-includes: npm:@nolyfill/array-includes@^1
+  has: npm:@nolyfill/has@^1
+  is-core-module: npm:@nolyfill/is-core-module@^1
+  object.assign: npm:@nolyfill/object.assign@^1
+  side-channel: npm:@nolyfill/side-channel@^1
+
+importers:
+
+  .:
+    dependencies:
+      array-includes:
+        specifier: npm:@nolyfill/array-includes@^1
+        version: /@nolyfill/array-includes@1.0.44
+      resolve:
+        specifier: ^1.22.10
+        version: 1.22.12
+    devDependencies:
+      object.assign:
+        specifier: npm:@nolyfill/object.assign@^1
+        version: /@nolyfill/object.assign@1.0.44
+
+  packages/a:
+    dependencies:
+      has:
+        specifier: npm:@nolyfill/has@^1
+        version: /@nolyfill/has@1.0.44
+      side-channel:
+        specifier: npm:@nolyfill/side-channel@^1
+        version: /@nolyfill/side-channel@1.0.44
+
+packages:
+
+  /@nolyfill/array-includes@1.0.44:
+    resolution: {integrity: sha512-IVEqpEgFbLaU0hUoMwJYXNSdi6lq+FxHdxd8xTKDLxh8k6u5YNGz4Bo6bT46l7p0x8PbJmHViBtngqhvE528fA==}
+    engines: {node: '>=12.4.0'}
+    dependencies:
+      '@nolyfill/shared': 1.0.44
+    dev: false
+
+  /@nolyfill/has@1.0.44:
+    resolution: {integrity: sha512-qcbuZimOtHH4FEVLZGzaN4LtKxZZMHW+zHdruVr3+e8FEx21QLQbEenqLwQwMrXDr4q5W1PJXPGU4K/xKAz1Qg==}
+    engines: {node: '>=12.4.0'}
+    dev: false
+
+  /@nolyfill/is-core-module@1.0.39:
+    resolution: {integrity: sha512-nn5ozdjYQpUCZlWGuxcJY/KpxkWQs4DcbMCmKojjyrYDEAGy4Ce19NN4v5MduafTwJlbKc99UA8YhSVqq9yPZA==}
+    engines: {node: '>=12.4.0'}
+    dev: false
+
+  /@nolyfill/object.assign@1.0.44:
+    resolution: {integrity: sha512-cZoXq09YZXDgkxRMAP/TTb3kAsWm7p5OyBugWDe4fOfxf0XRI55mgDSkuyq41sV1qW1zVC5aSsKEh1hQo1KOvA==}
+    engines: {node: '>=12.4.0'}
+    dependencies:
+      '@nolyfill/shared': 1.0.44
+    dev: true
+
+  /@nolyfill/shared@1.0.44:
+    resolution: {integrity: sha512-NI1zxDh4LYL7PYlKKCwojjuc5CEZslywrOTKBNyodjmWjRiZ4AlCMs3Gp+zDoPQPNkYCSQp/luNojHmJWWfCbw==}
+
+  /@nolyfill/side-channel@1.0.44:
+    resolution: {integrity: sha512-y3SvzjuY1ygnzWA4Krwx/WaJAsTMP11DN+e21A8Fa8PW1oDtVB5NSRW7LWurAiS2oKRkuCgcjTYMkBuBkcPCRg==}
+    engines: {node: '>=12.4.0'}
+    dev: false
+
+  /es-errors@1.3.0:
+    resolution: {integrity: sha512-Zf5H2Kxt2xjTvbJvP2ZWLEICxA6j+hAmMzIlypy4xcBg1vKVnx89Wy0GbS+kf5cwCVFFzdCFh2XSCFNULS6csw==}
+    engines: {node: '>= 0.4'}
+    dev: false
+
+  /path-parse@1.0.7:
+    resolution: {integrity: sha512-LDJzPVEEEPR+y48z93A0Ed0yXb8pAByGWo/k5YYdYgpY2/2EsOsksJrq7lOHxryrVOn1ejG6oAp8ahvOIQD8sw==}
+    dev: false
+
+  /resolve@1.22.12:
+    resolution: {integrity: sha512-TyeJ1zif53BPfHootBGwPRYT1RUt6oGWsaQr8UyZW/eAm9bKoijtvruSDEmZHm92CwS9nj7/fWttqPCgzep8CA==}
+    engines: {node: '>= 0.4'}
+    hasBin: true
+    dependencies:
+      es-errors: 1.3.0
+      is-core-module: /@nolyfill/is-core-module@1.0.39
+      path-parse: 1.0.7
+      supports-preserve-symlinks-flag: 1.0.0
+    dev: false
+
+  /supports-preserve-symlinks-flag@1.0.0:
+    resolution: {integrity: sha512-ot0WnXS9fgdkgIcePe6RHNk1WA8+muPa6cSjeR3V8K27q9BB1rTE3R1p7Hv0z1ZyAc8s6Vvv8DIyWf681MAt0w==}
+    engines: {node: '>= 0.4'}
+    dev: false

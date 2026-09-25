@@ -10,7 +10,8 @@
     "build:analyze": "ANALYZE=true turbo run build",
     "codegen": "node -r @swc-node/register create.ts",
     "prerelease": "turbo run build",
-    "release": "bumpp --all --commit \"release: %s\" --tag \"%s\""
+    "release": "bumpp --all --commit \"release: %s\" --tag \"%s\"",
+    "test": "pnpm -r run test"
   },
   "devDependencies": {
     "@eslint-sukka/node": "^9.1.0",
@@ -27,7 +28,7 @@
     "eslint-formatter-sukka": "^9.1.0",
     "path-scurry": "^2.0.2",
     "picocolors": "^1.1.1",
-    "rimraf": "^6.1.3",
+    "premove": "^4.0.0",
     "rollup": "^4.63.5",
     "rollup-plugin-dts": "^6.5.1",
     "rollup-plugin-swc3": "^0.12.1",

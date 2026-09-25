@@ -1,5 +1,11 @@
 packages:
   - "packages/**/*"
+  # lockfile fixtures of the CLI tests are not part of the workspace
+  - "!packages/tools/cli/test/**"
+peerDependencyRules:
+  allowedVersions:
+    # the pnpm 8 era lockfile reader of the CLI (lockfile v5 / v6) wants an older logger, the API it uses is the same
+    "@pnpm/lockfile-file>@pnpm/logger": "1001"
 allowBuilds:
   "@swc/core": true
   unrs-resolver: true

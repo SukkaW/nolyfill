@@ -1,25 +1,17 @@
 import type { PackageManager } from '../package-manager';
+import type { PackageNode } from '../types';
 import { buildPNPMDepTree } from './pnpm';
 import { buildNPMDepTree } from './npm';
 import { buildYarnDepTree } from './yarn';
-import fsp from 'node:fs/promises';
-import path from 'node:path';
 
-export interface PackageLockDeps {
-  [depName: string]: PackageLockDep
-}
-
-export interface PackageLockDep {
-  version: string,
-  requires?: {
-    [depName: string]: string
-  },
-  dependencies?: PackageLockDeps,
-  dev?: boolean
-}
-
-// TODO: make it do dep tree generation only
-export function buildDepTrees(packageManager: PackageManager, dir: string) {
+/**
+ * Build the dependency graph of a project (and all of its workspace packages) from its lockfile.
+ *
+ * Only the lockfile is read, `node_modules` doesn't have to be installed. The returned nodes
+ * are the direct dependencies of every workspace project, nodes reachable from multiple
+ * places are shared (the graph may contain cycles).
+ */
+export function buildDepTrees(packageManager: PackageManager, dir: string): Promise<PackageNode[]> {
   switch (packageManager) {
     case 'npm':
       return buildNPMDepTree(dir);
@@ -30,15 +22,4 @@ export function buildDepTrees(packageManager: PackageManager, dir: string) {
     default:
       throw new Error(`Unknown package manager: ${packageManager as string}`);
   }
-}
-
-const rLockfileVersion = /^lockfileVersion: ["']?(\d*(?:\.\d*)?)["']?$/m;
-
-export async function getPNPMLockfileVersion(dir: string) {
-  const content = await fsp.readFile(path.resolve(dir, 'pnpm-lock.yaml'), 'utf-8');
-  const [, lockfileVersion] = (rLockfileVersion.exec(content)) ?? [];
-
-  if (lockfileVersion) return lockfileVersion;
-
-  throw new Error('Can\'t detect lockfile version');
 }

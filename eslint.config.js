@@ -12,6 +12,7 @@ module.exports = require('eslint-config-sukka').sukka({
     'packages/generated/**/*.d.ts',
     'packages/generated/*/package.json',
     'packages/tools/cli/src/all-packages.ts',
+    'packages/tools/cli/test/fixtures',
     'packages/manual/is-core-module/index.js'
   ]
 }, {

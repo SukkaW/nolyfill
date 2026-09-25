@@ -5,7 +5,10 @@
     "lib": [
       "esnext"
     ],
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
+    "types": [
+      "node"
+    ],
     "resolveJsonModule": true,
     "noEmit": true,
     "isolatedModules": true,

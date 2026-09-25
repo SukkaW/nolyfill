@@ -13,7 +13,9 @@
   ],
   "scripts": {
     "canary": "node -r @swc-node/register src/cli.ts",
-    "build": "rimraf dist && rollup -c rollup.config.ts --configPlugin swc3"
+    "build": "premove dist && rollup -c rollup.config.ts --configPlugin swc3",
+    "test": "node -r @swc-node/register --test test/*.test.ts",
+    "test:fixtures": "sh test/generate-fixtures.sh"
   },
   "license": "MIT",
   "devDependencies": {
@@ -21,27 +23,37 @@
     "@napi-rs/magic-string": "^0.3.4",
     "@nolyfill/internal": "workspace:*",
     "@nolyfill/promise.any": "workspace:*",
-    "@npmcli/arborist": "^6.5.1",
-    "@pnpm/list": "^10.2.3",
-    "@pnpm/list--old": "npm:@pnpm/list@^9.1.12",
-    "@pnpm/workspace.find-packages": "^2.1.1",
+    "@npmcli/arborist": "^9.9.2",
+    "@npmcli/map-workspaces": "^5.0.0",
+    "@pnpm/dependency-path": "^1001.1.11",
+    "@pnpm/dependency-path--old": "npm:@pnpm/dependency-path@^2.1.8",
+    "@pnpm/lockfile-file--old": "npm:@pnpm/lockfile-file@^8.1.8",
+    "@pnpm/lockfile-utils--old": "npm:@pnpm/lockfile-utils@^9.0.6",
+    "@pnpm/lockfile.fs": "^1001.1.35",
+    "@pnpm/lockfile.types": "^1002.1.2",
+    "@pnpm/lockfile.utils": "^1004.0.6",
+    "@pnpm/logger": "^1001.0.1",
+    "@pnpm/workspace.manifest-writer": "^1001.3.1",
+    "@pnpm/workspace.read-manifest": "^1000.3.1",
     "@rollup/plugin-commonjs": "^28.0.9",
     "@rollup/plugin-json": "^6.1.0",
     "@rollup/plugin-node-resolve": "^16.0.3",
     "@swc-node/register": "^1.12.1",
     "@swc/helpers": "^0.5.23",
-    "@types/npmcli__arborist": "^5.6.11",
-    "@types/treeverse": "^3.0.5",
-    "@types/yarnpkg__lockfile": "^1.1.9",
+    "@types/npmcli__arborist": "^6.3.3",
+    "@types/semver": "^7.8.0",
     "@yarnpkg/parsers": "3.1.0",
     "commander": "^11.1.0",
     "detect-indent": "^6.1.0",
+    "earl": "^2.0.0",
     "fast-npm-meta": "^0.3.1",
-    "package-manager-detector": "^0.2.11",
+    "foxts": "^5.9.1",
+    "package-manager-detector": "^1.8.0",
     "picocolors": "^1.1.1",
+    "semver": "^7.8.5",
     "vite-bundle-analyzer": "^0.22.3"
   },
   "engines": {
-    "node": ">=12.4.0"
+    "node": "^20.17.0 || >=22.9.0"
   }
 }

@@ -35,6 +35,8 @@ jobs:
         run: pnpm install
       - name: Run build
         run: pnpm run build
+      - name: Run tests
+        run: pnpm run test
       - name: Publish
         run: |
           if git log -1 --pretty=%B | grep "^release: [0-9]\+\.[0-9]\+\.[0-9]\+$";
