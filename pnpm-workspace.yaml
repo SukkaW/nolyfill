@@ -9,6 +9,7 @@ peerDependencyRules:
 allowBuilds:
   "@swc/core": true
   unrs-resolver: true
+minimumReleaseAge: 0
 overrides:
   abab: npm:@nolyfill/abab@^1.0.44
   array-buffer-byte-length: npm:@nolyfill/array-buffer-byte-length@^1.0.44
