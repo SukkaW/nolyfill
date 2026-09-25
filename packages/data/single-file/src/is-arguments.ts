@@ -19,4 +19,4 @@ function isLegacyArguments(value: unknown) {
 }
 // isStandardArguments.isLegacyArguments = isLegacyArguments; // for tests
 // eslint-disable-next-line prefer-rest-params -- detect arguments object
-export default (function () { return isStandardArguments(arguments); }()) ? isStandardArguments : isLegacyArguments;
+export default (function () { return isStandardArguments(arguments); })() ? isStandardArguments : isLegacyArguments;

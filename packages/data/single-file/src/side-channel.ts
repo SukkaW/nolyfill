@@ -1,4 +1,4 @@
-function create() {
+export default function create() {
   let $wm: WeakMap<any, any> | undefined, $m: Map<any, any> | undefined;
 
   const get = (key: any) => {
@@ -35,5 +35,3 @@ function create() {
   };
   return { get, set, has, assert };
 }
-
-export default create;

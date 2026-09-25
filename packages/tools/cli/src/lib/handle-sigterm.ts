@@ -1,8 +1,6 @@
 import process from 'node:process';
 
-const onSigExit = () => process.exit(0);
-
 export function handleSigTerm() {
-  process.on('SIGINT', onSigExit);
-  process.on('SIGTERM', onSigExit);
+  process.on('SIGINT', () => process.exit(0));
+  process.on('SIGTERM', () => process.exit(0));
 }

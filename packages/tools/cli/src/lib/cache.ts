@@ -17,21 +17,21 @@ const ERRORED = 2;
 interface UnterminatedCacheNode<T> {
   s: 0,
   v: void,
-  o: null | WeakMap<Function | object, CacheNode<T>>,
+  o: null | WeakMap<object, CacheNode<T>>,
   p: null | Map<string | number | null | void | symbol | boolean, CacheNode<T>>
 }
 
 interface TerminatedCacheNode<T> {
   s: 1,
   v: T,
-  o: null | WeakMap<Function | object, CacheNode<T>>,
+  o: null | WeakMap<object, CacheNode<T>>,
   p: null | Map<string | number | null | void | symbol | boolean, CacheNode<T>>
 }
 
 interface ErroredCacheNode<T> {
   s: 2,
   v: unknown,
-  o: null | WeakMap<Function | object, CacheNode<T>>,
+  o: null | WeakMap<object, CacheNode<T>>,
   p: null | Map<string | number | null | void | symbol | boolean, CacheNode<T>>
 }
 
@@ -40,7 +40,7 @@ type CacheNode<T> =
   | UnterminatedCacheNode<T>
   | ErroredCacheNode<T>;
 
-const fnMap = new WeakMap<Function | object, CacheNode<any>>();
+const fnMap = new WeakMap<object, CacheNode<any>>();
 
 function createCacheNode<T>(): CacheNode<T> {
   return {

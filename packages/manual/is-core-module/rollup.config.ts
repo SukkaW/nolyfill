@@ -92,12 +92,13 @@ function specifierIncluded(current: string, specifier: string) {
   return op === '>=';
 }
 
+const rAndAnd = / ?&& ?/;
 function matchesRange(current: string, range: string) {
-  const specifiers = range.split(/ ?&& ?/);
+  const specifiers = range.split(rAndAnd);
   if (specifiers.length === 0) {
     return false;
   }
-  for (let i = 0; i < specifiers.length; ++i) {
+  for (let i = 0, len = specifiers.length; i < len; ++i) {
     if (!specifierIncluded(current, specifiers[i])) {
       return false;
     }
@@ -111,7 +112,7 @@ function versionIncluded(current: string, specifierValue: string[] | boolean | s
   }
 
   if (Array.isArray(specifierValue)) {
-    for (let i = 0; i < specifierValue.length; i++) {
+    for (let i = 0, len = specifierValue.length; i < len; i++) {
       if (matchesRange(current, specifierValue[i])) {
         return true;
       }

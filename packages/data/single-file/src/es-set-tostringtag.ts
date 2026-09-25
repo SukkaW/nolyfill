@@ -2,7 +2,7 @@ interface SetToStringTagOption {
   force?: boolean
 }
 
-function set(object: any, value: any, options: SetToStringTagOption = {}) {
+export default function set(object: any, value: any, options: SetToStringTagOption = {}) {
   if (options.force || !Object.hasOwn(object, Symbol.toStringTag)) {
     Object.defineProperty(object, Symbol.toStringTag, {
       configurable: true,
@@ -12,5 +12,3 @@ function set(object: any, value: any, options: SetToStringTagOption = {}) {
     });
   }
 }
-
-export default set;

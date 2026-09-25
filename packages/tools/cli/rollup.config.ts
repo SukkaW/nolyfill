@@ -22,13 +22,8 @@ function slash(path: string) {
 }
 
 export default async () => {
-  const dependencies = Object.keys(
-    (
-      JSON.parse(
-        await fs.promises.readFile('package.json', 'utf-8')
-      ) as PackageJson
-    ).dependencies || {}
-  ).concat(builtinModules);
+  const packageJson = JSON.parse(await fs.promises.readFile('package.json', 'utf-8')) as PackageJson;
+  const dependencies = Object.keys(packageJson.dependencies || {}).concat(builtinModules);
   const external = (id: string) => dependencies.some((dep) => dep === id || (id.startsWith(`${dep}/`) && id !== `${dep}/`));
 
   return defineConfig([

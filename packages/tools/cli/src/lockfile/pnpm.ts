@@ -12,7 +12,9 @@ export const buildPNPMDepTree = cache(async (dirPath: string): Promise<PackageNo
 
   if (await fileExists(path.join(dirPath, 'pnpm-workspace.yaml'))) {
     const allProjects = await findWorkspacePackagesNoCheck(dirPath);
-    dirPaths.push(...allProjects.map((project) => project.dir));
+    for (let i = 0, len = allProjects.length; i < len; i++) {
+      dirPaths.push(allProjects[i].dir);
+    }
   }
 
   const searchNew = () => searchForPackages(['*'], dirPaths, {

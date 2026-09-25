@@ -90,7 +90,7 @@ export default function stableStringify(obj: any, opts?: Comparator | Options): 
     }
     if (Array.isArray(node)) {
       const out = [];
-      for (let i = 0; i < node.length; i++) {
+      for (let i = 0, len = node.length; i < len; i++) {
         // @ts-expect-error -- fuck js
         const item = stringify(node, i, node[i], level + 1) || JSON.stringify(null);
         out.push(indent + space + item);
@@ -101,11 +101,12 @@ export default function stableStringify(obj: any, opts?: Comparator | Options): 
     if (seen.has(node)) {
       if (cycles) { return JSON.stringify('__cycle__'); }
       throw new TypeError('Converting circular structure to JSON');
-    } else { seen.add(node); }
+    }
+    seen.add(node);
 
     const keys = Object.keys(node).sort(cmp?.(node));
     const out = [];
-    for (let i = 0; i < keys.length; i++) {
+    for (let i = 0, len = keys.length; i < len; i++) {
       const key = keys[i];
       const value = stringify(node, key, node[key], level + 1);
 

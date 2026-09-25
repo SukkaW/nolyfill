@@ -85,11 +85,11 @@ const program = new Command('nolyfill');
         const projectPath = path.resolve(source ?? process.cwd());
         // TODO: use `package-manager-detector` agent option
         const packageManager = option.pm === 'auto' ? await detectPackageManager(projectPath) : option.pm;
-        const format = option.format;
-
         if (checkUnsupportedPM(packageManager)) {
           return;
         }
+
+        const format = option.format;
 
         const packagesToBeOverride = await findPackagesCoveredByNolyfill(packageManager, projectPath);
 

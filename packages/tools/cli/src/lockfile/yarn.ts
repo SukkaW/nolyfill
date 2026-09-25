@@ -1,6 +1,6 @@
 import fsp from 'node:fs/promises';
 import path from 'node:path';
-import { parseSyml } from '@yarnpkg/parsers/lib/syml';
+import { parseSyml } from '@yarnpkg/parsers';
 
 import type { PackageNode } from '../types';
 import { cache } from '../lib/cache';
@@ -68,13 +68,7 @@ function getPackageNameFromDescriptor(descriptor: string): string {
   // example: @types/node@npm:^16.0.0, @types/node@npm:^18.0.0
   // example: has@^1.0.3, has@npm:@nolyfill/has@latest
 
-  const firstDescriptor = descriptor.split(',')[0];
-
-  const s = firstDescriptor.includes('@npm:')
-    ? firstDescriptor.split('@npm:')[0]
-    : firstDescriptor;
-
-  return s.startsWith('@')
-    ? s.slice(0, s.indexOf('@', 1))
-    : s.split('@')[0];
+  // The package name ends at the first `@` (skipping the leading `@` of a scoped package)
+  const index = descriptor.indexOf('@', 1);
+  return index === -1 ? descriptor : descriptor.slice(0, index);
 }

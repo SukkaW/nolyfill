@@ -32,11 +32,13 @@ export function buildDepTrees(packageManager: PackageManager, dir: string) {
   }
 }
 
+const rLockfileVersion = /^lockfileVersion: ["']?(\d*(?:\.\d*)?)["']?$/m;
+
 export async function getPNPMLockfileVersion(dir: string) {
   const content = await fsp.readFile(path.resolve(dir, 'pnpm-lock.yaml'), 'utf-8');
-  const [, lockfileVersion] = (/^lockfileVersion: ["']?(\d*(?:\.\d*)?)["']?$/m.exec(content)) ?? [];
+  const [, lockfileVersion] = (rLockfileVersion.exec(content)) ?? [];
 
-  if (!lockfileVersion) throw new Error('Can\'t detect lockfile version');
+  if (lockfileVersion) return lockfileVersion;
 
-  return lockfileVersion;
+  throw new Error('Can\'t detect lockfile version');
 }

@@ -1,4 +1,4 @@
-function which(value: unknown) {
+export default function which(value: unknown) {
   if (value == null || (typeof value !== 'object' && typeof value !== 'function')) return null;
   if (typeof value === 'string') return 'String';
   if (typeof value === 'number') return 'Number';
@@ -23,5 +23,3 @@ function which(value: unknown) {
   }
   return undefined;
 }
-
-export default which;

@@ -8,7 +8,14 @@ const fsPromises = fs.promises;
 /**
  * @param {string} path
  */
-const fileExists = (path) => fsPromises.access(path, fs.constants.F_OK).catch(() => false).then(() => true);
+async function fileExists(path) {
+  try {
+    await fsPromises.access(path, fs.constants.F_OK);
+    return true;
+  } catch {
+    return false;
+  }
+}
 
 /**
  * - If filePath doesn't exist, create new file with content, then return true.
