@@ -19,6 +19,7 @@
   },
   "license": "MIT",
   "devDependencies": {
+    "@hyrious/bun.lockb": "^0.0.4",
     "@jsdevtools/ez-spawn": "^3.0.4",
     "@napi-rs/magic-string": "^0.3.4",
     "@nolyfill/internal": "workspace:*",
@@ -48,6 +49,7 @@
     "earl": "^2.0.0",
     "fast-npm-meta": "^0.3.1",
     "foxts": "^5.9.1",
+    "lockparse": "^0.5.2",
     "package-manager-detector": "^1.8.0",
     "picocolors": "^1.1.1",
     "semver": "^7.8.5",

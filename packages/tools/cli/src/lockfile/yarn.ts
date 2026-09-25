@@ -30,6 +30,11 @@ export const buildYarnDepTree = cache(async (dirPath: string): Promise<PackageNo
     throw new Error(`Can not find yarn.lock in ${dirPath}, please run "yarn install" first`);
   }
 
+  return buildYarnDepTreeFromLockfile(dirPath, content);
+});
+
+/** `content` is the yarn.lock, the manifests in `dirPath` are the entry points of a classic lockfile */
+export function buildYarnDepTreeFromLockfile(dirPath: string, content: string): Promise<PackageNode[]> {
   // yarn's own parser handles both the classic (v1) and the berry (v2+) lockfile syntax
   const lockfile = parseSyml(content) as Record<string, YarnLockfileEntry | undefined>;
   const isBerry = '__metadata' in lockfile;
@@ -48,9 +53,9 @@ export const buildYarnDepTree = cache(async (dirPath: string): Promise<PackageNo
   }
 
   return isBerry
-    ? buildFromBerryLockfile(entries)
+    ? Promise.resolve(buildFromBerryLockfile(entries))
     : buildFromClassicLockfile(dirPath, entries);
-});
+}
 
 /** `has@^1.0.4` -> `has`, `@types/node@npm:^18.0.0` -> `@types/node` */
 function getPackageNameFromDescriptor(descriptor: string): string {

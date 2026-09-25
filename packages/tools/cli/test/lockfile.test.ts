@@ -34,7 +34,10 @@ const cases: Array<[fixture: string, packageManager: PackageManager, expected: s
   ['yarn1-single', 'yarn', singleProjectExpected],
   ['yarn1-ws', 'yarn', workspaceExpected],
   ['yarn4-single', 'yarn', singleProjectExpected],
-  ['yarn4-ws', 'yarn', workspaceExpected]
+  ['yarn4-ws', 'yarn', workspaceExpected],
+  ['bun-single', 'bun', singleProjectExpected],
+  ['bun-ws', 'bun', workspaceExpected],
+  ['bun-legacy-single', 'bun', singleProjectExpected]
 ];
 
 /** fixtures where `nolyfill install` and a real install have already been run */
@@ -43,7 +46,8 @@ const nolyfilledCases: Array<[fixture: string, packageManager: PackageManager]> 
   ['pnpm8-ws-nolyfilled', 'pnpm'],
   ['pnpm-ws-nolyfilled', 'pnpm'],
   ['yarn1-ws-nolyfilled', 'yarn'],
-  ['yarn4-ws-nolyfilled', 'yarn']
+  ['yarn4-ws-nolyfilled', 'yarn'],
+  ['bun-ws-nolyfilled', 'bun']
 ];
 
 function collectNodes(roots: PackageNode[]) {

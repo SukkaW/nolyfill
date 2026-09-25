@@ -982,6 +982,9 @@ importers:
 
   packages/tools/cli:
     devDependencies:
+      '@hyrious/bun.lockb':
+        specifier: ^0.0.4
+        version: 0.0.4
       '@jsdevtools/ez-spawn':
         specifier: ^3.0.4
         version: 3.0.4
@@ -1069,6 +1072,9 @@ importers:
       foxts:
         specifier: ^5.9.1
         version: 5.9.1
+      lockparse:
+        specifier: ^0.5.2
+        version: 0.5.2
       package-manager-detector:
         specifier: ^1.8.0
         version: 1.8.0
@@ -1216,6 +1222,10 @@ packages:
   '@humanwhocodes/retry@0.4.2':
     resolution: {integrity: sha512-xeO57FpIu4p1Ri3Jq/EXq4ClRm86dVF2z/+kvFnyqVYRavTZmaFaUBbWCOuuTh0o/g7DSsk6kc2vrS4Vl5oPOQ==}
     engines: {node: '>=18.18'}
+
+  '@hyrious/bun.lockb@0.0.4':
+    resolution: {integrity: sha512-ZjrPKJCxmH3ytp3RUe03rZx1B6WJ4RlCCVkXoatSKv57Pe0KdLwPF/P4TVv58MUpdJn286gAiLWEoeEXWi17HA==}
+    hasBin: true
 
   '@isaacs/fs-minipass@4.0.1':
     resolution: {integrity: sha512-wgm9Ehl2jpeqP3zw/7mo3kRHFp5MEDhqAdwy1fTGkHAwnkGOVsgpvQhL8B5n1qlb01jV3n/bI0ZfZp5lWA1k4w==}
@@ -3340,6 +3350,9 @@ packages:
     resolution: {integrity: sha512-iPZK6eYjbxRu3uB4/WZ3EsEIMJFMqAoopl3R+zuq0UjcAm/MO6KCweDgPfP3elTztoKP3KtnVHxTn2NHBSDVUw==}
     engines: {node: '>=10'}
 
+  lockparse@0.5.2:
+    resolution: {integrity: sha512-iu19W86kvrT2MLpvyXoIn/351Rb3PO7v7ljgFRQYj8tGpBRvNO9cZEI8x/7GGN+WN6BbrWpXc5CPrgPUjgX6Iw==}
+
   lru-cache@11.0.1:
     resolution: {integrity: sha512-CgeuL5uom6j/ZVrg7G/+1IXqRY8JXX4Hghfy5YE0EhoYQWvndP1kufu58cmZLNIDKnRhZrXfdS9urVWx98AipQ==}
     engines: {node: 20 || >=22}
@@ -4149,6 +4162,8 @@ snapshots:
   '@humanwhocodes/retry@0.3.1': {}
 
   '@humanwhocodes/retry@0.4.2': {}
+
+  '@hyrious/bun.lockb@0.0.4': {}
 
   '@isaacs/fs-minipass@4.0.1':
     dependencies:
@@ -6271,6 +6286,8 @@ snapshots:
   locate-path@6.0.0:
     dependencies:
       p-locate: 5.0.0
+
+  lockparse@0.5.2: {}
 
   lru-cache@11.0.1: {}
 

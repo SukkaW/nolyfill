@@ -3,6 +3,7 @@ import type { PackageNode } from '../types';
 import { buildPNPMDepTree } from './pnpm';
 import { buildNPMDepTree } from './npm';
 import { buildYarnDepTree } from './yarn';
+import { buildBunDepTree } from './bun';
 
 /**
  * Build the dependency graph of a project (and all of its workspace packages) from its lockfile.
@@ -19,6 +20,8 @@ export function buildDepTrees(packageManager: PackageManager, dir: string): Prom
       return buildPNPMDepTree(dir);
     case 'yarn':
       return buildYarnDepTree(dir);
+    case 'bun':
+      return buildBunDepTree(dir);
     default:
       throw new Error(`Unknown package manager: ${packageManager as string}`);
   }

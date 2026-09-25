@@ -10,7 +10,9 @@
 #
 # The projects are created in a temporary directory (a fixture inside the monorepo would be
 # treated as one of its workspace packages by pnpm and yarn), only the manifests and lockfiles are
-# copied back. Requires network access, npm, pnpm, npx and corepack.
+# copied back. Requires network access, npm, pnpm, npx and corepack (bun is fetched through npx).
+# The legacy binary bun.lockb fixture is produced by Bun 1.1, which ignores --lockfile-only and
+# performs a full install, so that step takes a while.
 #
 # Usage: pnpm --filter nolyfill run test:fixtures
 set -eu
@@ -81,6 +83,10 @@ mk yarn4-single ',
 mk yarn4-ws ',
   "workspaces": ["packages/*"],
   "packageManager": "yarn@4.9.2"'; mkws yarn4-ws; mkyarnrc yarn4-ws
+mk bun-single ''
+mk bun-ws ',
+  "workspaces": ["packages/*"]'; mkws bun-ws
+mk bun-legacy-single ''
 
 run() {
   dir=$1; shift
@@ -96,6 +102,8 @@ install_pnpm9()  { run "$1" npx -y pnpm@9.15.9 install --lockfile-only; }
 install_pnpm10() { run "$1" npx -y pnpm@10.32.1 install --lockfile-only; }
 install_yarn1()  { run "$1" corepack yarn@1.22.22 install --ignore-scripts --non-interactive --cache-folder "$CACHE/yarn1"; }
 install_yarn4()  { run "$1" corepack yarn@4.9.2 install --mode=update-lockfile; }
+install_bun()    { run "$1" npx -y bun@latest install --lockfile-only; }
+install_bun1()   { run "$1" npx -y bun@1.1.38 install; }
 
 install_npm6 npm6-single
 install_npm npm-single
@@ -111,6 +119,9 @@ install_yarn1 yarn1-single
 install_yarn1 yarn1-ws
 install_yarn4 yarn4-single
 install_yarn4 yarn4-ws
+install_bun bun-single
+install_bun bun-ws
+install_bun1 bun-legacy-single
 
 # `nolyfill install` (from source) followed by the package manager
 nolyfilled() {
@@ -126,13 +137,14 @@ nolyfilled pnpm-ws install_pnpm
 nolyfilled pnpm8-ws install_pnpm8
 nolyfilled yarn1-ws install_yarn1
 nolyfilled yarn4-ws install_yarn4
+nolyfilled bun-ws install_bun
 
 # only keep manifests and lockfiles
 rm -rf "$FIXTURES"
 for dir in */; do
   dir=${dir%/}
   mkdir -p "$FIXTURES/$dir"
-  (cd "$dir" && find . -type f \( -name package.json -o -name package-lock.json -o -name pnpm-lock.yaml -o -name pnpm-workspace.yaml -o -name yarn.lock \) -not -path '*/node_modules/*' | cpio -pdm "$FIXTURES/$dir" 2> /dev/null)
+  (cd "$dir" && find . -type f \( -name package.json -o -name package-lock.json -o -name pnpm-lock.yaml -o -name pnpm-workspace.yaml -o -name yarn.lock -o -name bun.lock -o -name bun.lockb \) -not -path '*/node_modules/*' | cpio -pdm "$FIXTURES/$dir" 2> /dev/null)
   if [ -f "$dir/.yarnrc.yml" ]; then
     printf 'nodeLinker: node-modules\n' > "$FIXTURES/$dir/.yarnrc.yml"
   fi

@@ -58,6 +58,18 @@ describe('overridesPackageJson', () => {
     });
   });
 
+  describe('bun', () => {
+    it('writes "overrides" like npm', async () => {
+      const dir = await copyFixture('bun-ws');
+      const result = await overridesPackageJson('bun', dir, packages);
+
+      const packageJson = await readJSONFile(path.join(dir, 'package.json'));
+      expect(packageJson.overrides).toEqual(expectedOverrides);
+      expect(packageJson.dependencies!['array-includes']).toEqual('npm:@nolyfill/array-includes@^1');
+      expect(result.updatedDirectDependencies).toEqual(['array-includes', 'object.assign']);
+    });
+  });
+
   describe('yarn', () => {
     it('writes "resolutions" and points direct dependencies to nolyfill', async () => {
       const dir = await copyFixture('yarn4-ws');

@@ -16,6 +16,9 @@ describe('detectPackageManager', () => {
     expect(await detectPackageManager(path.join(fixture('pnpm-ws'), 'packages/a'))).toEqual('pnpm');
     expect(await detectPackageManager(path.join(fixture('yarn1-ws'), 'packages/a'))).toEqual('yarn');
     expect(await detectPackageManager(path.join(fixture('yarn4-ws'), 'packages/a'))).toEqual('yarn');
+    expect(await detectPackageManager(path.join(fixture('bun-ws'), 'packages/a'))).toEqual('bun');
+    // legacy binary lockfile
+    expect(await detectPackageManager(fixture('bun-legacy-single'))).toEqual('bun');
   });
 });
 
@@ -25,6 +28,7 @@ describe('findProjectRoot', () => {
     expect(await findProjectRoot(path.join(fixture('pnpm-ws'), 'packages/a'), 'pnpm')).toEqual(fixture('pnpm-ws'));
     expect(await findProjectRoot(path.join(fixture('npm-ws'), 'packages/a'), 'npm')).toEqual(fixture('npm-ws'));
     expect(await findProjectRoot(path.join(fixture('yarn4-ws'), 'packages/a'), 'yarn')).toEqual(fixture('yarn4-ws'));
+    expect(await findProjectRoot(path.join(fixture('bun-ws'), 'packages/a'), 'bun')).toEqual(fixture('bun-ws'));
   });
 
   it('returns null when there is no lockfile', async () => {

@@ -30,22 +30,13 @@ interface CheckCommandOptions extends PmCommandOptions {
 }
 
 const pmCommandOption = new Option('--pm [package manager]', 'specify which package manager to use')
-  .choices(['auto', 'npm', 'pnpm', 'yarn'])
+  .choices(['auto', 'npm', 'pnpm', 'yarn', 'bun'])
   .default('auto', 'detect package manager automatically');
 
 handleSigTerm();
 
 // eslint-disable-next-line @typescript-eslint/no-require-imports -- TBD
 const { version } = require('../package.json') as PKG;
-
-function checkUnsupportedPM(packageManager: PackageManager) {
-  if (packageManager === 'bun') {
-    console.log(`${picocolors.bgRed(picocolors.black(' Error '))} nolyfill does not support ${picocolors.bold('Bun')} at the moment.\n`);
-    console.log(`The nolyfill CLI can not read ${picocolors.bold('bun.lock')} yet. You can still add the overrides to your package.json manually, see ${picocolors.underline('https://github.com/SukkaW/nolyfill')} for the list of packages.\n`);
-    return true;
-  }
-  return false;
-}
 
 /**
  * Locate the root of the project (where the lockfile lives). nolyfill can be invoked from a
@@ -54,10 +45,6 @@ function checkUnsupportedPM(packageManager: PackageManager) {
 async function resolveProject(source: string | undefined, pm: PackageManager | 'auto') {
   const startPath = path.resolve(source ?? process.cwd());
   const packageManager = pm === 'auto' ? await detectPackageManager(startPath) : pm;
-
-  if (checkUnsupportedPM(packageManager)) {
-    return null;
-  }
 
   const projectPath = await findProjectRoot(startPath, packageManager);
   if (!projectPath) {
@@ -99,6 +86,9 @@ async function printPostInstallInstructions(packageManager: PackageManager, proj
     case 'yarn':
       console.log(`${picocolors.dim('>')} Run "${picocolors.bold(picocolors.green('yarn install'))}" to finish the optimization.\n`);
       break;
+    case 'bun':
+      console.log(`${picocolors.dim('>')} Run "${picocolors.bold(picocolors.green('bun install'))}" to finish the optimization.\n`);
+      break;
     default:
       break;
   }
@@ -120,9 +110,7 @@ const program = new Command('nolyfill');
         .choices(['humanreadable', 'json'])
         .default('humanreadable'))
       .action(async (source: string | undefined, option: CheckCommandOptions) => {
-        const project = await resolveProject(source, option.pm);
-        if (!project) return;
-        const { packageManager, projectPath } = project;
+        const { packageManager, projectPath } = await resolveProject(source, option.pm);
 
         const format = option.format;
 
@@ -156,9 +144,7 @@ const program = new Command('nolyfill');
       .argument('[path]', 'project path to install nolyfill into')
       .addOption(pmCommandOption)
       .action(async (source: string | undefined, option: PmCommandOptions) => {
-        const project = await resolveProject(source, option.pm);
-        if (!project) return;
-        const { packageManager, projectPath } = project;
+        const { packageManager, projectPath } = await resolveProject(source, option.pm);
 
         const packagesToBeOverride = await findPackagesCoveredByNolyfill(packageManager, projectPath);
 
