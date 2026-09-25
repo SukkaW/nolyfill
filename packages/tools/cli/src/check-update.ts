@@ -58,7 +58,7 @@ export async function checkForUpdates(name: string, currentVersion: string): Pro
 
   const time = Date.now();
 
-  const isScoped = name.startsWith('/');
+  const isScoped = name[0] === '/';
   const parts = name.split('/');
   const file = await getFile(
     isScoped ? parts[1] : name,
@@ -66,10 +66,8 @@ export async function checkForUpdates(name: string, currentVersion: string): Pro
     UPDATE_CHECK_DIST_TAG
   );
 
-  let latest: string | null = null;
-  let shouldCheck = true;
-
-  ({ shouldCheck, latest } = await evaluateCache(file, time, UPDATE_CHECK_INTERVAL));
+  const { shouldCheck, latest: cachedLatest } = await evaluateCache(file, time, UPDATE_CHECK_INTERVAL);
+  let latest = cachedLatest;
 
   if (shouldCheck) {
     latest = (await getLatestVersion(`nolyfill@${UPDATE_CHECK_DIST_TAG}`)).version;

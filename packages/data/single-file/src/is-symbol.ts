@@ -1,4 +1,4 @@
-function is(value: unknown): value is symbol {
+export default function is(value: unknown): value is symbol {
   if (typeof value === 'symbol') return true;
   if (Object.prototype.toString.call(value) !== '[object Symbol]') return false;
   try {
@@ -8,5 +8,3 @@ function is(value: unknown): value is symbol {
     return false;
   }
 }
-
-export default is;

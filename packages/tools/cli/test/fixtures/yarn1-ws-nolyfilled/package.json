@@ -1,0 +1,22 @@
+{
+  "name": "fixture-root",
+  "version": "1.0.0",
+  "private": true,
+  "dependencies": {
+    "array-includes": "npm:@nolyfill/array-includes@^1",
+    "resolve": "^1.22.10"
+  },
+  "devDependencies": {
+    "object.assign": "npm:@nolyfill/object.assign@^1"
+  },
+  "workspaces": [
+    "packages/*"
+  ],
+  "resolutions": {
+    "array-includes": "npm:@nolyfill/array-includes@^1",
+    "has": "npm:@nolyfill/has@^1",
+    "is-core-module": "npm:@nolyfill/is-core-module@^1",
+    "object.assign": "npm:@nolyfill/object.assign@^1",
+    "side-channel": "npm:@nolyfill/side-channel@^1"
+  }
+}

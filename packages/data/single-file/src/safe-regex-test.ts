@@ -1,4 +1,4 @@
-function safeRegexTest(r?: RegExp | null) {
+export default function safeRegexTest(r?: RegExp | null) {
   if (
     !r
     || (typeof r !== 'object' && typeof r !== 'function')
@@ -8,5 +8,3 @@ function safeRegexTest(r?: RegExp | null) {
   }
   return (s: string) => RegExp.prototype.exec.call(r, s) !== null;
 }
-
-export default safeRegexTest;

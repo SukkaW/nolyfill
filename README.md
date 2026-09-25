@@ -31,11 +31,24 @@ npx nolyfill install
 npx nolyfill install ~/projects/my-project
 ```
 
+### Supported package managers
+
+nolyfill works with **npm**, **yarn** (classic and berry), **pnpm** and **bun**, including their workspaces / monorepo setups. Run it from anywhere inside your project (a workspace package is fine), it will find the lockfile and add the overrides where your package manager expects them:
+
+| Package manager | Overrides written to |
+| --- | --- |
+| npm | `overrides` in `package.json` |
+| yarn | `resolutions` in `package.json` |
+| pnpm | `pnpm.overrides` in `package.json`, or `overrides` in `pnpm-workspace.yaml` for pnpm 11+ |
+| bun | `overrides` in `package.json` |
+
+Then run `npm install` / `yarn install` / `pnpm install` / `bun install` as usual.
+
 ### CLI Options
 
 **--pm**
 
-By default nolyfill CLI will try to detect the preferred package manager of the project automatically. You can manually specify the package manager by using the `--pm` option. Supported options are `npm`, `yarn`, `pnpm` and `auto` (default).
+By default nolyfill CLI will try to detect the preferred package manager of the project automatically. You can manually specify the package manager by using the `--pm` option. Supported options are `npm`, `yarn`, `pnpm`, `bun` and `auto` (default).
 
 **-d, --debug**
 

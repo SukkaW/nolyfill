@@ -7,6 +7,7 @@ import { adapter, analyzer } from 'vite-bundle-analyzer';
 import { dts } from 'rollup-plugin-dts';
 
 import fs from 'node:fs';
+import path from 'node:path';
 import { builtinModules } from 'node:module';
 import process from 'node:process';
 import { MagicString } from '@napi-rs/magic-string';
@@ -15,6 +16,13 @@ import type { PackageJson } from '@package-json/types';
 
 const builtinModulesSet = new Set(builtinModules);
 
+/**
+ * Only `loadVirtual` of arborist is used to read package-lock.json. The other mixins of the
+ * Arborist class (building the ideal tree, reifying, rebuilding, auditing...) would bundle
+ * most of the npm CLI, so they are replaced with no-op mixins.
+ */
+const rArboristUnusedMixin = /\/arborist\/lib\/arborist\/(?:build-ideal-tree|load-actual|rebuild|reify|isolated-reifier)\.js$/;
+
 function slash(path: string) {
   const isExtendedLengthPath = path.startsWith('\\\\?\\');
   if (isExtendedLengthPath) return path;
@@ -22,13 +30,8 @@ function slash(path: string) {
 }
 
 export default async () => {
-  const dependencies = Object.keys(
-    (
-      JSON.parse(
-        await fs.promises.readFile('package.json', 'utf-8')
-      ) as PackageJson
-    ).dependencies || {}
-  ).concat(builtinModules);
+  const packageJson = JSON.parse(await fs.promises.readFile('package.json', 'utf-8')) as PackageJson;
+  const dependencies = Object.keys(packageJson.dependencies || {}).concat(builtinModules);
   const external = (id: string) => dependencies.some((dep) => dep === id || (id.startsWith(`${dep}/`) && id !== `${dep}/`));
 
   return defineConfig([
@@ -61,12 +64,26 @@ export default async () => {
         json(),
         {
           name: 'build-nolyfill-cli',
+          resolveId(source) {
+            // Only `parseSyml` is used, the root entry also exports the shell and resolution grammars
+            // which are huge and not reachable through package.json "exports"
+            if (source === '@yarnpkg/parsers') {
+              return path.resolve('node_modules/@yarnpkg/parsers/lib/syml.js');
+            }
+            return null;
+          },
           load(id) {
             id = slash(id);
             // Here we remove the query-selector-all.js from arborist,  as it introduces shit
             // load of dependencies that we totally don't use
             if (id.includes('/arborist/lib/query-selector-all.js')) {
               return 'module.exports = () => {}';
+            }
+            if (rArboristUnusedMixin.test(id)) {
+              return 'module.exports = (cls) => cls';
+            }
+            if (id.endsWith('/arborist/lib/audit-report.js')) {
+              return 'module.exports = class AuditReport {}';
             }
             return null;
           },

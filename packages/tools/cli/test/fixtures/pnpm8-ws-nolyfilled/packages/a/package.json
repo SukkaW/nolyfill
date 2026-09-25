@@ -1,0 +1,8 @@
+{
+  "name": "a",
+  "version": "1.0.0",
+  "dependencies": {
+    "has": "^1.0.4",
+    "side-channel": "^1.1.0"
+  }
+}

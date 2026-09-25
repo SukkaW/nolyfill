@@ -4,7 +4,7 @@ const implementation = Promise.allSettled || function allSettled<T>(this: typeof
   const $reject = Promise.reject.bind(this);
   const $resolve = Promise.resolve.bind(this);
   const $all = Promise.all.bind(this);
-  return $all(Array.from(iterable).map((item) => {
+  return $all(Array.from(iterable, (item) => {
     const p: Promise<Awaited<T>> = $resolve(item);
     // eslint-disable-next-line sukka/no-try-promise -- this is only catch when something goes horibbly wrong
     try {

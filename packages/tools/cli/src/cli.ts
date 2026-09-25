@@ -5,13 +5,14 @@ import { Command, Option } from 'commander';
 import handleError from './handle-error';
 import { renderTree } from './renderTree';
 
-import { overridesPackageJson } from './lib/json';
+import { overridesPackageJson } from './overrides';
+import type { OverridesResult } from './overrides';
 import type { PKG } from './types';
 import { handleSigTerm } from './lib/handle-sigterm';
 import { findPackagesCoveredByNolyfill, findPackagesNotCoveredByNolyfill } from './find-coverable-packages';
 import { checkForUpdates } from './check-update';
 import { generateIssue } from './generate-issue';
-import { detectPackageManager } from './package-manager';
+import { LOCKFILES, detectPackageManager, findProjectRoot, getPackageManagerVersion, npmIgnoresNewOverrides } from './package-manager';
 import type { PackageManager } from './package-manager';
 
 interface CliOptions {
@@ -29,7 +30,7 @@ interface CheckCommandOptions extends PmCommandOptions {
 }
 
 const pmCommandOption = new Option('--pm [package manager]', 'specify which package manager to use')
-  .choices(['auto', 'npm', 'pnpm', 'yarn'])
+  .choices(['auto', 'npm', 'pnpm', 'yarn', 'bun'])
   .default('auto', 'detect package manager automatically');
 
 handleSigTerm();
@@ -37,29 +38,56 @@ handleSigTerm();
 // eslint-disable-next-line @typescript-eslint/no-require-imports -- TBD
 const { version } = require('../package.json') as PKG;
 
-function checkUnsupportedPM(packageManager: PackageManager) {
-  if (packageManager === 'bun') {
-    console.log(`${picocolors.bgRed(picocolors.black(' Error '))} nolyfill does not support ${picocolors.bold('Bun')} at the moment.\n`);
-    console.log(`Currently, ${picocolors.bold('Bun')} doesn't support package.json overrides (Details: ${picocolors.underline('https://github.com/oven-sh/bun/issues/1134')}). This feature is essential for nolyfill. We'll add support for ${picocolors.bold('Bun')} once the issue is addressed.\n`);
-    return true;
+/**
+ * Locate the root of the project (where the lockfile lives). nolyfill can be invoked from a
+ * workspace package, but overrides can only be declared at the root.
+ */
+async function resolveProject(source: string | undefined, pm: PackageManager | 'auto') {
+  const startPath = path.resolve(source ?? process.cwd());
+  const packageManager = pm === 'auto' ? await detectPackageManager(startPath) : pm;
+
+  const projectPath = await findProjectRoot(startPath, packageManager);
+  if (!projectPath) {
+    throw new Error(`Can not find ${LOCKFILES[packageManager].join(' or ')} in ${startPath} or any of its parent directories, please run "${packageManager} install" first`);
   }
-  return false;
+  if (projectPath !== startPath) {
+    console.log(`${picocolors.dim('>')} Using the workspace root at ${picocolors.bold(projectPath)}\n`);
+  }
+
+  return { packageManager, projectPath };
 }
 
-function printPostInstallInstructions(packageManager: PackageManager) {
-  console.log(`${picocolors.magenta('Almost complete! One last step:')}\n`);
+async function printPostInstallInstructions(packageManager: PackageManager, projectPath: string, result: OverridesResult) {
+  console.log(`${picocolors.green('✓')} Overrides written to ${picocolors.bold(path.relative(process.cwd(), result.overridesFile) || result.overridesFile)}`);
+  if (result.migratedFromPackageJson) {
+    console.log(`${picocolors.green('✓')} Existing "pnpm.overrides" moved from package.json to pnpm-workspace.yaml (pnpm 11+ no longer reads settings from package.json)`);
+  }
+  if (result.updatedDirectDependencies.length > 0) {
+    console.log(`${picocolors.green('✓')} Direct dependencies now pointing to nolyfill: ${result.updatedDirectDependencies.map(name => picocolors.bold(name)).join(', ')}`);
+  }
+  console.log(`\n${picocolors.magenta('Almost complete! One last step:')}\n`);
 
   switch (packageManager) {
-    case 'npm':
+    case 'npm': {
+      const npmVersion = await getPackageManagerVersion(projectPath, packageManager);
+      if (!npmIgnoresNewOverrides(npmVersion)) {
+        console.log(`${picocolors.dim('>')} Run "${picocolors.bold(picocolors.green('npm install'))}" to finish the optimization.\n`);
+        break;
+      }
+
       console.log(`${picocolors.dim('>')} Run "${picocolors.bold(picocolors.green('npm update'))}" to finish the optimization.\n`);
       console.log(`${picocolors.bold(picocolors.bgYellow(picocolors.black(' WARNING ')))} Using ${picocolors.red('npm update')} will rebuild the entire package-lock.json file, potentially causing unwanted upgrades and side effects. Please review package versions and test your application thoroughly after updating.\n`);
-      console.log(`Due to a known bug in NPM (see ${picocolors.underline('https://github.com/npm/cli/issues/5850')}), you need to execute ${picocolors.green('npm update')} instead of the standard "npm install". This ensures NPM to respect the overrides added by nolyfill. We appreciate your understanding and are closely monitoring this issue for any resolutions.\n`);
+      console.log(`${npmVersion === null ? 'npm before 11.2.0 ignores' : `Your npm (${picocolors.bold(npmVersion)}) ignores`} the overrides added to package.json when a package-lock.json already exists (see ${picocolors.underline('https://github.com/npm/cli/issues/5850')}), which is why you need to execute ${picocolors.green('npm update')} instead of the standard "npm install". Alternatively, delete package-lock.json and node_modules and run "${picocolors.green('npm install')}", or upgrade npm to 11.2.0 or newer.\n`);
       break;
+    }
     case 'pnpm':
       console.log(`${picocolors.dim('>')} Run "${picocolors.bold(picocolors.green('pnpm install'))}" to finish the optimization.\n`);
       break;
     case 'yarn':
       console.log(`${picocolors.dim('>')} Run "${picocolors.bold(picocolors.green('yarn install'))}" to finish the optimization.\n`);
+      break;
+    case 'bun':
+      console.log(`${picocolors.dim('>')} Run "${picocolors.bold(picocolors.green('bun install'))}" to finish the optimization.\n`);
       break;
     default:
       break;
@@ -82,14 +110,9 @@ const program = new Command('nolyfill');
         .choices(['humanreadable', 'json'])
         .default('humanreadable'))
       .action(async (source: string | undefined, option: CheckCommandOptions) => {
-        const projectPath = path.resolve(source ?? process.cwd());
-        // TODO: use `package-manager-detector` agent option
-        const packageManager = option.pm === 'auto' ? await detectPackageManager(projectPath) : option.pm;
-        const format = option.format;
+        const { packageManager, projectPath } = await resolveProject(source, option.pm);
 
-        if (checkUnsupportedPM(packageManager)) {
-          return;
-        }
+        const format = option.format;
 
         const packagesToBeOverride = await findPackagesCoveredByNolyfill(packageManager, projectPath);
 
@@ -121,13 +144,7 @@ const program = new Command('nolyfill');
       .argument('[path]', 'project path to install nolyfill into')
       .addOption(pmCommandOption)
       .action(async (source: string | undefined, option: PmCommandOptions) => {
-        const projectPath = path.resolve(source ?? process.cwd());
-        // TODO: use `package-manager-detector` agent option
-        const packageManager = option.pm === 'auto' ? await detectPackageManager(projectPath) : option.pm;
-
-        if (checkUnsupportedPM(packageManager)) {
-          return;
-        }
+        const { packageManager, projectPath } = await resolveProject(source, option.pm);
 
         const packagesToBeOverride = await findPackagesCoveredByNolyfill(packageManager, projectPath);
 
@@ -143,9 +160,9 @@ const program = new Command('nolyfill');
           console.log(picocolors.yellow(`Found ${picocolors.green(picocolors.bold(packagesToBeOverride.length))} redundant packages:`));
           console.log(renderTree(packagesToBeOverride));
 
-          await overridesPackageJson(packageManager, projectPath, packagesToBeOverride);
+          const result = await overridesPackageJson(packageManager, projectPath, packagesToBeOverride);
 
-          printPostInstallInstructions(packageManager);
+          await printPostInstallInstructions(packageManager, projectPath, result);
         }
       });
 

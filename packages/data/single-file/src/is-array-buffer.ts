@@ -1,7 +1,7 @@
 import { uncurryThis } from '@nolyfill/shared';
 
 const bL = uncurryThis(Object.getOwnPropertyDescriptor(ArrayBuffer.prototype, 'byteLength')!.get!);
-function is(obj: unknown): obj is ArrayBuffer {
+export default function is(obj: unknown): obj is ArrayBuffer {
   if (!obj || typeof obj !== 'object') {
     return false;
   }
@@ -12,5 +12,3 @@ function is(obj: unknown): obj is ArrayBuffer {
     return false;
   }
 }
-
-export default is;

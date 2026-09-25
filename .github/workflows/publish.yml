@@ -4,11 +4,11 @@ on:
     branches:
       - master
     tags-ignore:
-      - '**'
+      - "**"
     paths-ignore:
-      - '**/*.md'
+      - "**/*.md"
       - LICENSE
-      - '**/*.gitignore'
+      - "**/*.gitignore"
       - .editorconfig
       - docs/**
   pull_request: null
@@ -20,21 +20,20 @@ jobs:
       contents: read
       id-token: write
     steps:
-      - uses: actions/checkout@v3
-      - uses: pnpm/action-setup@v2
-      - name: Setup node
-        uses: actions/setup-node@v3
+      - uses: actions/checkout@v7
+      - uses: pnpm/setup@v2
         with:
-          node-version: 22
+          install: false
+          cache: true
+      - uses: actions/setup-node@v6
+        with:
+          node-version-file: ".node-version"
           check-latest: true
-          cache: 'pnpm'
-          registry-url: 'https://registry.npmjs.org'
-      - name: Install the latest npm
-        run: npm install -g npm
-      - name: Install dependencies
-        run: pnpm install
-      - name: Run build
-        run: pnpm run build
+          package-manager-cache: false
+          registry-url: "https://registry.npmjs.org"
+      - run: pnpm install
+      - run: pnpm run build
+      - run: pnpm run test
       - name: Publish
         run: |
           if git log -1 --pretty=%B | grep "^release: [0-9]\+\.[0-9]\+\.[0-9]\+$";
@@ -47,5 +46,4 @@ jobs:
             echo "Not a release, skipping publish"
           fi
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
           NPM_CONFIG_PROVENANCE: true

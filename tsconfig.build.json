@@ -3,10 +3,14 @@
   "compilerOptions": {
     "target": "ES2018",
     "module": "CommonJS",
+    "rootDir": "./packages",
     "declaration": true,
     "outDir": "./dist",
     "noEmit": false,
     "verbatimModuleSyntax": false
   },
-  "include": ["./packages/data/*/src/*.ts", "./packages/tools/shared/src/*.ts"]
+  "include": [
+    "./packages/data/*/src/*.ts",
+    "./packages/tools/shared/src/*.ts"
+  ]
 }

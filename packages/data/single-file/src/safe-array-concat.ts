@@ -2,7 +2,7 @@ const empty: never[] = [];
 // @ts-expect-error -- JS is awesome
 empty[Symbol.isConcatSpreadable] = true;
 
-function concat<T>(...args: Array<T | T[]>) {
+export default function concat<T>(...args: Array<T | T[]>) {
   for (let i = 0, l = args.length; i < l; i += 1) {
     const arg = args[i];
     if (arg && typeof arg === 'object' && Symbol.isConcatSpreadable in arg && typeof arg[Symbol.isConcatSpreadable] === 'boolean') {
@@ -14,5 +14,3 @@ function concat<T>(...args: Array<T | T[]>) {
   }
   return (Array.prototype as T[]).concat.apply(empty, args);
 }
-
-export default concat;

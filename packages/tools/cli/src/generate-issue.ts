@@ -5,10 +5,7 @@ import { async as ezspawnAsync } from '@jsdevtools/ez-spawn';
 import type { PackageManager } from './package-manager';
 
 function isProcessError(e: unknown): e is ProcessError {
-  if (e instanceof Error) {
-    return e.name === 'ProcessError';
-  }
-  return false;
+  return typeof e === 'object' && e !== null && 'name' in e && e.name === 'ProcessError';
 }
 
 export async function generateIssue(cwd: string, packageManager: PackageManager, packagesNodes: PackageNode[]) {

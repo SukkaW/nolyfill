@@ -19,7 +19,7 @@ function defineProperty(object: any, name: string | number | symbol, value: any,
   });
 }
 
-function defineProperties<M extends object>(object: object,
+export default function defineProperties<M extends object>(object: object,
   map: M & ThisType<any>,
   predicates?: Partial<Record<keyof M, () => boolean>>) {
   const props: Array<keyof M> = Array.prototype.concat.call(Object.keys(map), Object.getOwnPropertySymbols(map));
@@ -28,5 +28,3 @@ function defineProperties<M extends object>(object: object,
     defineProperty(object, k, map[k], predicates?.[k]);
   }
 }
-
-export default defineProperties;

@@ -1,4 +1,4 @@
-function is(value: unknown): value is Date {
+export default function is(value: unknown): value is Date {
   if (typeof value !== 'object' || value === null) return false;
   try {
     Date.prototype.getDay.call(value);
@@ -7,5 +7,3 @@ function is(value: unknown): value is Date {
     return false;
   }
 }
-
-export default is;

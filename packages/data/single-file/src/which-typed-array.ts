@@ -36,9 +36,7 @@ function tryTypedArrays(value: unknown): false | AvailableTypedArray {
   return found;
 }
 
-function t(value: unknown) {
+export default function t(value: unknown) {
   if (!value || typeof value !== 'object') { return false; }
   return tryTypedArrays(value);
 }
-
-export default t;
